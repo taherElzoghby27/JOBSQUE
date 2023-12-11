@@ -25,11 +25,6 @@ class SavedBody extends StatelessWidget {
         SizedBox(height: size.height * .02.h),
         //saved jops
         SectionSavedJop(),
-        // EmptyWidget(
-        //   icon: AppAssets.savedIlus,
-        //   title: StringsEn.noThingHasBeenSaved,
-        //   subTitle: StringsEn.pressTheStarIcon,
-        // ),
       ],
     );
   }
