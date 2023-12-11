@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
@@ -23,9 +24,10 @@ class SectionSavedJop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    SavedCubit bloc = BlocProvider.of<SavedCubit>(context);
 
     ///show setting jop
-    _showSettingJopSheet(BuildContext context) {
+    _showSettingJopSheet(BuildContext context, {required Job job}) {
       showModalBottomSheet(
         isScrollControlled: true,
         context: context,
@@ -59,7 +61,10 @@ class SectionSavedJop extends StatelessWidget {
                     leading: Icon(FontAwesomeIcons.bookmark),
                     title: StringsEn.cancelSave,
                     trailing: Icons.arrow_forward_ios,
-                    onTap: () {},
+                    onTap: () {
+                      bloc.deleteJobFromSavedBoxHive(job: job);
+                      GoRouter.of(context).pop();
+                    },
                   ),
                   SizedBox(height: size.height * .03.h),
                 ],
@@ -106,8 +111,10 @@ class SectionSavedJop extends StatelessWidget {
                                 millSeconds: 250,
                                 child: ItemSavedJop(
                                   job: savedList[index],
-                                  onTapTrailing: () =>
-                                      _showSettingJopSheet(context),
+                                  onTapTrailing: () => _showSettingJopSheet(
+                                    context,
+                                    job: savedList[index],
+                                  ),
                                 ),
                               );
                             },

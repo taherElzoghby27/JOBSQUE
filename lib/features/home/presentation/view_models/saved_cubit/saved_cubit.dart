@@ -15,7 +15,7 @@ class SavedCubit extends Cubit<SavedState> {
   void onChangeSaved({required Job job}) {
     final isSaved = savedJobBox.containsKey(job.id as int);
     if (isSaved) {
-      deleteJobToSavedBoxHive(job: job);
+      deleteJobFromSavedBoxHive(job: job);
     } else {
       addJobToSavedBoxHive(job: job);
     }
@@ -47,7 +47,8 @@ class SavedCubit extends Cubit<SavedState> {
   }
 
   //delete job from saved box hive
-  deleteJobToSavedBoxHive({required Job job}) {
+  deleteJobFromSavedBoxHive({required Job job}) {
     savedJobBox.delete(job.id as int);
+    getSavedJobs();
   }
 }
