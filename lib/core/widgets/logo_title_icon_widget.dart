@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/widgets/small_loading_widget.dart';
 
 import 'custom_photo.dart';
 
@@ -47,7 +45,7 @@ class LogoTitleIconWidget extends StatelessWidget {
               ///title
               FittedBox(
                 child: SizedBox(
-                  width: size.width * .5.w,
+                  width: size.width * .45.w,
                   child: Text(
                     jopTitle,
                     maxLines: 1,

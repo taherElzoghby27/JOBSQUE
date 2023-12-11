@@ -36,6 +36,7 @@ class RecentJopSection extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: ListView.separated(
+                  reverse: true,
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

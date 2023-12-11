@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/models/job_model.dart';
 import 'package:jobsque/core/widgets/logo_title_icon_widget.dart';
 import 'package:jobsque/core/widgets/type_jop_component.dart';
+
+import '../../view_models/saved_cubit/saved_cubit.dart';
 
 class ItemRecentJop extends StatelessWidget {
   const ItemRecentJop({
@@ -34,12 +37,21 @@ class ItemRecentJop extends StatelessWidget {
                 jopTitle: job.name!,
                 company: job.compName!,
                 country: job.location!,
-                trailing: IconButton(
-                  onPressed: onTapBookMark,
-                  icon: Icon(
-                    FontAwesomeIcons.bookmark,
-                    color: AppConsts.neutral900,
-                  ),
+                trailing: BlocBuilder<SavedCubit, SavedState>(
+                  builder: (context, state) {
+                    bool isSaved = BlocProvider.of<SavedCubit>(context)
+                        .checkSavedOrNot(job: job);
+                    return IconButton(
+                      onPressed: () => BlocProvider.of<SavedCubit>(context)
+                          .onChangeSaved(job: job),
+                      icon: Icon(
+                        FontAwesomeIcons.bookmark,
+                        color: isSaved
+                            ? AppConsts.primary500
+                            : AppConsts.neutral900,
+                      ),
+                    );
+                  },
                 ),
               ),
               //full time -remote -design
