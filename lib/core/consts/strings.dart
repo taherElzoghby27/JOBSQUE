@@ -101,6 +101,7 @@ abstract class StringsEn {
   static String messages = 'Messages';
   static String applied = 'Applied';
   static String saved = 'Saved';
+  static String jobSaved = ' Job Saved';
   static String profile = 'Profile';
   static String typeSomething = 'Type something...';
   static String recentSearches = 'Recent searches';
