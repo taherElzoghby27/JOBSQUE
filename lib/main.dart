@@ -9,12 +9,15 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/services/bloc_observer.dart';
 
+import 'core/models/job_model.dart';
 import 'core/services/service_locator.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox(StringsEn.savedJobsBox);
+  // Register Adapter
+  Hive.registerAdapter(JobAdapter());
+  await Hive.openBox<Job>(StringsEn.savedJobsBox);
 
   await CacheHelper.init();
   setupServiceLocator();
