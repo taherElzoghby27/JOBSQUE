@@ -1,26 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/models/job_model.dart';
 import 'package:jobsque/core/widgets/logo_title_icon_widget.dart';
 
 class ItemSavedJop extends StatelessWidget {
   const ItemSavedJop({
     super.key,
-    required this.logo,
-    required this.jopTitle,
-    required this.company,
-    required this.country,
     required this.onTapTrailing,
-    required this.when,
+    required this.job,
   });
 
-  final String logo;
-  final String jopTitle;
-  final String company;
-  final String country;
-  final String when;
+  final Job job;
   final void Function() onTapTrailing;
 
   @override
@@ -31,10 +24,10 @@ class ItemSavedJop extends StatelessWidget {
       child: Column(
         children: [
           LogoTitleIconWidget(
-            logo: logo,
-            jopTitle: jopTitle,
-            company: company,
-            country: country,
+            logo: job.image!,
+            jopTitle: job.name!,
+            company: job.compName!,
+            country: job.location!,
             trailing: IconButton(
               onPressed: onTapTrailing,
               icon: Icon(Icons.more_horiz),
@@ -46,7 +39,9 @@ class ItemSavedJop extends StatelessWidget {
             children: [
               //Posted 2 days ago
               Text(
-                when,
+                DateFormat().add_MMMEd().format(
+                      convertStringToTime(time: job.updatedAt!),
+                    ),
                 style: AppConsts.style12.copyWith(color: AppConsts.neutral700),
               ),
 
@@ -74,5 +69,10 @@ class ItemSavedJop extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  DateTime convertStringToTime({required String time}) {
+    DateTime dateTime = DateTime.parse(time);
+    return dateTime;
   }
 }
