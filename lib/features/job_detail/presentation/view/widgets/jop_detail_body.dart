@@ -41,7 +41,7 @@ class JopDetailBody extends StatelessWidget {
 
                         ///custom appBar
                         CustomAppBar(
-                          leadingOnTap: () => GoRouter.of(context).pop(),
+                          leadingOnTap: () => GoRouter.of(context).pushReplacement(homePath),
                           title: StringsEn.jobDetail,
                           trailingOnTap: () {},
                           trailingWidget: BookmarkWidget(job:job),

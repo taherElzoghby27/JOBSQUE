@@ -6,11 +6,9 @@ abstract class SavedState {}
 class SavedInitial extends SavedState {}
 
 //saved or not
-class OnChangedSavedState extends SavedState {
-}
+class OnChangedSavedState extends SavedState {}
 
-class CheckSavedState extends SavedState {}
-
+//get saved jobs
 class SavedJobsLoaded extends SavedState {
   final List<Job> savedJobs;
 
