@@ -17,6 +17,7 @@ void main() async{
   await Hive.initFlutter();
   // Register Adapter
   Hive.registerAdapter(JobAdapter());
+  //open Job box
   await Hive.openBox<Job>(StringsEn.savedJobsBox);
 
   await CacheHelper.init();
