@@ -36,7 +36,9 @@ class SectionResult extends StatelessWidget {
                   children: [
                     SizedBox(
                       height: size.height * .04.h,
-                      child: TileWidget(label: "${StringsEn.featuring} ${jobs.length} ${StringsEn.jobs}"),
+                      child: TileWidget(
+                          label:
+                              "${StringsEn.featuring} ${jobs.length} ${StringsEn.jobs}"),
                     ),
 
                     ///searching jops
@@ -46,7 +48,8 @@ class SectionResult extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
-                        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
                         itemBuilder: (context, index) {
                           return FadeAnimation(
                             millSeconds: 250,
@@ -67,12 +70,7 @@ class SectionResult extends StatelessWidget {
                   ],
                 );
         } else if (state is GetJobsLoading) {
-          return Column(
-            children: [
-              SizedBox(height: size.height * 05.h),
-              LoadingWidget(),
-            ],
-          );
+          return LoadingWidget();
         } else if (state is GetJobsFailure) {
           return showSnack(context, message: state.message);
         }
