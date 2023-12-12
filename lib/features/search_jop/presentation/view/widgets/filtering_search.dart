@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/data.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/services/service_locator.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/core/widgets/jop_type_component_button.dart';
+import 'package:jobsque/features/home/data/repo/home_repo_implementation.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/custom_filter_text_field.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/custom_type_jop_widget.dart';
+import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
 
 import 'custom_component_jop_type.dart';
 
@@ -71,30 +75,43 @@ class SectionFiltering extends StatelessWidget {
                   SizedBox(height: size.height * .02.w),
 
                   ///salary
-                  CustomFilterTextField(
-                    label: StringsEn.salary,
-                    hint: StringsEn.salary,
-                    perfixIcon: Icon(
-                      FontAwesomeIcons.circleDollarToSlot,
-                      size: 16.sp,
+                  BlocProvider(
+                    create: (_) => SearchBloc(
+                      jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
                     ),
-                    suffixIcon: DropdownButton<String>(
-                      hint: Text('\t\t\t\t\t\t\t\t\t\t\t\t\t\t15-16k'),
-                      underline: Container(),
-                      isExpanded: true,
-                      icon: Icon(Icons.arrow_drop_down),
-                      items: salaries
-                          .map(
-                            (e) => DropdownMenuItem<String>(
-                              value: e,
-                              child: Text(e),
-                              onTap: () {},
+                    child: BlocBuilder<SearchBloc, SearchState>(
+                      builder: (context, state) {
+                        SearchBloc bloc = BlocProvider.of<SearchBloc>(context);
+                        String salary = bloc.salary;
+                        return CustomFilterTextField(
+                          label: StringsEn.salary,
+                          hint: StringsEn.salary,
+                          perfixIcon: Icon(
+                            FontAwesomeIcons.circleDollarToSlot,
+                            size: 16.sp,
+                          ),
+                          suffixIcon: DropdownButton<String>(
+                            hint: Text('\t\t\t\t\t\t\t\t\t\t\t\t\t\t$salary'),
+                            underline: Container(),
+                            isExpanded: true,
+                            icon: Icon(Icons.arrow_drop_down),
+                            items: salaries
+                                .map(
+                                  (e) => DropdownMenuItem<String>(
+                                    value: e,
+                                    child: Text(e),
+                                    onTap: () {},
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (String? value) => bloc.add(
+                              ChangedSalaryEvent(value: value!),
                             ),
-                          )
-                          .toList(),
-                      onChanged: onChangedDropDownMenuItem,
+                          ),
+                          readOnly: true,
+                        );
+                      },
                     ),
-                    readOnly: true,
                   ),
                   SizedBox(height: size.height * .02.w),
 
@@ -228,14 +245,5 @@ class SectionFiltering extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void onChangedDropDownMenuItem(String? value) {
-    if (value == salaries[0]) {
-    } else if (value == salaries[1]) {
-    } else if (value == salaries[2]) {
-    } else if (value == salaries[3]) {
-    } else if (value == salaries[4]) {
-    } else if (value == salaries[5]) {}
   }
 }

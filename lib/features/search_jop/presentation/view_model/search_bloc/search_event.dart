@@ -20,6 +20,8 @@ class JopTypeEvent extends SearchEvent {
 
   JopTypeEvent({required this.jopType});
 }
+
+class ResetEvent extends SearchEvent {}
 // class showResultEvent extends SearchEvent {
 //   final String title;
 //   final String location;

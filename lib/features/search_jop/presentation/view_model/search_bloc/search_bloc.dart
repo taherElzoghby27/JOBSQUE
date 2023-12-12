@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:jobsque/core/consts/data.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/features/home/data/repo/home_repo.dart';
 
@@ -16,6 +17,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   String titleJop = '';
   String location = '';
   String jopType = StringsEn.fullTime;
+  String salary = salaries[1];
 
   SearchBloc({required this.jobFilterRepo}) : super(SearchInitial()) {
     on<SearchEvent>(
@@ -37,6 +39,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           jopType = event.jopType;
           print(jopType);
           emit(ChangeJopTypeState(jopType: event.jopType));
+        } else if (event is ChangedSalaryEvent) {
+          salary = event.value;
+          print(salary);
+          emit(ChangedSalaryState(salary: salary));
         }
       },
     );
