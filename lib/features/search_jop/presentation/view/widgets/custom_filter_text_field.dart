@@ -15,6 +15,7 @@ class CustomFilterTextField extends StatelessWidget {
     this.onChanged,
     this.obscureText = false,
     this.border,
+    this.controller,
   });
 
   final String? label;
@@ -26,6 +27,7 @@ class CustomFilterTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final bool obscureText;
   final OutlineInputBorder? border;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,7 @@ class CustomFilterTextField extends StatelessWidget {
           onChanged: onChanged,
           obscureText: obscureText,
           border: border,
+          controller: controller,
         ),
       ],
     );

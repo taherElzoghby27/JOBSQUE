@@ -22,7 +22,5 @@ class JopTypeEvent extends SearchEvent {
 }
 
 class ResetEvent extends SearchEvent {}
-// class showResultEvent extends SearchEvent {
-//   final String title;
-//   final String location;
-// }
+
+class showResultEvent extends SearchEvent {}

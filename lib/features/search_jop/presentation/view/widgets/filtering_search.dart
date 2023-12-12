@@ -55,22 +55,24 @@ class SectionFiltering extends StatelessWidget {
                   ///jop title
                   CustomFilterTextField(
                     label: StringsEn.jobTitle,
-                    hint: 'Junior Data Science',
+                    hint:StringsEn.jobTitle,
                     perfixIcon: Icon(
                       FontAwesomeIcons.briefcase,
                       size: 16.sp,
                     ),
+                    controller: ,
                   ),
                   SizedBox(height: size.height * .02.w),
 
                   ///location
                   CustomFilterTextField(
                     label: StringsEn.location,
-                    hint: 'Location',
+                    hint: StringsEn.location,
                     perfixIcon: Icon(
                       Icons.location_on_outlined,
                       size: 16.sp,
                     ),
+                    controller: ,
                   ),
                   SizedBox(height: size.height * .02.w),
 
