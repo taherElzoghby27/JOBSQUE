@@ -70,7 +70,7 @@ class SectionResult extends StatelessWidget {
                   ],
                 );
         } else if (state is GetJobsLoading) {
-          return LoadingWidget();
+          return LoadingWidget(height: size.height * .3.h);
         } else if (state is GetJobsFailure) {
           return showSnack(context, message: state.message);
         }
