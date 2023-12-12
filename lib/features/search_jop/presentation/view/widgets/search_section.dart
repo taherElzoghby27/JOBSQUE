@@ -10,10 +10,10 @@ import '../../../../../core/consts/style.dart';
 class SectionSearch extends StatelessWidget {
   const SectionSearch({
     super.key,
-    required this.searchController,
+    required this.onChanged,
   });
 
-  final TextEditingController searchController;
+  final void Function(String) onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,7 @@ class SectionSearch extends StatelessWidget {
         ///back
         IconButton(
           onPressed: () => GoRouter.of(context).pop(),
-          icon: Icon(
-            Icons.arrow_back,
-          ),
+          icon: Icon(Icons.arrow_back),
         ),
 
         ///search field
@@ -34,10 +32,10 @@ class SectionSearch extends StatelessWidget {
             child: CustomTextField(
               perfixIcon: Icon(FontAwesomeIcons.magnifyingGlass),
               hint: StringsEn.typeSomething,
-              controller: searchController,
               border: AppConsts.normalBorderField.copyWith(
                 borderRadius: BorderRadius.circular(35),
               ),
+              onChanged: onChanged,
             ),
           ),
         ),

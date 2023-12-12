@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:jobsque/core/models/job_model.dart';
@@ -11,7 +10,7 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  JobFilterRepo jobFilterRepo;
+  final JobFilterRepo jobFilterRepo;
 
   HomeBloc({required this.jobFilterRepo}) : super(JobsInitial()) {
     on<HomeEvent>(

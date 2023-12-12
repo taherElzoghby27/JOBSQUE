@@ -128,6 +128,7 @@ abstract class StringsEn {
   static String searchNotFound = 'Search not found';
   static String trySearchingWithDifferent =
       'Try searching with different keywords so we can show you';
+  static String featuring ='Featuring';
   static String jobDetail = 'Job Detail';
   static String desicription = 'Desicription';
   static String company = 'Company';

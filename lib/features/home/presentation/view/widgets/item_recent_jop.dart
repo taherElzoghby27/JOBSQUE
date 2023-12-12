@@ -13,13 +13,11 @@ import '../../view_models/saved_cubit/saved_cubit.dart';
 class ItemRecentJop extends StatelessWidget {
   const ItemRecentJop({
     super.key,
-    required this.onTapBookMark,
     required this.onTap,
     required this.job,
   });
 
   final Job job;
-  final void Function() onTapBookMark;
   final void Function() onTap;
 
   @override

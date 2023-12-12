@@ -44,7 +44,6 @@ class RecentJopSection extends StatelessWidget {
                     return FadeAnimation(
                       millSeconds: 250,
                       child: ItemRecentJop(
-                        onTapBookMark: () {},
                         onTap: () => GoRouter.of(context).push(
                           jopDetailPath,
                           extra: jobs[index],

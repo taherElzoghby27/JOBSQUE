@@ -4,7 +4,7 @@ part of 'search_bloc.dart';
 abstract class SearchEvent {}
 
 class SearchingEvent extends SearchEvent {
-  final TextEditingController searchText;
+  final String searchText;
 
   SearchingEvent({required this.searchText});
 }

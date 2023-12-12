@@ -27,6 +27,7 @@ import 'package:jobsque/features/profile/presentation/view/login_and_security/pr
 import 'package:jobsque/features/profile/presentation/view/notification/presentation/view/notification_profile_view.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/portfolio_view.dart';
 import 'package:jobsque/features/search_jop/presentation/view/search_view.dart';
+import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
 import 'package:jobsque/features/splash/presentation/view/splash_view.dart';
 import 'package:jobsque/features/terms_and_conditions/presentation/view/terms_and_condition_view.dart';
 import '../../features/auth/presentation/view/auth_view.dart';
@@ -137,7 +138,17 @@ final router = GoRouter(
     ),
     GoRoute(
       path: searchPath,
-      builder: (context, state) => SearchView(),
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => SearchBloc(
+              jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+            ),
+          ),
+          BlocProvider(create: (_) => SavedCubit()),
+        ],
+        child: SearchView(),
+      ),
     ),
     GoRoute(
       path: jopDetailPath,
