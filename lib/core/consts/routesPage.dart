@@ -143,8 +143,11 @@ final router = GoRouter(
       path: jopDetailPath,
       builder: (context, state) {
         Job job = state.extra as Job;
-        return BlocProvider(
-          create: (_) => JobDetailsCubit(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => JobDetailsCubit()),
+            BlocProvider(create: (_) => SavedCubit()),
+          ],
           child: JopDetailView(job: job),
         );
       },
