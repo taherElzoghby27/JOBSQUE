@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/widgets/bookmark_widget.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/type_jop_component.dart';
 import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
@@ -87,23 +88,7 @@ class ItemSuggestedJop extends StatelessWidget {
                       Spacer(),
 
                       ///bookmark
-                      BlocBuilder<SavedCubit, SavedState>(
-                        builder: (context, state) {
-                          bool isSaved = BlocProvider.of<SavedCubit>(context)
-                              .checkSavedOrNot(job: job);
-                          return IconButton(
-                            onPressed: () =>
-                                BlocProvider.of<SavedCubit>(context)
-                                    .onChangeSaved(job: job),
-                            icon: Icon(
-                              FontAwesomeIcons.bookmark,
-                              color: isSaved
-                                  ? AppConsts.primary500
-                                  : AppConsts.neutral100,
-                            ),
-                          );
-                        },
-                      ),
+                      BookmarkWidget(job: job, color: AppConsts.neutral100),
                     ],
                   ),
                   //full time -remote -design

@@ -7,6 +7,7 @@ import 'package:jobsque/core/models/job_model.dart';
 import 'package:jobsque/core/widgets/logo_title_icon_widget.dart';
 import 'package:jobsque/core/widgets/type_jop_component.dart';
 
+import '../../../../../core/widgets/bookmark_widget.dart';
 import '../../view_models/saved_cubit/saved_cubit.dart';
 
 class ItemRecentJop extends StatelessWidget {
@@ -37,22 +38,7 @@ class ItemRecentJop extends StatelessWidget {
                 jopTitle: job.name!,
                 company: job.compName!,
                 country: job.location!,
-                trailing: BlocBuilder<SavedCubit, SavedState>(
-                  builder: (context, state) {
-                    bool isSaved = BlocProvider.of<SavedCubit>(context)
-                        .checkSavedOrNot(job: job);
-                    return IconButton(
-                      onPressed: () => BlocProvider.of<SavedCubit>(context)
-                          .onChangeSaved(job: job),
-                      icon: Icon(
-                        FontAwesomeIcons.bookmark,
-                        color: isSaved
-                            ? AppConsts.primary500
-                            : AppConsts.neutral900,
-                      ),
-                    );
-                  },
-                ),
+                trailing: BookmarkWidget(job:job),
               ),
               //full time -remote -design
               Row(

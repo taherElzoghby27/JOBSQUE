@@ -14,13 +14,14 @@ class SavedCubit extends Cubit<SavedState> {
   //changed saved
   void onChangeSaved({required Job job}) {
     final isSaved = savedJobBox.containsKey(job.id as int);
+
     if (isSaved) {
       deleteJobFromSavedBoxHive(job: job);
     } else {
       addJobToSavedBoxHive(job: job);
     }
 
-    emit(OnChangedSavedState(isSaved: !isSaved));
+    emit(OnChangedSavedState());
   }
 
   //check saved or not

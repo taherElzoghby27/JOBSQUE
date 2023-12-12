@@ -7,10 +7,9 @@ class SavedInitial extends SavedState {}
 
 //saved or not
 class OnChangedSavedState extends SavedState {
-  final bool isSaved;
-
-  OnChangedSavedState({required this.isSaved});
 }
+
+class CheckSavedState extends SavedState {}
 
 class SavedJobsLoaded extends SavedState {
   final List<Job> savedJobs;

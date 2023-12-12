@@ -12,6 +12,7 @@ import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/description_company_people_section_jop_detail.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/info_section_jop_detail.dart';
 
+import '../../../../../core/widgets/bookmark_widget.dart';
 import '../../../../home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'blur_widget.dart';
 
@@ -32,7 +33,7 @@ class JopDetailBody extends StatelessWidget {
               return [
                 SliverAppBar(
                   automaticallyImplyLeading: false,
-                  expandedHeight: size.height * .325.h,
+                  expandedHeight: size.height * .33.h,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Column(
                       children: [
@@ -43,24 +44,7 @@ class JopDetailBody extends StatelessWidget {
                           leadingOnTap: () => GoRouter.of(context).pop(),
                           title: StringsEn.jobDetail,
                           trailingOnTap: () {},
-                          trailingWidget: BlocBuilder<SavedCubit, SavedState>(
-                            builder: (context, state) {
-                              bool isSaved =
-                                  BlocProvider.of<SavedCubit>(context)
-                                      .checkSavedOrNot(job: job);
-                              return IconButton(
-                                onPressed: () =>
-                                    BlocProvider.of<SavedCubit>(context)
-                                        .onChangeSaved(job: job),
-                                icon: Icon(
-                                  FontAwesomeIcons.bookmark,
-                                  color: isSaved
-                                      ? AppConsts.primary500
-                                      : AppConsts.neutral900,
-                                ),
-                              );
-                            },
-                          ),
+                          trailingWidget: BookmarkWidget(job:job),
                         ),
                         SizedBox(height: size.height * .02.h),
 
