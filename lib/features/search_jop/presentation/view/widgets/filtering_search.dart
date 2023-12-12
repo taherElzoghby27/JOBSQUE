@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/data.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
@@ -26,7 +27,7 @@ class SectionFiltering extends StatelessWidget {
         context: context,
         builder: (context) {
           return Container(
-            height: size.height*.9.h,
+            height: size.height * .9.h,
             width: double.infinity,
             decoration: AppConsts.decorationSheet,
             child: Padding(
@@ -72,7 +73,7 @@ class SectionFiltering extends StatelessWidget {
                   ///salary
                   CustomFilterTextField(
                     label: StringsEn.salary,
-                    hint: 'Salary',
+                    hint: StringsEn.salary,
                     perfixIcon: Icon(
                       FontAwesomeIcons.circleDollarToSlot,
                       size: 16.sp,
@@ -82,24 +83,16 @@ class SectionFiltering extends StatelessWidget {
                       underline: Container(),
                       isExpanded: true,
                       icon: Icon(Icons.arrow_drop_down),
-                      items: [
-                        DropdownMenuItem<String>(
-                          value: '15',
-                          child: Text('15'),
-                          onTap: () {},
-                        ),
-                        DropdownMenuItem<String>(
-                          value: '17',
-                          child: Text('17'),
-                          onTap: () {},
-                        ),
-                        DropdownMenuItem<String>(
-                          value: '18',
-                          child: Text('18'),
-                          onTap: () {},
-                        ),
-                      ],
-                      onChanged: (String? value) {},
+                      items: salaries
+                          .map(
+                            (e) => DropdownMenuItem<String>(
+                              value: e,
+                              child: Text(e),
+                              onTap: () {},
+                            ),
+                          )
+                          .toList(),
+                      onChanged: onChangedDropDownMenuItem,
                     ),
                     readOnly: true,
                   ),
@@ -133,7 +126,7 @@ class SectionFiltering extends StatelessWidget {
         context: context,
         builder: (context) {
           return Container(
-            height: size.height*.35.h,
+            height: size.height * .35.h,
             width: double.infinity,
             decoration: AppConsts.decorationSheet,
             child: Padding(
@@ -235,5 +228,14 @@ class SectionFiltering extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void onChangedDropDownMenuItem(String? value) {
+    if (value == salaries[0]) {
+    } else if (value == salaries[1]) {
+    } else if (value == salaries[2]) {
+    } else if (value == salaries[3]) {
+    } else if (value == salaries[4]) {
+    } else if (value == salaries[5]) {}
   }
 }

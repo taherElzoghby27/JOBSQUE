@@ -8,3 +8,19 @@ class SearchingEvent extends SearchEvent {
 
   SearchingEvent({required this.searchText});
 }
+
+class ChangedSalaryEvent extends SearchEvent {
+  final String value;
+
+  ChangedSalaryEvent({required this.value});
+}
+
+class JopTypeEvent extends SearchEvent {
+  final String jopType;
+
+  JopTypeEvent({required this.jopType});
+}
+// class showResultEvent extends SearchEvent {
+//   final String title;
+//   final String location;
+// }

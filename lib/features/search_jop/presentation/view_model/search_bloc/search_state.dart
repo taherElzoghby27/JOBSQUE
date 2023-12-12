@@ -4,6 +4,7 @@ part of 'search_bloc.dart';
 abstract class SearchState {}
 
 class SearchInitial extends SearchState {}
+
 //filter jobs
 class GetJobsLoading extends SearchState {}
 
@@ -19,3 +20,15 @@ class GetJobsFailure extends SearchState {
   GetJobsFailure({required this.message});
 }
 
+//filter sheet
+class ChangedSalaryState extends SearchState {
+  final String salary;
+
+  ChangedSalaryState({required this.salary});
+}
+
+class ChangeJopTypeState extends SearchState {
+  final String jopType;
+
+  ChangeJopTypeState({required this.jopType});
+}
