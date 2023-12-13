@@ -1,19 +1,19 @@
 import 'package:bloc/bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:meta/meta.dart';
 
 part 'saved_state.dart';
 
 class SavedCubit extends Cubit<SavedState> {
-  SavedCubit() : super(SavedInitial());
-  Box<Job> savedJobBox = Hive.box<Job>(StringsEn.savedJobsBox);
+  final HiveDbJob hiveDbJob;
+
+  SavedCubit({required this.hiveDbJob}) : super(SavedInitial());
   List<Job> savedJobsList = [];
 
   //changed saved
   void onChangeSaved({required Job job}) {
-    final isSaved = savedJobBox.containsKey(job.id as int);
+    final isSaved = hiveDbJob.checkSavedOrNot(job: job);
 
     if (isSaved) {
       deleteJobFromSavedBoxHive(job: job);
@@ -26,16 +26,14 @@ class SavedCubit extends Cubit<SavedState> {
 
   //check saved or not
   bool checkSavedOrNot({required Job job}) =>
-      savedJobBox.containsKey(job.id as int);
+      hiveDbJob.checkSavedOrNot(job: job);
 
 //get all saved jobs
   getSavedJobs() {
     try {
       emit(SavedJobsLoading());
-      List<Job> savedJobs = List<Job>.from(
-        (savedJobBox.values).map((job) => job),
-      ).toList();
-      savedJobsList = savedJobs;
+      hiveDbJob.get();
+      savedJobsList = hiveDbJob.savedJobsList;
       emit(SavedJobsLoaded(savedJobs: savedJobsList));
     } catch (e) {
       emit(SavedJobsFailure(message: e.toString()));
@@ -43,13 +41,8 @@ class SavedCubit extends Cubit<SavedState> {
   }
 
   //add job to saved box hive
-  addJobToSavedBoxHive({required Job job}) {
-    savedJobBox.put(job.id as int, job);
-  }
+  addJobToSavedBoxHive({required Job job}) => hiveDbJob.add(job: job);
 
   //delete job from saved box hive
-  deleteJobFromSavedBoxHive({required Job job}) {
-    savedJobBox.delete(job.id as int);
-    getSavedJobs();
-  }
+  deleteJobFromSavedBoxHive({required Job job}) => hiveDbJob.delete(job: job);
 }

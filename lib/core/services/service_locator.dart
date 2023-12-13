@@ -4,6 +4,7 @@ import 'package:jobsque/core/services/api_service/auth_service/register_auth_ser
 import 'package:jobsque/core/services/api_service/auth_service/reset_pass_auth_service.dart';
 import 'package:jobsque/core/services/api_service/jop_service/filter_job_service.dart';
 import 'package:jobsque/core/services/api_service/post_api_service.dart';
+import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 
 import '../../features/home/data/repo/home_repo_implementation.dart';
@@ -11,6 +12,8 @@ import '../../features/home/data/repo/home_repo_implementation.dart';
 final getIt = GetIt.instance;
 
 void setupServiceLocator() {
+  //hive db job
+  getIt.registerSingleton<HiveDbJob>(HiveDbJob());
   //post api service
   getIt.registerSingleton<PostApiService>(PostApiService());
   //register api service

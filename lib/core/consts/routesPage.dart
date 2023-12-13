@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/core/services/service_locator.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/auth/presentation/view_model/auth_bloc/auth_bloc.dart';
@@ -98,7 +99,11 @@ final router = GoRouter(
                 jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
               )..add(GetJobsEvent()),
             ),
-            BlocProvider(create: (_) => SavedCubit()),
+            BlocProvider(
+              create: (_) => SavedCubit(
+                hiveDbJob: getIt.get<HiveDbJob>(),
+              ),
+            ),
           ],
           child: NavView(),
         );
@@ -145,7 +150,11 @@ final router = GoRouter(
               jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
             ),
           ),
-          BlocProvider(create: (_) => SavedCubit()),
+          BlocProvider(
+            create: (_) => SavedCubit(
+              hiveDbJob: getIt.get<HiveDbJob>(),
+            ),
+          ),
         ],
         child: SearchView(),
       ),
@@ -157,7 +166,11 @@ final router = GoRouter(
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => JobDetailsCubit()),
-            BlocProvider(create: (_) => SavedCubit()),
+            BlocProvider(
+              create: (_) => SavedCubit(
+                hiveDbJob: getIt.get<HiveDbJob>(),
+              ),
+            ),
           ],
           child: JopDetailView(job: job),
         );
