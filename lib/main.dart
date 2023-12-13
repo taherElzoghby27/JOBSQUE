@@ -3,22 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
-import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/services/bloc_observer.dart';
+import 'package:jobsque/core/services/local_database/hive_db.dart';
 
-import 'core/models/job_model.dart';
 import 'core/services/service_locator.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  // Register Adapter
-  Hive.registerAdapter(JobAdapter());
-  //open Job box
-  await Hive.openBox<Job>(StringsEn.savedJobsBox);
+  //init hive
+  await HiveDb.init();
 
   await CacheHelper.init();
   setupServiceLocator();
