@@ -5,7 +5,7 @@ import 'package:jobsque/core/consts/data.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/features/home/data/repo/home_repo.dart';
 
-import '../../../../../core/models/job_model.dart';
+import '../../../../../core/models/job_model/job_model.dart';
 import '../../../../auth/data/models/failure_message.dart';
 
 part 'search_event.dart';

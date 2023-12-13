@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 
 class ContentDescriptionWidget extends StatelessWidget {
   const ContentDescriptionWidget({

@@ -8,7 +8,7 @@ import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
-import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/custom_button_three_widget.dart';
 import 'package:jobsque/core/widgets/fade_animation_widget.dart';
 import 'package:jobsque/core/widgets/small_loading_widget.dart';

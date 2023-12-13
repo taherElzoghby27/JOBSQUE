@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/description_company_people_section_jop_detail.dart';

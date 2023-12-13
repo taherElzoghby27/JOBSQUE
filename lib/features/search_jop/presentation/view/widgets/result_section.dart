@@ -13,7 +13,7 @@ import '../../../../../core/consts/assets.dart';
 import '../../../../../core/consts/routesPage.dart';
 import '../../../../../core/consts/style.dart';
 import '../../../../../core/helper/custom_snack.dart';
-import '../../../../../core/models/job_model.dart';
+import '../../../../../core/models/job_model/job_model.dart';
 import '../../view_model/search_bloc/search_bloc.dart';
 
 class SectionResult extends StatelessWidget {

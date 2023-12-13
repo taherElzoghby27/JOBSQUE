@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/bar_widget.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/people_content_widget.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/job_details_cubit/job_details_cubit.dart';

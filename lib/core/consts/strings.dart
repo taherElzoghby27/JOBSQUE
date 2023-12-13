@@ -278,6 +278,7 @@ abstract class StringsEn {
   static String rejected = 'Rejected';
   static String jobs = 'Jobs';
   static String savedJobsBox = 'saved Jobs box';
+  static String userApplyBox = 'user apply box';
   static String noAppWereRejected = 'No applications were rejected';
   static String ifThereIsAnApp =
       'If there is an application that is rejected by the company it will appear here';

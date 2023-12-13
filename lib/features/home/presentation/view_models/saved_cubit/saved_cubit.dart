@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:meta/meta.dart';
 

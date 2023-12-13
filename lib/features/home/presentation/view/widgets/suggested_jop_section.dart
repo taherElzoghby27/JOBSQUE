@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/fade_animation_widget.dart';
 import 'package:jobsque/core/widgets/small_loading_widget.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/item_suggested_jop.dart';

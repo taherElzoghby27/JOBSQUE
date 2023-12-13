@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 
 import '../../../auth/data/models/failure_message.dart';
 

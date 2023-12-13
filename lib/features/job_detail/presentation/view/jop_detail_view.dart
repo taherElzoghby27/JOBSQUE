@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 
 import 'widgets/jop_detail_body.dart';
 

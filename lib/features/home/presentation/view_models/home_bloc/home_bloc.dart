@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/features/auth/data/models/failure_message.dart';
 import 'package:jobsque/features/home/data/repo/home_repo.dart';
 import 'package:meta/meta.dart';

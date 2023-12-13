@@ -10,7 +10,7 @@ import 'package:jobsque/core/widgets/fade_animation_widget.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/item_recent_jop.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/tile_recent_suggested_widget.dart';
 
-import '../../../../../core/models/job_model.dart';
+import '../../../../../core/models/job_model/job_model.dart';
 import '../../../../../core/widgets/small_loading_widget.dart';
 import '../../view_models/home_bloc/home_bloc.dart';
 
