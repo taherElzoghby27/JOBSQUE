@@ -10,10 +10,11 @@ import '../../../../../core/consts/style.dart';
 class SectionSearch extends StatelessWidget {
   const SectionSearch({
     super.key,
-    required this.onChanged,
+    required this.onChanged,  this.controller,
   });
 
-  final void Function(String) onChanged;
+  final void Function(String)? onChanged;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,7 @@ class SectionSearch extends StatelessWidget {
                 borderRadius: BorderRadius.circular(35),
               ),
               onChanged: onChanged,
+              controller: controller,
             ),
           ),
         ),

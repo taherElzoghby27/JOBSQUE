@@ -32,3 +32,5 @@ class ChangeJopTypeState extends SearchState {
 
   ChangeJopTypeState({required this.jopType});
 }
+
+class ResetState extends SearchState {}

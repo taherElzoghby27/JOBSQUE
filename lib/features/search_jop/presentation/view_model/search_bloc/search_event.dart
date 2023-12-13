@@ -5,8 +5,14 @@ abstract class SearchEvent {}
 
 class SearchingEvent extends SearchEvent {
   final String searchText;
+  final String location;
+  final String salary;
 
-  SearchingEvent({required this.searchText});
+  SearchingEvent({
+    required this.searchText,
+    this.location = '',
+    this.salary = '',
+  });
 }
 
 class ChangedSalaryEvent extends SearchEvent {
@@ -15,10 +21,10 @@ class ChangedSalaryEvent extends SearchEvent {
   ChangedSalaryEvent({required this.value});
 }
 
-class JopTypeEvent extends SearchEvent {
-  final String jopType;
+class JopTimeTypeEvent extends SearchEvent {
+  final String jopTimeType;
 
-  JopTypeEvent({required this.jopType});
+  JopTimeTypeEvent({required this.jopTimeType});
 }
 
 class ResetEvent extends SearchEvent {}

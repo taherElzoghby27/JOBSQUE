@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jobsque/core/helper/custom_snack.dart';
-import 'package:jobsque/core/models/job_model.dart';
-import 'package:jobsque/core/widgets/small_loading_widget.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/filtering_search.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/popular_search.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/recent_searchs.dart';

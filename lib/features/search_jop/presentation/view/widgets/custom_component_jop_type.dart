@@ -32,7 +32,7 @@ class CustomComponentJopType extends StatelessWidget {
           child: BlocBuilder<SearchBloc, SearchState>(
             builder: (context, state) {
               SearchBloc bloc = BlocProvider.of<SearchBloc>(context);
-              String fullTime = bloc.jopType;
+              String fullTime = bloc.jopTimeType;
               if (state is ChangeJopTypeState) {
                 fullTime = state.jopType;
               }
@@ -45,8 +45,8 @@ class CustomComponentJopType extends StatelessWidget {
                     labelColor: fullTime == StringsEn.fullTime
                         ? AppConsts.primary500
                         : AppConsts.neutral500,
-                    onTap: () =>
-                        bloc.add(JopTypeEvent(jopType: StringsEn.fullTime)),
+                    onTap: () => bloc
+                        .add(JopTimeTypeEvent(jopTimeType: StringsEn.fullTime)),
                   ),
                   CustomTypeJopWidget(
                     label: StringsEn.remote,
@@ -63,8 +63,9 @@ class CustomComponentJopType extends StatelessWidget {
                     labelColor: fullTime == StringsEn.partTime
                         ? AppConsts.primary500
                         : AppConsts.neutral500,
-                    onTap: () =>
-                        bloc.add(JopTypeEvent(jopType: StringsEn.partTime)),
+                    onTap: () => bloc.add(
+                      JopTimeTypeEvent(jopTimeType: StringsEn.partTime),
+                    ),
                   ),
                   CustomTypeJopWidget(
                     label: StringsEn.onSite,
