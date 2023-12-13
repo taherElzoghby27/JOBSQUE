@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/models/job_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 
 class HiveDbJob {
   List<Job> savedJobsList = [];

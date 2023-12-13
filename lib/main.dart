@@ -6,14 +6,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/services/bloc_observer.dart';
+import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 
 import 'core/services/service_locator.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //init hive
+  //init saved job hive
   await HiveDbJob.init();
+  //init users apply  hive
+  await HiveDbApplyUser.init();
 
   await CacheHelper.init();
   setupServiceLocator();
