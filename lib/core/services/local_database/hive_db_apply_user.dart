@@ -4,7 +4,8 @@ import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
 import '../../consts/strings.dart';
 
 class HiveDbApplyUser {
-  Box<ApplyUser> savedJobBox = Hive.box<ApplyUser>(StringsEn.userApplyBox);
+  List<ApplyUser> applyUsersList = [];
+  Box<ApplyUser> applyUsers = Hive.box<ApplyUser>(StringsEn.userApplyBox);
 
   //init hive
   static init() async {
@@ -16,11 +17,14 @@ class HiveDbApplyUser {
   }
 
 //add apply user
-  add({required ApplyUser user}) {}
-
-//update user
-  update({required ApplyUser user}) {}
+  add({required ApplyUser user}) => applyUsers.put(user.jobId, user);
 
 //get users apply
-  get() {}
+  get() {
+    List<ApplyUser> appUsers = List<ApplyUser>.from(
+      (applyUsers.values).map((user) => user),
+    ).toList();
+    applyUsersList = appUsers;
+    print(applyUsersList);
+  }
 }
