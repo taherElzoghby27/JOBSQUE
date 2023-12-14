@@ -4,3 +4,5 @@ part of 'apply_job_bloc.dart';
 abstract class ApplyJobState {}
 
 class ApplyJobInitial extends ApplyJobState {}
+
+class ChangedPageState extends ApplyJobState {}

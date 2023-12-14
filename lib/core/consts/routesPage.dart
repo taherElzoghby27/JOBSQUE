@@ -14,6 +14,7 @@ import 'package:jobsque/features/help_center/presentation/view/help_center_view.
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
 import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view/apply_jop_view.dart';
+import 'package:jobsque/features/job_detail/presentation/view_models/apply_job_bloc/apply_job_bloc.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/job_details_cubit/job_details_cubit.dart';
 import 'package:jobsque/features/messages/presentation/view/chat_view.dart';
 import 'package:jobsque/features/messages/presentation/view/messages_view.dart';
@@ -180,7 +181,10 @@ final router = GoRouter(
       path: applyJopPath,
       builder: (context, state) {
         String data = state.extra as String;
-        return ApplyJopView(status: data);
+        return BlocProvider(
+          create: (_) => ApplyJobBloc(),
+          child: ApplyJopView(status: data),
+        );
       },
     ),
     GoRoute(
