@@ -1,6 +1,7 @@
-
 import 'package:hive/hive.dart';
+
 part 'apply_user_model.g.dart';
+
 @HiveType(typeId: 1)
 class ApplyUser extends HiveObject {
   @HiveField(0)
@@ -15,6 +16,10 @@ class ApplyUser extends HiveObject {
   final String cv;
   @HiveField(5)
   final String otherFiles;
+  @HiveField(6)
+  final String userId;
+  @HiveField(7)
+  final String jobId;
 
   ApplyUser({
     required this.name,
@@ -23,5 +28,7 @@ class ApplyUser extends HiveObject {
     required this.typeOfWork,
     required this.cv,
     required this.otherFiles,
+    required this.jobId,
+    required this.userId,
   });
 }
