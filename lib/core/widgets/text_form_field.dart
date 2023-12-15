@@ -33,17 +33,26 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // keyboardType: hint == StringsEn.numberOfPieces.tr
-      //     ? TextInputType.number
-      //     : TextInputType.text,
+      keyboardType: hint == StringsEn.noHandPhone
+          ? TextInputType.number
+          : TextInputType.text,
       maxLines: maxLines,
       readOnly: readOnly,
       obscureText: obscureText,
-      //style: AppConsts.stylePhoneNumber,
       cursorColor: AppConsts.primary500,
       controller: controller,
-
       validator: (value) {
+        if (hint == StringsEn.fullTime ||
+            hint == StringsEn.email ||
+            hint == StringsEn.noHandPhone) {
+          if (value!.isEmpty) {
+            return StringsEn.fieldRequired;
+          }
+          if ((hint == StringsEn.email && !value.contains("@")) ||
+              (hint == StringsEn.noHandPhone && value.length < 9)) {
+            return '${StringsEn.enterValid}$hint';
+          }
+        }
         if (value!.isEmpty) {
           return '${StringsEn.enterValid}$hint';
         }
@@ -52,6 +61,7 @@ class CustomTextFormField extends StatelessWidget {
             return StringsEn.warningPass;
           }
         }
+
         return null;
       },
       onFieldSubmitted: onSaved,
