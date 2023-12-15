@@ -1,9 +1,13 @@
 ///strings by english
 abstract class StringsEn {
   static String token = 'token';
+  static String userId = 'user id';
+  static String jobId = 'job id';
+  static String status = 'status';
   static String skip = 'Skip';
   static String warningPass = 'Password must be at least 8 characters';
   static String enterValid = 'Enter valid ';
+  static String fieldRequired ='This Field Required.';
   static String hi = 'Hi, ';
   static String titleBoard1 = 'Find a job, and ';
   static String titleBoard11 = 'start building';

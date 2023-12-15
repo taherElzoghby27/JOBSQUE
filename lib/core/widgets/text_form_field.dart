@@ -16,7 +16,7 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines = 1,
     this.perfixText = '',
     this.controller,
-    this.border,
+    this.border, this.validator,
   }) : super(key: key);
   final String hint;
   final void Function(String?)? onSaved;
@@ -29,6 +29,7 @@ class CustomTextFormField extends StatelessWidget {
   final String perfixText;
   final TextEditingController? controller;
   final OutlineInputBorder? border;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -41,29 +42,7 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText,
       cursorColor: AppConsts.primary500,
       controller: controller,
-      validator: (value) {
-        if (hint == StringsEn.fullTime ||
-            hint == StringsEn.email ||
-            hint == StringsEn.noHandPhone) {
-          if (value!.isEmpty) {
-            return StringsEn.fieldRequired;
-          }
-          if ((hint == StringsEn.email && !value.contains("@")) ||
-              (hint == StringsEn.noHandPhone && value.length < 9)) {
-            return '${StringsEn.enterValid}$hint';
-          }
-        }
-        if (value!.isEmpty) {
-          return '${StringsEn.enterValid}$hint';
-        }
-        if (hint == StringsEn.password) {
-          if (value.length < 7) {
-            return StringsEn.warningPass;
-          }
-        }
-
-        return null;
-      },
+      validator: validator,
       onFieldSubmitted: onSaved,
       onChanged: onChanged,
       decoration: InputDecoration(
@@ -83,6 +62,7 @@ class CustomTextFormField extends StatelessWidget {
             AppConsts.normalBorderField.copyWith(
               borderRadius: BorderRadius.circular(8),
             ),
+        errorBorder: AppConsts.errorBorderField,
       ),
     );
   }
