@@ -16,6 +16,7 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines = 1,
     this.perfixText = '',
     this.controller,
+    this.border,
   }) : super(key: key);
   final String hint;
   final void Function(String?)? onSaved;
@@ -27,6 +28,7 @@ class CustomTextFormField extends StatelessWidget {
   final int maxLines;
   final String perfixText;
   final TextEditingController? controller;
+  final OutlineInputBorder? border;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,7 @@ class CustomTextFormField extends StatelessWidget {
       //style: AppConsts.stylePhoneNumber,
       cursorColor: AppConsts.primary500,
       controller: controller,
+
       validator: (value) {
         if (value!.isEmpty) {
           return '${StringsEn.enterValid}$hint';
@@ -58,11 +61,18 @@ class CustomTextFormField extends StatelessWidget {
         hintStyle: AppConsts.styleHint14,
         prefixIcon: perfixIcon,
         suffixIcon: suffixIcon,
-        enabledBorder: AppConsts.normalBorderField,
-        focusedBorder: AppConsts.focusedBorderField,
-        errorBorder: AppConsts.errorBorderField,
-        focusedErrorBorder: AppConsts.errorBorderField,
-        disabledBorder: AppConsts.normalBorderField,
+        enabledBorder: border ??
+            AppConsts.normalBorderField.copyWith(
+              borderRadius: BorderRadius.circular(8),
+            ),
+        focusedBorder: border ??
+            AppConsts.normalBorderField.copyWith(
+              borderRadius: BorderRadius.circular(8),
+            ),
+        focusedErrorBorder: border ??
+            AppConsts.normalBorderField.copyWith(
+              borderRadius: BorderRadius.circular(8),
+            ),
       ),
     );
   }
