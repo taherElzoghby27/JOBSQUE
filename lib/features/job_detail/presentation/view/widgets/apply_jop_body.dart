@@ -128,22 +128,31 @@ class ApplyJopBody extends StatelessWidget {
   }
 
 //check if in last page or not
-  checkInLastPageOrNot(
-      {required BuildContext context, required int currentPage}) {
-    if (currentPage > 2 &&
-        context.read<UploadPortfolioCubit>().checkCvsIsCompletedOrNot()) {
-      GoRouter.of(context).pushReplacement(
-        successfullyPagePath,
-        extra: {
-          StringsEn.icon: AppAssets.dataIllu,
-          StringsEn.title: StringsEn.yourDataHasBeenSuccessfully,
-          StringsEn.subTitle: StringsEn.youWillGetMessageFromOurTeam,
-          StringsEn.labelButton: StringsEn.backToHome,
-          StringsEn.path: homePath,
-        },
-      );
-    } else {
-      showSnack(context, message: StringsEn.eenterCv);
+  void checkInLastPageOrNot({
+    required BuildContext context,
+    required int currentPage,
+  }) {
+    final uploadPortfolioCubit = context.read<UploadPortfolioCubit>();
+
+    if (currentPage > 2) {
+      if (uploadPortfolioCubit.checkCvsIsCompleted()) {
+        _pushSuccessfullyPage(context);
+      } else {
+        showSnack(context, message: StringsEn.eenterCv);
+      }
     }
+  }
+
+  void _pushSuccessfullyPage(BuildContext context) {
+    GoRouter.of(context).pushReplacement(
+      successfullyPagePath,
+      extra: {
+        StringsEn.icon: AppAssets.dataIllu,
+        StringsEn.title: StringsEn.yourDataHasBeenSuccessfully,
+        StringsEn.subTitle: StringsEn.youWillGetMessageFromOurTeam,
+        StringsEn.labelButton: StringsEn.backToHome,
+        StringsEn.path: homePath,
+      },
+    );
   }
 }

@@ -36,7 +36,7 @@ class UploadPortfolioCubit extends Cubit<UploadPortfolioState> {
   }
 
 //check have one save or more
-  bool checkCvsIsCompletedOrNot() => cvs.length >= 1;
+  bool checkCvsIsCompleted() => cvs.length >= 1;
   //GetFiles
   getFiles() {
     try {
