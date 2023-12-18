@@ -16,7 +16,8 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines = 1,
     this.perfixText = '',
     this.controller,
-    this.border, this.validator,
+    this.border,
+    this.validator,
   }) : super(key: key);
   final String hint;
   final void Function(String?)? onSaved;
@@ -42,7 +43,18 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: obscureText,
       cursorColor: AppConsts.primary500,
       controller: controller,
-      validator: validator,
+      validator: validator ??
+          (value) {
+            if (value!.isEmpty) {
+              return StringsEn.fieldRequired;
+            }
+            if (hint == StringsEn.password) {
+              if (value.length < 7) {
+                return StringsEn.warningPass;
+              }
+            }
+            return null;
+          },
       onFieldSubmitted: onSaved,
       onChanged: onChanged,
       decoration: InputDecoration(

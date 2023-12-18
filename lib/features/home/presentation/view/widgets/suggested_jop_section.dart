@@ -41,7 +41,6 @@ class SuggestedJopSection extends StatelessWidget {
                     return FadeAnimation(
                       millSeconds: 250,
                       child: ItemSuggestedJop(
-                        onTapApplyNow: () {},
                         onTap: () => GoRouter.of(context).push(
                           jopDetailPath,
                           extra: jobs[index],

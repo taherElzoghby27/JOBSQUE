@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/features/profile/presentation/view/notification/presentation/view/widgets/custom_tile_switch.dart';
-import 'package:jobsque/features/search_jop/presentation/view/widgets/custom_filter_text_field.dart';
+import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
 
 class PhoneNumberComponent extends StatelessWidget {
   const PhoneNumberComponent({super.key});

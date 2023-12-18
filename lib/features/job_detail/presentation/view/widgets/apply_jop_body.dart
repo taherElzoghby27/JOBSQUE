@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/core/widgets/small_loading_widget.dart';
@@ -11,25 +12,34 @@ import 'package:jobsque/features/job_detail/presentation/view/widgets/blur_widge
 import 'package:jobsque/features/job_detail/presentation/view/widgets/circles_bar_section.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/info_section_jop_detail.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/section_info.dart';
-import 'package:jobsque/features/job_detail/presentation/view_models/apply_job_bloc/apply_job_bloc.dart';
+import 'package:jobsque/features/job_detail/presentation/view_models/changed_page_cubit/changed_page_cubit.dart';
+import 'package:jobsque/features/job_detail/presentation/view_models/upload_portfolio_cubit/upload_portfolio_cubit.dart';
 
 import '../../../../../core/consts/assets.dart';
 
 class ApplyJopBody extends StatelessWidget {
-  const ApplyJopBody({super.key, required this.status});
+  const ApplyJopBody({super.key, required this.data});
 
-  final String status;
+  final Map<String, String> data;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocBuilder<ApplyJobBloc, ApplyJobState>(
-      builder: (context, state) {
-        int currentPage = 1;
-        ApplyJobBloc bloc = BlocProvider.of<ApplyJobBloc>(context);
-        if (state is ChangedPageState) {
-          currentPage = bloc.currentPage;
+    int currentPage = 1;
+    bool isLoading = false;
+    return BlocConsumer<ChangedPageCubit, ChangedPageState>(
+      listener: (context, state) {
+        if (state is ChangedLoading) {
+          isLoading = true;
+        } else if (state is ChangedSuccess) {
+          currentPage = state.current;
+          isLoading = false;
+        } else if (state is ChangedFailure) {
+          isLoading = false;
+          showSnack(context, message: state.message);
         }
+      },
+      builder: (context, state) {
         return Stack(
           children: [
             SizedBox(
@@ -41,13 +51,13 @@ class ApplyJopBody extends StatelessWidget {
                   //custom appBar
                   CustomAppBar(
                     leadingOnTap: () => GoRouter.of(context).pop(),
-                    title: status == StringsEn.notComplete
+                    title: data[StringsEn.status] == StringsEn.notComplete
                         ? StringsEn.appliedJob
                         : StringsEn.applyJob,
                     trailingWidget: Container(),
                   ),
                   //if apply not complete
-                  status == StringsEn.notComplete
+                  data[StringsEn.status] == StringsEn.notComplete
                       ? Column(
                           children: [
                             SizedBox(height: size.height * .02.h),
@@ -79,28 +89,15 @@ class ApplyJopBody extends StatelessWidget {
                   height: size.height * .055.h,
                   width: size.width * .9.w,
                   child: Visibility(
-                    visible: true,
+                    visible: !isLoading,
                     replacement: LoadingWidget(),
                     child: CustomButton(
                       text:
                           currentPage == 3 ? StringsEn.submit : StringsEn.next,
-                      onTap: () {
-                        bloc.add(NextOrSubmitEvent());
-                        if (currentPage > 2) {
-                          GoRouter.of(context).pushReplacement(
-                            successfullyPagePath,
-                            extra: {
-                              StringsEn.icon: AppAssets.dataIllu,
-                              StringsEn.title:
-                                  StringsEn.yourDataHasBeenSuccessfully,
-                              StringsEn.subTitle:
-                                  StringsEn.youWillGetMessageFromOurTeam,
-                              StringsEn.labelButton: StringsEn.backToHome,
-                              StringsEn.path: homePath,
-                            },
-                          );
-                        }
-                      },
+                      onTap: () => buttonNextSubmit(
+                        context: context,
+                        currentPage: currentPage,
+                      ),
                     ),
                   ),
                 ),
@@ -117,5 +114,36 @@ class ApplyJopBody extends StatelessWidget {
         );
       },
     );
+  }
+
+  //button (next or submit)
+  buttonNextSubmit({required BuildContext context, required int currentPage}) {
+    //next->next->submit
+    context.read<ChangedPageCubit>().nextOrSubmit(
+          context,
+          jobId: data[StringsEn.jobId]!,
+        );
+    //check if in last page or not
+    checkInLastPageOrNot(context: context, currentPage: currentPage);
+  }
+
+//check if in last page or not
+  checkInLastPageOrNot(
+      {required BuildContext context, required int currentPage}) {
+    if (currentPage > 2 &&
+        context.read<UploadPortfolioCubit>().checkCvsIsCompletedOrNot()) {
+      GoRouter.of(context).pushReplacement(
+        successfullyPagePath,
+        extra: {
+          StringsEn.icon: AppAssets.dataIllu,
+          StringsEn.title: StringsEn.yourDataHasBeenSuccessfully,
+          StringsEn.subTitle: StringsEn.youWillGetMessageFromOurTeam,
+          StringsEn.labelButton: StringsEn.backToHome,
+          StringsEn.path: homePath,
+        },
+      );
+    } else {
+      showSnack(context, message: StringsEn.eenterCv);
+    }
   }
 }

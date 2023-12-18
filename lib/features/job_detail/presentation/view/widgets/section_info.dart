@@ -14,6 +14,7 @@ class SectionInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 17.w),
       child: SingleChildScrollView(

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/features/search_jop/presentation/view/widgets/custom_filter_text_field.dart';
+import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
 
 class EmailAddressPage extends StatelessWidget {
   const EmailAddressPage({super.key});

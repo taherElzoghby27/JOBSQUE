@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../../core/consts/strings.dart';
 import '../../../../../../core/consts/style.dart';
 import '../../../../../core/helper/launch_url.dart';
 
@@ -19,7 +17,7 @@ class ItemContactUsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return InkWell(
-      onTap: ()=>launchUr(context,url: value),
+      onTap: () => launchUr(context, url: value),
       borderRadius: BorderRadius.circular(15),
       child: Container(
         height: size.height * .1.h,
@@ -40,7 +38,8 @@ class ItemContactUsWidget extends StatelessWidget {
               FittedBox(
                 child: Text(
                   value,
-                  style: AppConsts.style14.copyWith(color: AppConsts.neutral900),
+                  style:
+                      AppConsts.style14.copyWith(color: AppConsts.neutral900),
                 ),
               ),
             ],

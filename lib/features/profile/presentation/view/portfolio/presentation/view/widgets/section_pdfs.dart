@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../../../core/widgets/cv_pdf_widget.dart';
+import '../../../../../../../../core/widgets/cvs_pdf.dart';
 
 class SectionPdfs extends StatelessWidget {
   const SectionPdfs({super.key});
@@ -14,7 +14,7 @@ class SectionPdfs extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) => Padding(
         padding: EdgeInsets.symmetric(horizontal: 15.w),
-        child: CvPdfWidget(),
+        child: CvPdfs(),
       ),
       separatorBuilder: (context, index) => SizedBox(
         height: size.height * .01.h,

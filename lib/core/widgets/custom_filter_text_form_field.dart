@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/widgets/text_field.dart';
 import 'package:jobsque/core/widgets/text_form_field.dart';
 import 'package:jobsque/core/widgets/title_field.dart';
-import 'package:jobsque/features/job_detail/presentation/view_models/apply_job_bloc/apply_job_bloc.dart';
+import 'package:jobsque/features/job_detail/presentation/view_models/bio_data_cubit/bio_data_cubit.dart';
 
 class CustomFilterTextFormField extends StatelessWidget {
   const CustomFilterTextFormField({
@@ -36,7 +35,7 @@ class CustomFilterTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    ApplyJobBloc bloc = BlocProvider.of<ApplyJobBloc>(context);
+    BioDataCubit bloc = BlocProvider.of<BioDataCubit>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

@@ -11,7 +11,7 @@ import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/core/widgets/jop_type_component_button.dart';
 import 'package:jobsque/features/home/data/repo/home_repo_implementation.dart';
-import 'package:jobsque/features/search_jop/presentation/view/widgets/custom_filter_text_field.dart';
+import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/custom_type_jop_widget.dart';
 import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
 

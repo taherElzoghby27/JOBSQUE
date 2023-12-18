@@ -6,7 +6,7 @@ import '../../../../../core/consts/strings.dart';
 import '../../../../../core/consts/style.dart';
 import '../../../../../core/widgets/customButton.dart';
 import '../../../../../core/widgets/small_loading_widget.dart';
-import '../../../../search_jop/presentation/view/widgets/custom_filter_text_field.dart';
+import '../../../../../core/widgets/custom_filter_text_field.dart';
 import 'custom_check_box.dart';
 
 class CustomExperienceComponent extends StatefulWidget {

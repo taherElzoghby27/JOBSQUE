@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
@@ -13,7 +10,6 @@ import 'package:jobsque/features/job_detail/presentation/view/widgets/descriptio
 import 'package:jobsque/features/job_detail/presentation/view/widgets/info_section_jop_detail.dart';
 
 import '../../../../../core/widgets/bookmark_widget.dart';
-import '../../../../home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'blur_widget.dart';
 
 class JopDetailBody extends StatelessWidget {
@@ -41,10 +37,11 @@ class JopDetailBody extends StatelessWidget {
 
                         ///custom appBar
                         CustomAppBar(
-                          leadingOnTap: () => GoRouter.of(context).pushReplacement(homePath),
+                          leadingOnTap: () =>
+                              GoRouter.of(context).pushReplacement(homePath),
                           title: StringsEn.jobDetail,
                           trailingOnTap: () {},
-                          trailingWidget: BookmarkWidget(job:job),
+                          trailingWidget: BookmarkWidget(job: job),
                         ),
                         SizedBox(height: size.height * .02.h),
 
@@ -78,7 +75,10 @@ class JopDetailBody extends StatelessWidget {
                 text: StringsEn.applyNow,
                 onTap: () => GoRouter.of(context).push(
                   applyJopPath,
-                  extra: StringsEn.notOpen,
+                  extra: {
+                    StringsEn.status: StringsEn.notOpen,
+                    StringsEn.jobId: job.id.toString(),
+                  },
                 ),
               ),
             ),

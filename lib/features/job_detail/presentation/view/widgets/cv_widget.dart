@@ -3,10 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jobsque/core/consts/assets.dart';
+import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/features/job_detail/data/models/Pdf.dart';
 
-class CvPdfWidget extends StatelessWidget {
-  const CvPdfWidget({super.key});
+class CvWidget extends StatelessWidget {
+  const CvWidget({super.key, required this.pdf});
+
+  final Pdf pdf;
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +29,29 @@ class CvPdfWidget extends StatelessWidget {
               SvgPicture.asset(AppAssets.pdfLogo),
               Spacer(flex: 1),
               //pdf info
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    'Taher.cv',
-                    style: AppConsts.style14.copyWith(
-                      color: AppConsts.neutral900,
+              SizedBox(
+                width: size.width * .6.w,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      pdf.name!,
+                      style: AppConsts.style14.copyWith(
+                        color: AppConsts.neutral900,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  Text(
-                    'CV.pdf 300KB',
-                    style: AppConsts.style12.copyWith(
-                      color: AppConsts.neutral500,
+                    Text(
+                      '${StringsEn.cvpdf} ${pdf.size} ${StringsEn.mb}',
+                      style: AppConsts.style12.copyWith(
+                        color: AppConsts.neutral500,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Spacer(flex: 6),
-              //edit
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.edit_sharp, color: AppConsts.primary500),
-              ),
+              Spacer(flex: 7),
               //delete
               IconButton(
                 onPressed: () {},

@@ -30,7 +30,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               emit(LoginFailure(message: fail.message!));
             },
             (_user) {
-              saveDataForUser(token: _user.token!, name: _user.user!.name!);
+              saveDataForUser(
+                token: _user.token!,
+                name: _user.user!.name!,
+                userId: _user.user!.id.toString(),
+              );
               emit(LoginLoaded());
             },
           );
@@ -47,7 +51,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               emit(RegisterFailure(message: fail.message!));
             },
             (user) {
-              saveDataForUser(token: user.token!, name: user.data!.name);
+              saveDataForUser(
+                token: user.token!,
+                name: user.data!.name,
+                userId: user.data!.id.toString(),
+              );
               emit(RegisterLoaded());
             },
           );
@@ -57,10 +65,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   //save data for user
-  saveDataForUser({required String token, required String name}) async {
+  saveDataForUser(
+      {required String userId,
+      required String token,
+      required String name}) async {
     await CacheHelper.saveData(key: StringsEn.token, value: token);
     await CacheHelper.saveData(key: StringsEn.name, value: name);
+    await CacheHelper.saveData(key: StringsEn.userId, value: userId);
     print(CacheHelper.getData(key: StringsEn.token));
     print(CacheHelper.getData(key: StringsEn.name));
+    print(CacheHelper.getData(key: StringsEn.userId));
   }
 }

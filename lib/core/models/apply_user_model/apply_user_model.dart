@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:hive/hive.dart';
 
 part 'apply_user_model.g.dart';
@@ -20,6 +21,8 @@ class ApplyUser extends HiveObject {
   final String userId;
   @HiveField(7)
   final String jobId;
+  @HiveField(8)
+  final String status;
 
   ApplyUser({
     required this.name,
@@ -28,7 +31,8 @@ class ApplyUser extends HiveObject {
     required this.typeOfWork,
     required this.cv,
     required this.otherFiles,
-    required this.jobId,
     required this.userId,
+    required this.jobId,
+    required this.status,
   });
 }

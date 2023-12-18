@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
-import 'package:jobsque/features/search_jop/presentation/view/widgets/custom_filter_text_field.dart';
+import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
 
 import '../../../../../core/widgets/small_loading_widget.dart';
 

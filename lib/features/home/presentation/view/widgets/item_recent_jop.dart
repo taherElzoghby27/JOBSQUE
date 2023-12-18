@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
@@ -8,7 +6,6 @@ import 'package:jobsque/core/widgets/logo_title_icon_widget.dart';
 import 'package:jobsque/core/widgets/type_jop_component.dart';
 
 import '../../../../../core/widgets/bookmark_widget.dart';
-import '../../view_models/saved_cubit/saved_cubit.dart';
 
 class ItemRecentJop extends StatelessWidget {
   const ItemRecentJop({
@@ -36,7 +33,7 @@ class ItemRecentJop extends StatelessWidget {
                 jopTitle: job.name!,
                 company: job.compName!,
                 country: job.location!,
-                trailing: BookmarkWidget(job:job),
+                trailing: BookmarkWidget(job: job),
               ),
               //full time -remote -design
               Row(

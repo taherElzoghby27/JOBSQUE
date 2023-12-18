@@ -1,7 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/type_jop_component.dart';
@@ -27,8 +25,8 @@ class InfoSectionJopDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    List<String> position=location.split(',');
-    int sizeLocation=position.length;
+    List<String> position = location.split(',');
+    int sizeLocation = position.length;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -56,7 +54,7 @@ class InfoSectionJopDetail extends StatelessWidget {
         SizedBox(
           width: size.width * .425.w,
           child: Text(
-            '$company.${position[0]},${position[sizeLocation-2]},${position[sizeLocation-1]}',
+            '$company.${position[0]},${position[sizeLocation - 2]},${position[sizeLocation - 1]}',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,

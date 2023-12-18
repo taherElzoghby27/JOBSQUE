@@ -1,8 +1,10 @@
 // GoRouter configuration
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
+import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/core/services/service_locator.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
@@ -14,8 +16,11 @@ import 'package:jobsque/features/help_center/presentation/view/help_center_view.
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
 import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view/apply_jop_view.dart';
-import 'package:jobsque/features/job_detail/presentation/view_models/apply_job_bloc/apply_job_bloc.dart';
+import 'package:jobsque/features/job_detail/presentation/view_models/bio_data_cubit/bio_data_cubit.dart';
+import 'package:jobsque/features/job_detail/presentation/view_models/changed_page_cubit/changed_page_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/job_details_cubit/job_details_cubit.dart';
+import 'package:jobsque/features/job_detail/presentation/view_models/type_of_work_cubit/type_of_work_cubit.dart';
+import 'package:jobsque/features/job_detail/presentation/view_models/upload_portfolio_cubit/upload_portfolio_cubit.dart';
 import 'package:jobsque/features/messages/presentation/view/chat_view.dart';
 import 'package:jobsque/features/messages/presentation/view/messages_view.dart';
 import 'package:jobsque/features/nav_bar/presentation/view/nav_view.dart';
@@ -40,6 +45,7 @@ import '../../features/auth/presentation/view/work_location_view.dart';
 import '../../features/auth/presentation/view_model/interested_in_work_cubit/interested_in_work_cubit.dart';
 import '../../features/home/data/repo/home_repo_implementation.dart';
 import '../../features/job_detail/presentation/view/jop_detail_view.dart';
+import '../../features/job_detail/presentation/view_models/apply_job_cubit/apply_job_cubit.dart';
 import '../../features/onBoarding/presentation/view/on_boarding_view.dart';
 
 const splashPath = '/';
@@ -180,10 +186,30 @@ final router = GoRouter(
     GoRoute(
       path: applyJopPath,
       builder: (context, state) {
-        String data = state.extra as String;
-        return BlocProvider(
-          create: (_) => ApplyJobBloc(),
-          child: ApplyJopView(status: data),
+        Map<String, String> data = state.extra as Map<String, String>;
+        print(data);
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (BuildContext context) => ApplyJobCubit(
+                hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
+              ),
+            ),
+            BlocProvider(
+              create: (BuildContext context) => BioDataCubit(),
+            ),
+            BlocProvider(
+              create: (BuildContext context) => ChangedPageCubit(),
+            ),
+            BlocProvider(
+              create: (BuildContext context) => TypeOfWorkCubit(),
+            ),
+            BlocProvider(
+              create: (BuildContext context) =>
+                  UploadPortfolioCubit()..getFiles(),
+            ),
+          ],
+          child: ApplyJopView(data: data),
         );
       },
     ),

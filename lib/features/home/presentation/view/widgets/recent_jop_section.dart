@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,7 +19,7 @@ class RecentJopSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocBuilder<HomeBloc , HomeState>(
+    return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state is GetJobsLoaded) {
           List<Job> jobs = state.jobs;

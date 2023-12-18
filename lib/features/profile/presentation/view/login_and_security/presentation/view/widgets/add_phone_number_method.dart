@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../../../core/consts/strings.dart';
-import '../../../../../../../search_jop/presentation/view/widgets/custom_filter_text_field.dart';
+import '../../../../../../../../core/widgets/custom_filter_text_field.dart';
 import 'custom_heading_two_step_verifi.dart';
 
 class AddPhoneNumberMethod extends StatelessWidget {

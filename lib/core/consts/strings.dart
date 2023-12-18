@@ -1,5 +1,7 @@
 ///strings by english
 abstract class StringsEn {
+  static String unCompleted = 'unCompleted';
+  static String eenterCv = 'Please, Enter CV';
   static String token = 'token';
   static String userId = 'user id';
   static String jobId = 'job id';
@@ -7,7 +9,7 @@ abstract class StringsEn {
   static String skip = 'Skip';
   static String warningPass = 'Password must be at least 8 characters';
   static String enterValid = 'Enter valid ';
-  static String fieldRequired ='This Field Required.';
+  static String fieldRequired = 'This Field Required.';
   static String hi = 'Hi, ';
   static String titleBoard1 = 'Find a job, and ';
   static String titleBoard11 = 'start building';
@@ -132,7 +134,7 @@ abstract class StringsEn {
   static String searchNotFound = 'Search not found';
   static String trySearchingWithDifferent =
       'Try searching with different keywords so we can show you';
-  static String featuring ='Featuring';
+  static String featuring = 'Featuring';
   static String jobDetail = 'Job Detail';
   static String desicription = 'Desicription';
   static String company = 'Company';
@@ -151,8 +153,14 @@ abstract class StringsEn {
   static String fullName = 'Full Name';
   static String star = '*';
   static String noHandPhone = 'No.Handphone';
+  static String eg = 'EG';
   static String phone = 'phone number';
-  static String uplaodCv = 'Upload CV';
+  static String uplaodCv = 'Upload CV (pdf)';
+  static String pdfExtension = 'pdf';
+  static String someThingError = 'something error';
+  static String unKnown = 'unknown';
+  static String cvpdf = 'CV.pdf';
+  static String mb = 'mb';
   static String cv_portofolio = 'CV.pdf . Portfolio.pdf';
   static String otherFile = 'Other File';
   static String uploadYourOtherFile = 'Upload your other file';
@@ -175,6 +183,7 @@ abstract class StringsEn {
       'Press the star icon on the job you want to save.';
   static String notification = 'Notification';
   static String yesterDay = 'Yesterday';
+  static String noCvs = 'No Cv...';
   static String noNewNotificationsYet = 'No new notifications yet';
   static String youWillReceiveNotification =
       'You will receive a notification if there is something on your account';
