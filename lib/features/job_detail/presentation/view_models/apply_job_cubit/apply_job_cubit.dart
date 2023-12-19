@@ -40,6 +40,10 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
         status: changedPageCubit.currentPage == 3
             ? StringsEn.completed
             : StringsEn.unCompleted,
+        reviewed: false,
+        updatedAt: '',
+        createdAt: '',
+        id: 0,
       ),
     );
 

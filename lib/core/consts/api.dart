@@ -5,4 +5,5 @@ class ApiConsts {
   static String loginEndPoint = '/auth/login';
   static String resetPasswordEndPoint = '/auth/otp';
   static String filterJobEndPoint = '/jobs/filter';
+  static String applyEndPoint = '/apply';
 }
