@@ -26,13 +26,17 @@ class ApplyUserAdapter extends TypeAdapter<ApplyUser> {
       userId: fields[6] as String,
       jobId: fields[7] as String,
       status: fields[8] as String,
+      reviewed: fields[9] as bool,
+      updatedAt: fields[10] as String,
+      createdAt: fields[11] as String,
+      id: fields[12] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, ApplyUser obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -50,7 +54,15 @@ class ApplyUserAdapter extends TypeAdapter<ApplyUser> {
       ..writeByte(7)
       ..write(obj.jobId)
       ..writeByte(8)
-      ..write(obj.status);
+      ..write(obj.status)
+      ..writeByte(9)
+      ..write(obj.reviewed)
+      ..writeByte(10)
+      ..write(obj.updatedAt)
+      ..writeByte(11)
+      ..write(obj.createdAt)
+      ..writeByte(12)
+      ..write(obj.id);
   }
 
   @override
