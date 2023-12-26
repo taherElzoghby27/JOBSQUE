@@ -1,11 +1,12 @@
 part of 'apply_job_cubit.dart';
 
 @immutable
-abstract class ApplyJobState extends Equatable {
-  const ApplyJobState();
-}
+abstract class ApplyJobState {}
 
-class ApplyJobInitial extends ApplyJobState {
-  @override
-  List<Object> get props => [];
-}
+class ApplyJobInitial extends ApplyJobState {}
+
+class ApplyJobLoading extends ApplyJobState {}
+
+class ApplyJobSuccess extends ApplyJobState {}
+
+class ApplyJobFailure extends ApplyJobState {}

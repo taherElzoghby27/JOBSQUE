@@ -15,6 +15,7 @@ import 'package:jobsque/features/complete_profile/presentation/view/complete_pro
 import 'package:jobsque/features/help_center/presentation/view/help_center_view.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
 import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
+import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
 import 'package:jobsque/features/job_detail/presentation/view/apply_jop_view.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/bio_data_cubit/bio_data_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/changed_page_cubit/changed_page_cubit.dart';
@@ -193,6 +194,7 @@ final router = GoRouter(
             BlocProvider(
               create: (BuildContext context) => ApplyJobCubit(
                 hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
+                applyUserRepo: getIt.get<ApplyUserRepoImplementation>(),
               ),
             ),
             BlocProvider(

@@ -1,18 +1,44 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:http/src/response.dart';
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'package:jobsque/core/consts/api.dart';
+import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
-import 'package:jobsque/core/services/api_service/post_api_service.dart';
 
 class ApplyUserService {
-  final PostApiService postApiService;
-  ApplyUserService({required this.postApiService});
   //apply user to api
-  Future<Response> applyUser({required ApplyUser applyUser}) async {
-    Response response = await postApiService.post(
-      path: '${ApiConsts.url}${ApiConsts.applyEndPoint}',
-      body: applyUser.toJson(),
+  Future<http.Response> applyUser({required ApplyUser applyUser}) async {
+    //get token
+    String token = CacheHelper.getData(key: StringsEn.token);
+    http.MultipartRequest request = http.MultipartRequest(
+      'POST',
+      Uri.parse('${ApiConsts.url}${ApiConsts.applyEndPoint}'),
     );
+    //put cv and other file into list
+    List<File> cvs = [applyUser.cv!, applyUser.otherFiles!];
+    request.headers['Accept'] = 'application/json';
+    request.headers['Authorization'] = 'Bearer $token';
+    request.fields['name'] = applyUser.name!;
+    request.fields['email'] = applyUser.email!;
+    request.fields['mobile'] = applyUser.phone!;
+    request.fields['work_type'] = applyUser.typeOfWork!;
+    request.fields['jobs_id'] = applyUser.jobId!;
+    request.fields['user_id'] = applyUser.userId!;
+    // Add the files to the request
+    for (int i = 0; i < cvs.length; i++) {
+      http.ByteStream pdfStream = http.ByteStream(cvs[i].openRead());
+      int pdfLength = await cvs[i].length();
+      http.MultipartFile pdfMultipartFile = http.MultipartFile(
+        i == 0 ? 'cv_file' : 'other_file', // Use a unique key for each file
+        pdfStream,
+        pdfLength,
+        filename: cvs[i].path.split('/').last,
+      );
+      // Add the files to the request
+      request.files.add(pdfMultipartFile);
+    }
+    http.Response response =
+        await http.Response.fromStream(await request.send());
     return response;
   }
 }

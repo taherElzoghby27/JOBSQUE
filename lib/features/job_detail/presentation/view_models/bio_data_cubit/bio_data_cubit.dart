@@ -24,7 +24,7 @@ class BioDataCubit extends Cubit<BioDataState> {
 
 //check phone number
   bool checkPhoneNumber() =>
-      phoneCont.text.startsWith(codeCountry) ? true : false;
+      '+${phoneCont.text}'.startsWith(codeCountry) ? true : false;
 
 //on changed counry
   onChangedCountry({required CountryCode code}) =>

@@ -17,26 +17,28 @@ class ApplyUserAdapter extends TypeAdapter<ApplyUser> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ApplyUser(
-      name: fields[0] as String,
-      email: fields[1] as String,
-      phone: fields[2] as String,
-      typeOfWork: fields[3] as String,
-      cv: fields[4] as String,
-      otherFiles: fields[5] as String,
-      userId: fields[6] as String,
-      jobId: fields[7] as String,
-      status: fields[8] as String,
-      reviewed: fields[9] as bool,
-      updatedAt: fields[10] as String,
-      createdAt: fields[11] as String,
-      id: fields[12] as int,
+      name: fields[0] as String?,
+      email: fields[1] as String?,
+      phone: fields[2] as String?,
+      typeOfWork: fields[3] as String?,
+      cv: fields[4] as File?,
+      otherFiles: fields[5] as File?,
+      userId: fields[6] as String?,
+      jobId: fields[7] as String?,
+      status: fields[8] as String?,
+      reviewed: fields[9] as bool?,
+      updatedAt: fields[10] as String?,
+      createdAt: fields[11] as String?,
+      id: fields[12] as int?,
+      cvFile: fields[13] as String?,
+      cvOtherFile: fields[14] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, ApplyUser obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(15)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -62,7 +64,11 @@ class ApplyUserAdapter extends TypeAdapter<ApplyUser> {
       ..writeByte(11)
       ..write(obj.createdAt)
       ..writeByte(12)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(13)
+      ..write(obj.cvFile)
+      ..writeByte(14)
+      ..write(obj.cvOtherFile);
   }
 
   @override

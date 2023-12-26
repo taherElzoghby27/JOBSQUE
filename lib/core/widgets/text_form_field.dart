@@ -35,7 +35,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: hint == StringsEn.noHandPhone
+      keyboardType: hint == StringsEn.noHandPhone || hint == StringsEn.phone
           ? TextInputType.number
           : TextInputType.text,
       maxLines: maxLines,

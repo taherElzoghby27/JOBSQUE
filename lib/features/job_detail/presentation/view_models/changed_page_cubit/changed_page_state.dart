@@ -4,13 +4,7 @@ sealed class ChangedPageState {}
 
 final class ChangedPageInitial extends ChangedPageState {}
 
-class ChangedSuccess extends ChangedPageState {
-  final int current;
-
-  ChangedSuccess({required this.current});
-}
-
-class ChangedLoading extends ChangedPageState {}
+class ChangedSuccess extends ChangedPageState {}
 
 class ChangedFailure extends ChangedPageState {
   final String message;
