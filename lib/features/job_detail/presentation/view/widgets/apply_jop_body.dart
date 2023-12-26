@@ -79,7 +79,8 @@ class ApplyJopBody extends StatelessWidget {
                       SizedBox(height: size.height * .02.h),
                       //1  2  3 (circles bar)
                       Center(
-                          child: CirclesBarSection(currentPage: currentPage)),
+                        child: CirclesBarSection(currentPage: currentPage),
+                      ),
                       SizedBox(height: size.height * .035.h),
                       //info
                       SectionInfo(currentPage: currentPage),

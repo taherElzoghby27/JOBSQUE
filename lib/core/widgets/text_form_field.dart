@@ -18,6 +18,8 @@ class CustomTextFormField extends StatelessWidget {
     this.controller,
     this.border,
     this.validator,
+    this.autoFocus = false,
+    this.focusNode,
   }) : super(key: key);
   final String hint;
   final void Function(String?)? onSaved;
@@ -31,6 +33,8 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final OutlineInputBorder? border;
   final String? Function(String?)? validator;
+  final bool autoFocus;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +45,10 @@ class CustomTextFormField extends StatelessWidget {
       maxLines: maxLines,
       readOnly: readOnly,
       obscureText: obscureText,
+      autofocus: autoFocus,
       cursorColor: AppConsts.primary500,
       controller: controller,
+      focusNode: focusNode,
       validator: validator ??
           (value) {
             if (value!.isEmpty) {

@@ -25,6 +25,7 @@ class BioDataContentWidget extends StatelessWidget {
             hint: StringsEn.fullName,
             perfixIcon: Icon(Icons.person, size: 16.sp),
             controller: bloc.nameCont,
+            autoFocus: true,
           ),
           SizedBox(height: size.height * .022.w),
 

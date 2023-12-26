@@ -19,6 +19,8 @@ class CustomFilterTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.border,
     this.controller,
+    this.autoFocus = false,
+    this.focusNode,
   });
 
   final String? label;
@@ -31,6 +33,8 @@ class CustomFilterTextFormField extends StatelessWidget {
   final bool obscureText;
   final OutlineInputBorder? border;
   final TextEditingController? controller;
+  final bool autoFocus;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +56,8 @@ class CustomFilterTextFormField extends StatelessWidget {
           obscureText: obscureText,
           border: border,
           controller: controller,
+          autoFocus: autoFocus,
+          focusNode: focusNode,
           validator: (value) {
             if (value!.isNotEmpty) {
               if (hint == StringsEn.email || hint == StringsEn.phone) {
