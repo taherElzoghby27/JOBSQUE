@@ -25,6 +25,7 @@ class HiveDbApplyUser {
       (applyUsers.values).map((user) => user),
     ).toList();
     applyUsersList = appUsers;
+    print(appUsers);
   }
 
 //dispose

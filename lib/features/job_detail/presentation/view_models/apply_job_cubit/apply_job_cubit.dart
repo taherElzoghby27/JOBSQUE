@@ -68,10 +68,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
                 phone: blocBioData.phoneCont.text,
                 typeOfWork: typeOfWorkCubit.group,
                 cv: portfolioCubit.files[0],
-                otherFiles: portfolioCubit.files.isEmpty ||
-                        portfolioCubit.files.length == 1
-                    ? null
-                    : portfolioCubit.files[1],
+                otherFiles: portfolioCubit.files[1],
                 jobId: jobId,
                 userId: userId,
                 status: StringsEn.completed,
