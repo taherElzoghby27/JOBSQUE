@@ -44,5 +44,8 @@ class SavedCubit extends Cubit<SavedState> {
   addJobToSavedBoxHive({required Job job}) => hiveDbJob.add(job: job);
 
   //delete job from saved box hive
-  deleteJobFromSavedBoxHive({required Job job}) => hiveDbJob.delete(job: job);
+  deleteJobFromSavedBoxHive({required Job job}) {
+    hiveDbJob.delete(job: job);
+    getSavedJobs();
+  }
 }
