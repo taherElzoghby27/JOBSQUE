@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
+import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
@@ -49,7 +50,13 @@ class SectionSavedJop extends StatelessWidget {
                     leading: Icon(FontAwesomeIcons.briefcase),
                     title: StringsEn.applyJob,
                     trailing: Icons.arrow_forward_ios,
-                    onTap: () {},
+                    onTap: () => GoRouter.of(context).push(
+                      applyJopPath,
+                      extra: {
+                        StringsEn.status: StringsEn.notOpen,
+                        StringsEn.jobId: job.id.toString(),
+                      },
+                    ),
                   ),
                   CustomButtonThreeWidget(
                     leading: Icon(FontAwesomeIcons.share),
@@ -90,6 +97,7 @@ class SectionSavedJop extends StatelessWidget {
               : Expanded(
                   child: Column(
                     children: [
+                      //12 Job Saved
                       SizedBox(
                         height: size.height * .04.h,
                         child: TileWidget(
