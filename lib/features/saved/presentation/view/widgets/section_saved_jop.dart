@@ -9,6 +9,7 @@ import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
+import 'package:jobsque/core/helper/share.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/custom_button_three_widget.dart';
 import 'package:jobsque/core/widgets/fade_animation_widget.dart';
@@ -46,6 +47,7 @@ class SectionSavedJop extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Center(child: SvgPicture.asset(AppAssets.line)),
+                  //apply job
                   CustomButtonThreeWidget(
                     leading: Icon(FontAwesomeIcons.briefcase),
                     title: StringsEn.applyJob,
@@ -58,11 +60,12 @@ class SectionSavedJop extends StatelessWidget {
                       },
                     ),
                   ),
+                  //share
                   CustomButtonThreeWidget(
                     leading: Icon(FontAwesomeIcons.share),
                     title: StringsEn.shareVia,
                     trailing: Icons.arrow_forward_ios,
-                    onTap: () {},
+                    onTap: () => share(text: 'welcome', subject: 'taher'),
                   ),
                   CustomButtonThreeWidget(
                     leading: Icon(FontAwesomeIcons.bookmark),
