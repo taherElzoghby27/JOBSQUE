@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/core/widgets/small_loading_widget.dart';
@@ -67,11 +68,7 @@ class ApplyJopBody extends StatelessWidget {
                               children: [
                                 SizedBox(height: size.height * .02.h),
                                 InfoSectionJopDetail(
-                                  image: 'image',
-                                  name: 'name',
-                                  company: 'company',
-                                  location: 'location',
-                                  jobTypeTime: 'jobTypeTime',
+                                  job: Job(),
                                 ),
                               ],
                             )

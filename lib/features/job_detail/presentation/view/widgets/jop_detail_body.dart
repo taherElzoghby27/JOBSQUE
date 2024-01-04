@@ -46,13 +46,7 @@ class JopDetailBody extends StatelessWidget {
                         SizedBox(height: size.height * .02.h),
 
                         ///title - company -country
-                        InfoSectionJopDetail(
-                          image: job.image!,
-                          name: job.name!,
-                          company: job.compName!,
-                          location: job.location!,
-                          jobTypeTime: job.jobTimeType!,
-                        ),
+                        InfoSectionJopDetail(job: job),
                       ],
                     ),
                   ),
