@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/helper/custom_animation.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
@@ -85,6 +86,11 @@ final router = GoRouter(
     GoRoute(
       path: onBoardingPath,
       builder: (context, state) => OnBoardingView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: OnBoardingView(),
+      ),
     ),
     GoRoute(
       path: authPath,
