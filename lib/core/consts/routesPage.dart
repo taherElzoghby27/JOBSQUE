@@ -85,7 +85,6 @@ final router = GoRouter(
     ),
     GoRoute(
       path: onBoardingPath,
-      builder: (context, state) => OnBoardingView(),
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
@@ -94,14 +93,16 @@ final router = GoRouter(
     ),
     GoRoute(
       path: authPath,
-      builder: (context, state) {
-        return BlocProvider(
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: BlocProvider(
           create: (_) => AuthBloc(
             authRepo: getIt.get<AuthRepoImplementation>(),
           ),
           child: AuthView(),
-        );
-      },
+        ),
+      ),
     ),
     GoRoute(
       path: homePath,
