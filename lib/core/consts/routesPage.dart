@@ -140,15 +140,19 @@ final router = GoRouter(
     ),
     GoRoute(
       path: successfullyPagePath,
-      builder: (context, state) {
+      pageBuilder: (context, state) {
         Map<String, String> data = state.extra as Map<String, String>;
         print("data : $data");
-        return SuccessfullView(
-          icon: data[StringsEn.icon]!,
-          title: data[StringsEn.title]!,
-          subTitle: data[StringsEn.subTitle]!,
-          labelButton: data[StringsEn.labelButton]!,
-          path: data[StringsEn.path]!,
+        return buildPageWithDefaultTransition(
+          context: context,
+          state: state,
+          child: SuccessfullView(
+            icon: data[StringsEn.icon]!,
+            title: data[StringsEn.title]!,
+            subTitle: data[StringsEn.subTitle]!,
+            labelButton: data[StringsEn.labelButton]!,
+            path: data[StringsEn.path]!,
+          ),
         );
       },
     ),

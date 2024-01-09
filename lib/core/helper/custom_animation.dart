@@ -13,14 +13,12 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
       //fade
       const beginF = 0.0;
       const endF = 1.0;
-      const curve = Curves.easeInCirc;
-      final curveTween = CurveTween(curve: curve);
-      final tweenAnimF = Tween(begin: beginF, end: endF).chain(curveTween);
+      final tweenAnimF = Tween(begin: beginF, end: endF);
       final fadeTrans = animation.drive(tweenAnimF);
       //slide
       const beginS = Offset(-1, -1);
       const endS = Offset(0, 0);
-      final tweenAnimS = Tween(begin: beginS, end: endS).chain(curveTween);
+      final tweenAnimS = Tween(begin: beginS, end: endS);
       final slideTrans = animation.drive(tweenAnimS);
 
       //slide
