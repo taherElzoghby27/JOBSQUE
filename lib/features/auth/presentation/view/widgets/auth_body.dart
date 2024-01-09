@@ -27,8 +27,41 @@ class AuthBody extends StatefulWidget {
   State<AuthBody> createState() => _AuthBodyState();
 }
 
-class _AuthBodyState extends State<AuthBody> {
+class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
+  late AnimationController controller;
+  late Animation<Offset> offsetAnimation;
+  @override
+  void initState() {
+    //init controller
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 200),
+    );
+    //offset animation
+    offsetAnimation = TweenSequence(
+      <TweenSequenceItem<Offset>>[
+        TweenSequenceItem(
+          tween: Tween(begin: const Offset(0, 0), end: const Offset(-.04, 0)),
+          weight: 25,
+        ),
+        TweenSequenceItem(
+          tween: Tween(begin: const Offset(-.04, 0), end: const Offset(0, 0)),
+          weight: 25,
+        ),
+        TweenSequenceItem(
+          tween: Tween(begin: const Offset(0, 0), end: const Offset(.04, 0)),
+          weight: 25,
+        ),
+        TweenSequenceItem(
+          tween: Tween(begin: const Offset(.04, 0), end: const Offset(0, 0)),
+          weight: 25,
+        ),
+      ],
+    ).animate(controller);
+    super.initState();
+  }
+
   AuthMode _authMode = AuthMode.SignUp;
   String? name;
   String? email;
@@ -74,66 +107,80 @@ class _AuthBodyState extends State<AuthBody> {
                     widget: Container(),
                   ),
                   //fields
-                  SizedBox(
-                    height: size.height * .45.h,
-                    child: Column(
-                      children: [
-                        ///username
-                        _authMode == AuthMode.ResetPassword
-                            ? Container()
-                            : _authMode == AuthMode.Login
-                                ? Container()
-                                : CustomTextFormField(
-                                    perfixIcon: Image.asset(AppAssets.profile),
-                                    hint: StringsEn.userName,
-                                    onChanged: (String? value) => name = value,
-                                  ),
-                        SizedBox(height: size.height * .0175.h),
+                  AnimatedBuilder(
+                    animation: controller,
+                    builder: (context, child) {
+                      return AnimatedSlide(
+                        offset: offsetAnimation.value,
+                        duration: const Duration(milliseconds: 200),
+                        child: SizedBox(
+                          height: size.height * .45.h,
+                          child: Column(
+                            children: [
+                              ///username
+                              _authMode == AuthMode.ResetPassword
+                                  ? Container()
+                                  : _authMode == AuthMode.Login
+                                      ? Container()
+                                      : CustomTextFormField(
+                                          perfixIcon:
+                                              Image.asset(AppAssets.profile),
+                                          hint: StringsEn.userName,
+                                          onChanged: (String? value) =>
+                                              name = value,
+                                        ),
+                              SizedBox(height: size.height * .0175.h),
 
-                        ///Email
+                              ///Email
 
-                        CustomTextFormField(
-                          perfixIcon: Image.asset(AppAssets.sms),
-                          hint: StringsEn.email,
-                          onChanged: (String? value) => email = value,
-                        ),
-                        SizedBox(height: size.height * .0175.h),
-
-                        ///Password
-                        _authMode == AuthMode.ResetPassword
-                            ? Container()
-                            : CustomTextFormField(
-                                perfixIcon: Image.asset(AppAssets.lock),
-                                hint: StringsEn.password,
-                                obscureText: visible,
-                                onChanged: (String? value) => password = value,
+                              CustomTextFormField(
+                                perfixIcon: Image.asset(AppAssets.sms),
+                                hint: StringsEn.email,
+                                onChanged: (String? value) => email = value,
                               ),
-                        _authMode == AuthMode.Login
-                            ?
+                              SizedBox(height: size.height * .0175.h),
 
-                            ///remeber me
-                            Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  RemeberMeWidget(),
-                                  SizedBox(width: size.width * .2.w),
-                                  TextButton(
-                                    onPressed: () => setState(
-                                      () => _authMode = AuthMode.ResetPassword,
+                              ///Password
+                              _authMode == AuthMode.ResetPassword
+                                  ? Container()
+                                  : CustomTextFormField(
+                                      perfixIcon: Image.asset(AppAssets.lock),
+                                      hint: StringsEn.password,
+                                      obscureText: visible,
+                                      onChanged: (String? value) =>
+                                          password = value,
                                     ),
-                                    child: Text(
-                                      StringsEn.forgotPass,
-                                      style: AppConsts.style14.copyWith(
-                                        color: AppConsts.primary500,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : Container(),
-                        SizedBox(height: size.height * .1.h),
-                      ],
-                    ),
+                              _authMode == AuthMode.Login
+                                  ?
+
+                                  ///remeber me
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        RemeberMeWidget(),
+                                        SizedBox(width: size.width * .2.w),
+                                        TextButton(
+                                          onPressed: () => setState(
+                                            () => _authMode =
+                                                AuthMode.ResetPassword,
+                                          ),
+                                          child: Text(
+                                            StringsEn.forgotPass,
+                                            style: AppConsts.style14.copyWith(
+                                              color: AppConsts.primary500,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  : Container(),
+                              SizedBox(height: size.height * .1.h),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                   SizedBox.shrink(),
 
@@ -182,7 +229,21 @@ class _AuthBodyState extends State<AuthBody> {
                           ///create account
                           if (_formKey.currentState!.validate()) {
                             _authMode == AuthMode.SignUp ? register() : login();
+                            if (controller.isAnimating) {
+                              controller.stop();
+                              controller.reset();
+                            }
+                          } else {
+                            if (!controller.isAnimating) {
+                              controller
+                                ..forward()
+                                ..repeat();
+                            }
                           }
+                          Future.delayed(Duration(seconds: 1), () {
+                            controller.stop();
+                            controller.reset();
+                          });
                         },
                       ),
                     ),
