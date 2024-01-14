@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/fake_data.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/fade_animation_widget.dart';
 import 'package:jobsque/core/widgets/logo_title_icon_widget.dart';
 import 'package:jobsque/core/widgets/tile_widget.dart';
-
-import '../../../../../core/consts/assets.dart';
 
 class SectionMessages extends StatelessWidget {
   const SectionMessages({super.key});
@@ -42,12 +41,12 @@ class SectionMessages extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: LogoTitleIconWidget(
-                        logo: AppAssets.twitterPng,
-                        jopTitle: 'Twitter',
-                        company: 'Here is the link: http://zoom.com/abcdeefg',
+                        logo: chats_list[index].logo,
+                        jopTitle: chats_list[index].name,
+                        company: chats_list[index].lastMessage,
                         country: '',
                         trailing: Text(
-                          '10:23',
+                          chats_list[index].time,
                           style: AppConsts.style12.copyWith(
                             color: AppConsts.primary500,
                           ),
@@ -57,7 +56,7 @@ class SectionMessages extends StatelessWidget {
                     ),
                   );
                 },
-                itemCount: 15,
+                itemCount: chats_list.length,
                 separatorBuilder: (BuildContext context, int index) =>
                     Divider(color: AppConsts.neutral200),
               ),
