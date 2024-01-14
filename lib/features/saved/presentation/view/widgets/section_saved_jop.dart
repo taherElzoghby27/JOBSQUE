@@ -15,7 +15,7 @@ class SectionSavedJop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SavedCubit, SavedState>(
+    return BlocBuilder<SavedCubit, SavedState>(
       builder: (context, state) {
         if (state is SavedJobsLoading) {
           return LoadingWidget();
@@ -35,7 +35,6 @@ class SectionSavedJop extends StatelessWidget {
         }
         return LoadingWidget();
       },
-      listener: (context, state) {},
     );
   }
 }
