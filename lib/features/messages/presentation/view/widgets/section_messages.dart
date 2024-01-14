@@ -42,7 +42,7 @@ class SectionMessages extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: LogoTitleIconWidget(
-                        logo: AppAssets.twitter,
+                        logo: AppAssets.twitterPng,
                         jopTitle: 'Twitter',
                         company: 'Here is the link: http://zoom.com/abcdeefg',
                         country: '',
@@ -57,7 +57,7 @@ class SectionMessages extends StatelessWidget {
                     ),
                   );
                 },
-                itemCount: 24,
+                itemCount: 15,
                 separatorBuilder: (BuildContext context, int index) =>
                     Divider(color: AppConsts.neutral200),
               ),

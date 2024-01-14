@@ -1,5 +1,3 @@
-
-
 import 'package:jobsque/features/messages/data/models/message_model.dart';
 
 import 'assets.dart';
@@ -35,7 +33,7 @@ List<Message> messages_lists = [
       id: 1,
       message: 'Can we have an interview via google meet call today at 3pm?',
       time: '10:21'),
-  Message(id: 2, message: 'Of course, I can!', time: '10:21'),
+  Message(id: 2, message: 'Of course, I can!', time: '10:01'),
   Message(
       id: 1,
       message:
@@ -71,7 +69,6 @@ List<Map<String, String>> languages = [
   {
     'logo': AppAssets.saudiArabia,
     'name': StringsEn.arabic,
-
   },
   {
     'logo': AppAssets.unitedStates,

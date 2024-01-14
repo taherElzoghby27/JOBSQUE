@@ -1,5 +1,4 @@
 abstract class AppAssets {
-
   static const String logo = 'assets/images/logo.png';
   static const String user = 'assets/images/user.svg';
   static const String resetPassIcon = 'assets/images/resetPass.svg';
@@ -8,13 +7,15 @@ abstract class AppAssets {
   static const String global = 'assets/images/global.svg';
   static const String search = 'assets/images/search-normal.svg';
   static const String twitter = 'assets/images/twitter.svg';
+  static const String twitterPng =
+      'https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png';
   static const String board1 = 'assets/images/board1.png';
   static const String board2 = 'assets/images/board2.png';
   static const String board3 = 'assets/images/board3.png';
   static const String profile = 'assets/images/profile.png';
   static const String profileSvg = 'assets/images/profile.svg';
-  static const String portfolio ='assets/images/folder-favorite.svg';
-  static const String lockSvg ='assets/images/lock.svg';
+  static const String portfolio = 'assets/images/folder-favorite.svg';
+  static const String lockSvg = 'assets/images/lock.svg';
   static const String sms = 'assets/images/sms.png';
   static const String lock = 'assets/images/lock.png';
   static const String google = 'assets/images/google.png';
@@ -48,10 +49,10 @@ abstract class AppAssets {
   static const String notifIllus = 'assets/images/notifi_illus.svg';
   static const String filter = 'assets/images/filter.svg';
   static const String noMessages = 'assets/images/no_messages.svg';
-  static const String assets ='assets/images/assets.svg';
-  static const String micro ='assets/images/micro.svg';
-  static const String camera ='assets/images/camera.svg';
-  static const String arabic ='assets/images/arabic.svg';
-  static const String England ='assets/images/England.svg';
-  static const String appliedJobR='assets/images/applidJobEmpty.svg';
+  static const String assets = 'assets/images/assets.svg';
+  static const String micro = 'assets/images/micro.svg';
+  static const String camera = 'assets/images/camera.svg';
+  static const String arabic = 'assets/images/arabic.svg';
+  static const String England = 'assets/images/England.svg';
+  static const String appliedJobR = 'assets/images/applidJobEmpty.svg';
 }
