@@ -1,3 +1,4 @@
+import 'package:jobsque/features/messages/data/models/chat_model.dart';
 import 'package:jobsque/features/messages/data/models/message_model.dart';
 
 import 'assets.dart';
@@ -74,4 +75,111 @@ List<Map<String, String>> languages = [
     'logo': AppAssets.unitedStates,
     'name': StringsEn.England,
   },
+];
+List<Chat> chats_list = [
+  Chat(
+    logo:
+        'https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png',
+    name: 'Twitter',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '10:32',
+  ),
+  Chat(
+    logo:
+        'https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png',
+    name: 'Facebook',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '09:02',
+  ),
+  Chat(
+    logo:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png',
+    name: 'Instagram',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '07:02',
+  ),
+  Chat(
+    logo:
+        'https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png',
+    name: 'Twitter',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '10:32',
+  ),
+  Chat(
+    logo:
+        'https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png',
+    name: 'Facebook',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '09:02',
+  ),
+  Chat(
+    logo:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png',
+    name: 'Instagram',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '07:02',
+  ),
+  Chat(
+    logo:
+        'https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png',
+    name: 'Twitter',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '10:32',
+  ),
+  Chat(
+    logo:
+        'https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png',
+    name: 'Facebook',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '09:02',
+  ),
+  Chat(
+    logo:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png',
+    name: 'Instagram',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '07:02',
+  ),
+  Chat(
+    logo:
+        'https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png',
+    name: 'Twitter',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '10:32',
+  ),
+  Chat(
+    logo:
+        'https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png',
+    name: 'Facebook',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '09:02',
+  ),
+  Chat(
+    logo:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png',
+    name: 'Instagram',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '07:02',
+  ),
+  Chat(
+    logo:
+        'https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png',
+    name: 'Twitter',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '10:32',
+  ),
+  Chat(
+    logo:
+        'https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png',
+    name: 'Facebook',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '09:02',
+  ),
+  Chat(
+    logo:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png',
+    name: 'Instagram',
+    lastMessage: 'Here is the link: http://zoom.com/abcdeefg',
+    time: '07:02',
+  ),
 ];
