@@ -1,5 +1,3 @@
-
-
 import 'package:jobsque/features/messages/data/models/message_model.dart';
 
 import 'assets.dart';
@@ -71,7 +69,6 @@ List<Map<String, String>> languages = [
   {
     'logo': AppAssets.saudiArabia,
     'name': StringsEn.arabic,
-
   },
   {
     'logo': AppAssets.unitedStates,
