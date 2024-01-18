@@ -106,36 +106,48 @@ final router = GoRouter(
     ),
     GoRoute(
       path: homePath,
-      builder: (context, state) {
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (_) => HomeBloc(
-                jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
-              )..add(GetJobsEvent()),
-            ),
-            BlocProvider(
-              create: (_) => SavedCubit(
-                hiveDbJob: getIt.get<HiveDbJob>(),
+      pageBuilder: (context, state) {
+        return buildPageWithDefaultTransition(
+          context: context,
+          state: state,
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => HomeBloc(
+                  jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+                )..add(GetJobsEvent()),
               ),
-            ),
-          ],
-          child: NavView(),
+              BlocProvider(
+                create: (_) => SavedCubit(
+                  hiveDbJob: getIt.get<HiveDbJob>(),
+                ),
+              ),
+            ],
+            child: NavView(),
+          ),
         );
       },
     ),
     GoRoute(
       path: interestedInWorkPath,
-      builder: (context, state) => BlocProvider(
-        create: (_) => InterestedInWorkCubit(),
-        child: InteresetedInWorkView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: BlocProvider(
+          create: (_) => InterestedInWorkCubit(),
+          child: InteresetedInWorkView(),
+        ),
       ),
     ),
     GoRoute(
       path: locationWorkPath,
-      builder: (context, state) => BlocProvider(
-        create: (_) => WorkLocationCubit(),
-        child: WorkLocationView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: BlocProvider(
+          create: (_) => WorkLocationCubit(),
+          child: WorkLocationView(),
+        ),
       ),
     ),
     GoRoute(
@@ -158,148 +170,216 @@ final router = GoRouter(
     ),
     GoRoute(
       path: createPassPath,
-      builder: (context, state) => CreatePassView(),
-    ),
-    GoRoute(
-      path: searchPath,
-      builder: (context, state) => MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (_) => SearchBloc(
-              jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
-            ),
-          ),
-          BlocProvider(
-            create: (_) => SavedCubit(
-              hiveDbJob: getIt.get<HiveDbJob>(),
-            ),
-          ),
-        ],
-        child: SearchView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: CreatePassView(),
       ),
     ),
     GoRoute(
-      path: jopDetailPath,
-      builder: (context, state) {
-        Job job = state.extra as Job;
-        return MultiBlocProvider(
+      path: searchPath,
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: MultiBlocProvider(
           providers: [
-            BlocProvider(create: (_) => JobDetailsCubit()),
+            BlocProvider(
+              create: (_) => SearchBloc(
+                jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+              ),
+            ),
             BlocProvider(
               create: (_) => SavedCubit(
                 hiveDbJob: getIt.get<HiveDbJob>(),
               ),
             ),
           ],
-          child: JopDetailView(job: job),
+          child: SearchView(),
+        ),
+      ),
+    ),
+    GoRoute(
+      path: jopDetailPath,
+      pageBuilder: (context, state) {
+        Job job = state.extra as Job;
+        return buildPageWithDefaultTransition(
+          context: context,
+          state: state,
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (_) => JobDetailsCubit()),
+              BlocProvider(
+                create: (_) => SavedCubit(
+                  hiveDbJob: getIt.get<HiveDbJob>(),
+                ),
+              ),
+            ],
+            child: JopDetailView(job: job),
+          ),
         );
       },
     ),
     GoRoute(
       path: applyJopPath,
-      builder: (context, state) {
+      pageBuilder: (context, state) {
         Map<String, String> data = state.extra as Map<String, String>;
         print(data);
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (BuildContext context) => ApplyJobCubit(
-                hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
-                applyUserRepo: getIt.get<ApplyUserRepoImplementation>(),
+        return buildPageWithDefaultTransition(
+          context: context,
+          state: state,
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (BuildContext context) => ApplyJobCubit(
+                  hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
+                  applyUserRepo: getIt.get<ApplyUserRepoImplementation>(),
+                ),
               ),
-            ),
-            BlocProvider(
-              create: (BuildContext context) => BioDataCubit(),
-            ),
-            BlocProvider(
-              create: (BuildContext context) => ChangedPageCubit(),
-            ),
-            BlocProvider(
-              create: (BuildContext context) => TypeOfWorkCubit(),
-            ),
-            BlocProvider(
-              create: (BuildContext context) =>
-                  UploadPortfolioCubit()..getFiles(),
-            ),
-          ],
-          child: ApplyJopView(data: data),
+              BlocProvider(
+                create: (BuildContext context) => BioDataCubit(),
+              ),
+              BlocProvider(
+                create: (BuildContext context) => ChangedPageCubit(),
+              ),
+              BlocProvider(
+                create: (BuildContext context) => TypeOfWorkCubit(),
+              ),
+              BlocProvider(
+                create: (BuildContext context) =>
+                    UploadPortfolioCubit()..getFiles(),
+              ),
+            ],
+            child: ApplyJopView(data: data),
+          ),
         );
       },
     ),
     GoRoute(
       path: notificationPath,
-      builder: (context, state) => NotificationView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: NotificationView(),
+      ),
     ),
     GoRoute(
       path: messagesPath,
-      builder: (context, state) => MessagesView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: MessagesView(),
+      ),
     ),
     GoRoute(
       path: chatPath,
-      builder: (context, state) => ChatView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: ChatView(),
+      ),
     ),
     GoRoute(
       path: editProfilePath,
-      builder: (context, state) => EditProfileView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: EditProfileView(),
+      ),
     ),
     GoRoute(
       path: portfolioPath,
-      builder: (context, state) => PortfolioView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: PortfolioView(),
+      ),
     ),
     GoRoute(
       path: notificationProfilePath,
-      builder: (context, state) => NotificationProfileView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: NotificationProfileView(),
+      ),
     ),
     GoRoute(
       path: loginSecurityPath,
-      builder: (context, state) => LoginSecurityView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: LoginSecurityView(),
+      ),
     ),
     GoRoute(
       path: languagePath,
-      builder: (context, state) => LanguagesView(),
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: LanguagesView(),
+      ),
     ),
     GoRoute(
       path: loginSecurityAuthPath,
-      builder: (context, state) {
+      pageBuilder: (context, state) {
         String data = state.extra as String;
-        return LoginSecurityAuthView(path: data);
+        return buildPageWithDefaultTransition(
+          context: context,
+          state: state,
+          child: LoginSecurityAuthView(path: data),
+        );
       },
     ),
     GoRoute(
       path: twoStepVerifiPath,
-      builder: (context, state) {
-        return TwoStepVeriView();
-      },
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: TwoStepVeriView(),
+      ),
     ),
     GoRoute(
       path: helpCenterPath,
-      builder: (context, state) {
-        return HelpCenterView();
-      },
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: HelpCenterView(),
+      ),
     ),
     GoRoute(
       path: privacyPath,
-      builder: (context, state) {
-        return PrivacyView();
-      },
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: PrivacyView(),
+      ),
     ),
     GoRoute(
       path: termConditionPath,
-      builder: (context, state) {
-        return TermsAndConditionView();
-      },
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: TermsAndConditionView(),
+      ),
     ),
     GoRoute(
       path: completeProfilePath,
-      builder: (context, state) {
-        return CompleteProfileView();
-      },
+      pageBuilder: (context, state) => buildPageWithDefaultTransition(
+        context: context,
+        state: state,
+        child: CompleteProfileView(),
+      ),
     ),
     GoRoute(
       path: completeProfileProcessPath,
-      builder: (context, state) {
+      pageBuilder: (context, state) {
         String data = state.extra as String;
-        return CompleteProfileProcessView(currentPage: data);
+        return buildPageWithDefaultTransition(
+          context: context,
+          state: state,
+          child: CompleteProfileProcessView(
+            currentPage: data,
+          ),
+        );
       },
     ),
   ],

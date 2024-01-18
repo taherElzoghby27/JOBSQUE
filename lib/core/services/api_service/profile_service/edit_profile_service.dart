@@ -10,11 +10,7 @@ class EditProfileService {
   EditProfileService({required this.postApiService});
 
   //edit profile method
-  Future<http.Response> editProfile({
-    required String name,
-    required String location,
-    required String salary,
-  }) async {
+  Future<http.Response> editProfile() async {
     http.Response response = await postApiService.post(
       path: "${ApiConsts.url}${ApiConsts.editProfileEndPoint}",
       body: {},
