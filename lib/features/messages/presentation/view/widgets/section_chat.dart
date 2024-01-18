@@ -26,6 +26,7 @@ class SectionChat extends StatelessWidget {
               color: AppConsts.neutral200.withOpacity(.5),
               padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: ListView.builder(
+                reverse: true,
                 physics: const BouncingScrollPhysics(),
                 itemCount: messages_lists.length,
                 itemBuilder: (BuildContext context, int index) {
