@@ -41,7 +41,7 @@ class ProfileModel {
     data['bio'] = this.bio;
     data['address'] = this.address;
     data['mobile'] = this.mobile;
-    data['language'] = this.language;
+    data['language'] = 'en';
     data['interested_work'] = this.interestedWork;
     data['offline_place'] = this.offlinePlace;
     data['remote_place'] = this.remotePlace;
