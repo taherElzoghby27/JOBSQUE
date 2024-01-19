@@ -8,3 +8,9 @@ sealed class SignoutState extends Equatable {
 }
 
 final class SignoutInitial extends SignoutState {}
+
+class SignOutSucess extends SignoutState {}
+
+class SignOutLoading extends SignoutState {}
+
+class SignOutFailure extends SignoutState {}
