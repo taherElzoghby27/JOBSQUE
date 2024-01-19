@@ -6,14 +6,14 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/widgets/custom_circle_button.dart';
 import 'package:jobsque/core/widgets/text_field.dart';
 
 import '../../../../../core/consts/strings.dart';
 
 class HomeTopSection extends StatelessWidget {
-  const HomeTopSection({super.key});
+  const HomeTopSection({super.key, required this.name});
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class HomeTopSection extends StatelessWidget {
                   SizedBox(
                     width: size.width * .75.w,
                     child: Text(
-                      '${StringsEn.hi}${CacheHelper.getData(key: StringsEn.name)}',
+                      '${StringsEn.hi}$name',
                       style: AppConsts.style24,
                       overflow: TextOverflow.ellipsis,
                     ),

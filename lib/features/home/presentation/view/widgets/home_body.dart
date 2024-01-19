@@ -7,8 +7,8 @@ import 'package:jobsque/features/home/presentation/view/widgets/suggested_jop_se
 import 'home_top_section.dart';
 
 class HomeBody extends StatelessWidget {
-  const HomeBody({super.key});
-
+  const HomeBody({super.key, required this.name});
+  final String name;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,7 +17,7 @@ class HomeBody extends StatelessWidget {
         SizedBox(height: size.height * .03.h),
 
         ///Home top section
-        HomeTopSection(),
+        HomeTopSection(name: name),
 
         ///if apply jop
         SectionAppliedJop(),
