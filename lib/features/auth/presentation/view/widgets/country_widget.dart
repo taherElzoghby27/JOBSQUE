@@ -9,11 +9,13 @@ class CountryWidget extends StatelessWidget {
     required this.flag,
     required this.label,
     required this.onTap,
+    required this.isSelected,
   });
 
   final String flag;
   final String label;
   final void Function() onTap;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +27,13 @@ class CountryWidget extends StatelessWidget {
         child: Container(
           height: size.height * .0525.h,
           decoration: BoxDecoration(
-            color: AppConsts.neutral200.withOpacity(.15),
+            color: isSelected
+                ? AppConsts.primary500.withOpacity(.15)
+                : AppConsts.neutral200.withOpacity(.15),
             borderRadius: BorderRadius.circular(25.sp),
-            border: Border.all(color: AppConsts.neutral300),
+            border: Border.all(
+              color: isSelected ? AppConsts.primary500 : AppConsts.neutral300,
+            ),
           ),
           child: Padding(
             padding: const EdgeInsets.all(8),
