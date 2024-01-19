@@ -41,6 +41,7 @@ abstract class StringsEn {
   static String google = 'Google';
   static String whatTypeOfWorkInterested =
       'What type of work are you interested in?';
+  static String whatTypeError = 'please, Enter work you are interested in.....';
   static String tellUsWhatYouAreInterestedIn =
       'Tell us what you’re interested in so we can customise the app for your needs.';
   static String ui = 'UI/UX Designer';
