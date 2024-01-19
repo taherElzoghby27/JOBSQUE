@@ -120,7 +120,5 @@ class InterestedInWorkCubit extends Cubit<InterestedInWorkState> {
       key: StringsEn.whatTypeOfWorkInterested,
       value: interesedInWork,
     );
-    print(interesedInWork);
-    print(await CacheHelper.getData(key: StringsEn.whatTypeOfWorkInterested));
   }
 }
