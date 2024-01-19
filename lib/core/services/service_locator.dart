@@ -3,12 +3,14 @@ import 'package:jobsque/core/services/api_service/apply_user_service/apply_user_
 import 'package:jobsque/core/services/api_service/auth_service/login_auth_service.dart';
 import 'package:jobsque/core/services/api_service/auth_service/register_auth_service.dart';
 import 'package:jobsque/core/services/api_service/auth_service/reset_pass_auth_service.dart';
+import 'package:jobsque/core/services/api_service/auth_service/signout_service.dart';
 import 'package:jobsque/core/services/api_service/jop_service/filter_job_service.dart';
 import 'package:jobsque/core/services/api_service/post_api_service.dart';
 import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
+import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.dart';
 
 import '../../features/home/data/repo/home_repo_implementation.dart';
 
@@ -62,5 +64,11 @@ void setupServiceLocator() {
     ApplyUserRepoImplementation(
       applyUserService: getIt.get<ApplyUserService>(),
     ),
+  );
+  //sign out service
+  getIt.registerSingleton<SignOutService>(SignOutService());
+  //profile Repo Implementation
+  getIt.registerSingleton<ProfileRepoImplementation>(
+    ProfileRepoImplementation(signOutService: getIt.get<SignOutService>()),
   );
 }

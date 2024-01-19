@@ -158,6 +158,7 @@ abstract class StringsEn {
   static String uplaodCv = 'Upload CV (pdf)';
   static String pdfExtension = 'pdf';
   static String someThingError = 'something error';
+  static String signOutSuccess = 'Sign out Successful';
   static String unKnown = 'unknown';
   static String cvpdf = 'CV.pdf';
   static String mb = 'mb';
@@ -217,6 +218,9 @@ abstract class StringsEn {
   static String reviewed = 'Reviewed';
   static String contacted = 'Contacted';
   static String about = 'About';
+  static String aboutInfo =
+      """I'm Rafif Dian Axelingga, I’m UI/UX Designer, I have experience designing UI Design for approximately 1 year. I am currently joining the Vektora studio team based in Surakarta, Indonesia.I am a person who has a high spirit and likes to work to achieve what I dream of.
+        """;
   static String edit = 'Edit';
   static String general = 'General';
   static String editProfile = 'Edit Profile';

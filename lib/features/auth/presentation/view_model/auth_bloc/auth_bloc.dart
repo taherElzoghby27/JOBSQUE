@@ -66,10 +66,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   //save data for user
-  saveDataForUser(
-      {required String userId,
-      required String token,
-      required String name}) async {
+  saveDataForUser({
+    required String userId,
+    required String token,
+    required String name,
+  }) async {
     await CacheHelper.saveData(key: StringsEn.token, value: token);
     await CacheHelper.saveData(key: StringsEn.name, value: name);
     await CacheHelper.saveData(key: StringsEn.userId, value: userId);
