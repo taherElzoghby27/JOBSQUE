@@ -305,7 +305,8 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
   }
 
   //navigate to another page
-  navigateToAnotherPage() {
+  navigateToAnotherPage() async {
+    await Future.delayed(Duration(milliseconds: 1500));
     GoRouter.of(context).pushReplacement(
       _authMode == AuthMode.ResetPassword
           ? successfullyPagePath
