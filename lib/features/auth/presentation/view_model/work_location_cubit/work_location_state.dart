@@ -12,3 +12,9 @@ class WorkLocationType extends WorkLocationState {
 }
 
 class InterestedInWorkState extends WorkLocationState {}
+
+class InterestedInWorkLoading extends WorkLocationState {}
+
+class InterestedInWorkSuccess extends WorkLocationState {}
+
+class InterestedInWorkFailure extends WorkLocationState {}

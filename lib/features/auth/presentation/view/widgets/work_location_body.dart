@@ -6,6 +6,7 @@ import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
+import 'package:jobsque/core/widgets/small_loading_widget.dart';
 import 'package:jobsque/features/auth/presentation/view/widgets/work_interested_in_top_section.dart';
 import 'package:jobsque/features/auth/presentation/view_model/work_location_cubit/work_location_cubit.dart';
 
@@ -51,27 +52,40 @@ class WorkLocationBody extends StatelessWidget {
           SizedBox(
             height: size.height * .055.h,
             width: size.width * .9.w,
-            child: CustomButton(
-              text: StringsEn.next,
-              onTap: () async {
-                if (await BlocProvider.of<WorkLocationCubit>(context)
-                        .handleNextAction() ==
-                    true) {
-                  //TODO
-                  GoRouter.of(context).pushReplacement(
-                    successfullyPagePath,
-                    extra: {
-                      StringsEn.icon: AppAssets.user,
-                      StringsEn.title: StringsEn.yourAccountHasBeenSetUp,
-                      StringsEn.subTitle: StringsEn.weHaveCustomizedFeeds,
-                      StringsEn.labelButton: StringsEn.getStarted,
-                      StringsEn.path: homePath,
-                    },
-                  );
-                } else {
-                  showSnack(context,
-                      message: StringsEn.whereAreYouLocationerror);
+            child: BlocBuilder<WorkLocationCubit, WorkLocationState>(
+              builder: (context, state) {
+                bool loading = false;
+                if (state is InterestedInWorkLoading) {
+                  loading = true;
+                } else if (state is InterestedInWorkSuccess) {
+                  loading = false;
                 }
+                return Visibility(
+                  visible: !loading,
+                  replacement: LoadingWidget(),
+                  child: CustomButton(
+                    text: StringsEn.next,
+                    onTap: () async {
+                      if (await BlocProvider.of<WorkLocationCubit>(context)
+                              .handleNextAction() ==
+                          true) {
+                        GoRouter.of(context).pushReplacement(
+                          successfullyPagePath,
+                          extra: {
+                            StringsEn.icon: AppAssets.user,
+                            StringsEn.title: StringsEn.yourAccountHasBeenSetUp,
+                            StringsEn.subTitle: StringsEn.weHaveCustomizedFeeds,
+                            StringsEn.labelButton: StringsEn.getStarted,
+                            StringsEn.path: homePath,
+                          },
+                        );
+                      } else {
+                        showSnack(context,
+                            message: StringsEn.whereAreYouLocationerror);
+                      }
+                    },
+                  ),
+                );
               },
             ),
           ),

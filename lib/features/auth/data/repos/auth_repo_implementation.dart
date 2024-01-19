@@ -2,7 +2,10 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/models/profile_model.dart';
 import 'package:jobsque/core/services/api_service/auth_service/reset_pass_auth_service.dart';
+import 'package:jobsque/core/services/api_service/profile_service/edit_profile_service.dart';
 import 'package:jobsque/features/auth/data/models/user_create/user_model.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user_login.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
@@ -15,11 +18,13 @@ class AuthRepoImplementation implements AuthRepo {
   final RegisterApiService registerApiService;
   final LoginApiService loginApiService;
   final ResetPassApiService resetPassApiService;
+  final EditProfileService editProfileService;
 
   AuthRepoImplementation({
     required this.registerApiService,
     required this.loginApiService,
     required this.resetPassApiService,
+    required this.editProfileService,
   });
 
   @override
@@ -104,5 +109,34 @@ class AuthRepoImplementation implements AuthRepo {
       return Left(FailureMessage(message: e.toString()));
     }
     return Left(FailureMessage(message: 'something error'));
+  }
+
+  @override
+  Future<Either<FailureMessage, ProfileModel>> editProfile({
+    required String interestedInWork,
+    required String workLocation,
+  }) async {
+    try {
+      //response
+      http.Response result = await editProfileService.editProfile(
+        profileModel: ProfileModel(
+          interestedWork: interestedInWork,
+          remotePlace: workLocation,
+          offlinePlace: workLocation,
+        ),
+      );
+      Map<String, dynamic> data = jsonDecode(result.body);
+      //success
+      if (result.statusCode == 200) {
+        ProfileModel model = ProfileModel.fromJson(data["data"]);
+        return Right(model);
+      } else if (result.statusCode == 401) {
+        return Left(FailureMessage.fromJson(data));
+      }
+    } catch (e) {
+      //failure
+      return Left(FailureMessage(message: e.toString()));
+    }
+    return Left(FailureMessage(message: StringsEn.someThingError));
   }
 }

@@ -24,16 +24,16 @@ class ProfileModel {
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
-        bio: json['bio'],
-        address: json['address'],
-        mobile: json['mobile'],
-        language: json['language'],
-        interestedWork: json['interested_work'],
-        offlinePlace: json['offline_place'],
-        remotePlace: json['remote_place'],
-        experience: json['experience'],
-        personalDetailed: json['personal_detailed'],
-        education: json['education'],
+        bio: json['bio'] ?? "",
+        address: json['address'] ?? "",
+        mobile: json['mobile'] ?? "",
+        language: json['language'] ?? "",
+        interestedWork: json['interested_work'] ?? "",
+        offlinePlace: json['offline_place'] ?? "",
+        remotePlace: json['remote_place'] ?? "",
+        experience: json['experience'] ?? "",
+        personalDetailed: json['personal_detailed'] ?? "",
+        education: json['education'] ?? "",
       );
 
   Map<String, dynamic> toJson() {

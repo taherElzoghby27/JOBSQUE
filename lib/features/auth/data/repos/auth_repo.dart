@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:jobsque/core/models/profile_model.dart';
 import 'package:jobsque/features/auth/data/models/failure_message.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user_login.dart';
 
@@ -20,4 +21,9 @@ abstract class AuthRepo {
 
   //reset password with email address
   Future<Either<FailureMessage, String>> resetPassword({required String email});
+  //edit profile
+  Future<Either<FailureMessage, ProfileModel>> editProfile({
+    required String interestedInWork,
+    required String workLocation,
+  });
 }

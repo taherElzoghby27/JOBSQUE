@@ -1,12 +1,19 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
+import 'package:jobsque/core/models/profile_model.dart';
+import 'package:jobsque/features/auth/data/models/failure_message.dart';
+import 'package:meta/meta.dart';
+
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
-import 'package:meta/meta.dart';
+import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
 
 part 'work_location_state.dart';
 
 class WorkLocationCubit extends Cubit<WorkLocationState> {
-  WorkLocationCubit() : super(WorkLocationInitial());
+  AuthRepo authRepo;
+  WorkLocationCubit({required this.authRepo}) : super(WorkLocationInitial());
   Map<String, bool> workLocation = {
     StringsEn.malaysia: false,
     StringsEn.unitedStates: false,
@@ -55,15 +62,31 @@ class WorkLocationCubit extends Cubit<WorkLocationState> {
   }
 
   Future<void> saveWorkInterests() async {
-    final selectedInterests = workLocation.entries
+    final selectedWorkLocation = workLocation.entries
         .where((entry) => entry.value)
         .map((entry) => entry.key)
         .toList();
 
-    final joinedInterests = selectedInterests.join(' ');
-    await CacheHelper.saveData(
-      key: StringsEn.whereAreYouLocation,
-      value: joinedInterests,
+    final joinedWorksLocation = selectedWorkLocation.join(' ');
+    await editProfile(workLocation: joinedWorksLocation);
+  }
+
+//edit user profile
+  editProfile({required workLocation}) async {
+    emit(InterestedInWorkLoading());
+    Either<FailureMessage, ProfileModel> result = await authRepo.editProfile(
+      interestedInWork: CacheHelper.getData(
+        key: StringsEn.whatTypeOfWorkInterested,
+      ),
+      workLocation: workLocation,
+    );
+    result.fold(
+      (fail) {
+        emit(InterestedInWorkFailure());
+      },
+      (profile) {
+        emit(InterestedInWorkSuccess());
+      },
     );
   }
 }
