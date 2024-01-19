@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
-import 'package:jobsque/core/widgets/small_loading_widget.dart';
+import 'package:jobsque/core/widgets/load_json_widget.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_general.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_others.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_profile_info.dart';
@@ -16,9 +16,6 @@ class ProfileBody extends StatelessWidget {
   Widget build(BuildContext contextParent) {
     return BlocConsumer<SignoutCubit, SignoutState>(
       builder: (context, state) {
-        if (state is SignOutLoading) {
-          return LoadingWidget();
-        }
         return Stack(
           children: [
             ListView(
@@ -33,11 +30,9 @@ class ProfileBody extends StatelessWidget {
               ],
             ),
             Positioned(
-              top: 50,
-              width: 200,
               child: state is SignOutLoading
-                  ? LoadingWidget(
-                      height: 200,
+                  ? Center(
+                      child: LoadJsonWidget(),
                     )
                   : Container(),
             ),
