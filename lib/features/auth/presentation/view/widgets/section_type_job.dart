@@ -20,6 +20,7 @@ class SectionTypeJob extends StatelessWidget {
     bool research = false;
     return BlocConsumer<InterestedInWorkCubit, InterestedInWorkState>(
       builder: (context, state) {
+        final bloc = BlocProvider.of<InterestedInWorkCubit>(context);
         return Column(
           children: [
             Row(
@@ -30,8 +31,7 @@ class SectionTypeJob extends StatelessWidget {
                     title: StringsEn.ui,
                     icon: AppAssets.ui,
                     color: ui ? AppConsts.primary500 : AppConsts.neutral300,
-                    onTap: () => BlocProvider.of<InterestedInWorkCubit>(context)
-                        .changeUIUx(status: ui),
+                    onTap: () => bloc.changeUIUx(status: ui),
                   ),
                 ),
                 Expanded(
@@ -39,8 +39,7 @@ class SectionTypeJob extends StatelessWidget {
                     title: StringsEn.ulustratorDesigner,
                     icon: AppAssets.illustrator,
                     color: illDes ? AppConsts.primary500 : AppConsts.neutral300,
-                    onTap: () => BlocProvider.of<InterestedInWorkCubit>(context)
-                        .changeIllDes(status: illDes),
+                    onTap: () => bloc.changeIllDes(status: illDes),
                   ),
                 ),
               ],
@@ -54,8 +53,7 @@ class SectionTypeJob extends StatelessWidget {
                     icon: AppAssets.developer,
                     color:
                         developer ? AppConsts.primary500 : AppConsts.neutral300,
-                    onTap: () => BlocProvider.of<InterestedInWorkCubit>(context)
-                        .changeDeveloper(status: developer),
+                    onTap: () => bloc.changeDeveloper(status: developer),
                   ),
                 ),
                 Expanded(
@@ -65,8 +63,7 @@ class SectionTypeJob extends StatelessWidget {
                     color: management
                         ? AppConsts.primary500
                         : AppConsts.neutral300,
-                    onTap: () => BlocProvider.of<InterestedInWorkCubit>(context)
-                        .changeManagement(status: management),
+                    onTap: () => bloc.changeManagement(status: management),
                   ),
                 ),
               ],
@@ -80,8 +77,7 @@ class SectionTypeJob extends StatelessWidget {
                     icon: AppAssets.research,
                     color:
                         research ? AppConsts.primary500 : AppConsts.neutral300,
-                    onTap: () => BlocProvider.of<InterestedInWorkCubit>(context)
-                        .changeResearch(status: research),
+                    onTap: () => bloc.changeResearch(status: research),
                   ),
                 ),
                 Expanded(
@@ -89,8 +85,7 @@ class SectionTypeJob extends StatelessWidget {
                     title: StringsEn.informationTechnology,
                     icon: AppAssets.it,
                     color: it ? AppConsts.primary500 : AppConsts.neutral300,
-                    onTap: () => BlocProvider.of<InterestedInWorkCubit>(context)
-                        .changeIt(status: it),
+                    onTap: () => bloc.changeIt(status: it),
                   ),
                 ),
               ],

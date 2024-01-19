@@ -5,6 +5,12 @@ part 'interested_in_work_state.dart';
 
 class InterestedInWorkCubit extends Cubit<InterestedInWorkState> {
   InterestedInWorkCubit() : super(InterestedInWorkInitial());
+  bool ui = false;
+  bool illDes = false;
+  bool it = false;
+  bool management = false;
+  bool developer = false;
+  bool research = false;
 
   changeUIUx({required bool status}) {
     status
