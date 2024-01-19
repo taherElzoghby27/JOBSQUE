@@ -10,7 +10,7 @@ class SignoutCubit extends Cubit<SignoutState> {
     required this.profileRepo,
   }) : super(SignoutInitial());
   //signout
-  signOut() async {
+  Future<bool> signOut() async {
     emit(SignOutLoading());
     bool isSignOut = await profileRepo.signOut();
     if (isSignOut) {
@@ -18,5 +18,6 @@ class SignoutCubit extends Cubit<SignoutState> {
     } else {
       emit(SignOutFailure());
     }
+    return isSignOut;
   }
 }

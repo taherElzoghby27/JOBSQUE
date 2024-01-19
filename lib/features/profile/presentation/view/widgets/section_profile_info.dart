@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
@@ -8,12 +9,13 @@ import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_about_edit.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_info.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_info_jobs.dart';
+import 'package:jobsque/features/profile/presentation/view_model/signout_cubit/signout_cubit.dart';
 
 import '../../../../../core/consts/style.dart';
 
 class SectionProfileInfo extends StatelessWidget {
-  const SectionProfileInfo({super.key});
-
+  const SectionProfileInfo({super.key, required this.ctx});
+  final BuildContext ctx;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -38,7 +40,11 @@ class SectionProfileInfo extends StatelessWidget {
                           GoRouter.of(context).pushReplacement(homePath),
                       title: StringsEn.profile,
                       trailingWidget: IconButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          await BlocProvider.of<SignoutCubit>(context).signOut()
+                              ? GoRouter.of(ctx).pushReplacement(splashPath)
+                              : () {};
+                        },
                         icon: Icon(Icons.logout, color: AppConsts.danger500),
                       ),
                     ),
@@ -66,9 +72,7 @@ class SectionProfileInfo extends StatelessWidget {
           leading: StringsEn.about,
           trailing: StringsEn.edit,
           onTapTrail: () {},
-          about:
-              """I'm Rafif Dian Axelingga, I’m UI/UX Designer, I have experience designing UI Design for approximately 1 year. I am currently joining the Vektora studio team based in Surakarta, Indonesia.I am a person who has a high spirit and likes to work to achieve what I dream of.
-        """,
+          about: StringsEn.aboutInfo,
         ),
       ],
     );
