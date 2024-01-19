@@ -41,6 +41,7 @@ abstract class StringsEn {
   static String google = 'Google';
   static String whatTypeOfWorkInterested =
       'What type of work are you interested in?';
+  static String whatTypeError = 'please, Enter work you are interested in.....';
   static String tellUsWhatYouAreInterestedIn =
       'Tell us what you’re interested in so we can customise the app for your needs.';
   static String ui = 'UI/UX Designer';
@@ -50,6 +51,7 @@ abstract class StringsEn {
   static String management = 'Management';
   static String research = 'Research and Analytics';
   static String whereAreYouLocation = 'Where are you prefefred Location?';
+  static String whereAreYouLocationerror = 'Enter, Your prefefred Location....';
   static String letUsKnowWhereIsTheWork =
       'Let us know, where is the work location you want at this time, so we can adjust it.';
   static String workFromOffice = 'Work From Office';

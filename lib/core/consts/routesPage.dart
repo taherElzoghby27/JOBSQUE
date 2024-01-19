@@ -156,7 +156,9 @@ final router = GoRouter(
         context: context,
         state: state,
         child: BlocProvider(
-          create: (_) => WorkLocationCubit(),
+          create: (_) => WorkLocationCubit(
+            authRepo: getIt.get<AuthRepoImplementation>(),
+          ),
           child: WorkLocationView(),
         ),
       ),

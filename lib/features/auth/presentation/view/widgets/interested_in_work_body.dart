@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/features/auth/presentation/view/widgets/section_type_job.dart';
+import 'package:jobsque/features/auth/presentation/view_model/interested_in_work_cubit/interested_in_work_cubit.dart';
 
 import 'work_interested_in_top_section.dart';
 
@@ -34,8 +37,14 @@ class InterestedInWorkBody extends StatelessWidget {
             width: size.width * .9.w,
             child: CustomButton(
               text: StringsEn.next,
-              onTap: () =>
-                  GoRouter.of(context).pushReplacement(locationWorkPath),
+              onTap: () async {
+                if (await BlocProvider.of<InterestedInWorkCubit>(context)
+                    .handleNextAction()) {
+                  GoRouter.of(context).pushReplacement(locationWorkPath);
+                } else {
+                  showSnack(context, message: StringsEn.whatTypeError);
+                }
+              },
             ),
           ),
         ],
