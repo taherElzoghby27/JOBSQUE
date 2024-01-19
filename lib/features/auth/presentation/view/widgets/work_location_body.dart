@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/features/auth/presentation/view/widgets/work_interested_in_top_section.dart';
+import 'package:jobsque/features/auth/presentation/view_model/work_location_cubit/work_location_cubit.dart';
 
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/widgets/customButton.dart';
@@ -50,16 +53,26 @@ class WorkLocationBody extends StatelessWidget {
             width: size.width * .9.w,
             child: CustomButton(
               text: StringsEn.next,
-              onTap: () => GoRouter.of(context).pushReplacement(
-                successfullyPagePath,
-                extra: {
-                  StringsEn.icon: AppAssets.user,
-                  StringsEn.title: StringsEn.yourAccountHasBeenSetUp,
-                  StringsEn.subTitle: StringsEn.weHaveCustomizedFeeds,
-                  StringsEn.labelButton: StringsEn.getStarted,
-                  StringsEn.path: homePath,
-                },
-              ),
+              onTap: () async {
+                if (await BlocProvider.of<WorkLocationCubit>(context)
+                        .handleNextAction() ==
+                    true) {
+                  //TODO
+                  GoRouter.of(context).pushReplacement(
+                    successfullyPagePath,
+                    extra: {
+                      StringsEn.icon: AppAssets.user,
+                      StringsEn.title: StringsEn.yourAccountHasBeenSetUp,
+                      StringsEn.subTitle: StringsEn.weHaveCustomizedFeeds,
+                      StringsEn.labelButton: StringsEn.getStarted,
+                      StringsEn.path: homePath,
+                    },
+                  );
+                } else {
+                  showSnack(context,
+                      message: StringsEn.whereAreYouLocationerror);
+                }
+              },
             ),
           ),
         ],

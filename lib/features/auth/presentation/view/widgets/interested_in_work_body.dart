@@ -37,8 +37,9 @@ class InterestedInWorkBody extends StatelessWidget {
             width: size.width * .9.w,
             child: CustomButton(
               text: StringsEn.next,
-              onTap: () {
-                if (BlocProvider.of<InterestedInWorkCubit>(context).next()) {
+              onTap: () async {
+                if (await BlocProvider.of<InterestedInWorkCubit>(context)
+                    .handleNextAction()) {
                   GoRouter.of(context).pushReplacement(locationWorkPath);
                 } else {
                   showSnack(context, message: StringsEn.whatTypeError);

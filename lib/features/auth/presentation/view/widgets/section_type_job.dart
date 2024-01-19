@@ -12,13 +12,7 @@ class SectionTypeJob extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool ui = false;
-    bool illDes = false;
-    bool it = false;
-    bool management = false;
-    bool developer = false;
-    bool research = false;
-    return BlocConsumer<InterestedInWorkCubit, InterestedInWorkState>(
+    return BlocBuilder<InterestedInWorkCubit, InterestedInWorkState>(
       builder: (context, state) {
         final bloc = BlocProvider.of<InterestedInWorkCubit>(context);
         return Column(
@@ -30,16 +24,28 @@ class SectionTypeJob extends StatelessWidget {
                   child: WorkTypeComponent(
                     title: StringsEn.ui,
                     icon: AppAssets.ui,
-                    color: ui ? AppConsts.primary500 : AppConsts.neutral300,
-                    onTap: () => bloc.changeUIUx(status: ui),
+                    color: bloc.getStatus(key: StringsEn.ui)
+                        ? AppConsts.primary500
+                        : AppConsts.neutral300,
+                    onTap: () => bloc.toggleInterestedInWork(
+                      key: StringsEn.ui,
+                      status: bloc.getStatus(key: StringsEn.ui) ? false : true,
+                    ),
                   ),
                 ),
                 Expanded(
                   child: WorkTypeComponent(
                     title: StringsEn.ulustratorDesigner,
                     icon: AppAssets.illustrator,
-                    color: illDes ? AppConsts.primary500 : AppConsts.neutral300,
-                    onTap: () => bloc.changeIllDes(status: illDes),
+                    color: bloc.getStatus(key: StringsEn.ulustratorDesigner)
+                        ? AppConsts.primary500
+                        : AppConsts.neutral300,
+                    onTap: () => bloc.toggleInterestedInWork(
+                      key: StringsEn.ulustratorDesigner,
+                      status: bloc.getStatus(key: StringsEn.ulustratorDesigner)
+                          ? false
+                          : true,
+                    ),
                   ),
                 ),
               ],
@@ -51,19 +57,30 @@ class SectionTypeJob extends StatelessWidget {
                   child: WorkTypeComponent(
                     title: StringsEn.developer,
                     icon: AppAssets.developer,
-                    color:
-                        developer ? AppConsts.primary500 : AppConsts.neutral300,
-                    onTap: () => bloc.changeDeveloper(status: developer),
+                    color: bloc.getStatus(key: StringsEn.developer)
+                        ? AppConsts.primary500
+                        : AppConsts.neutral300,
+                    onTap: () => bloc.toggleInterestedInWork(
+                      key: StringsEn.developer,
+                      status: bloc.getStatus(key: StringsEn.developer)
+                          ? false
+                          : true,
+                    ),
                   ),
                 ),
                 Expanded(
                   child: WorkTypeComponent(
                     title: StringsEn.management,
                     icon: AppAssets.management,
-                    color: management
+                    color: bloc.getStatus(key: StringsEn.management)
                         ? AppConsts.primary500
                         : AppConsts.neutral300,
-                    onTap: () => bloc.changeManagement(status: management),
+                    onTap: () => bloc.toggleInterestedInWork(
+                      key: StringsEn.management,
+                      status: bloc.getStatus(key: StringsEn.management)
+                          ? false
+                          : true,
+                    ),
                   ),
                 ),
               ],
@@ -75,38 +92,37 @@ class SectionTypeJob extends StatelessWidget {
                   child: WorkTypeComponent(
                     title: StringsEn.research,
                     icon: AppAssets.research,
-                    color:
-                        research ? AppConsts.primary500 : AppConsts.neutral300,
-                    onTap: () => bloc.changeResearch(status: research),
+                    color: bloc.getStatus(key: StringsEn.research)
+                        ? AppConsts.primary500
+                        : AppConsts.neutral300,
+                    onTap: () => bloc.toggleInterestedInWork(
+                      key: StringsEn.research,
+                      status: bloc.getStatus(key: StringsEn.research)
+                          ? false
+                          : true,
+                    ),
                   ),
                 ),
                 Expanded(
                   child: WorkTypeComponent(
                     title: StringsEn.informationTechnology,
                     icon: AppAssets.it,
-                    color: it ? AppConsts.primary500 : AppConsts.neutral300,
-                    onTap: () => bloc.changeIt(status: it),
+                    color: bloc.getStatus(key: StringsEn.informationTechnology)
+                        ? AppConsts.primary500
+                        : AppConsts.neutral300,
+                    onTap: () => bloc.toggleInterestedInWork(
+                      key: StringsEn.informationTechnology,
+                      status:
+                          bloc.getStatus(key: StringsEn.informationTechnology)
+                              ? false
+                              : true,
+                    ),
                   ),
                 ),
               ],
             ),
           ],
         );
-      },
-      listener: (context, state) {
-        if (state is UiUxDesigner) {
-          ui = state.status;
-        } else if (state is IllustratorDesigner) {
-          illDes = state.status;
-        } else if (state is Management) {
-          management = state.status;
-        } else if (state is Developer) {
-          developer = state.status;
-        } else if (state is ResearchAndAnalytics) {
-          research = state.status;
-        } else if (state is InformationTechnology) {
-          it = state.status;
-        }
       },
     );
   }

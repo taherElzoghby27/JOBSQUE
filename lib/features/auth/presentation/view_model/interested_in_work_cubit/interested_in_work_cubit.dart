@@ -7,84 +7,28 @@ part 'interested_in_work_state.dart';
 
 class InterestedInWorkCubit extends Cubit<InterestedInWorkState> {
   InterestedInWorkCubit() : super(InterestedInWorkInitial());
-  bool ui = false;
-  bool illDes = false;
-  bool it = false;
-  bool management = false;
-  bool developer = false;
-  bool research = false;
-  String interesedInWork = "";
+  Map<String, bool> workInterested = {
+    StringsEn.ui: false,
+    StringsEn.informationTechnology: false,
+    StringsEn.developer: false,
+    StringsEn.management: false,
+    StringsEn.research: false,
+    StringsEn.ulustratorDesigner: false,
+  };
 
-  changeUIUx({required bool status}) {
-    if (status) {
-      emit(UiUxDesigner(status: false));
-      ui = false;
-    } else {
-      emit(UiUxDesigner(status: true));
-      ui = true;
-    }
-  }
-
-  changeDeveloper({required bool status}) {
-    if (status) {
-      emit(Developer(status: false));
-      developer = false;
-    } else {
-      emit(Developer(status: true));
-      developer = true;
-    }
-  }
-
-  changeManagement({required bool status}) {
-    if (status) {
-      emit(Management(status: false));
-      management = false;
-    } else {
-      emit(Management(status: true));
-      management = true;
-    }
-  }
-
-  changeIt({required bool status}) {
-    if (status) {
-      emit(InformationTechnology(status: false));
-      it = false;
-    } else {
-      emit(InformationTechnology(status: true));
-      it = true;
-    }
-  }
-
-  changeIllDes({required bool status}) {
-    if (status) {
-      emit(IllustratorDesigner(status: false));
-      illDes = false;
-    } else {
-      emit(IllustratorDesigner(status: true));
-      illDes = true;
-    }
-  }
-
-  changeResearch({required bool status}) {
-    if (status) {
-      emit(ResearchAndAnalytics(status: false));
-      research = false;
-    } else {
-      emit(ResearchAndAnalytics(status: true));
-      research = true;
-    }
+  toggleInterestedInWork({required String key, required bool status}) {
+    workInterested[key] = status;
+    emit(InterestedWorkState());
   }
 
   //check all if true or not
-  bool get checkTrueOrNot =>
-      !it && !developer && !management && !research && !ui && !illDes
-          ? false
-          : true;
-
+  bool get workInterestedHasTrue =>
+      workInterested.values.any((element) => element);
+  bool getStatus({required String key}) => workInterested[key]!;
   //next
-  bool next() {
-    if (checkTrueOrNot) {
-      saveInterestedIn();
+  Future<bool> handleNextAction() async {
+    if (workInterestedHasTrue) {
+      await saveInterestedIn();
       return true;
     } else {
       return false;
@@ -92,33 +36,20 @@ class InterestedInWorkCubit extends Cubit<InterestedInWorkState> {
   }
 
 //save interested in work
-  saveInterestedIn() {
-    if (it) {
-      interesedInWork += StringsEn.informationTechnology + " ";
-    }
-    if (ui) {
-      interesedInWork += StringsEn.ui + " ";
-    }
-    if (illDes) {
-      interesedInWork += StringsEn.ulustratorDesigner + " ";
-    }
-    if (management) {
-      interesedInWork += StringsEn.management + " ";
-    }
-    if (developer) {
-      interesedInWork += StringsEn.developer + " ";
-    }
-    if (research) {
-      interesedInWork += StringsEn.research + " ";
-    }
-    saveInCache();
+  saveInterestedIn() async {
+    final listInterestedIn = workInterested.entries
+        .where((element) => element.value)
+        .map((e) => e.key)
+        .toList();
+    final listInterestedInString = listInterestedIn.join(' ');
+    await saveInCache(interestedIn: listInterestedInString);
   }
 
 //save in cache
-  saveInCache() async {
+  saveInCache({required String interestedIn}) async {
     await CacheHelper.saveData(
       key: StringsEn.whatTypeOfWorkInterested,
-      value: interesedInWork,
+      value: interestedIn,
     );
   }
 }

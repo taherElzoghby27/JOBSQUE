@@ -51,6 +51,7 @@ abstract class StringsEn {
   static String management = 'Management';
   static String research = 'Research and Analytics';
   static String whereAreYouLocation = 'Where are you prefefred Location?';
+  static String whereAreYouLocationerror = 'Enter, Your prefefred Location....';
   static String letUsKnowWhereIsTheWork =
       'Let us know, where is the work location you want at this time, so we can adjust it.';
   static String workFromOffice = 'Work From Office';

@@ -18,7 +18,7 @@ class HomeOrOfficeWidget extends StatelessWidget {
         return Container(
           height: size.height * .06.h,
           width: size.width * .85.w,
-          decoration:AppConsts.barDecoration,
+          decoration: AppConsts.barDecoration,
           child: Row(
             children: [
               Expanded(
@@ -48,7 +48,6 @@ class HomeOrOfficeWidget extends StatelessWidget {
       listener: (context, state) {
         if (state is WorkLocationType) {
           type = state.typeWork;
-          print(type);
         }
       },
     );

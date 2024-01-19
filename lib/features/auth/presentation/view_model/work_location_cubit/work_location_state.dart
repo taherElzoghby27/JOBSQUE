@@ -10,3 +10,5 @@ class WorkLocationType extends WorkLocationState {
 
   WorkLocationType({required this.typeWork});
 }
+
+class InterestedInWorkState extends WorkLocationState {}

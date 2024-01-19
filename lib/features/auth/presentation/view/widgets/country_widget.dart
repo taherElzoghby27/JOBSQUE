@@ -24,6 +24,7 @@ class CountryWidget extends StatelessWidget {
       padding: const EdgeInsets.all(4),
       child: InkWell(
         onTap: onTap,
+        borderRadius: BorderRadius.circular(25.sp),
         child: Container(
           height: size.height * .0525.h,
           decoration: BoxDecoration(
