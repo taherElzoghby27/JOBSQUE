@@ -4,6 +4,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/profile_model.dart';
@@ -32,19 +33,24 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 
   //check phone number
   bool checkPhoneNumber() =>
-      '+${controllerMobileNumber.text}'.startsWith(codeCountry) ? true : false;
+      '+${controllerMobileNumber.text}'.startsWith(codeCountry) &&
+              controllerMobileNumber.text.length > 10
+          ? true
+          : false;
 
 //on changed counry
   onChangedCountry({required CountryCode code}) =>
       codeCountry = code.dialCode.toString();
   //save method
-  save() async {
+  save(BuildContext context) async {
     if (checkFieldsFullOrNot() && checkPhoneNumber()) {
       try {
         emit(SavedLoading());
         //save name to shared prefernce
         await CacheHelper.saveData(
-            key: StringsEn.name, value: controllerName.text);
+          key: StringsEn.name,
+          value: controllerName.text,
+        );
         //edit profile
         Either<FailureMessage, ProfileModel> editProfileResult =
             await authRepo.editProfile(
@@ -55,15 +61,10 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           ),
         );
         editProfileResult.fold(
-          (failure) {
-            print("fail in edit profile");
-            emit(SavedFailure());
-          },
+          (failure) => emit(SavedFailure()),
           (profile) {
-            print(profile.address);
-            print(profile.bio);
-            print(profile.mobile);
             emit(SavedSuccess());
+            GoRouter.of(context).pop();
           },
         );
       } catch (error) {
@@ -72,5 +73,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     } else {
       emit(SavedFailure());
     }
+    return false;
   }
 }
