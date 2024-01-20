@@ -1,13 +1,13 @@
 import 'package:jobsque/core/models/user_profile_model/portfolio.dart';
 import 'package:jobsque/features/auth/data/models/user_create/profile_model.dart';
 
-class UserProfileModel {
+class UserProfilePortfolioModel {
   List<PortfolioModel>? portfolio;
   Profile? profile;
 
-  UserProfileModel({this.portfolio, this.profile});
+  UserProfilePortfolioModel({this.portfolio, this.profile});
 
-  UserProfileModel.fromJson(Map<String, dynamic> json) {
+  UserProfilePortfolioModel.fromJson(Map<String, dynamic> json) {
     if (json['portfolio'] != null) {
       portfolio = <PortfolioModel>[];
       json['portfolio'].forEach((v) {
