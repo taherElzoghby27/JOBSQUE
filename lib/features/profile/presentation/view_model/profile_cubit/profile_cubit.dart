@@ -24,14 +24,15 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   //get profile
   getProfile() async {
+    emit(GetProfileLoading());
     final profile = await profileRepo.getProfile();
     profile.fold(
       (failure) {
+        print("fail");
         emit(GetProfileFailure(message: failure.message!));
       },
       (userProfile) {
-        print(userProfile.portfolio);
-        print(userProfile.profile!.name);
+        print("----name--${userProfile.profile!.name}");
         emit(GetProfileSuccess(userProfileModel: userProfile));
       },
     );

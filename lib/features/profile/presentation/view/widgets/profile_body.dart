@@ -16,29 +16,34 @@ class ProfileBody extends StatelessWidget {
   Widget build(BuildContext contextParent) {
     return BlocConsumer<ProfileCubit, ProfileState>(
       builder: (context, state) {
-        return Stack(
-          children: [
-            ListView(
-              physics: const BouncingScrollPhysics(),
-              children: [
-                //section profile
-                SectionProfileInfo(ctx: contextParent),
-                //section general
-                SectionGeneral(),
-                //section others
-                SectionOthers(),
-              ],
-            ),
-            Positioned(
-              child: state is SignOutLoading
-                  ? Center(child: LoadJsonWidget())
-                  : Container(),
-            ),
-          ],
-        );
+        if (state is GetProfileLoading) {
+          return Center(child: LoadJsonWidget());
+        } else if (state is GetProfileSuccess) {
+          return Stack(
+            children: [
+              ListView(
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  //section profile
+                  SectionProfileInfo(ctx: contextParent),
+                  //section general
+                  SectionGeneral(),
+                  //section others
+                  SectionOthers(),
+                ],
+              ),
+              Positioned(
+                child: state is SignOutLoading
+                    ? Center(child: LoadJsonWidget())
+                    : Container(),
+              ),
+            ],
+          );
+        }
+        return Center(child: LoadJsonWidget());
       },
       listener: (context, state) {
-        if (state is SignOutFailure) {
+        if (state is SignOutFailure || state is GetProfileFailure) {
           showSnack(context, message: StringsEn.someThingError);
         } else if (state is SignOutSucess) {
           showSnack(context, message: StringsEn.signOutSuccess);

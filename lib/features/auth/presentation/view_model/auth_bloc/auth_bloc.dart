@@ -74,8 +74,5 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     await CacheHelper.saveData(key: StringsEn.token, value: token);
     await CacheHelper.saveData(key: StringsEn.name, value: name);
     await CacheHelper.saveData(key: StringsEn.userId, value: userId);
-    print(CacheHelper.getData(key: StringsEn.token));
-    print(CacheHelper.getData(key: StringsEn.name));
-    print(CacheHelper.getData(key: StringsEn.userId));
   }
 }
