@@ -22,6 +22,7 @@ class _SplashViewState extends State<SplashView> {
 
   ///navigate to board
   navigateToBoarding() {
+    CacheHelper.clearData();
     Future.delayed(
       Duration(seconds: 2),
       () => GoRouter.of(context).pushReplacement(

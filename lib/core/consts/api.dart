@@ -1,5 +1,6 @@
 class ApiConsts {
   //endpoints
+
   static String url = 'https://project2.amit-learning.com/api';
   static String registerEndPoint = '/auth/register';
   static String loginEndPoint = '/auth/login';

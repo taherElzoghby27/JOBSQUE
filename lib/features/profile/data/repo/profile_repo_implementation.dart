@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:http/src/response.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:jobsque/core/models/user_profile_model/user_profile_model.dart';
 import 'package:jobsque/core/services/api_service/auth_service/signout_service.dart';
@@ -25,10 +25,11 @@ class ProfileRepoImplementation extends ProfileRepo {
   @override
   Future<Either<FailureMessage, UserProfileModel>> getProfile() async {
     try {
-      Response result = await getProfileService.getProfile();
-      final data = jsonDecode(result.body);
+      http.Response result = await getProfileService.getProfile();
+      Map<String, dynamic> data = jsonDecode(result.body);
 
       if (result.statusCode == 200) {
+        print("success");
         //success
         UserProfileModel profileUser = UserProfileModel.fromJson(data["data"]);
         return Right(profileUser);
@@ -38,6 +39,7 @@ class ProfileRepoImplementation extends ProfileRepo {
         return Left(failModel);
       }
     } catch (error) {
+      print("fail2");
       return Left(FailureMessage(message: error.toString()));
     }
   }

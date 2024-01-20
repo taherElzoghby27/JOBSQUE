@@ -10,12 +10,15 @@ class GetProfileService {
   GetProfileService({required this.getApiService});
   //get profile method
   Future<http.Response> getProfile() async {
+    print(CacheHelper.getData(key: StringsEn.token));
     http.Response response = await getApiService.get(
       path: "${ApiConsts.url}${ApiConsts.getProfileEndPoint}",
       headers: {
+        'Accept': 'application/json',
         'Authorization': 'Bearer ${CacheHelper.getData(key: StringsEn.token)}',
       },
     );
+    print(response.body);
     return response;
   }
 }
