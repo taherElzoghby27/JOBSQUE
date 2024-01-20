@@ -23,7 +23,6 @@ abstract class AuthRepo {
   Future<Either<FailureMessage, String>> resetPassword({required String email});
   //edit profile
   Future<Either<FailureMessage, ProfileModel>> editProfile({
-    required String interestedInWork,
-    required String workLocation,
+    required ProfileModel profileModel,
   });
 }

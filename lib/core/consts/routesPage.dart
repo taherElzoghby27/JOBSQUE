@@ -30,6 +30,7 @@ import 'package:jobsque/features/notification/presentation/view/notification_vie
 import 'package:jobsque/features/privacy_policy/presentation/view/privacy_view.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view/edit_profile_view.dart';
+import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view_models/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view/language/presentation/view/languages_view.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/login_and_security_auth_view.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/login_security_view.dart';
@@ -296,7 +297,10 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: EditProfileView(),
+        child: BlocProvider(
+          create: (_) => EditProfileCubit(),
+          child: EditProfileView(),
+        ),
       ),
     ),
     GoRoute(

@@ -113,17 +113,12 @@ class AuthRepoImplementation implements AuthRepo {
 
   @override
   Future<Either<FailureMessage, ProfileModel>> editProfile({
-    required String interestedInWork,
-    required String workLocation,
+    required ProfileModel profileModel,
   }) async {
     try {
       //response
       http.Response result = await editProfileService.editProfile(
-        profileModel: ProfileModel(
-          interestedWork: interestedInWork,
-          remotePlace: workLocation,
-          offlinePlace: workLocation,
-        ),
+        profileModel: profileModel,
       );
       Map<String, dynamic> data = jsonDecode(result.body);
       //success

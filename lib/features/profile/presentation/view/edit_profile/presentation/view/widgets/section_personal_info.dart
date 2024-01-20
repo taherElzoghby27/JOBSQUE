@@ -1,8 +1,10 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
+import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view_models/edit_profile_cubit/edit_profile_cubit.dart';
 
 class SectionPersonalInfo extends StatelessWidget {
   const SectionPersonalInfo({super.key});
@@ -10,6 +12,7 @@ class SectionPersonalInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    EditProfileCubit bloc = BlocProvider.of<EditProfileCubit>(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 17.w),
       child: Column(
@@ -18,7 +21,7 @@ class SectionPersonalInfo extends StatelessWidget {
           CustomFilterTextField(
             label: StringsEn.name,
             hint: StringsEn.name,
-            onChanged: (String? value) {},
+            controller: bloc.controllerName,
           ),
           SizedBox(height: size.height * .022.w),
 
@@ -26,7 +29,7 @@ class SectionPersonalInfo extends StatelessWidget {
           CustomFilterTextField(
             label: StringsEn.bio,
             hint: StringsEn.bio,
-            onChanged: (String? value) {},
+            controller: bloc.controllerBio,
           ),
           SizedBox(height: size.height * .022.w),
 
@@ -34,7 +37,7 @@ class SectionPersonalInfo extends StatelessWidget {
           CustomFilterTextField(
             label: StringsEn.address,
             hint: StringsEn.address,
-            onChanged: (String? value) {},
+            controller: bloc.controllerAddress,
           ),
           SizedBox(height: size.height * .022.w),
           //no handphone
@@ -42,8 +45,10 @@ class SectionPersonalInfo extends StatelessWidget {
             label: StringsEn.noHandPhone,
             hint: StringsEn.phone,
             perfixIcon: CountryCodePicker(
+              initialSelection: StringsEn.eg,
               flagWidth: 25,
-              onChanged: (CountryCode value) {},
+              onChanged: (CountryCode code) =>
+                  bloc.onChangedCountry(code: code),
               showDropDownButton: true,
               showCountryOnly: true,
               showOnlyCountryWhenClosed: true,
@@ -51,7 +56,7 @@ class SectionPersonalInfo extends StatelessWidget {
               hideMainText: true,
               showFlagMain: true,
             ),
-            onChanged: (String? value) {},
+            controller: bloc.controllerMobileNumber,
           ),
         ],
       ),
