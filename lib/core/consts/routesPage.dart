@@ -298,7 +298,9 @@ final router = GoRouter(
         context: context,
         state: state,
         child: BlocProvider(
-          create: (_) => EditProfileCubit(),
+          create: (_) => EditProfileCubit(
+            authRepo: getIt.get<AuthRepoImplementation>(),
+          ),
           child: EditProfileView(),
         ),
       ),
