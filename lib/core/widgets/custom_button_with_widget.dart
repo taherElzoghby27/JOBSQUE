@@ -20,7 +20,7 @@ class CustomButtonWithWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: size.height*.065.h,
+        height: size.height * .065.h,
         decoration: AppConsts.borderButton,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

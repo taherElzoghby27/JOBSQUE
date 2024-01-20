@@ -14,8 +14,6 @@ class MessagesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-
-
     return Column(
       children: [
         SizedBox(height: size.height * .02.h),

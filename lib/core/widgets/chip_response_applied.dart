@@ -19,7 +19,7 @@ class ChipResponseApplied extends StatelessWidget {
         label,
         style: TextStyle(color: color),
       ),
-      side: BorderSide(width: 0, color:background),
+      side: BorderSide(width: 0, color: background),
       backgroundColor: background,
     );
   }

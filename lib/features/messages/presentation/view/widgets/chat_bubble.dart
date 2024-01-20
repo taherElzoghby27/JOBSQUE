@@ -19,7 +19,7 @@ class ChatBubble extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: Container(
-          width: size.width*.75.w,
+          width: size.width * .75.w,
           decoration: AppConsts.decorationChatBubble,
           child: Padding(
             padding: const EdgeInsets.all(12),
@@ -36,7 +36,8 @@ class ChatBubble extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: Text(
                     message.time,
-                    style: AppConsts.style12.copyWith(color: AppConsts.neutral500),
+                    style:
+                        AppConsts.style12.copyWith(color: AppConsts.neutral500),
                   ),
                 ),
               ],

@@ -1,4 +1,3 @@
-
 import 'package:jobsque/features/auth/data/models/user_create/profile_model.dart';
 
 import 'data_model.dart';

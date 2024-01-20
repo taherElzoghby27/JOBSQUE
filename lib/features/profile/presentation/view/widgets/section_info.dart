@@ -39,4 +39,3 @@ class Info extends StatelessWidget {
     );
   }
 }
-

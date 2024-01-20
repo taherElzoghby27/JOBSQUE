@@ -24,7 +24,7 @@ class ChatBubbForFriend extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(4.0),
               child: Container(
-                width: size.width*.75.w,
+                width: size.width * .75.w,
                 decoration: AppConsts.decorationChatBubbleForFriend,
                 child: Padding(
                   padding: const EdgeInsets.all(12),
@@ -41,7 +41,8 @@ class ChatBubbForFriend extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         child: Text(
                           "10:21",
-                          style: AppConsts.style12.copyWith(color: AppConsts.neutral200),
+                          style: AppConsts.style12
+                              .copyWith(color: AppConsts.neutral200),
                         ),
                       ),
                     ],
@@ -49,7 +50,6 @@ class ChatBubbForFriend extends StatelessWidget {
                 ),
               ),
             ),
-
           ],
         ),
       ),

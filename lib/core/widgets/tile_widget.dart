@@ -43,7 +43,7 @@ class TileWidget extends StatelessWidget {
             TextButton(
               onPressed: trailingOnTap,
               child: Text(
-                trailingLabel??'',
+                trailingLabel ?? '',
                 style: AppConsts.style14.copyWith(
                   color: AppConsts.primary500,
                 ),

@@ -19,4 +19,3 @@ class GetJobsFailure extends HomeState {
 
   GetJobsFailure({required this.message});
 }
-

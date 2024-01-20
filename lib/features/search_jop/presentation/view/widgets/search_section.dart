@@ -10,7 +10,8 @@ import '../../../../../core/consts/style.dart';
 class SectionSearch extends StatelessWidget {
   const SectionSearch({
     super.key,
-    required this.onChanged,  this.controller,
+    required this.onChanged,
+    this.controller,
   });
 
   final void Function(String)? onChanged;

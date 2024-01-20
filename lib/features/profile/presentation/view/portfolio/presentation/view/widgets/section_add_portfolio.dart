@@ -12,7 +12,7 @@ class SectionAddPortfolio extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 15.w),
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       child: Column(
         children: [
           TitleField(label: StringsEn.addPortfolioHere),

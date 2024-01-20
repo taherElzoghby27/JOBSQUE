@@ -27,7 +27,7 @@ class SectionInfoJobs extends StatelessWidget {
               ItemInfoJob(title: StringsEn.applied, subTitle: '65'),
               //Divider(color: AppConsts.neutral300,height: 30.h),
               ItemInfoJob(title: StringsEn.reviewed, subTitle: '20'),
-             // Divider(color: AppConsts.neutral300,height: 30.h),
+              // Divider(color: AppConsts.neutral300,height: 30.h),
               ItemInfoJob(title: StringsEn.contacted, subTitle: '16'),
             ],
           ),

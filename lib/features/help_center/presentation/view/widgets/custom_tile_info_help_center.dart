@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
@@ -20,7 +19,7 @@ class _CustomTileInfoHelpCenterState extends State<CustomTileInfoHelpCenter> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
       child: Container(
         decoration: AppConsts.decorationRadius8,
         child: Padding(
@@ -47,15 +46,15 @@ class _CustomTileInfoHelpCenterState extends State<CustomTileInfoHelpCenter> {
               ),
               isOpen
                   ? SizedBox(
-                width: size.width * .85.w,
-                child: Text(
-                  StringsEn.loremIpsum,
-                  style: AppConsts.styleHint14.copyWith(
-                    color: AppConsts.neutral500,
-                  ),
-                  maxLines: 6,
-                ),
-              )
+                      width: size.width * .85.w,
+                      child: Text(
+                        StringsEn.loremIpsum,
+                        style: AppConsts.styleHint14.copyWith(
+                          color: AppConsts.neutral500,
+                        ),
+                        maxLines: 6,
+                      ),
+                    )
                   : Container(),
             ],
           ),

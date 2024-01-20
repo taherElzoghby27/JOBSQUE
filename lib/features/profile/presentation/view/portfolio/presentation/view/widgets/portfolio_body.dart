@@ -17,7 +17,7 @@ class PortfolioBody extends StatelessWidget {
       children: [
         SizedBox(height: size.height * .02.h),
         CustomAppBar(
-          leadingOnTap: ()=>GoRouter.of(context).pop(),
+          leadingOnTap: () => GoRouter.of(context).pop(),
           title: StringsEn.portfolio,
           trailingWidget: Container(),
         ),

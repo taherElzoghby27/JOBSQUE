@@ -14,7 +14,7 @@ class CompleteProfileBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 12.w),
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
       child: Column(
         children: [
           SizedBox(height: size.height * .02.h),

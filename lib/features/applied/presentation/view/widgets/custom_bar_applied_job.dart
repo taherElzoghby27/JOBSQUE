@@ -21,7 +21,7 @@ class _CustomBarAppliedJobState extends State<CustomBarAppliedJob> {
     return Container(
       height: size.height * .06.h,
       width: size.width * .85.w,
-      decoration:AppConsts.barDecoration,
+      decoration: AppConsts.barDecoration,
       child: Row(
         children: [
           Expanded(

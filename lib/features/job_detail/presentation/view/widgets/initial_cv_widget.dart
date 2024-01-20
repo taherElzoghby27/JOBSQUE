@@ -7,6 +7,6 @@ class InitialCvWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(StringsEn.noCvs,style: AppConsts.style16);
+    return Text(StringsEn.noCvs, style: AppConsts.style16);
   }
 }

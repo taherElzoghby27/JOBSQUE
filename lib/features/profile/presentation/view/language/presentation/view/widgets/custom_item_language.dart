@@ -25,7 +25,10 @@ class CustomItemLanguage extends StatelessWidget {
       child: Row(
         children: [
           //logo
-          SvgPicture.asset(logo,height: 30,),
+          SvgPicture.asset(
+            logo,
+            height: 30,
+          ),
           Spacer(flex: 1),
           //name
           Text(
