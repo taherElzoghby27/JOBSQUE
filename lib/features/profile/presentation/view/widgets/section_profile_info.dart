@@ -9,7 +9,7 @@ import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_about_edit.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_info.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_info_jobs.dart';
-import 'package:jobsque/features/profile/presentation/view_model/signout_cubit/signout_cubit.dart';
+import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 
 import '../../../../../core/consts/style.dart';
 
@@ -41,7 +41,7 @@ class SectionProfileInfo extends StatelessWidget {
                       title: StringsEn.profile,
                       trailingWidget: IconButton(
                         onPressed: () async {
-                          await BlocProvider.of<SignoutCubit>(context).signOut()
+                          await BlocProvider.of<ProfileCubit>(context).signOut()
                               ? GoRouter.of(ctx).pushReplacement(splashPath)
                               : () {};
                         },

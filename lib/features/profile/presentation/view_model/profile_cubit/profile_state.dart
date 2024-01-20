@@ -21,3 +21,9 @@ class GetProfileFailure extends ProfileState {
   final String message;
   GetProfileFailure({required this.message});
 }
+
+class SignOutSucess extends ProfileState {}
+
+class SignOutLoading extends ProfileState {}
+
+class SignOutFailure extends ProfileState {}

@@ -36,7 +36,7 @@ import 'package:jobsque/features/profile/presentation/view/login_and_security/pr
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/two_step_verifi_view.dart';
 import 'package:jobsque/features/profile/presentation/view/notification/presentation/view/notification_profile_view.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/portfolio_view.dart';
-import 'package:jobsque/features/profile/presentation/view_model/signout_cubit/signout_cubit.dart';
+import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:jobsque/features/search_jop/presentation/view/search_view.dart';
 import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
 import 'package:jobsque/features/splash/presentation/view/splash_view.dart';
@@ -129,7 +129,7 @@ final router = GoRouter(
                 ),
               ),
               BlocProvider(
-                create: (_) => SignoutCubit(
+                create: (_) => ProfileCubit(
                   profileRepo: getIt.get<ProfileRepoImplementation>(),
                 ),
               ),

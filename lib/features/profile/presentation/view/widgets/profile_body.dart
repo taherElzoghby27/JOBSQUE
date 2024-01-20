@@ -7,14 +7,14 @@ import 'package:jobsque/core/widgets/load_json_widget.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_general.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_others.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_profile_info.dart';
-import 'package:jobsque/features/profile/presentation/view_model/signout_cubit/signout_cubit.dart';
+import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 
 class ProfileBody extends StatelessWidget {
   const ProfileBody({super.key});
 
   @override
   Widget build(BuildContext contextParent) {
-    return BlocConsumer<SignoutCubit, SignoutState>(
+    return BlocConsumer<ProfileCubit, ProfileState>(
       builder: (context, state) {
         return Stack(
           children: [
@@ -31,9 +31,7 @@ class ProfileBody extends StatelessWidget {
             ),
             Positioned(
               child: state is SignOutLoading
-                  ? Center(
-                      child: LoadJsonWidget(),
-                    )
+                  ? Center(child: LoadJsonWidget())
                   : Container(),
             ),
           ],

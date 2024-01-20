@@ -12,6 +12,18 @@ part 'profile_state.dart';
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileRepo profileRepo;
   ProfileCubit({required this.profileRepo}) : super(ProfileInitial());
+  //signout
+  Future<bool> signOut() async {
+    emit(SignOutLoading());
+    bool isSignOut = await profileRepo.signOut();
+    if (isSignOut) {
+      emit(SignOutSucess());
+    } else {
+      emit(SignOutFailure());
+    }
+    return isSignOut;
+  }
+
   //get profile
   getProfile() async {
     Either<FailureMessage, UserProfileModel> profile =
