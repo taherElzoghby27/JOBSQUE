@@ -53,7 +53,8 @@ class EditProfileBody extends StatelessWidget {
                   child: CustomButton(
                     text: StringsEn.save,
                     onTap: () async {
-                      await BlocProvider.of<EditProfileCubit>(context).save()
+                      await BlocProvider.of<EditProfileCubit>(context).save();
+                      state is SavedSuccess
                           ? GoRouter.of(context).pop()
                           : () {};
                     },
