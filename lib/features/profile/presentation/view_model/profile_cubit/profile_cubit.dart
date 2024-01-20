@@ -30,11 +30,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     Either<FailureMessage, UserData> profile = await profileRepo.getProfile();
     profile.fold(
       (failure) {
-        print("fail");
         emit(GetProfileFailure(message: failure.message!));
       },
       (userProfile) {
-        print("----name--${userProfile.name}");
         emit(GetProfileSuccess(userProfileModel: userProfile));
       },
     );

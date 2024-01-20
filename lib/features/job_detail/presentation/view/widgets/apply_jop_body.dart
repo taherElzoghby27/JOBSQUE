@@ -67,9 +67,7 @@ class ApplyJopBody extends StatelessWidget {
                           ? Column(
                               children: [
                                 SizedBox(height: size.height * .02.h),
-                                InfoSectionJopDetail(
-                                  job: Job(),
-                                ),
+                                InfoSectionJopDetail(job: Job()),
                               ],
                             )
                           : Container(),

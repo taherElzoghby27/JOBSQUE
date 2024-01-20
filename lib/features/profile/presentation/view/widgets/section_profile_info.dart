@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_about_edit.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_info.dart';
@@ -58,7 +59,7 @@ class SectionProfileInfo extends StatelessWidget {
                 width: size.width,
                 child: Info(
                   image: AppAssets.board3,
-                  name: 'Taher Amin Elzoghby',
+                  name: CacheHelper.getData(key: StringsEn.name),
                   titleJob: 'Senior Software Engineer',
                 ),
               ),

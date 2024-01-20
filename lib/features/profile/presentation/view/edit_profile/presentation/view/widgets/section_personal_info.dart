@@ -18,6 +18,7 @@ class SectionPersonalInfo extends StatelessWidget {
           CustomFilterTextField(
             label: StringsEn.name,
             hint: StringsEn.name,
+            onChanged: (String? value) {},
           ),
           SizedBox(height: size.height * .022.w),
 
@@ -25,6 +26,7 @@ class SectionPersonalInfo extends StatelessWidget {
           CustomFilterTextField(
             label: StringsEn.bio,
             hint: StringsEn.bio,
+            onChanged: (String? value) {},
           ),
           SizedBox(height: size.height * .022.w),
 
