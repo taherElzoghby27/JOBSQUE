@@ -33,7 +33,6 @@ class _HomeViewState extends State<HomeView> {
 //get name for user
   getName() async {
     String userName = CacheHelper.getData(key: StringsEn.name);
-    print(userName);
     name = userName;
   }
 }

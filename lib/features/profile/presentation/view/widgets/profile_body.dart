@@ -10,8 +10,8 @@ import 'package:jobsque/features/profile/presentation/view/widgets/section_profi
 import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 
 class ProfileBody extends StatelessWidget {
-  const ProfileBody({super.key});
-
+  const ProfileBody({super.key, required this.name});
+  final String name;
   @override
   Widget build(BuildContext contextParent) {
     return BlocConsumer<ProfileCubit, ProfileState>(
@@ -25,7 +25,10 @@ class ProfileBody extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 children: [
                   //section profile
-                  SectionProfileInfo(ctx: contextParent),
+                  SectionProfileInfo(
+                    ctx: contextParent,
+                    name: name,
+                  ),
                   //section general
                   SectionGeneral(),
                   //section others

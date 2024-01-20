@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/profile_model.dart';
@@ -64,7 +65,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           (failure) => emit(SavedFailure()),
           (profile) {
             emit(SavedSuccess());
-            GoRouter.of(context).pop();
+            GoRouter.of(context).pushReplacement(homePath);
           },
         );
       } catch (error) {

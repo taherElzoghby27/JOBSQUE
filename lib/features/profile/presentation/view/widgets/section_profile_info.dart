@@ -1,11 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_about_edit.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_info.dart';
@@ -15,11 +16,17 @@ import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/p
 import '../../../../../core/consts/style.dart';
 
 class SectionProfileInfo extends StatelessWidget {
-  const SectionProfileInfo({super.key, required this.ctx});
+  const SectionProfileInfo({
+    Key? key,
+    required this.ctx,
+    required this.name,
+  }) : super(key: key);
   final BuildContext ctx;
+  final String name;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Column(
       children: [
         Container(
@@ -59,7 +66,7 @@ class SectionProfileInfo extends StatelessWidget {
                 width: size.width,
                 child: Info(
                   image: AppAssets.board3,
-                  name: CacheHelper.getData(key: StringsEn.name),
+                  name: name,
                   titleJob: 'Senior Software Engineer',
                 ),
               ),
