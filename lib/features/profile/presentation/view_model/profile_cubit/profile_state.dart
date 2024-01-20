@@ -10,7 +10,10 @@ sealed class ProfileState extends Equatable {
 
 final class ProfileInitial extends ProfileState {}
 
-class GetProfileSuccess extends ProfileState {}
+class GetProfileSuccess extends ProfileState {
+  final UserProfileModel userProfileModel;
+  GetProfileSuccess({required this.userProfileModel});
+}
 
 class GetProfileLoading extends ProfileState {}
 
