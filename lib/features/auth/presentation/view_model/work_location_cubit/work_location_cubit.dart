@@ -75,10 +75,13 @@ class WorkLocationCubit extends Cubit<WorkLocationState> {
   editProfile({required workLocation}) async {
     emit(InterestedInWorkLoading());
     Either<FailureMessage, ProfileModel> result = await authRepo.editProfile(
-      interestedInWork: CacheHelper.getData(
-        key: StringsEn.whatTypeOfWorkInterested,
+      profileModel: ProfileModel(
+        interestedWork: CacheHelper.getData(
+          key: StringsEn.whatTypeOfWorkInterested,
+        ),
+        remotePlace: workLocation,
+        offlinePlace: workLocation,
       ),
-      workLocation: workLocation,
     );
     result.fold(
       (fail) {

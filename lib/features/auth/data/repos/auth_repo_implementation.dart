@@ -124,6 +124,8 @@ class AuthRepoImplementation implements AuthRepo {
       //success
       if (result.statusCode == 200) {
         ProfileModel model = ProfileModel.fromJson(data["data"]);
+        //to test
+        print(model.interestedWork);
         return Right(model);
       } else if (result.statusCode == 401) {
         return Left(FailureMessage.fromJson(data));
