@@ -1,10 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:jobsque/core/models/user_profile_model/user_profile_model.dart';
-import 'package:jobsque/features/auth/data/models/failure_message.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 
 part 'profile_state.dart';
@@ -26,8 +24,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   //get profile
   getProfile() async {
-    Either<FailureMessage, UserProfileModel> profile =
-        await profileRepo.getProfile();
+    final profile = await profileRepo.getProfile();
     profile.fold(
       (failure) {
         emit(GetProfileFailure(message: failure.message!));
