@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
-import 'package:jobsque/features/auth/data/models/failure_message.dart';
+import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/features/auth/data/models/user_create/user_model.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user_login.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo.dart';

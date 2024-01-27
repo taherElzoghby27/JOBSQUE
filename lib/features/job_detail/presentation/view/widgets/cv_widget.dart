@@ -16,7 +16,7 @@ class CvWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5.w),
+      padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 15.w),
       child: Container(
         height: size.height * .1.h,
         decoration: AppConsts.decorationRadius8,

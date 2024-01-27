@@ -310,7 +310,21 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: PortfolioView(),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (BuildContext context) => ApplyJobCubit(
+                hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
+                applyUserRepo: getIt.get<ApplyUserRepoImplementation>(),
+              ),
+            ),
+            BlocProvider(
+              create: (BuildContext context) =>
+                  UploadPortfolioCubit()..getFiles(),
+            ),
+          ],
+          child: PortfolioView(),
+        ),
       ),
     ),
     GoRoute(

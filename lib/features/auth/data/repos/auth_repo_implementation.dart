@@ -12,7 +12,7 @@ import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
 
 import '../../../../core/services/api_service/auth_service/login_auth_service.dart';
 import '../../../../core/services/api_service/auth_service/register_auth_service.dart';
-import '../models/failure_message.dart';
+import '../../../../core/errors/failure_message.dart';
 
 class AuthRepoImplementation implements AuthRepo {
   final RegisterApiService registerApiService;

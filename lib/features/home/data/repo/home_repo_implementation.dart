@@ -6,7 +6,7 @@ import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/features/home/data/repo/home_repo.dart';
 
 import '../../../../core/services/api_service/jop_service/filter_job_service.dart';
-import '../../../auth/data/models/failure_message.dart';
+import '../../../../core/errors/failure_message.dart';
 
 class FilterJobsRepoImplementation implements JobFilterRepo {
   final JobApiService jobApiService;

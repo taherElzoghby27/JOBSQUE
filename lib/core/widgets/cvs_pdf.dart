@@ -24,9 +24,7 @@ class CvPdfs extends StatelessWidget {
               : ListView.builder(
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return CvWidget(pdf: cvs[index]);
-                  },
+                  itemBuilder: (context, index) => CvWidget(pdf: cvs[index]),
                   itemCount: cvs.length,
                 );
         } else if (state is GetFilesFailure) {

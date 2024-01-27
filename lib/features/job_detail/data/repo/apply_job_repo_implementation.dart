@@ -6,7 +6,7 @@ import 'package:http/src/response.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
 import 'package:jobsque/core/services/api_service/apply_user_service/apply_user_service.dart';
-import 'package:jobsque/features/auth/data/models/failure_message.dart';
+import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo.dart';
 
 class ApplyUserRepoImplementation extends ApplyUserRepo {

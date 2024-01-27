@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:jobsque/core/services/api_service/auth_service/signout_service.dart';
 import 'package:jobsque/core/services/api_service/profile_service/get_profile_service.dart';
-import 'package:jobsque/features/auth/data/models/failure_message.dart';
+import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 

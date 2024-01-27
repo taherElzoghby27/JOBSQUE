@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
+import 'package:jobsque/core/widgets/cvs_pdf.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/widgets/section_add_portfolio.dart';
-import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/widgets/section_pdfs.dart';
 
 import '../../../../../../../../core/consts/strings.dart';
 
@@ -25,7 +25,7 @@ class PortfolioBody extends StatelessWidget {
         SectionAddPortfolio(),
         SizedBox(height: size.height * .01.h),
         //pdfs
-        SectionPdfs(),
+        CvPdfs(),
       ],
     );
   }

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/models/profile_model.dart';
-import 'package:jobsque/features/auth/data/models/failure_message.dart';
+import 'package:jobsque/core/errors/failure_message.dart';
 
 import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
 
