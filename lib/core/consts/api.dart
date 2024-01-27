@@ -1,4 +1,4 @@
-class ApiConsts {
+abstract class ApiConsts {
   //endpoints
 
   static String url = 'https://project2.amit-learning.com/api';
