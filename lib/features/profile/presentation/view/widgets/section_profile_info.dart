@@ -20,9 +20,11 @@ class SectionProfileInfo extends StatelessWidget {
     Key? key,
     required this.ctx,
     required this.name,
+    required this.bio,
   }) : super(key: key);
   final BuildContext ctx;
   final String name;
+  final String bio;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -67,7 +69,7 @@ class SectionProfileInfo extends StatelessWidget {
                 child: Info(
                   image: AppAssets.board3,
                   name: name,
-                  titleJob: 'Senior Software Engineer',
+                  titleJob: bio,
                 ),
               ),
             ],

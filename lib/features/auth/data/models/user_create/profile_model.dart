@@ -1,4 +1,4 @@
-class Profile {
+class ProfileUser {
   int? userId;
   dynamic name;
   dynamic email;
@@ -6,7 +6,7 @@ class Profile {
   dynamic createdAt;
   int? id;
 
-  Profile({
+  ProfileUser({
     this.userId,
     this.name,
     this.email,
@@ -15,7 +15,7 @@ class Profile {
     this.id,
   });
 
-  Profile.fromJson(Map<String, dynamic> json) {
+  ProfileUser.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
     name = json['name'];
     email = json['email'];

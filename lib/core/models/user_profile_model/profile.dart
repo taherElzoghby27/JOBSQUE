@@ -46,7 +46,7 @@ class Profile {
     interestedWork = json['interested_work'];
     offlinePlace = json['offline_place'];
     remotePlace = json['remote_place'];
-    bio = json['bio'];
+    bio = json['bio'] ?? '';
     education = json['education'];
     experience = json['experience'];
     personalDetailed = json['personal_detailed'];

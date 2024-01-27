@@ -31,9 +31,14 @@ class Info extends StatelessWidget {
           ),
         ),
         //title Job
-        Text(
-          titleJob,
-          style: AppConsts.style16.copyWith(fontSize: 14),
+        SizedBox(
+          width: size.width * .5.w,
+          child: Text(
+            titleJob,
+            style: AppConsts.style16.copyWith(fontSize: 14),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
         ),
       ],
     );

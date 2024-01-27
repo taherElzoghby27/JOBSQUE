@@ -4,14 +4,14 @@ import 'data_model.dart';
 
 class UserSignUp {
   Data? data;
-  Profile? profile;
+  ProfileUser? profile;
   String? token;
 
   UserSignUp({this.data, this.profile, this.token});
 
   UserSignUp.fromJson(Map<String, dynamic> json) {
     data = Data.fromJson(json['data']);
-    profile = Profile.fromJson(json['profile']);
+    profile = ProfileUser.fromJson(json['profile']);
     token = json['token'];
   }
 

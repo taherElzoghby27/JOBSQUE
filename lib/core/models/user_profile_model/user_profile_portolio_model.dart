@@ -1,5 +1,5 @@
 import 'package:jobsque/core/models/user_profile_model/portfolio.dart';
-import 'package:jobsque/features/auth/data/models/user_create/profile_model.dart';
+import 'package:jobsque/core/models/user_profile_model/profile.dart';
 
 class UserProfilePortfolioModel {
   List<PortfolioModel>? portfolio;
