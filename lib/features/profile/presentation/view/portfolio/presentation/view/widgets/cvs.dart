@@ -14,26 +14,31 @@ class Portfolios extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocBuilder<PortfolioCubit, PortfolioState>(
+    return BlocConsumer<PortfolioCubit, PortfolioState>(
       builder: (context, state) {
         if (state is GetFilesLoading) {
           return LoadingWidget(height: size.height * .2.h);
         } else if (state is GetFilesSuccess) {
           List<PortfolioModel>? cvs = state.cvs;
-          return cvs!.isEmpty
-              ? InitialCvWidget()
-              : ListView.builder(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (context, index) => CvWidget(
-                    name: cvs[index].cvFile!,
+          return Center(
+            child: cvs!.isEmpty
+                ? InitialCvWidget()
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) => CvWidget(
+                      name: cvs[index].cvFile!,
+                    ),
+                    itemCount: cvs.length,
                   ),
-                  itemCount: cvs.length,
-                );
-        } else if (state is GetFilesFailure) {
+          );
+        }
+        return Center(child: InitialCvWidget());
+      },
+      listener: (context, state) {
+        if (state is GetFilesFailure) {
           showSnack(context, message: state.message);
         }
-        return InitialCvWidget();
       },
     );
   }
