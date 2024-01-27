@@ -36,7 +36,9 @@ import 'package:jobsque/features/profile/presentation/view/login_and_security/pr
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/login_security_view.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/two_step_verifi_view.dart';
 import 'package:jobsque/features/profile/presentation/view/notification/presentation/view/notification_profile_view.dart';
+import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo_implementation.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/portfolio_view.dart';
+import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view_models/portfolio_cubit/portfolio_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:jobsque/features/search_jop/presentation/view/search_view.dart';
 import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
@@ -313,14 +315,9 @@ final router = GoRouter(
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (BuildContext context) => ApplyJobCubit(
-                hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
-                applyUserRepo: getIt.get<ApplyUserRepoImplementation>(),
+              create: (BuildContext context) => PortfolioCubit(
+                portfolioRepo: getIt.get<PortfolioRepoImplementation>(),
               ),
-            ),
-            BlocProvider(
-              create: (BuildContext context) =>
-                  UploadPortfolioCubit()..getFiles(),
             ),
           ],
           child: PortfolioView(),

@@ -1,16 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:file_picker/file_picker.dart';
+
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/features/job_detail/data/models/Pdf.dart';
+import 'package:jobsque/core/errors/failure_message.dart';
+import 'package:jobsque/core/models/user_profile_model/portfolio.dart';
+import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
+import 'package:jobsque/features/profile/presentation/view/portfolio/data/models/portfolio.dart';
+
+import '../../../data/repo/portfolio_repo.dart';
 
 part 'portfolio_state.dart';
 
 class PortfolioCubit extends Cubit<PortfolioState> {
-  PortfolioCubit() : super(PortfolioInitial());
-  List<Pdf> cvs = [];
+  PortfolioRepo portfolioRepo;
+  PortfolioCubit({required this.portfolioRepo}) : super(PortfolioInitial());
+  //to save
   List<File> files = [];
 
   //add portfolio
@@ -20,45 +29,48 @@ class PortfolioCubit extends Cubit<PortfolioState> {
         type: FileType.custom,
         allowedExtensions: [StringsEn.pdfExtension],
       );
-      if (cvs.length < 2 && result != null) {
+      if (result != null) {
         File cvFile = File(result.files.first.path!);
-        PlatformFile file = result.files.first;
-        Pdf pdf = Pdf();
-        pdf.name = file.name;
-        pdf.bytes = file.bytes;
-        pdf.size = megabyte(size: file.size);
-        pdf.extension = file.extension ?? StringsEn.unKnown;
-        pdf.path = file.path;
-        cvs.add(pdf);
         files.add(cvFile);
+        add(file: cvFile);
       } else {
         emit(PickedFileFailure(message: StringsEn.someThingError));
       }
-      getPortfolios();
     } catch (error) {
       emit(PickedFileFailure(message: error.toString()));
     }
   }
 
-  //get portfolios
-  getPortfolios() {
-    try {
-      emit(GetFilesLoading());
-      List<Pdf> pdfCvs = cvs;
-      emit(GetFilesSuccess(cvs: pdfCvs));
-    } catch (error) {
-      emit(GetFilesFailure(message: error.toString()));
-    }
+  //add portfolio
+  add({required File file}) async {
+    Either<FailureMessage, PortfolioCv> portfolio =
+        await portfolioRepo.addPortFolio(
+      portfolioCv: PortfolioCv(
+        cvFile: file,
+        image: file,
+      ),
+    );
+    getPortfolios();
+    portfolio.fold(
+      (l) => print("added failed"),
+      (r) => print("added success"),
+    );
   }
 
-  //check have one save or more
-  bool checkCvsIsCompleted() => cvs.length == 2;
-
-  //convert bytes to megabytes
-  double megabyte({required int size}) => cutNumber(size / 1024 / 1024);
-
-  //convert double into 0.0
-  double cutNumber(double number) => double.parse(number.toStringAsFixed(1));
+  //get portfolios
+  getPortfolios() async {
+    try {
+      emit(GetFilesLoading());
+      Either<FailureMessage, UserProfilePortfolioModel> portfolio =
+          await portfolioRepo.getPortFolio();
+      portfolio.fold(
+        (fail) => emit(GetFilesFailure(message: StringsEn.someThingError)),
+        (portfolioCv) => emit(GetFilesSuccess(cvs: portfolioCv.portfolio)),
+      );
+    } catch (error) {
+      emit(GetFilesFailure(message: StringsEn.someThingError));
+    }
+  }
 
   //delete portfolios
   deletePortfolio() {}

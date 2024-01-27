@@ -8,9 +8,10 @@ import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/features/job_detail/data/models/Pdf.dart';
 
 class CvWidget extends StatelessWidget {
-  const CvWidget({super.key, required this.pdf});
+  const CvWidget({super.key, this.pdf, this.name});
 
-  final Pdf pdf;
+  final Pdf? pdf;
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class CvWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      pdf.name!,
+                      pdf == null ? name! : pdf!.name!,
                       style: AppConsts.style14.copyWith(
                         color: AppConsts.neutral900,
                       ),
@@ -43,7 +44,7 @@ class CvWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      '${StringsEn.cvpdf} ${pdf.size} ${StringsEn.mb}',
+                      '${StringsEn.cvpdf} ${pdf == null ? '' : pdf!.size} ${pdf == null ? '' : StringsEn.mb}',
                       style: AppConsts.style12.copyWith(
                         color: AppConsts.neutral500,
                       ),

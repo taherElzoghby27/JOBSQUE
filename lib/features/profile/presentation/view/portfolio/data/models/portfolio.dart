@@ -21,8 +21,8 @@ class PortfolioCv {
 
   PortfolioCv.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    cvFile = json['cv_file'];
-    image = json['image'];
+    cvFile = File(json['cv_file']);
+    image = File(json['image']);
     userId = json['user_id'];
     updatedAt = json['updated_at'];
     createdAt = json['created_at'];

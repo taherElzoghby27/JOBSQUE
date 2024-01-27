@@ -7,6 +7,7 @@ import 'package:jobsque/core/services/api_service/auth_service/signout_service.d
 import 'package:jobsque/core/services/api_service/get_api_service.dart';
 import 'package:jobsque/core/services/api_service/jop_service/filter_job_service.dart';
 import 'package:jobsque/core/services/api_service/post_api_service.dart';
+import 'package:jobsque/core/services/api_service/profile_service/add_portfolio_service.dart';
 import 'package:jobsque/core/services/api_service/profile_service/edit_profile_service.dart';
 import 'package:jobsque/core/services/api_service/profile_service/get_profile_service.dart';
 import 'package:jobsque/core/services/api_service/put_api_service.dart';
@@ -15,6 +16,7 @@ import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.dart';
+import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo_implementation.dart';
 
 import '../../features/home/data/repo/home_repo_implementation.dart';
 
@@ -95,6 +97,15 @@ void setupServiceLocator() {
     ProfileRepoImplementation(
       signOutService: getIt.get<SignOutService>(),
       getProfileService: getIt.get<GetProfileService>(),
+    ),
+  );
+  //add portfolio api service
+  getIt.registerSingleton<AddPortfolioService>(AddPortfolioService());
+  //portfolio repo impl
+  getIt.registerSingleton<PortfolioRepoImplementation>(
+    PortfolioRepoImplementation(
+      getProfileService: getIt.get<GetProfileService>(),
+      addPortfolioService: getIt.get<AddPortfolioService>(),
     ),
   );
 }

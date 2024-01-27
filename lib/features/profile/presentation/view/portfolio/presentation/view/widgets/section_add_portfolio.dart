@@ -6,8 +6,11 @@ import '../../../../../../../../core/consts/strings.dart';
 import '../../../../../../../../core/widgets/upload_your_other_file_widget.dart';
 
 class SectionAddPortfolio extends StatelessWidget {
-  const SectionAddPortfolio({super.key});
-
+  const SectionAddPortfolio({
+    super.key,
+    required this.onTap,
+  });
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -18,7 +21,9 @@ class SectionAddPortfolio extends StatelessWidget {
           TitleField(label: StringsEn.addPortfolioHere),
           SizedBox(height: size.height * .01.h),
           //pdf
-          UploadYourOtherFileWidget(),
+          UploadYourOtherFileWidget(
+            onTap: onTap,
+          ),
         ],
       ),
     );

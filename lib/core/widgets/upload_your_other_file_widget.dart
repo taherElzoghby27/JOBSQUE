@@ -1,17 +1,15 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_button_icon.dart';
-import 'package:jobsque/features/job_detail/presentation/view_models/upload_portfolio_cubit/upload_portfolio_cubit.dart';
 
 class UploadYourOtherFileWidget extends StatelessWidget {
-  const UploadYourOtherFileWidget({super.key});
-
+  const UploadYourOtherFileWidget({super.key, required this.onTap});
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,10 +43,7 @@ class UploadYourOtherFileWidget extends StatelessWidget {
                 ),
                 //button
                 CustomButtonIcon(
-                  onTap: () {
-                    BlocProvider.of<UploadPortfolioCubit>(context).addFile();
-                    BlocProvider.of<UploadPortfolioCubit>(context).getFiles();
-                  },
+                  onTap: onTap,
                   label: Text(
                     StringsEn.addFile,
                     style: AppConsts.style16White.copyWith(

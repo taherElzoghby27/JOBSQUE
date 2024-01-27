@@ -32,7 +32,12 @@ class UploadPortoflioContentWidget extends StatelessWidget {
           TitleField(label: StringsEn.otherFile),
           SizedBox(height: size.height * .01.h),
           //pdf
-          UploadYourOtherFileWidget(),
+          UploadYourOtherFileWidget(
+            onTap: () {
+              BlocProvider.of<UploadPortfolioCubit>(context).addFile();
+              BlocProvider.of<UploadPortfolioCubit>(context).getFiles();
+            },
+          ),
         ],
       ),
     );

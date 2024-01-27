@@ -13,7 +13,7 @@ final class PortfolioInitial extends PortfolioState {}
 class GetFilesLoading extends PortfolioState {}
 
 class GetFilesSuccess extends PortfolioState {
-  final List<Pdf> cvs;
+  final List<PortfolioModel>? cvs;
 
   GetFilesSuccess({required this.cvs});
 }

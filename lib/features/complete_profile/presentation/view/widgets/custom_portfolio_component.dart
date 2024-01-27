@@ -12,7 +12,9 @@ class CustomPortfolioComponent extends StatelessWidget {
     return Column(
       children: [
         //Add portfolio here
-        SectionAddPortfolio(),
+        SectionAddPortfolio(
+          onTap: () {},
+        ),
         SizedBox(height: size.height * .01.h),
         //pdfs
         CvPdfs(),

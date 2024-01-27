@@ -7,7 +7,9 @@ abstract class PortfolioRepo {
   //get portfolios
   Future<Either<FailureMessage, UserProfilePortfolioModel>> getPortFolio();
   //add portfolios
-  Future<Either<FailureMessage, PortfolioCv>> addPortFolio();
+  Future<Either<FailureMessage, PortfolioCv>> addPortFolio({
+    required PortfolioCv portfolioCv,
+  });
   //delete portfolios
   void deletePortFolio();
 }
