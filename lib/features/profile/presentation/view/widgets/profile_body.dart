@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
-import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
 import 'package:jobsque/core/widgets/error_widget.dart';
 import 'package:jobsque/core/widgets/load_json_widget.dart';
+import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_general.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_others.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_profile_info.dart';
@@ -21,8 +21,7 @@ class ProfileBody extends StatelessWidget {
         if (state is GetProfileLoading) {
           return Center(child: LoadJsonWidget());
         } else if (state is GetProfileSuccess) {
-          UserProfilePortfolioModel profile = state.userProfileModel;
-          print("sucess");
+          User user = state.userProfileModel;
           return Stack(
             children: [
               ListView(
@@ -31,8 +30,8 @@ class ProfileBody extends StatelessWidget {
                   //section profile
                   SectionProfileInfo(
                     ctx: contextParent,
-                    name: profile.profile!.name!,
-                    bio: profile.profile!.bio!,
+                    name: user.name!,
+                    bio: 'software engineer',
                   ),
                   //section general
                   SectionGeneral(),

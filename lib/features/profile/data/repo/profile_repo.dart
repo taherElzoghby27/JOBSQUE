@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
 import 'package:jobsque/features/auth/data/models/failure_message.dart';
+import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 
 abstract class ProfileRepo {
   //sign out
-  Future<Either<FailureMessage, UserProfilePortfolioModel>> getProfile();
+  Future<Either<FailureMessage, User>> getProfile();
   //sign out
   Future<bool> signOut();
 }
