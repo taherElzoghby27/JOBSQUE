@@ -8,5 +8,5 @@ abstract class ApiConsts {
   static String filterJobEndPoint = '/jobs/filter';
   static String applyEndPoint = '/apply';
   static String editProfileEndPoint = '/user/profile/edit?';
-  static String getProfileEndPoint = '/auth/profile';
+  static String getProfileEndPoint = '/user/profile/portofolios';
 }

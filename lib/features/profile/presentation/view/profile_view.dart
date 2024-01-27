@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
+import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 
 import 'widgets/profile_body.dart';
 
@@ -15,6 +17,7 @@ class _ProfileViewState extends State<ProfileView> {
   String name = "Unknown";
   @override
   void initState() {
+    BlocProvider.of<ProfileCubit>(context).getProfile();
     getName();
     super.initState();
   }
