@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:jobsque/core/consts/api.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:http/http.dart' as http;
@@ -9,10 +8,10 @@ class GetProfileService {
   GetApiService getApiService;
   GetProfileService({required this.getApiService});
   //get profile method
-  Future<http.Response> getProfile() async {
+  Future<http.Response> getProfile({required String urlPath}) async {
     print(CacheHelper.getData(key: StringsEn.token));
     http.Response response = await getApiService.get(
-      path: "${ApiConsts.url}${ApiConsts.getProfileEndPoint}",
+      path: urlPath,
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${CacheHelper.getData(key: StringsEn.token)}',

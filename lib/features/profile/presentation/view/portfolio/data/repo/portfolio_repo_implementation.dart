@@ -3,37 +3,30 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+
 import 'package:jobsque/core/consts/api.dart';
-import 'package:jobsque/core/services/api_service/auth_service/signout_service.dart';
-import 'package:jobsque/core/services/api_service/profile_service/get_profile_service.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
-import 'package:jobsque/features/auth/data/models/user_login/user.dart';
-import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
+import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
+import 'package:jobsque/core/services/api_service/profile_service/get_profile_service.dart';
+import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo.dart';
 
-class ProfileRepoImplementation extends ProfileRepo {
-  SignOutService signOutService;
+class PortfolioRepoImplementation extends PortfolioRepo {
   GetProfileService getProfileService;
-  ProfileRepoImplementation({
-    required this.signOutService,
-    required this.getProfileService,
-  });
+  PortfolioRepoImplementation({required this.getProfileService});
   @override
-  Future<bool> signOut() async {
-    return signOutService.signOut();
-  }
-
-  @override
-  Future<Either<FailureMessage, User>> getProfile() async {
+  Future<Either<FailureMessage, UserProfilePortfolioModel>>
+      getPortFolio() async {
     try {
       http.Response result = await getProfileService.getProfile(
-        urlPath: "${ApiConsts.url}${ApiConsts.getProfileEndPoint}",
+        urlPath: "${ApiConsts.url}${ApiConsts.getPortfolioEndPoint}",
       );
       Map<String, dynamic> data = jsonDecode(result.body);
 
       if (result.statusCode == 200) {
         print("success");
         //success
-        User profileUser = User.fromJson(data["data"]);
+        UserProfilePortfolioModel profileUser =
+            UserProfilePortfolioModel.fromJson(data["data"]);
         return Right(profileUser);
       } else {
         //fail
