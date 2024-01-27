@@ -5,6 +5,8 @@ part 'portfolio_state.dart';
 
 class PortfolioCubit extends Cubit<PortfolioState> {
   PortfolioCubit() : super(PortfolioInitial());
+  //add portfolio
+  addPortfolio() {}
   //get portfolios
   getPortfolios() {}
   //delete portfolios

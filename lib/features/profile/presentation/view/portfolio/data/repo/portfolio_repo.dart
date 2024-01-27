@@ -5,4 +5,8 @@ import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_mod
 abstract class PortfolioRepo {
   //get portfolios
   Future<Either<FailureMessage, UserProfilePortfolioModel>> getPortFolio();
+  //add portfolios
+  Future<Either<FailureMessage, UserProfilePortfolioModel>> addPortFolio();
+  //delete portfolios
+  Future<Either<FailureMessage, UserProfilePortfolioModel>> deletePortFolio();
 }
