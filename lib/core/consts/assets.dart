@@ -37,9 +37,9 @@ abstract class AppAssets {
   static const String malaysia = 'assets/images/malaysia.svg';
   static const String philiphines = 'assets/images/philiphines.svg';
   static const String polandia = 'assets/images/polandia.svg';
-  static const String saudiArabia = 'assets/images/saudiArabia.svg';
+  static const String saudiArabia = 'assets/images/arabic.png';
   static const String singapore = 'assets/images/Singapore.svg';
-  static const String unitedStates = 'assets/images/unitedStates.svg';
+  static const String unitedStates = 'assets/images/english.png';
   static const String vietnam = 'assets/images/vietnam.svg';
   static const String notFoundSearch = 'assets/images/notFoundSearch.svg';
   static const String pdfLogo = 'assets/images/pdfLogo.svg';

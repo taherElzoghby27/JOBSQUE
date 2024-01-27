@@ -12,8 +12,8 @@ import 'package:jobsque/features/profile/presentation/view/widgets/section_profi
 import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 
 class ProfileBody extends StatelessWidget {
-  const ProfileBody({super.key, required this.name});
-  final String name;
+  const ProfileBody({super.key});
+
   @override
   Widget build(BuildContext contextParent) {
     return BlocConsumer<ProfileCubit, ProfileState>(

@@ -236,6 +236,7 @@ abstract class StringsEn {
   static String helpCenter = 'Help Center';
   static String termsCondition = 'Terms & Conditions';
   static String privacyPolicy = 'Privacy Policy';
+  static String logo = 'logo';
   static String name = 'Name';
   static String bio = 'Bio';
   static String address = 'Address';

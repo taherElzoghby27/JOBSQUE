@@ -69,11 +69,11 @@ List<Message> messages_lists = [
 List<Map<String, String>> languages = [
   {
     'logo': AppAssets.saudiArabia,
-    'name': StringsEn.arabic,
+    'Name': StringsEn.arabic,
   },
   {
     'logo': AppAssets.unitedStates,
-    'name': StringsEn.England,
+    'Name': StringsEn.England,
   },
 ];
 List<Chat> chats_list = [

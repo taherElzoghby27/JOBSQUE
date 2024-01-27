@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class CustomItemLanguage extends StatelessWidget {
@@ -25,17 +24,14 @@ class CustomItemLanguage extends StatelessWidget {
       child: Row(
         children: [
           //logo
-          SvgPicture.asset(
-            logo,
-            height: 30,
-          ),
-          Spacer(flex: 1),
+          Image.asset(logo, height: 30),
+          const Spacer(flex: 1),
           //name
           Text(
             label,
             style: AppConsts.style32.copyWith(fontSize: 16),
           ),
-          Spacer(flex: 6),
+          const Spacer(flex: 6),
           //radio
           Radio<String>(
             activeColor: AppConsts.primary500,

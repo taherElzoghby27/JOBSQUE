@@ -6,8 +6,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
-import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/profile_model.dart';
 import 'package:jobsque/features/auth/data/models/failure_message.dart';
 
@@ -47,11 +45,6 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     if (checkFieldsFullOrNot() && checkPhoneNumber()) {
       try {
         emit(SavedLoading());
-        //save name to shared prefernce
-        await CacheHelper.saveData(
-          key: StringsEn.name,
-          value: controllerName.text,
-        );
         //edit profile
         Either<FailureMessage, ProfileModel> editProfileResult =
             await authRepo.editProfile(
