@@ -1,7 +1,9 @@
+import 'dart:io';
+
 class PortfolioCv {
   String? name;
-  String? cvFile;
-  String? image;
+  File? cvFile;
+  File? image;
   int? userId;
   String? updatedAt;
   String? createdAt;
@@ -29,13 +31,8 @@ class PortfolioCv {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
     data['cv_file'] = this.cvFile;
     data['image'] = this.image;
-    data['user_id'] = this.userId;
-    data['updated_at'] = this.updatedAt;
-    data['created_at'] = this.createdAt;
-    data['id'] = this.id;
     return data;
   }
 }
