@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
+import 'package:jobsque/core/widgets/error_widget.dart';
 import 'package:jobsque/core/widgets/load_json_widget.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_general.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_others.dart';
@@ -47,7 +48,7 @@ class ProfileBody extends StatelessWidget {
             ],
           );
         }
-        return Center(child: LoadJsonWidget());
+        return SomeThingErrorWidget();
       },
       listener: (context, state) {
         if (state is SignOutFailure || state is GetProfileFailure) {
