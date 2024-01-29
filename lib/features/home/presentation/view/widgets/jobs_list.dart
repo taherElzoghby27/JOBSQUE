@@ -34,8 +34,8 @@ class _JobsListState extends State<JobsList> {
     Future future = Future(() {});
     for (var job in jobs) {
       future = future.then(
-        (value) => Future.delayed(const Duration(milliseconds: 100)).then(
-          (value) {
+            (value) => Future.delayed(const Duration(milliseconds: 100)).then(
+              (value) {
             jobsWidget.add(_buildWidget(job));
             keyList.currentState!.insertItem(jobsWidget.length - 1);
           },
