@@ -38,28 +38,22 @@ class LogoTitleIconWidget extends StatelessWidget {
           ),
           SizedBox(width: size.width * .02.w),
 
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ///title
-              FittedBox(
-                child: SizedBox(
-                  width: size.width * .45.w,
-                  child: Text(
-                    jopTitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppConsts.style32.copyWith(
-                      fontSize: 18,
-                    ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ///title
+                Text(
+                  jopTitle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppConsts.style32.copyWith(
+                    fontSize: 18,
                   ),
                 ),
-              ),
 
-              ///company.country
-              SizedBox(
-                width: size.width * .4.w,
-                child: Text(
+                ///company.country
+                Text(
                   '$company.$country',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -68,13 +62,16 @@ class LogoTitleIconWidget extends StatelessWidget {
                     color: AppConsts.neutral700,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           SizedBox(width: size.width * .02.w),
 
           ///trailing
-          SizedBox(width: size.width * .2.w, child: Center(child: trailing)),
+          SizedBox(
+            width: size.width * .2.w,
+            child: Center(child: trailing),
+          ),
         ],
       ),
     );
