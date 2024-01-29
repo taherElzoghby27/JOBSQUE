@@ -53,6 +53,7 @@ import '../../features/auth/presentation/view/successfully_view.dart';
 import '../../features/auth/presentation/view/work_location_view.dart';
 import '../../features/auth/presentation/view_model/interested_in_work_cubit/interested_in_work_cubit.dart';
 import '../../features/home/data/repo/home_repo_implementation.dart';
+import '../../features/home/presentation/view/suggested_jop_view.dart';
 import '../../features/job_detail/presentation/view/jop_detail_view.dart';
 import '../../features/job_detail/presentation/view_models/apply_job_cubit/apply_job_cubit.dart';
 import '../../features/onBoarding/presentation/view/on_boarding_view.dart';
@@ -84,6 +85,8 @@ const privacyPath = '/privacyPath';
 const termConditionPath = '/termConditionPath';
 const completeProfilePath = '/completeProfilePath';
 const completeProfileProcessPath = '/completeProfileProcessPath';
+const suggestedJopPath = '/suggestedJopPath';
+//const completeProfileProcessPath = '/completeProfileProcessPath';
 final router = GoRouter(
   routes: [
     GoRoute(
@@ -140,6 +143,30 @@ final router = GoRouter(
               ),
             ],
             child: NavView(),
+          ),
+        );
+      },
+    ),
+    GoRoute(
+      path: suggestedJopPath,
+      pageBuilder: (context, state) {
+        return buildPageWithDefaultTransition(
+          context: context,
+          state: state,
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => HomeBloc(
+                  jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+                )..add(GetJobsEvent()),
+              ),
+              BlocProvider(
+                create: (_) => SavedCubit(
+                  hiveDbJob: getIt.get<HiveDbJob>(),
+                ),
+              ),
+            ],
+            child: SuggestedJopView(),
           ),
         );
       },
