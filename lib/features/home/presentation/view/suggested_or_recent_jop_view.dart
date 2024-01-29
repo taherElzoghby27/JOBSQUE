@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/suggested_jop_body.dart';
 
-class SuggestedJopView extends StatelessWidget {
-  const SuggestedJopView({super.key});
+class SuggestedOrRecentJopView extends StatelessWidget {
+  const SuggestedOrRecentJopView({
+    super.key,
+    required this.type,
+  });
+
+  final String type;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SuggestedJopBody(),
+        child: SuggestedOrRecentJopBody(type: type),
       ),
     );
   }

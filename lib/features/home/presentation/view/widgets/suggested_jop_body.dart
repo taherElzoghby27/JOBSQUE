@@ -7,8 +7,13 @@ import '../../../../../core/consts/routesPage.dart';
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 
-class SuggestedJopBody extends StatelessWidget {
-  const SuggestedJopBody({super.key});
+class SuggestedOrRecentJopBody extends StatelessWidget {
+  const SuggestedOrRecentJopBody({
+    super.key,
+    required this.type,
+  });
+
+  final String type;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +25,14 @@ class SuggestedJopBody extends StatelessWidget {
         //custom appBar
         CustomAppBar(
           leadingOnTap: () => GoRouter.of(context).pushReplacement(homePath),
-          title: StringsEn.suggestedJob,
+          title: type == StringsEn.suggestedJob
+              ? StringsEn.suggestedJob
+              : StringsEn.recentJob,
           trailingWidget: Container(),
         ),
         SizedBox(height: size.height * .02.h),
         //suggested jops
-        SectionSuggestedJops(),
+        SectionSuggestedOrRecentJops(),
       ],
     );
   }

@@ -15,8 +15,8 @@ import '../../../../../core/models/job_model/job_model.dart';
 import '../../../../../core/widgets/small_loading_widget.dart';
 import '../../../../../core/widgets/tile_widget.dart';
 
-class SectionSuggestedJops extends StatelessWidget {
-  const SectionSuggestedJops({super.key});
+class SectionSuggestedOrRecentJops extends StatelessWidget {
+  const SectionSuggestedOrRecentJops({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class SectionSuggestedJops extends StatelessWidget {
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
                     children: [
-                      //(number) Job Saved
+                      //(number) jobs
                       SizedBox(
                         height: size.height * .04.h,
                         child: TileWidget(

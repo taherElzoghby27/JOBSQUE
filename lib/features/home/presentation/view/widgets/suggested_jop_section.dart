@@ -29,7 +29,10 @@ class SuggestedJopSection extends StatelessWidget {
               ///suggested jop       view all
               TileRecentOrSuggested(
                 label: StringsEn.suggestedJob,
-                onTapViewAll: () =>GoRouter.of(context).push(suggestedJopPath),
+                onTapViewAll: () => GoRouter.of(context).push(
+                  suggestedOrRecentJopPath,
+                  extra: StringsEn.suggestedJob,
+                ),
               ),
 
               ///suggested jops

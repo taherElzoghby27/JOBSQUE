@@ -28,7 +28,10 @@ class RecentJopSection extends StatelessWidget {
               ///recent jop       view all
               TileRecentOrSuggested(
                 label: StringsEn.recentJob,
-                onTapViewAll: () {},
+                onTapViewAll: () => GoRouter.of(context).push(
+                  suggestedOrRecentJopPath,
+                  extra: StringsEn.recentJob,
+                ),
               ),
 
               ///recent jops
