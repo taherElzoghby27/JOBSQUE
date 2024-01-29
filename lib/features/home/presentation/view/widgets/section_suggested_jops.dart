@@ -14,6 +14,7 @@ import '../../../../../core/helper/custom_snack.dart';
 import '../../../../../core/models/job_model/job_model.dart';
 import '../../../../../core/widgets/small_loading_widget.dart';
 import '../../../../../core/widgets/tile_widget.dart';
+import 'jobs_list.dart';
 
 class SectionSuggestedOrRecentJops extends StatelessWidget {
   const SectionSuggestedOrRecentJops({super.key});
@@ -47,23 +48,7 @@ class SectionSuggestedOrRecentJops extends StatelessWidget {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: ListView.separated(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return ItemRecentJop(
-                              onTap: () => GoRouter.of(context).push(
-                                jopDetailPath,
-                                extra: jobs[index],
-                              ),
-                              job: jobs[index],
-                            );
-                          },
-                          itemCount: jobs.length,
-                          separatorBuilder: (BuildContext context, int index) =>
-                              Divider(color: AppConsts.neutral200),
-                        ),
+                        child: JobsList(jobs: jobs),
                       ),
                     ],
                   ),

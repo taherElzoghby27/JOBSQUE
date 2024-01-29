@@ -9,6 +9,7 @@ CustomTransitionPage buildPageWithDefaultTransition<T>({
   return CustomTransitionPage<T>(
     key: state.pageKey,
     child: child,
+    maintainState: false,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       //fade
       const beginF = 0.0;
