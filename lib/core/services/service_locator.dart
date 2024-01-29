@@ -4,17 +4,18 @@ import 'package:jobsque/core/services/api_service/auth_service/login_auth_servic
 import 'package:jobsque/core/services/api_service/auth_service/register_auth_service.dart';
 import 'package:jobsque/core/services/api_service/auth_service/reset_pass_auth_service.dart';
 import 'package:jobsque/core/services/api_service/auth_service/signout_service.dart';
-import 'package:jobsque/core/services/api_service/get_api_service.dart';
+import 'package:jobsque/core/services/api_service/service/get_api_service.dart';
 import 'package:jobsque/core/services/api_service/jop_service/filter_job_service.dart';
-import 'package:jobsque/core/services/api_service/post_api_service.dart';
+import 'package:jobsque/core/services/api_service/service/post_api_service.dart';
 import 'package:jobsque/core/services/api_service/profile_service/add_portfolio_service.dart';
 import 'package:jobsque/core/services/api_service/profile_service/edit_profile_service.dart';
-import 'package:jobsque/core/services/api_service/profile_service/get_profile_service.dart';
-import 'package:jobsque/core/services/api_service/put_api_service.dart';
+import 'package:jobsque/core/services/api_service/get_service.dart';
+import 'package:jobsque/core/services/api_service/service/put_api_service.dart';
 import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
+import 'package:jobsque/features/notification/data/repos/notification_repo_implementation.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo_implementation.dart';
 
@@ -87,8 +88,8 @@ void setupServiceLocator() {
   //sign out service
   getIt.registerSingleton<SignOutService>(SignOutService());
   //get profile service
-  getIt.registerSingleton<GetProfileService>(
-    GetProfileService(
+  getIt.registerSingleton<GetService>(
+    GetService(
       getApiService: getIt.get<GetApiService>(),
     ),
   );
@@ -96,7 +97,7 @@ void setupServiceLocator() {
   getIt.registerSingleton<ProfileRepoImplementation>(
     ProfileRepoImplementation(
       signOutService: getIt.get<SignOutService>(),
-      getProfileService: getIt.get<GetProfileService>(),
+      getProfileService: getIt.get<GetService>(),
     ),
   );
   //add portfolio api service
@@ -104,8 +105,14 @@ void setupServiceLocator() {
   //portfolio repo impl
   getIt.registerSingleton<PortfolioRepoImplementation>(
     PortfolioRepoImplementation(
-      getProfileService: getIt.get<GetProfileService>(),
+      getProfileService: getIt.get<GetService>(),
       addPortfolioService: getIt.get<AddPortfolioService>(),
+    ),
+  );
+  //notification repo implementation
+  getIt.registerSingleton<NotificationRepoImplementation>(
+    NotificationRepoImplementation(
+      getService: getIt.get<GetService>(),
     ),
   );
 }

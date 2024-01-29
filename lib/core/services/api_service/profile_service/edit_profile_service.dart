@@ -3,7 +3,7 @@ import 'package:jobsque/core/consts/api.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/profile_model.dart';
-import 'package:jobsque/core/services/api_service/put_api_service.dart';
+import 'package:jobsque/core/services/api_service/service/put_api_service.dart';
 
 class EditProfileService {
   PutApiService putApiService;

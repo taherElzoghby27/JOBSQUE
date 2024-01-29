@@ -2,13 +2,13 @@
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:http/http.dart' as http;
-import 'package:jobsque/core/services/api_service/get_api_service.dart';
+import 'package:jobsque/core/services/api_service/service/get_api_service.dart';
 
-class GetProfileService {
+class GetService {
   GetApiService getApiService;
-  GetProfileService({required this.getApiService});
+  GetService({required this.getApiService});
   //get profile method
-  Future<http.Response> getProfile({required String urlPath}) async {
+  Future<http.Response> getService({required String urlPath}) async {
     print(CacheHelper.getData(key: StringsEn.token));
     http.Response response = await getApiService.get(
       path: urlPath,

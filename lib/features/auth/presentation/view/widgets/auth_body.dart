@@ -114,7 +114,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                         offset: offsetAnimation.value,
                         duration: const Duration(milliseconds: 200),
                         child: SizedBox(
-                          height: size.height * .45.h,
+                          height: size.height * .425.h,
                           child: Column(
                             children: [
                               ///username
@@ -175,14 +175,12 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                                       ],
                                     )
                                   : Container(),
-                              SizedBox(height: size.height * .1.h),
                             ],
                           ),
                         ),
                       );
                     },
                   ),
-                  SizedBox.shrink(),
 
                   ///already have an account
                   Row(

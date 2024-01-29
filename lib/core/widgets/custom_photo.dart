@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jobsque/core/widgets/small_loading_widget.dart';
+
+import '../helper/handle_image.dart';
 
 class CustomPhoto extends StatelessWidget {
   const CustomPhoto({
@@ -17,12 +17,7 @@ class CustomPhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.sp),
-      child: CachedNetworkImage(
-        height: height,
-        imageUrl: image,
-        placeholder: (context, url) => LoadingWidget(),
-        errorWidget: (context, url, error) => Icon(Icons.error),
-      ),
+      child: handleImage(image, height),
     );
   }
 }

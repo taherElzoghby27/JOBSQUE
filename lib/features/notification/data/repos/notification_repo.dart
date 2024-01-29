@@ -1,0 +1,9 @@
+import 'package:dartz/dartz.dart';
+
+import '../../../../core/errors/failure_message.dart';
+import '../models/notification.dart';
+
+abstract class NotificationRepo {
+  //get notifications
+  Future<Either<FailureMessage, NotificationModel>> getNotification({required String id});
+}

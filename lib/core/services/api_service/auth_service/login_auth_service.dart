@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:jobsque/core/services/api_service/post_api_service.dart';
+import 'package:jobsque/core/services/api_service/service/post_api_service.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user_login.dart';
 

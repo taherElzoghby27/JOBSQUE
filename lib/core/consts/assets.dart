@@ -7,6 +7,7 @@ abstract class AppAssets {
   static const String global = 'assets/images/global.svg';
   static const String search = 'assets/images/search-normal.svg';
   static const String twitter = 'assets/images/twitter.svg';
+  static const String amit = 'assets/images/amit.png';
   static const String twitterPng =
       'https://w7.pngwing.com/pngs/421/879/png-transparent-twitter-logo-social-media-iphone-organization-logo-twitter-computer-network-leaf-media.png';
   static const String board1 = 'assets/images/board1.png';

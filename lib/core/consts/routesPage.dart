@@ -26,7 +26,9 @@ import 'package:jobsque/features/job_detail/presentation/view_models/upload_port
 import 'package:jobsque/features/messages/presentation/view/chat_view.dart';
 import 'package:jobsque/features/messages/presentation/view/messages_view.dart';
 import 'package:jobsque/features/nav_bar/presentation/view/nav_view.dart';
+import 'package:jobsque/features/notification/data/repos/notification_repo_implementation.dart';
 import 'package:jobsque/features/notification/presentation/view/notification_view.dart';
+import 'package:jobsque/features/notification/presentation/view_model/notification_cubit.dart';
 import 'package:jobsque/features/privacy_policy/presentation/view/privacy_view.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view/edit_profile_view.dart';
@@ -275,7 +277,12 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: NotificationView(),
+        child: BlocProvider(
+          create: (_) => NotificationCubit(
+            notificationRepo: getIt.get<NotificationRepoImplementation>(),
+          ),
+          child: NotificationView(),
+        ),
       ),
     ),
     GoRoute(

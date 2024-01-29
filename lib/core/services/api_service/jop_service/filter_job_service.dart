@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/core/services/api_service/post_api_service.dart';
+import 'package:jobsque/core/services/api_service/service/post_api_service.dart';
 
 import '../../../consts/api.dart';
 
