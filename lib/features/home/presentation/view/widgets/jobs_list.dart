@@ -50,7 +50,7 @@ class _JobsListState extends State<JobsList> {
       key: keyList,
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
-      physics: const NeverScrollableScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index, animation) {
         Tween<double> opacity = Tween(begin: 0.0, end: 1.0);
         //get item from left
