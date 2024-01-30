@@ -258,6 +258,7 @@ abstract class StringsEn {
   static String emailAddress = 'Email address';
   static String phoneNumber = 'Phone number';
   static String changePassword = 'Change password';
+  static String updateNamePass = 'Update Name And Password';
   static String twoStepVerifi = 'Two-step verification';
   static String faceId = 'Face ID';
   static String nonActive = 'Non active';

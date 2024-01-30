@@ -71,7 +71,7 @@ class LoginSecurityAuthBody extends StatelessWidget {
                     ? StringsEn.emailAddress
                     : path == StringsEn.phoneNumber
                         ? StringsEn.phoneNumber
-                        : StringsEn.changePassword,
+                        : StringsEn.updateNamePass,
                 trailingWidget: Container(),
               ),
 
