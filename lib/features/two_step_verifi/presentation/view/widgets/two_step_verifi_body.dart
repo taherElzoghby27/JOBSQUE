@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
-import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/widgets/add_phone_number_method.dart';
-import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/widgets/select_verifi_method.dart';
-import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/widgets/two_step_verifi_notes_component.dart';
-import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/widgets/verify_method.dart';
-import 'package:jobsque/features/profile/presentation/view/notification/presentation/view/widgets/custom_tile_switch.dart';
+import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/add_phone_number_method.dart';
+import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/custom_tile_switch_widget.dart';
+import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/select_verifi_method.dart';
+import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/two_step_verifi_notes_component.dart';
+import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/verify_method.dart';
 
 import '../../../../../../../../core/widgets/customButton.dart';
 import '../../../../../../../../core/widgets/small_loading_widget.dart';
@@ -49,17 +48,7 @@ class _TwoStepVerifiBodyState extends State<TwoStepVerifiBody> {
           SizedBox(height: size.height * .02.h),
           //secureYourAccount
           current == 0 || current == 1
-              ? Container(
-                  height: size.height * .1.h,
-                  decoration: AppConsts.decorationRadius8,
-                  child: CustomTileSwitch(
-                    label: StringsEn.secureYourAccount,
-                    value: false,
-                    styleText: AppConsts.style16.copyWith(
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                )
+              ? custom_tile_switch_widget()
               : Container(),
           SizedBox(height: size.height * .025.h),
 

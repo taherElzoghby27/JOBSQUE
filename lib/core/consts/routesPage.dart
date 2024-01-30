@@ -36,7 +36,6 @@ import 'package:jobsque/features/profile/presentation/view/edit_profile/presenta
 import 'package:jobsque/features/profile/presentation/view/language/presentation/view/languages_view.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/login_and_security_auth_view.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/login_security_view.dart';
-import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/two_step_verifi_view.dart';
 import 'package:jobsque/features/profile/presentation/view/notification/presentation/view/notification_profile_view.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo_implementation.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/portfolio_view.dart';
@@ -46,6 +45,8 @@ import 'package:jobsque/features/search_jop/presentation/view/search_view.dart';
 import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
 import 'package:jobsque/features/splash/presentation/view/splash_view.dart';
 import 'package:jobsque/features/terms_and_conditions/presentation/view/terms_and_condition_view.dart';
+import 'package:jobsque/features/two_step_verifi/presentation/view/two_step_verifi_view.dart';
+import 'package:jobsque/features/two_step_verifi/presentation/view_models/two_step_verifi/two_step_verification_cubit.dart';
 import '../../features/auth/presentation/view/auth_view.dart';
 import '../../features/auth/presentation/view/create_new_pass_view.dart';
 import '../../features/auth/presentation/view/interested_in_work_view.dart';
@@ -399,7 +400,10 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: TwoStepVeriView(),
+        child: BlocProvider(
+          create: (_) => TwoStepVerificationCubit(),
+          child: TwoStepVeriView(),
+        ),
       ),
     ),
     GoRoute(

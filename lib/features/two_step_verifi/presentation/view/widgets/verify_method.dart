@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/widgets/section_otp.dart';
+import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/section_otp.dart';
 
 import '../../../../../../../../core/consts/strings.dart';
 import 'custom_heading_two_step_verifi.dart';
