@@ -34,8 +34,10 @@ import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.d
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view/edit_profile_view.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view_models/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view/language/presentation/view/languages_view.dart';
+import 'package:jobsque/features/profile/presentation/view/login_and_security/data/repo/login_security_repo_implementation.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/login_and_security_auth_view.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/login_security_view.dart';
+import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view_models/update_name_password_cubit/update_name_pass_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view/notification/presentation/view/notification_profile_view.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo_implementation.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/portfolio_view.dart';
@@ -391,7 +393,13 @@ final router = GoRouter(
         return buildPageWithDefaultTransition(
           context: context,
           state: state,
-          child: LoginSecurityAuthView(path: data),
+          child: BlocProvider(
+            create: (_) => UpdateNamePassCubit(
+              loginAndSecurityRepo:
+                  getIt.get<LoginAndSecurityRepoImplementation>(),
+            ),
+            child: LoginSecurityAuthView(path: data),
+          ),
         );
       },
     ),

@@ -100,6 +100,8 @@ abstract class StringsEn {
       'Set your new password so you can login and acces Jobsque';
   static String bothPassMustMatch = 'Both password must match';
   static String passChangeSuccess = 'Password changed succesfully!';
+  static String success = 'Success';
+  static String namePassUpdatedSuccessfully = 'Name and Password changed succesfully';
   static String yourPassChanged =
       'Your password has been changed successfully, we will let you know if there are more problems with your account';
   static String createBetterFuture = 'Create a better future for yourself here';
@@ -259,6 +261,7 @@ abstract class StringsEn {
   static String twoStepVerifi = 'Two-step verification';
   static String faceId = 'Face ID';
   static String nonActive = 'Non active';
+  static String enterYourName = 'Enter your name';
   static String mainEmailAddress = 'Main e-mail address';
   static String mainPhoneNumber = 'Main phone number';
   static String usePhoneNumber = 'Use the phone number to reset your password';

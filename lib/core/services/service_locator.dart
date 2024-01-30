@@ -4,6 +4,8 @@ import 'package:jobsque/core/services/api_service/auth_service/login_auth_servic
 import 'package:jobsque/core/services/api_service/auth_service/register_auth_service.dart';
 import 'package:jobsque/core/services/api_service/auth_service/reset_pass_auth_service.dart';
 import 'package:jobsque/core/services/api_service/auth_service/signout_service.dart';
+import 'package:jobsque/core/services/api_service/login_and_security_service/change_name_pass_service.dart';
+import 'package:jobsque/core/services/api_service/login_and_security_service/get_otp_service.dart';
 import 'package:jobsque/core/services/api_service/service/get_api_service.dart';
 import 'package:jobsque/core/services/api_service/jop_service/filter_job_service.dart';
 import 'package:jobsque/core/services/api_service/service/post_api_service.dart';
@@ -17,6 +19,7 @@ import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
 import 'package:jobsque/features/notification/data/repos/notification_repo_implementation.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.dart';
+import 'package:jobsque/features/profile/presentation/view/login_and_security/data/repo/login_security_repo_implementation.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo_implementation.dart';
 
 import '../../features/home/data/repo/home_repo_implementation.dart';
@@ -113,6 +116,21 @@ void setupServiceLocator() {
   getIt.registerSingleton<NotificationRepoImplementation>(
     NotificationRepoImplementation(
       getService: getIt.get<GetService>(),
+    ),
+  );
+  //get Otp service
+  getIt.registerSingleton<GetOtpService>(
+    GetOtpService(postApiService: getIt.get<PostApiService>()),
+  );
+  //update name Pass service
+  getIt.registerSingleton<UpdateNamePassService>(
+    UpdateNamePassService(postApiService: getIt.get<PostApiService>()),
+  );
+  //login and security repo impl
+  getIt.registerSingleton<LoginAndSecurityRepoImplementation>(
+    LoginAndSecurityRepoImplementation(
+      getOtpService: getIt.get<GetOtpService>(),
+      updateNamePassService: getIt.get<UpdateNamePassService>(),
     ),
   );
 }

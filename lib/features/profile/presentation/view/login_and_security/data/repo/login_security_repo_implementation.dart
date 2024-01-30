@@ -56,12 +56,15 @@ class LoginAndSecurityRepoImplementation extends LoginAndSecurityRepo {
       Map<String, dynamic> data = jsonDecode(result.body);
       //success
       if (result.statusCode == 200) {
+        print('success');
         return Right(data['data']);
       } else if (result.statusCode == 401) {
+        print('fail1');
         //failure
-        return Left(FailureMessage.fromJson(data));
+        return Left(FailureMessage.fromJson(data['message']));
       }
     } catch (e) {
+      print('fail2');
       //failure
       return Left(FailureMessage(message: e.toString()));
     }
