@@ -12,4 +12,5 @@ abstract class ApiConsts {
   static String getPortfolioEndPoint = '/user/profile/portofolios';
   static String getNotificationEndPoint = '/notification';
   static String getOtpEndPoint = '/auth/otp';
+  static String updateNamePassEndPoint ='/auth/user/update';
 }

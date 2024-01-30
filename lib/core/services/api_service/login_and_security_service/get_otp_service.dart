@@ -2,8 +2,8 @@ import 'package:http/http.dart' as http;
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/services/api_service/service/post_api_service.dart';
 
-import '../../consts/api.dart';
-import '../../consts/strings.dart';
+import '../../../consts/api.dart';
+import '../../../consts/strings.dart';
 
 class GetOtp {
   PostApiService postApiService;
