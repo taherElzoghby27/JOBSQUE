@@ -1,24 +1,27 @@
-// import 'package:donation/core/consts/style.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:get/get.dart';
-//
-// Future<dynamic> customDialog({
-//   required String title,
-//   required String textConfirm,
-//   required void Function() onConfirm,
-//   required void Function() onCancel,
-//   Widget content = const Center(),
-// }) {
-//   return Get.defaultDialog(
-//     titlePadding: EdgeInsets.all(15.sp),
-//     title: title,
-//     content: content,
-//     titleStyle: AppConsts.style18.copyWith(color: AppConsts.black),
-//     onConfirm: onConfirm,
-//     onCancel: onCancel,
-//     confirmTextColor: AppConsts.mainColor,
-//     buttonColor: AppConsts.white,
-//     textConfirm: textConfirm,
-//   );
-// }
+import 'package:flutter/material.dart';
+import 'package:jobsque/core/consts/style.dart';
+
+Future<dynamic> customDialog({
+  required String title,
+  required String subTitle,
+  required BuildContext context,
+}) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: AppConsts.neutral100,
+        title: Text(
+          title,
+          style: AppConsts.style20.copyWith(color: AppConsts.success500),
+        ),
+        content: Text(
+          subTitle,
+          style: AppConsts.style12.copyWith(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      );
+    },
+  );
+}
