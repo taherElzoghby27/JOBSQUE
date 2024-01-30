@@ -5,10 +5,10 @@ import 'package:jobsque/core/services/api_service/service/post_api_service.dart'
 import '../../../consts/api.dart';
 import '../../../consts/strings.dart';
 
-class GetOtp {
+class GetOtpService {
   PostApiService postApiService;
 
-  GetOtp({required this.postApiService});
+  GetOtpService({required this.postApiService});
 
   //filter jobs method
   Future<http.Response> getOtp({
