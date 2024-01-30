@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/widgets/custom_divider.dart';
 import 'package:jobsque/core/widgets/tile_widget.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/widgets/custom_tile.dart';
@@ -19,11 +20,7 @@ class SectionAccountAccess extends StatelessWidget {
         //
         CustomTile(
           label: StringsEn.emailAddress,
-          hintTrailing: 'tataamen@gmail.com',
-          onTap: () => GoRouter.of(context).push(
-            loginSecurityAuthPath,
-            extra: StringsEn.emailAddress,
-          ),
+          hintTrailing: CacheHelper.getData(key: StringsEn.email),
         ),
         CustomDivider(),
         CustomTile(
@@ -38,7 +35,7 @@ class SectionAccountAccess extends StatelessWidget {
           label: StringsEn.changePassword,
           onTap: () => GoRouter.of(context).push(
             loginSecurityAuthPath,
-            extra: StringsEn.changePassword,
+            extra: StringsEn.emailAddress,
           ),
         ),
         CustomDivider(),

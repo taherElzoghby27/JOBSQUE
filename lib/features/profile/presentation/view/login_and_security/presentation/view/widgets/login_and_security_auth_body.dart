@@ -45,8 +45,12 @@ class LoginSecurityAuthBody extends StatelessWidget {
             visible: true,
             replacement: LoadingWidget(),
             child: CustomButton(
-              text: StringsEn.save,
-              onTap: () {},
+              text: path == StringsEn.emailAddress
+                  ? StringsEn.verify
+                  : StringsEn.save,
+              onTap: () {
+                //todo
+              },
             ),
           ),
         ),
