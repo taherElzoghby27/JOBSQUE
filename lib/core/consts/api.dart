@@ -13,4 +13,5 @@ abstract class ApiConsts {
   static String getNotificationEndPoint = '/notification';
   static String getOtpEndPoint = '/auth/otp';
   static String updateNamePassEndPoint ='/auth/user/update';
+  static String jobsEndpoint ='/jobs';
 }

@@ -25,19 +25,20 @@ class HiveDbApplyUser {
       (applyUsers.values).map((user) => user),
     ).toList();
     applyUsersList = appUsers;
-    print(appUsers);
-  }
-
-//dispose
-  void dispose() async {
-    await Hive.box(StringsEn.userApplyBox).close();
-    await Hive.close();
-    print('Apply user box is closed.....!');
+    print(applyUsersList);
+    return applyUsersList;
   }
 
 //clear box
-  clear() {
-    applyUsers.clear();
+  clear() async {
+    await applyUsers.clear();
     get();
+  }
+
+  //dispose
+  dispose() async {
+    await Hive.box(StringsEn.userApplyBox).close();
+    await Hive.close();
+    print('Apply user box is closed.....!');
   }
 }

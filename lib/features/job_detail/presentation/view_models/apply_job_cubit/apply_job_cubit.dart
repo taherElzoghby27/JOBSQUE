@@ -15,16 +15,22 @@ import '../../../../../core/services/local_database/hive_db_apply_user.dart';
 part 'apply_job_state.dart';
 
 class ApplyJobCubit extends Cubit<ApplyJobState> {
+  HiveDbApplyUser hiveDbApplyUser;
   ApplyUserRepo applyUserRepo;
+
   ApplyJobCubit({
     required this.applyUserRepo,
     required this.hiveDbApplyUser,
   }) : super(ApplyJobInitial());
 
-  final HiveDbApplyUser hiveDbApplyUser;
-
   //add to apply user box
-  applyUser(BuildContext context, {required String jobId}) async {
+  applyUser(
+    BuildContext context, {
+    required String jobId,
+    required String status,
+    required int currentPage,
+    ApplyUser? applyUser,
+  }) async {
     try {
       emit(ApplyJobLoading());
       String userId = CacheHelper.getData(key: StringsEn.userId);
@@ -38,47 +44,62 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
       //save data in hive
       hiveDbApplyUser.add(
         user: ApplyUser(
-          name: blocBioData.nameCont.text,
-          email: blocBioData.emailCont.text,
-          phone: blocBioData.phoneCont.text,
-          typeOfWork: typeOfWorkCubit.group,
+          name: status == StringsEn.notComplete
+              ? applyUser!.name
+              : blocBioData.nameCont.text,
+          email: status == StringsEn.notComplete
+              ? applyUser!.email
+              : blocBioData.emailCont.text,
+          phone: status == StringsEn.notComplete
+              ? applyUser!.phone
+              : blocBioData.phoneCont.text,
+          typeOfWork: status == StringsEn.notComplete && currentPage == 3
+              ? applyUser!.typeOfWork
+              : typeOfWorkCubit.group,
           cvFile: portfolioCubit.cvs.isEmpty ? '' : portfolioCubit.cvs[0].path,
           cvOtherFile:
               portfolioCubit.cvs.isEmpty || portfolioCubit.cvs.length == 1
                   ? ''
                   : portfolioCubit.cvs[1].path,
-          jobId: jobId,
+          jobId: status == StringsEn.notComplete ? applyUser!.jobId : jobId,
           userId: userId,
-          status: changedPageCubit.currentPage == 3
-              ? StringsEn.completed
-              : StringsEn.unCompleted,
-          reviewed: false,
+          status:
+              currentPage == 3 ? StringsEn.completed : StringsEn.unCompleted,
+          reviewed: 0,
           updatedAt: '${DateTime.now()}',
           createdAt: '${DateTime.now()}',
           id: 0,
         ),
       );
-
       //apply job
-      changedPageCubit.currentPage == 3
-          ? applyUserRepo.applyJob(
-              applyUser: ApplyUser(
-                name: blocBioData.nameCont.text,
-                email: blocBioData.emailCont.text,
-                phone: blocBioData.phoneCont.text,
-                typeOfWork: typeOfWorkCubit.group,
-                cv: portfolioCubit.files[0],
-                otherFiles: portfolioCubit.files[1],
-                jobId: jobId,
-                userId: userId,
-                status: StringsEn.completed,
-                reviewed: false,
-                updatedAt: '${DateTime.now()}',
-                createdAt: '${DateTime.now()}',
-                id: 0,
-              ),
-            )
-          : () {};
+
+      if (changedPageCubit.currentPage == 3) {
+        applyUserRepo.applyJob(
+          applyUser: ApplyUser(
+            name: status == StringsEn.notComplete
+                ? applyUser!.name
+                : blocBioData.nameCont.text,
+            email: status == StringsEn.notComplete
+                ? applyUser!.email
+                : blocBioData.emailCont.text,
+            phone: status == StringsEn.notComplete
+                ? applyUser!.phone
+                : blocBioData.phoneCont.text,
+            typeOfWork: status == StringsEn.notComplete && currentPage == 3
+                ? applyUser!.typeOfWork
+                : typeOfWorkCubit.group,
+            cv: portfolioCubit.files[0],
+            otherFiles: portfolioCubit.files[1],
+            jobId: jobId,
+            userId: userId,
+            status: StringsEn.completed,
+            reviewed: 0,
+            updatedAt: '${DateTime.now()}',
+            createdAt: '${DateTime.now()}',
+            id: 0,
+          ),
+        );
+      }
 
       hiveDbApplyUser.get();
       emit(ApplyJobSuccess());

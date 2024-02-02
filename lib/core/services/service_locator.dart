@@ -15,6 +15,7 @@ import 'package:jobsque/core/services/api_service/get_service.dart';
 import 'package:jobsque/core/services/api_service/service/put_api_service.dart';
 import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
+import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
 import 'package:jobsque/features/notification/data/repos/notification_repo_implementation.dart';
@@ -37,6 +38,12 @@ void setupServiceLocator() {
   getIt.registerSingleton<PutApiService>(PutApiService());
   //get api service
   getIt.registerSingleton<GetApiService>(GetApiService());
+  //get service
+  getIt.registerSingleton<GetService>(
+    GetService(
+      getApiService: getIt.get<GetApiService>(),
+    ),
+  );
   //register api service
   getIt.registerSingleton<RegisterApiService>(
     RegisterApiService(
@@ -90,12 +97,6 @@ void setupServiceLocator() {
   );
   //sign out service
   getIt.registerSingleton<SignOutService>(SignOutService());
-  //get profile service
-  getIt.registerSingleton<GetService>(
-    GetService(
-      getApiService: getIt.get<GetApiService>(),
-    ),
-  );
   //profile Repo Implementation
   getIt.registerSingleton<ProfileRepoImplementation>(
     ProfileRepoImplementation(
@@ -131,6 +132,13 @@ void setupServiceLocator() {
     LoginAndSecurityRepoImplementation(
       getOtpService: getIt.get<GetOtpService>(),
       updateNamePassService: getIt.get<UpdateNamePassService>(),
+    ),
+  );
+  //applied repo impl
+  getIt.registerSingleton<AppliedJobsRepoImplementation>(
+    AppliedJobsRepoImplementation(
+      getService: getIt.get<GetService>(),
+      hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
     ),
   );
 }

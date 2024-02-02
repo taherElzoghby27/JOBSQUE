@@ -7,16 +7,19 @@ import 'package:jobsque/core/consts/api.dart';
 import 'package:jobsque/core/services/api_service/auth_service/signout_service.dart';
 import 'package:jobsque/core/services/api_service/get_service.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
+import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 
 class ProfileRepoImplementation extends ProfileRepo {
   SignOutService signOutService;
   GetService getProfileService;
+
   ProfileRepoImplementation({
     required this.signOutService,
     required this.getProfileService,
   });
+
   @override
   Future<bool> signOut() async {
     return signOutService.signOut();

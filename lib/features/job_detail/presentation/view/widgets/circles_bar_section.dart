@@ -13,6 +13,7 @@ class CirclesBarSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print(currentPage);
     return SizedBox(
       width: size.width * .86.w,
       child: Row(
@@ -21,7 +22,7 @@ class CirclesBarSection extends StatelessWidget {
           //1
           Column(
             children: [
-              currentPage == 2 || currentPage == 3
+              currentPage == 2 || currentPage == 3 || currentPage == 4
                   ? CircleDoneWidget()
                   : CircleWidget(
                       label: StringsEn.one,
@@ -34,7 +35,7 @@ class CirclesBarSection extends StatelessWidget {
                 StringsEn.bioData,
                 style: AppConsts.style12.copyWith(
                   color:
-                      currentPage == 1 || currentPage == 2 || currentPage == 3
+                      currentPage == 2 || currentPage == 3 || currentPage == 4
                           ? AppConsts.primary500
                           : AppConsts.neutral900,
                 ),
@@ -46,7 +47,7 @@ class CirclesBarSection extends StatelessWidget {
           Text(
             StringsEn.dashs,
             style: TextStyle(
-              color: currentPage == 2 || currentPage == 3
+              color: currentPage == 2 || currentPage == 3 || currentPage == 4
                   ? AppConsts.primary500
                   : AppConsts.neutral300,
             ),
@@ -54,7 +55,7 @@ class CirclesBarSection extends StatelessWidget {
           //2
           Column(
             children: [
-              currentPage == 3
+              currentPage == 3 || currentPage == 4
                   ? CircleDoneWidget()
                   : CircleWidget(
                       label: StringsEn.two,
@@ -66,9 +67,10 @@ class CirclesBarSection extends StatelessWidget {
               Text(
                 StringsEn.typeOfWork,
                 style: AppConsts.style12.copyWith(
-                  color: currentPage == 2 || currentPage == 3
-                      ? AppConsts.primary500
-                      : AppConsts.neutral900,
+                  color:
+                      currentPage == 2 || currentPage == 3 || currentPage == 4
+                          ? AppConsts.primary500
+                          : AppConsts.neutral900,
                 ),
               ),
             ],
@@ -78,7 +80,7 @@ class CirclesBarSection extends StatelessWidget {
           Text(
             StringsEn.dashs,
             style: TextStyle(
-              color: currentPage == 3
+              color: currentPage == 3 || currentPage == 4
                   ? AppConsts.primary500
                   : AppConsts.neutral300,
             ),
@@ -86,17 +88,19 @@ class CirclesBarSection extends StatelessWidget {
           //3
           Column(
             children: [
-              CircleWidget(
-                label: StringsEn.three,
-                color: currentPage == 3
-                    ? AppConsts.primary500
-                    : AppConsts.neutral400,
-              ),
+               currentPage == 4
+                  ? CircleDoneWidget()
+                  : CircleWidget(
+                      label: StringsEn.three,
+                      color: currentPage == 3 || currentPage == 4
+                          ? AppConsts.primary500
+                          : AppConsts.neutral400,
+                    ),
               SizedBox(height: size.height * .01.h),
               Text(
                 StringsEn.uploadPortfolio,
                 style: AppConsts.style12.copyWith(
-                  color: currentPage == 3
+                  color: currentPage == 3 || currentPage == 4
                       ? AppConsts.primary500
                       : AppConsts.neutral900,
                 ),

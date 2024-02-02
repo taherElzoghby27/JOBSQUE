@@ -5,6 +5,9 @@ abstract class StringsEn {
   static String token = 'token';
   static String userId = 'user id';
   static String jobId = 'job id';
+  static String currentStatus = 'current status';
+  static String job = 'job';
+  static String applyUser = 'apply user';
   static String status = 'status';
   static String skip = 'Skip';
   static String warningPass = 'Password must be at least 8 characters';
@@ -330,6 +333,8 @@ abstract class StringsEn {
   static String imCurrWorking = 'I am currently working in this role';
   static String validator = 'Enter Correct Code';
   static String notComplete = 'not completed';
+  static String appliedCompleted = 'Applied completed';
+  static String doing = 'doing';
   static String notOpen = 'not open';
   static String formatDate = 'MMMM yyyy';
   static String defaultDate = 'Month Year';

@@ -8,12 +8,15 @@ import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/core/services/service_locator.dart';
+import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
+import 'package:jobsque/features/applied/presentation/view_models/applied_job_cubit/applied_job_cubit.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/auth/presentation/view_model/auth_bloc/auth_bloc.dart';
 import 'package:jobsque/features/auth/presentation/view_model/work_location_cubit/work_location_cubit.dart';
 import 'package:jobsque/features/complete_profile/presentation/view/complete_profile_process_view.dart';
 import 'package:jobsque/features/complete_profile/presentation/view/complete_profile_view.dart';
 import 'package:jobsque/features/help_center/presentation/view/help_center_view.dart';
+import 'package:jobsque/features/home/data/repo/home_repo.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
 import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
@@ -144,6 +147,12 @@ final router = GoRouter(
                   profileRepo: getIt.get<ProfileRepoImplementation>(),
                 ),
               ),
+              BlocProvider(
+                create: (_) => AppliedJobCubit(
+                  appliedJobRepo: getIt.get<AppliedJobsRepoImplementation>(),
+                  jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+                )..getActiveJobs(),
+              ),
             ],
             child: NavView(),
           ),
@@ -271,7 +280,7 @@ final router = GoRouter(
     GoRoute(
       path: applyJopPath,
       pageBuilder: (context, state) {
-        Map<String, String> data = state.extra as Map<String, String>;
+        Map<String, dynamic> data = state.extra as Map<String, dynamic>;
         print(data);
         return buildPageWithDefaultTransition(
           context: context,

@@ -1,80 +1,112 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/helper/custom_snack.dart';
+import 'package:jobsque/core/helper/handle_date.dart';
+import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
+import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/logo_title_icon_widget.dart';
 import 'package:jobsque/core/widgets/type_jop_component.dart';
+import 'package:jobsque/features/applied/presentation/view_models/applied_job_cubit/applied_job_cubit.dart';
 
+import '../../../../../core/widgets/bookmark_widget.dart';
 import 'custom_apply_job_process.dart';
 
-class CustomItemAppliedJop extends StatelessWidget {
+class CustomItemAppliedJop extends StatefulWidget {
   const CustomItemAppliedJop({
     super.key,
-    required this.logo,
-    required this.jopTitle,
-    required this.company,
-    required this.country,
-    required this.onTapBookMark,
-    required this.onTap,
+    required this.job,
+    required this.applyUser,
   });
 
-  final String logo;
-  final String jopTitle;
-  final String company;
-  final String country;
-  final void Function() onTapBookMark;
-  final void Function() onTap;
+  final Job job;
+  final ApplyUser applyUser;
+
+  @override
+  State<CustomItemAppliedJop> createState() => _CustomItemAppliedJopState();
+}
+
+class _CustomItemAppliedJopState extends State<CustomItemAppliedJop> {
+  late int current;
+
+  @override
+  void initState() {
+    current = BlocProvider.of<AppliedJobCubit>(context).checkStatusAppliedJob(
+      applyUser: widget.applyUser,
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 13 / 8,
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              //logo jopName bookmark
-              LogoTitleIconWidget(
-                logo: logo,
-                jopTitle: jopTitle,
-                company: company,
-                country: country,
-                trailing: IconButton(
-                  onPressed: onTapBookMark,
-                  icon: Icon(
-                    FontAwesomeIcons.bookmark,
-                    color: AppConsts.neutral900,
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 10.h),
+      child: AspectRatio(
+        aspectRatio: 13 / 8,
+        child: InkWell(
+          onTap: () => current == 4
+              ? showSnack(context, message: StringsEn.appliedCompleted)
+              : GoRouter.of(context).push(
+                  applyJopPath,
+                  extra: {
+                    StringsEn.status: StringsEn.notComplete,
+                    StringsEn.currentStatus: current,
+                    StringsEn.job: widget.job,
+                    StringsEn.applyUser: widget.applyUser,
+                  },
+                ),
+          borderRadius: BorderRadius.circular(15),
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                //logo jopName bookmark
+                LogoTitleIconWidget(
+                  logo: widget.job.image!,
+                  jopTitle: widget.job.name!,
+                  company: widget.job.compName!,
+                  country: widget.job.location!,
+                  trailing: BookmarkWidget(
+                    job: widget.job,
+                    color: AppConsts.neutral500,
                   ),
                 ),
-              ),
-              //full time -remote -design
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    child: TypeJopComponent(
-                      label: StringsEn.fullTime,
-                      color: AppConsts.primary500,
+                //full time -remote -design
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      child: TypeJopComponent(
+                        label: StringsEn.fullTime,
+                        color: AppConsts.primary500,
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: TypeJopComponent(
-                      label: StringsEn.remote,
-                      color: AppConsts.primary500,
+                    Expanded(
+                      child: TypeJopComponent(
+                        label: StringsEn.remote,
+                        color: AppConsts.primary500,
+                      ),
                     ),
-                  ),
-                  //txt
-                  Text(
-                    'posted 2 days ago',
-                    style: AppConsts.style12,
-                  ),
-                ],
-              ),
-              //completed or not
-              CustomApplyJobProcess(),
-            ],
+                    //txt
+                    Text(
+                      '${handleDate(
+                        date: widget.applyUser.updatedAt!,
+                      )[0]}\t${handleDate(
+                        date: widget.applyUser.updatedAt!,
+                      )[1]}',
+                      style: AppConsts.style12,
+                    ),
+                  ],
+                ),
+                //completed or not
+                CustomApplyJobProcess(currentStatus: current),
+              ],
+            ),
           ),
         ),
       ),

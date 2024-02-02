@@ -31,7 +31,7 @@ class CvWidget extends StatelessWidget {
               Spacer(flex: 1),
               //pdf info
               SizedBox(
-                width: size.width * .6.w,
+                width: size.width * .5.w,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
+import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
@@ -15,23 +17,34 @@ import 'package:jobsque/features/job_detail/presentation/view/widgets/section_in
 import 'package:jobsque/features/job_detail/presentation/view_models/apply_job_cubit/apply_job_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/changed_page_cubit/changed_page_cubit.dart';
 
-class ApplyJopBody extends StatelessWidget {
+class ApplyJopBody extends StatefulWidget {
   const ApplyJopBody({super.key, required this.data});
 
-  final Map<String, String> data;
+  final Map<String, dynamic> data;
+
+  @override
+  State<ApplyJopBody> createState() => _ApplyJopBodyState();
+}
+
+class _ApplyJopBodyState extends State<ApplyJopBody> {
+  int currentPage = 1;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    int currentPage = 1;
-    bool isLoading = false;
+
     return BlocConsumer<ChangedPageCubit, ChangedPageState>(
       listener: (context, stateChangedPage) {
         ChangedPageCubit changedBloc = context.read<ChangedPageCubit>();
         if (stateChangedPage is ChangedSuccess) {
           currentPage = changedBloc.currentPage;
         } else if (stateChangedPage is ChangedFailure) {
-          showSnack(context, message: stateChangedPage.message);
+          showSnack(
+            context,
+            message: stateChangedPage.message,
+            background: AppConsts.danger500,
+          );
         }
       },
       builder: (context, stateChangedPage) {
@@ -46,6 +59,20 @@ class ApplyJopBody extends StatelessWidget {
             }
           },
           builder: (context, state) {
+            ///fields
+            String status = widget.data[StringsEn.status];
+            ApplyUser applyUser =
+                widget.data[StringsEn.applyUser] ?? ApplyUser();
+            Job job = widget.data[StringsEn.job] ?? Job();
+            String jobId = status == StringsEn.notComplete
+                ? job.id.toString()
+                : widget.data[StringsEn.jobId];
+            String ApplyUserStatus = applyUser.status ?? '';
+            int currentPag = ApplyUserStatus == StringsEn.doing
+                ? currentPage
+                : status == StringsEn.notComplete
+                    ? widget.data[StringsEn.currentStatus]
+                    : currentPage;
             return Stack(
               children: [
                 SizedBox(
@@ -57,28 +84,28 @@ class ApplyJopBody extends StatelessWidget {
                       //custom appBar
                       CustomAppBar(
                         leadingOnTap: () => GoRouter.of(context).pop(),
-                        title: data[StringsEn.status] == StringsEn.notComplete
+                        title: status == StringsEn.notComplete
                             ? StringsEn.appliedJob
                             : StringsEn.applyJob,
                         trailingWidget: Container(),
                       ),
                       //if apply not complete
-                      data[StringsEn.status] == StringsEn.notComplete
+                      status == StringsEn.notComplete
                           ? Column(
                               children: [
                                 SizedBox(height: size.height * .02.h),
-                                InfoSectionJopDetail(job: Job()),
+                                InfoSectionJopDetail(job: job),
                               ],
                             )
                           : Container(),
                       SizedBox(height: size.height * .02.h),
                       //1  2  3 (circles bar)
                       Center(
-                        child: CirclesBarSection(currentPage: currentPage),
+                        child: CirclesBarSection(currentPage: currentPag),
                       ),
                       SizedBox(height: size.height * .035.h),
                       //info
-                      SectionInfo(currentPage: currentPage),
+                      SectionInfo(currentPage: currentPag),
                     ],
                   ),
                 ),
@@ -91,14 +118,22 @@ class ApplyJopBody extends StatelessWidget {
                       height: size.height * .055.h,
                       width: size.width * .9.w,
                       child: CustomButton(
-                        text: currentPage == 3
+                        text: currentPage == 3 || currentPag == 3
                             ? StringsEn.submit
                             : StringsEn.next,
-                        onTap: () =>
-                            context.read<ChangedPageCubit>().buttonNextSubmit(
+                        onTap: () => status == StringsEn.notComplete
+                            ? context.read<ChangedPageCubit>().buttonNextSubmit(
                                   context: context,
-                                  currentPage: currentPage,
-                                  jobId: data[StringsEn.jobId]!,
+                                  currentPage: currentPag,
+                                  jobId: jobId,
+                                  status: status,
+                                  applyUser: applyUser,
+                                )
+                            : context.read<ChangedPageCubit>().buttonNextSubmit(
+                                  context: context,
+                                  currentPage: currentPag,
+                                  jobId: jobId,
+                                  status: status,
                                 ),
                       ),
                     ),

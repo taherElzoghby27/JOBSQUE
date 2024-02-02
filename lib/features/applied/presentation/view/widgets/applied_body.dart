@@ -7,6 +7,8 @@ import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/applied/presentation/view/widgets/custom_bar_applied_job.dart';
 import 'package:jobsque/features/applied/presentation/view/widgets/section_jobs.dart';
 
+import 'jobs.dart';
+
 class AppliedBody extends StatelessWidget {
   const AppliedBody({super.key});
 
@@ -24,20 +26,11 @@ class AppliedBody extends StatelessWidget {
             trailingWidget: Container(),
           ),
           SizedBox(height: size.height * .02.h),
-          //active - rejected
-          CustomBarAppliedJob(),
-          SizedBox(height: size.height * .02.h),
-
           //jobs
-          Expanded(
-            child: SectionJobs(),
+          SizedBox(
+            height: size.height*.8.h,
+            child: Jobs(),
           ),
-          ////empty
-          // EmptyWidget(
-          //   icon: AppAssets.appliedJobR,
-          //   title: StringsEn.noAppWereRejected,
-          //   subTitle: StringsEn.ifThereIsAnApp,
-          // ),
         ],
       ),
     );

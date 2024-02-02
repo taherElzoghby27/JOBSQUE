@@ -4,7 +4,7 @@ import 'package:jobsque/features/job_detail/presentation/view/widgets/apply_jop_
 class ApplyJopView extends StatelessWidget {
   const ApplyJopView({super.key, required this.data});
 
-  final Map<String, String> data;
+  final Map<String, dynamic> data;
 
   @override
   Widget build(BuildContext context) {

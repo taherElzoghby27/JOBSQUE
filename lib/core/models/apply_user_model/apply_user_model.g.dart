@@ -26,19 +26,20 @@ class ApplyUserAdapter extends TypeAdapter<ApplyUser> {
       userId: fields[6] as String?,
       jobId: fields[7] as String?,
       status: fields[8] as String?,
-      reviewed: fields[9] as bool?,
+      reviewed: fields[9] as int?,
       updatedAt: fields[10] as String?,
       createdAt: fields[11] as String?,
       id: fields[12] as int?,
       cvFile: fields[13] as String?,
       cvOtherFile: fields[14] as String?,
+      accept: fields[15] as dynamic,
     );
   }
 
   @override
   void write(BinaryWriter writer, ApplyUser obj) {
     writer
-      ..writeByte(15)
+      ..writeByte(16)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -68,7 +69,9 @@ class ApplyUserAdapter extends TypeAdapter<ApplyUser> {
       ..writeByte(13)
       ..write(obj.cvFile)
       ..writeByte(14)
-      ..write(obj.cvOtherFile);
+      ..write(obj.cvOtherFile)
+      ..writeByte(15)
+      ..write(obj.accept);
   }
 
   @override

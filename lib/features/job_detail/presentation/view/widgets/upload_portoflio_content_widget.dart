@@ -8,6 +8,8 @@ import 'package:jobsque/core/widgets/title_field.dart';
 import 'package:jobsque/core/widgets/upload_your_other_file_widget.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/upload_portfolio_cubit/upload_portfolio_cubit.dart';
 
+import '../../../../../core/consts/style.dart';
+
 class UploadPortoflioContentWidget extends StatelessWidget {
   const UploadPortoflioContentWidget({super.key});
 
@@ -17,7 +19,11 @@ class UploadPortoflioContentWidget extends StatelessWidget {
     return BlocListener<UploadPortfolioCubit, UploadPortfolioState>(
       listener: (context, state) {
         if (state is PickedFileFailure) {
-          showSnack(context, message: state.message);
+          showSnack(
+            context,
+            message: state.message,
+            background: AppConsts.danger500,
+          );
         }
       },
       child: Column(
