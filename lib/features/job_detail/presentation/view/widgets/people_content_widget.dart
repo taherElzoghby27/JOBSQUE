@@ -4,7 +4,7 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/jop_type_component_button.dart';
-import 'package:jobsque/features/search_jop/presentation/view/widgets/item_people_jop_detail_widget.dart';
+import 'package:jobsque/features/job_detail/presentation/view/widgets/item_people_jop_detail_widget.dart';
 
 class PeopleContentWidget extends StatelessWidget {
   const PeopleContentWidget({super.key, required this.job});
@@ -55,7 +55,7 @@ class PeopleContentWidget extends StatelessWidget {
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) => item_people_detail_jop_widget(),
+            itemBuilder: (context, index) => ItemPeopleDetailJobWidget(),
             itemCount: 20,
             separatorBuilder: (BuildContext context, int index) => Divider(
               color: AppConsts.neutral200,

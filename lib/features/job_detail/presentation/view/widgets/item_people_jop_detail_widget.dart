@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 
-class item_people_detail_jop_widget extends StatelessWidget {
-  const item_people_detail_jop_widget({super.key});
+class ItemPeopleDetailJobWidget extends StatelessWidget {
+  const ItemPeopleDetailJobWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

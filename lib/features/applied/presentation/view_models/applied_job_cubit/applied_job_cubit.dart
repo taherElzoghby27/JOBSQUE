@@ -7,7 +7,6 @@ import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/features/home/data/repo/home_repo.dart';
 import 'package:meta/meta.dart';
 
-import '../../../../../core/services/local_database/hive_db_apply_user.dart';
 import '../../../data/repo/applied_job_repo.dart';
 
 part 'applied_job_state.dart';

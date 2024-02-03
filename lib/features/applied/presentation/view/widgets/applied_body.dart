@@ -4,9 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
-import 'package:jobsque/features/applied/presentation/view/widgets/custom_bar_applied_job.dart';
-import 'package:jobsque/features/applied/presentation/view/widgets/section_jobs.dart';
-
 import 'jobs.dart';
 
 class AppliedBody extends StatelessWidget {
@@ -28,7 +25,7 @@ class AppliedBody extends StatelessWidget {
           SizedBox(height: size.height * .02.h),
           //jobs
           SizedBox(
-            height: size.height*.8.h,
+            height: size.height * .8.h,
             child: Jobs(),
           ),
         ],
