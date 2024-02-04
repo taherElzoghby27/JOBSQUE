@@ -34,7 +34,7 @@ class PeopleContentWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'UI/UX Design',
+                    StringsEn.ui,
                     style: AppConsts.style12.copyWith(
                       color: AppConsts.neutral500,
                     ),
