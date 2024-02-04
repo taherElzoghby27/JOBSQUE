@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
 import 'package:jobsque/core/widgets/title_field.dart';
 
 import '../../../../../../../../core/widgets/text_form_field.dart';

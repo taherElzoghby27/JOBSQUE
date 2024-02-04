@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/helper/dialog_help.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
@@ -17,16 +16,29 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../../../../../../../../core/consts/routesPage.dart';
 import '../../../../../../../../core/consts/strings.dart';
 
-class LoginSecurityAuthBody extends StatelessWidget {
-  LoginSecurityAuthBody({super.key, required this.path});
+class LoginSecurityAuthBody extends StatefulWidget {
+  const LoginSecurityAuthBody({super.key, required this.path});
 
-  String path;
+  final String path;
+
+  @override
+  State<LoginSecurityAuthBody> createState() => _LoginSecurityAuthBodyState();
+}
+
+class _LoginSecurityAuthBodyState extends State<LoginSecurityAuthBody> {
+  bool load = false;
+  late String path;
+  @override
+  void initState() {
+    path=widget.path;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final bloc = BlocProvider.of<UpdateNamePassCubit>(context);
-    bool load = false;
+
     return BlocConsumer<UpdateNamePassCubit, UpdateNamePassState>(
       listener: (context, state) {
         if (state is Loading) {
