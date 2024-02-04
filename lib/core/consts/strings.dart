@@ -347,6 +347,7 @@ abstract class StringsEn {
   static String personImage='assets/images/person.png';
   static String personName='Dimas Adi Saputro';
   static String personPosition='Senior UI/UX Designer at Twitter';
+  static String twitter='Twitter';
 }
 
 ///strings by arabic

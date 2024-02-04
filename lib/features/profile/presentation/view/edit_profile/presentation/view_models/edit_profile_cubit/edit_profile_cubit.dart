@@ -4,8 +4,6 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/models/profile_model.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
 
@@ -15,13 +13,16 @@ part 'edit_profile_state.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {
   AuthRepo authRepo;
+
   EditProfileCubit({required this.authRepo}) : super(EditProfileInitial());
+
   //variables
   TextEditingController controllerName = TextEditingController();
   TextEditingController controllerBio = TextEditingController();
   TextEditingController controllerAddress = TextEditingController();
   TextEditingController controllerMobileNumber = TextEditingController();
   String codeCountry = "+20";
+
   //check fields is full or not
   checkFieldsFullOrNot() => controllerName.text.isNotEmpty &&
           controllerName.text.isNotEmpty &&
@@ -40,8 +41,9 @@ class EditProfileCubit extends Cubit<EditProfileState> {
 //on changed counry
   onChangedCountry({required CountryCode code}) =>
       codeCountry = code.dialCode.toString();
+
   //save method
-  save(BuildContext context) async {
+  save() async {
     if (checkFieldsFullOrNot() && checkPhoneNumber()) {
       try {
         emit(SavedLoading());
@@ -56,10 +58,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         );
         editProfileResult.fold(
           (failure) => emit(SavedFailure()),
-          (profile) {
-            emit(SavedSuccess());
-            GoRouter.of(context).pushReplacement(homePath);
-          },
+          (profile) => emit(SavedSuccess()),
         );
       } catch (error) {
         emit(SavedFailure());

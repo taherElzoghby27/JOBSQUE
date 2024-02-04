@@ -94,7 +94,7 @@ class ChatBody extends StatelessWidget {
         CustomAppBar(
           leadingOnTap: () => GoRouter.of(context).pop(),
           image: AppAssets.twitter,
-          title: 'Twitter',
+          title: StringsEn.twitter,
           trailingWidget: Icon(Icons.more_horiz, color: AppConsts.neutral900),
           trailingOnTap: () => _showSettingChatSheet(context),
         ),

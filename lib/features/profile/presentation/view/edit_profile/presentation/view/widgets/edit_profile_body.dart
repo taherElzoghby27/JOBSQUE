@@ -9,6 +9,7 @@ import 'package:jobsque/features/profile/presentation/view/edit_profile/presenta
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view/widgets/section_personal_info.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view_models/edit_profile_cubit/edit_profile_cubit.dart';
 
+import '../../../../../../../../core/consts/routesPage.dart';
 import '../../../../../../../../core/consts/strings.dart';
 import '../../../../../../../../core/widgets/custom_app_bar.dart';
 
@@ -44,7 +45,10 @@ class EditProfileBody extends StatelessWidget {
                 bool isLoad = false;
                 if (state is SavedLoading) {
                   isLoad = true;
-                } else {
+                } else if (state is SavedSuccess) {
+                  isLoad = false;
+                  GoRouter.of(context).pushReplacement(homePath);
+                } else if (state is SavedFailure) {
                   isLoad = false;
                 }
                 return Visibility(
@@ -54,7 +58,7 @@ class EditProfileBody extends StatelessWidget {
                     text: StringsEn.save,
                     onTap: () async {
                       await BlocProvider.of<EditProfileCubit>(context)
-                          .save(context);
+                          .save();
                     },
                   ),
                 );
