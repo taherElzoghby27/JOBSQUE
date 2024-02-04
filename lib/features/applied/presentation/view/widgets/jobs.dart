@@ -37,10 +37,7 @@ class Jobs extends StatelessWidget {
                       subTitle: StringsEn.ifThereIsAnApp,
                     )
                   : Expanded(
-                      child: SectionJobs(
-                        userJobs: jobsApplied,
-                        jobs: jobs,
-                      ),
+                      child: SectionJobs(userJobs: jobsApplied, jobs: jobs),
                     );
             } else if (state is AppliedJobLoading) {
               return LoadingWidget(height: size.height * .35.h);

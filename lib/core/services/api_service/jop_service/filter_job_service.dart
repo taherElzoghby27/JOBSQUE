@@ -2,14 +2,14 @@ import 'package:http/http.dart' as http;
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/core/services/api_service/service/post_api_service.dart';
+import 'package:jobsque/core/services/api_service/api_service.dart';
 
 import '../../../consts/api.dart';
 
 class JobApiService {
-  PostApiService postApiService;
+  ApiService apiService;
 
-  JobApiService({required this.postApiService});
+  JobApiService({required this.apiService});
 
   //filter jobs method
   Future<http.Response> FilterJobApi({
@@ -18,8 +18,8 @@ class JobApiService {
     required String salary,
   }) async {
     Job job = Job(name: name, location: location, salary: salary);
-    http.Response response = await postApiService.post(
-      path: "${ApiConsts.url}${ApiConsts.filterJobEndPoint}",
+    http.Response response = await apiService.post(
+      path: "${ApiConsts.filterJobEndPoint}",
       body: job.toJson(),
       headers: {
         'Authorization': 'Bearer ${CacheHelper.getData(key: StringsEn.token)}',

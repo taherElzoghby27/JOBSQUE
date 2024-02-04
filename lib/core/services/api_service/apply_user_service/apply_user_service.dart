@@ -12,7 +12,7 @@ class ApplyUserService {
     String token = CacheHelper.getData(key: StringsEn.token);
     http.MultipartRequest request = http.MultipartRequest(
       'POST',
-      Uri.parse('${ApiConsts.url}${ApiConsts.applyEndPoint}'),
+      Uri.parse('${ApiConsts.applyEndPoint}'),
     );
     //put cv and other file into list
     List<File> cvs = [applyUser.cv!, applyUser.otherFiles!];

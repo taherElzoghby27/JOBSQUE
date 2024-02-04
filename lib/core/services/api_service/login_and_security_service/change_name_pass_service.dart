@@ -1,22 +1,22 @@
 import 'package:http/http.dart' as http;
 import 'package:jobsque/core/helper/cache_helper.dart';
-import 'package:jobsque/core/services/api_service/service/post_api_service.dart';
+import 'package:jobsque/core/services/api_service/api_service.dart';
 
 import '../../../consts/api.dart';
 import '../../../consts/strings.dart';
 
 class UpdateNamePassService {
-  PostApiService postApiService;
+  ApiService apiService;
 
-  UpdateNamePassService({required this.postApiService});
+  UpdateNamePassService({required this.apiService});
 
   //filter jobs method
   Future<http.Response> updateData({
     required String name,
     required String password,
   }) async {
-    http.Response response = await postApiService.post(
-      path: "${ApiConsts.url}${ApiConsts.updateNamePassEndPoint}",
+    http.Response response = await apiService.post(
+      path: "${ApiConsts.updateNamePassEndPoint}",
       body: {
         'name': name,
         'password': password,

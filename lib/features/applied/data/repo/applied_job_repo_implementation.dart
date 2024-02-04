@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
-import 'package:jobsque/core/services/api_service/get_service.dart';
+import 'package:jobsque/core/services/api_service/api_service.dart';
 import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo.dart';
 
@@ -13,11 +13,11 @@ import '../../../../core/consts/api.dart';
 
 class AppliedJobsRepoImplementation extends AppliedJobRepo {
   HiveDbApplyUser hiveDbApplyUser;
-  GetService getService;
+  ApiService apiService;
 
   AppliedJobsRepoImplementation({
     required this.hiveDbApplyUser,
-    required this.getService,
+    required this.apiService,
   });
 
   @override
@@ -35,8 +35,8 @@ class AppliedJobsRepoImplementation extends AppliedJobRepo {
   }) async {
     try {
       //response
-      http.Response result = await getService.getService(
-        urlPath: '${ApiConsts.url}${ApiConsts.applyEndPoint}/$userId',
+      http.Response result = await apiService.get(
+        path: '${ApiConsts.applyEndPoint}/$userId',
       );
       //convert data from json to map
       Map<String, dynamic> data = jsonDecode(result.body);

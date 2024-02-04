@@ -6,13 +6,10 @@ import 'package:jobsque/core/services/api_service/auth_service/reset_pass_auth_s
 import 'package:jobsque/core/services/api_service/auth_service/signout_service.dart';
 import 'package:jobsque/core/services/api_service/login_and_security_service/change_name_pass_service.dart';
 import 'package:jobsque/core/services/api_service/login_and_security_service/get_otp_service.dart';
-import 'package:jobsque/core/services/api_service/service/get_api_service.dart';
 import 'package:jobsque/core/services/api_service/jop_service/filter_job_service.dart';
-import 'package:jobsque/core/services/api_service/service/post_api_service.dart';
 import 'package:jobsque/core/services/api_service/profile_service/add_portfolio_service.dart';
 import 'package:jobsque/core/services/api_service/profile_service/edit_profile_service.dart';
-import 'package:jobsque/core/services/api_service/get_service.dart';
-import 'package:jobsque/core/services/api_service/service/put_api_service.dart';
+import 'package:jobsque/core/services/api_service/api_service.dart';
 import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
@@ -32,40 +29,30 @@ void setupServiceLocator() {
   getIt.registerSingleton<HiveDbJob>(HiveDbJob());
   //hive db Apply user
   getIt.registerSingleton<HiveDbApplyUser>(HiveDbApplyUser());
-  //post api service
-  getIt.registerSingleton<PostApiService>(PostApiService());
-  //put api service
-  getIt.registerSingleton<PutApiService>(PutApiService());
-  //get api service
-  getIt.registerSingleton<GetApiService>(GetApiService());
-  //get service
-  getIt.registerSingleton<GetService>(
-    GetService(
-      getApiService: getIt.get<GetApiService>(),
-    ),
-  );
+  // api service
+  getIt.registerSingleton<ApiService>(ApiService());
   //register api service
   getIt.registerSingleton<RegisterApiService>(
     RegisterApiService(
-      postApiService: getIt.get<PostApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //login api service
   getIt.registerSingleton<LoginApiService>(
     LoginApiService(
-      postApiService: getIt.get<PostApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //resetpass api service
   getIt.registerSingleton<ResetPassApiService>(
     ResetPassApiService(
-      postApiService: getIt.get<PostApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //edit profile service
   getIt.registerSingleton<EditProfileService>(
     EditProfileService(
-      putApiService: getIt.get<PutApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //Auth repo implementation
@@ -79,7 +66,9 @@ void setupServiceLocator() {
   );
   //job api service
   getIt.registerSingleton<JobApiService>(
-    JobApiService(postApiService: getIt.get<PostApiService>()),
+    JobApiService(
+      apiService: getIt.get<ApiService>(),
+    ),
   );
   //jobs repo implementation
   getIt.registerSingleton<FilterJobsRepoImplementation>(
@@ -101,7 +90,7 @@ void setupServiceLocator() {
   getIt.registerSingleton<ProfileRepoImplementation>(
     ProfileRepoImplementation(
       signOutService: getIt.get<SignOutService>(),
-      getProfileService: getIt.get<GetService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //add portfolio api service
@@ -109,23 +98,27 @@ void setupServiceLocator() {
   //portfolio repo impl
   getIt.registerSingleton<PortfolioRepoImplementation>(
     PortfolioRepoImplementation(
-      getProfileService: getIt.get<GetService>(),
+      apiService: getIt.get<ApiService>(),
       addPortfolioService: getIt.get<AddPortfolioService>(),
     ),
   );
   //notification repo implementation
   getIt.registerSingleton<NotificationRepoImplementation>(
     NotificationRepoImplementation(
-      getService: getIt.get<GetService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //get Otp service
   getIt.registerSingleton<GetOtpService>(
-    GetOtpService(postApiService: getIt.get<PostApiService>()),
+    GetOtpService(
+      apiService: getIt.get<ApiService>(),
+    ),
   );
   //update name Pass service
   getIt.registerSingleton<UpdateNamePassService>(
-    UpdateNamePassService(postApiService: getIt.get<PostApiService>()),
+    UpdateNamePassService(
+      apiService: getIt.get<ApiService>(),
+    ),
   );
   //login and security repo impl
   getIt.registerSingleton<LoginAndSecurityRepoImplementation>(
@@ -137,7 +130,7 @@ void setupServiceLocator() {
   //applied repo impl
   getIt.registerSingleton<AppliedJobsRepoImplementation>(
     AppliedJobsRepoImplementation(
-      getService: getIt.get<GetService>(),
+      apiService: getIt.get<ApiService>(),
       hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
     ),
   );

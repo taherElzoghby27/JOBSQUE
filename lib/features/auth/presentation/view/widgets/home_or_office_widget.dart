@@ -6,13 +6,20 @@ import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/bar_component.dart';
 import 'package:jobsque/features/auth/presentation/view_model/work_location_cubit/work_location_cubit.dart';
 
-class HomeOrOfficeWidget extends StatelessWidget {
+class HomeOrOfficeWidget extends StatefulWidget {
   const HomeOrOfficeWidget({super.key});
+
+  @override
+  State<HomeOrOfficeWidget> createState() => _HomeOrOfficeWidgetState();
+}
+
+class _HomeOrOfficeWidgetState extends State<HomeOrOfficeWidget> {
+  String type = StringsEn.remoteWork;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    String type = StringsEn.remoteWork;
+
     return BlocConsumer<WorkLocationCubit, WorkLocationState>(
       builder: (context, state) {
         return Container(

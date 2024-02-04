@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
-import 'package:jobsque/features/applied/presentation/view_models/applied_job_cubit/applied_job_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/circles_bar_section.dart';
 
 class CustomApplyJobProcess extends StatelessWidget {

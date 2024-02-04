@@ -1,14 +1,14 @@
 import 'package:http/http.dart' as http;
-import 'package:jobsque/core/services/api_service/service/post_api_service.dart';
+import 'package:jobsque/core/services/api_service/api_service.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user_login.dart';
 
 import '../../../consts/api.dart';
 
 class LoginApiService {
-  PostApiService postApiService;
+  ApiService apiService;
 
-  LoginApiService({required this.postApiService});
+  LoginApiService({required this.apiService});
 
   //login method
   Future<http.Response> loginApi({
@@ -18,8 +18,8 @@ class LoginApiService {
     UserLogin user = UserLogin(
       user: User(email: email, password: password),
     );
-    http.Response response = await postApiService.post(
-      path: "${ApiConsts.url}${ApiConsts.loginEndPoint}",
+    http.Response response = await apiService.post(
+      path: "${ApiConsts.loginEndPoint}",
       body: user.user!.toJson(),
     );
 

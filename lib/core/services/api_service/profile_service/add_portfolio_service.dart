@@ -13,7 +13,7 @@ class AddPortfolioService {
     String token = CacheHelper.getData(key: StringsEn.token);
     http.MultipartRequest request = http.MultipartRequest(
       'POST',
-      Uri.parse('${ApiConsts.url}${ApiConsts.getPortfolioEndPoint}'),
+      Uri.parse('${ApiConsts.getPortfolioEndPoint}'),
     );
     //put cv_file and image into list
     List<File> cvs = [portfolioCv.cvFile!, portfolioCv.image!];

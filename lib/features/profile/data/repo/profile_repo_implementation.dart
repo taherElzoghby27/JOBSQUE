@@ -4,20 +4,19 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:jobsque/core/consts/api.dart';
+import 'package:jobsque/core/services/api_service/api_service.dart';
 import 'package:jobsque/core/services/api_service/auth_service/signout_service.dart';
-import 'package:jobsque/core/services/api_service/get_service.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
-import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 
 class ProfileRepoImplementation extends ProfileRepo {
   SignOutService signOutService;
-  GetService getProfileService;
+  ApiService apiService;
 
   ProfileRepoImplementation({
     required this.signOutService,
-    required this.getProfileService,
+    required this.apiService,
   });
 
   @override
@@ -28,8 +27,8 @@ class ProfileRepoImplementation extends ProfileRepo {
   @override
   Future<Either<FailureMessage, User>> getProfile() async {
     try {
-      http.Response result = await getProfileService.getService(
-        urlPath: "${ApiConsts.url}${ApiConsts.getProfileEndPoint}",
+      http.Response result = await apiService.get(
+        path: "${ApiConsts.getProfileEndPoint}",
       );
       Map<String, dynamic> data = jsonDecode(result.body);
 

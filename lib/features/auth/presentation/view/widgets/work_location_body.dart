@@ -15,12 +15,20 @@ import '../../../../../core/widgets/customButton.dart';
 import 'all_countries.dart';
 import 'home_or_office_widget.dart';
 
-class WorkLocationBody extends StatelessWidget {
+class WorkLocationBody extends StatefulWidget {
   const WorkLocationBody({super.key});
+
+  @override
+  State<WorkLocationBody> createState() => _WorkLocationBodyState();
+}
+
+class _WorkLocationBodyState extends State<WorkLocationBody> {
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Padding(
       padding: EdgeInsets.all(25.sp),
       child: Column(
@@ -52,37 +60,38 @@ class WorkLocationBody extends StatelessWidget {
           SizedBox(
             height: size.height * .055.h,
             width: size.width * .9.w,
-            child: BlocBuilder<WorkLocationCubit, WorkLocationState>(
-              builder: (context, state) {
-                bool loading = false;
+            child: BlocConsumer<WorkLocationCubit, WorkLocationState>(
+              listener: (context, state) {
                 if (state is InterestedInWorkLoading) {
                   loading = true;
                 } else if (state is InterestedInWorkSuccess) {
                   loading = false;
+                  GoRouter.of(context).pushReplacement(
+                    successfullyPagePath,
+                    extra: {
+                      StringsEn.icon: AppAssets.user,
+                      StringsEn.title: StringsEn.yourAccountHasBeenSetUp,
+                      StringsEn.subTitle: StringsEn.weHaveCustomizedFeeds,
+                      StringsEn.labelButton: StringsEn.getStarted,
+                      StringsEn.path: homePath,
+                    },
+                  );
+                } else if (state is InterestedInWorkFailure) {
+                  showSnack(
+                    context,
+                    message: StringsEn.whereAreYouLocationerror,
+                  );
                 }
+              },
+              builder: (context, state) {
                 return Visibility(
                   visible: !loading,
                   replacement: LoadingWidget(),
                   child: CustomButton(
                     text: StringsEn.next,
                     onTap: () async {
-                      if (await BlocProvider.of<WorkLocationCubit>(context)
-                              .handleNextAction() ==
-                          true) {
-                        GoRouter.of(context).pushReplacement(
-                          successfullyPagePath,
-                          extra: {
-                            StringsEn.icon: AppAssets.user,
-                            StringsEn.title: StringsEn.yourAccountHasBeenSetUp,
-                            StringsEn.subTitle: StringsEn.weHaveCustomizedFeeds,
-                            StringsEn.labelButton: StringsEn.getStarted,
-                            StringsEn.path: homePath,
-                          },
-                        );
-                      } else {
-                        showSnack(context,
-                            message: StringsEn.whereAreYouLocationerror);
-                      }
+                      await BlocProvider.of<WorkLocationCubit>(context)
+                          .handleNextAction();
                     },
                   ),
                 );

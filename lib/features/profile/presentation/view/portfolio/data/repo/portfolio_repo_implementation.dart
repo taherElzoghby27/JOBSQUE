@@ -7,24 +7,26 @@ import 'package:http/http.dart' as http;
 import 'package:jobsque/core/consts/api.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
+import 'package:jobsque/core/services/api_service/api_service.dart';
 import 'package:jobsque/core/services/api_service/profile_service/add_portfolio_service.dart';
-import 'package:jobsque/core/services/api_service/get_service.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/models/portfolio.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo.dart';
 
 class PortfolioRepoImplementation extends PortfolioRepo {
-  GetService getProfileService;
+  ApiService apiService;
   AddPortfolioService addPortfolioService;
+
   PortfolioRepoImplementation({
-    required this.getProfileService,
+    required this.apiService,
     required this.addPortfolioService,
   });
+
   @override
   Future<Either<FailureMessage, UserProfilePortfolioModel>>
       getPortFolio() async {
     try {
-      http.Response result = await getProfileService.getService(
-        urlPath: "${ApiConsts.url}${ApiConsts.getPortfolioEndPoint}",
+      http.Response result = await apiService.get(
+        path: "${ApiConsts.getPortfolioEndPoint}",
       );
       Map<String, dynamic> data = jsonDecode(result.body);
 

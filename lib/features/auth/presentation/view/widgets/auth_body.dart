@@ -31,6 +31,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
   late AnimationController controller;
   late Animation<Offset> offsetAnimation;
+
   @override
   void initState() {
     //init controller
@@ -238,10 +239,13 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                                 ..repeat();
                             }
                           }
-                          Future.delayed(Duration(seconds: 1), () {
-                            controller.stop();
-                            controller.reset();
-                          });
+                          Future.delayed(
+                            const Duration(milliseconds: 500),
+                            () {
+                              controller.stop();
+                              controller.reset();
+                            },
+                          );
                         },
                       ),
                     ),
@@ -275,10 +279,18 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
           navigateToAnotherPage();
         } else if (state is RegisterFailure) {
           isLoading = false;
-          showSnack(context, message: state.message);
+          showSnack(
+            context,
+            message: state.message,
+            background: AppConsts.danger500,
+          );
         } else if (state is LoginFailure) {
           isLoading = false;
-          showSnack(context, message: state.message);
+          showSnack(
+            context,
+            message: state.message,
+            background: AppConsts.danger500,
+          );
         }
       },
     );

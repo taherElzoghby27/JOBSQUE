@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
@@ -24,14 +25,16 @@ class InterestedInWorkCubit extends Cubit<InterestedInWorkState> {
   //check all if true or not
   bool get workInterestedHasTrue =>
       workInterested.values.any((element) => element);
+
   bool getStatus({required String key}) => workInterested[key]!;
+
   //next
-  Future<bool> handleNextAction() async {
+  handleNextAction() async {
+    emit(Loading());
     if (workInterestedHasTrue) {
       await saveInterestedIn();
-      return true;
     } else {
-      return false;
+      emit(Failure());
     }
   }
 
@@ -51,5 +54,6 @@ class InterestedInWorkCubit extends Cubit<InterestedInWorkState> {
       key: StringsEn.whatTypeOfWorkInterested,
       value: interestedIn,
     );
+    emit(Success());
   }
 }

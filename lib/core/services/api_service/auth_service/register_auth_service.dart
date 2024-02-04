@@ -1,14 +1,14 @@
 import 'package:http/http.dart' as http;
-import 'package:jobsque/core/services/api_service/service/post_api_service.dart';
 import 'package:jobsque/features/auth/data/models/user_create/user_model.dart';
 
 import '../../../../features/auth/data/models/user_create/data_model.dart';
 import '../../../consts/api.dart';
+import '../api_service.dart';
 
 class RegisterApiService {
-  PostApiService postApiService;
+  ApiService apiService;
 
-  RegisterApiService({required this.postApiService});
+  RegisterApiService({required this.apiService});
 
   //register method
   Future<http.Response> registerApi({
@@ -19,8 +19,8 @@ class RegisterApiService {
     UserSignUp user = UserSignUp(
       data: Data(name: name, email: email, password: password),
     );
-    http.Response response = await postApiService.post(
-      path: "${ApiConsts.url}${ApiConsts.registerEndPoint}",
+    http.Response response = await apiService.post(
+      path: "${ApiConsts.registerEndPoint}",
       body: user.data!.toJsonRigester(),
     );
 

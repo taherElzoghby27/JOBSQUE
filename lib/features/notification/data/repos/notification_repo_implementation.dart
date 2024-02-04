@@ -1,19 +1,18 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:flutter/src/widgets/notification_listener.dart';
 import 'package:http/http.dart' as http;
 import 'package:jobsque/core/consts/api.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
-import 'package:jobsque/core/services/api_service/get_service.dart';
+import 'package:jobsque/core/services/api_service/api_service.dart';
 import 'package:jobsque/features/notification/data/repos/notification_repo.dart';
 
 import '../models/notification.dart';
 
 class NotificationRepoImplementation extends NotificationRepo {
-  GetService getService;
+  ApiService apiService;
 
-  NotificationRepoImplementation({required this.getService});
+  NotificationRepoImplementation({required this.apiService});
 
   @override
   Future<Either<FailureMessage, NotificationModel>> getNotification({
@@ -21,8 +20,8 @@ class NotificationRepoImplementation extends NotificationRepo {
   }) async {
     try {
       //response
-      http.Response result = await getService.getService(
-        urlPath: '${ApiConsts.url}${ApiConsts.getNotificationEndPoint}/$id',
+      http.Response result = await apiService.get(
+        path: '${ApiConsts.getNotificationEndPoint}/$id',
       );
       //convert data from json to map
       Map<String, dynamic> data = jsonDecode(result.body);
