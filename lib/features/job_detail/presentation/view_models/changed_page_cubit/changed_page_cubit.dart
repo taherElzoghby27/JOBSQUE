@@ -58,55 +58,14 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
     ApplyUser? applyUser,
     required String status,
   }) {
-    try {
-      emit(ChangedLoading());
-      //next->next->submit
-      nextOrSubmit(
-        context,
-        jobId: jobId,
-        applyUser: applyUser,
-        status: status,
-        currentPage: currentPage,
-      );
-      //check if in last page or not
-      checkInLastPageOrNot(context: context, currentPage: currentPage);
-    } catch (error) {
-      emit(ChangedFailure(message: error.toString()));
-    }
-  }
-
-//check if in last page or not
-  checkInLastPageOrNot({
-    required BuildContext context,
-    required int currentPage,
-  }) {
-    final uploadPortfolioCubit = context.read<UploadPortfolioCubit>();
-
-    if (currentPage > 2) {
-      if (uploadPortfolioCubit.checkCvsIsCompleted()) {
-        _pushSuccessfullyPage(context);
-      } else {
-        showSnack(
-          context,
-          message: StringsEn.eenterCv,
-          background: AppConsts.danger500,
-        );
-      }
-    }else{
-      emit(ChangedSuccess());
-    }
-  }
-
-  _pushSuccessfullyPage(BuildContext context) {
-    GoRouter.of(context).pushReplacement(
-      successfullyPagePath,
-      extra: {
-        StringsEn.icon: AppAssets.dataIllu,
-        StringsEn.title: StringsEn.yourDataHasBeenSuccessfully,
-        StringsEn.subTitle: StringsEn.youWillGetMessageFromOurTeam,
-        StringsEn.labelButton: StringsEn.backToHome,
-        StringsEn.path: homePath,
-      },
+    //next->next->submit
+    nextOrSubmit(
+      context,
+      jobId: jobId,
+      applyUser: applyUser,
+      status: status,
+      currentPage: currentPage,
     );
+    emit(ChangedSuccess(currentPage: currentPage));
   }
 }

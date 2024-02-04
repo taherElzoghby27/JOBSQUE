@@ -32,7 +32,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
     ApplyUser? applyUser,
   }) async {
     try {
-      emit(ApplyJobLoading());
+
       String userId = CacheHelper.getData(key: StringsEn.userId);
       BioDataCubit blocBioData = BlocProvider.of<BioDataCubit>(context);
       TypeOfWorkCubit typeOfWorkCubit =
@@ -74,6 +74,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
       //apply job
 
       if (changedPageCubit.currentPage == 3) {
+        emit(ApplyJobLoading());
         applyUserRepo.applyJob(
           applyUser: ApplyUser(
             name: status == StringsEn.notComplete
@@ -99,12 +100,24 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
             id: 0,
           ),
         );
+        emit(ApplyJobSuccess());
       }
 
       hiveDbApplyUser.get();
-      emit(ApplyJobSuccess());
+
     } catch (error) {
-      emit(ApplyJobFailure());
+      emit(
+        ApplyJobFailure(message: error.toString()),
+      );
+    }
+    //check if in last page or not
+    checkInLastPageOrNot({
+      required BuildContext context,
+      required int currentPage,
+    }) {
+      final uploadPortfolioCubit = context.read<UploadPortfolioCubit>();
+
+      if (currentPage > 2) {}
     }
   }
 }

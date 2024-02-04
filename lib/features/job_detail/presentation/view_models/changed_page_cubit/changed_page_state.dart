@@ -6,7 +6,11 @@ final class ChangedPageInitial extends ChangedPageState {}
 
 class ChangedLoading extends ChangedPageState {}
 
-class ChangedSuccess extends ChangedPageState {}
+class ChangedSuccess extends ChangedPageState {
+  final int currentPage;
+
+  ChangedSuccess({required this.currentPage});
+}
 
 class ChangedFailure extends ChangedPageState {
   final String message;

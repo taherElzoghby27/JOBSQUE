@@ -9,4 +9,8 @@ class ApplyJobLoading extends ApplyJobState {}
 
 class ApplyJobSuccess extends ApplyJobState {}
 
-class ApplyJobFailure extends ApplyJobState {}
+class ApplyJobFailure extends ApplyJobState {
+  final String message;
+
+  ApplyJobFailure({required this.message});
+}
