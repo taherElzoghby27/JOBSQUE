@@ -7,19 +7,32 @@ import 'package:jobsque/core/widgets/type_jop_component.dart';
 
 import '../../../../../core/widgets/custom_photo.dart';
 
-class InfoSectionJopDetail extends StatelessWidget {
-  const InfoSectionJopDetail({
-    super.key,
-    required this.job,
-  });
+class InfoSectionJopDetail extends StatefulWidget {
+  const InfoSectionJopDetail({super.key, required this.job});
 
   final Job job;
 
   @override
+  State<InfoSectionJopDetail> createState() => _InfoSectionJopDetailState();
+}
+
+class _InfoSectionJopDetailState extends State<InfoSectionJopDetail> {
+  late Job job;
+  List<String> position = [];
+  int sizeLocation = 0;
+
+  @override
+  void initState() {
+    job=widget.job;
+    position = job.location!.split(',');
+    sizeLocation = position.length;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    List<String> position = job.location!.split(',');
-    int sizeLocation = position.length;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

@@ -343,6 +343,10 @@ abstract class StringsEn {
   static String svg = 'svg';
   static String https = 'https';
   static String network = 'network';
+  //fake
+  static String personImage='assets/images/person.png';
+  static String personName='Dimas Adi Saputro';
+  static String personPosition='Senior UI/UX Designer at Twitter';
 }
 
 ///strings by arabic

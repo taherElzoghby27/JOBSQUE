@@ -12,19 +12,19 @@ class ItemPeopleDetailJobWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset('assets/images/person.png'),
+          Image.asset(StringsEn.personImage),
           //name-position
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Dimas Adi Saputro',
+                StringsEn.personName,
                 style: AppConsts.style14.copyWith(
                   color: AppConsts.neutral900,
                 ),
               ),
               Text(
-                'Senior UI/UX Designer at Twitter',
+                StringsEn.personPosition,
                 style: AppConsts.style12.copyWith(
                   color: AppConsts.neutral500,
                 ),
