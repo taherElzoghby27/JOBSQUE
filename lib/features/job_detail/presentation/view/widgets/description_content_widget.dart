@@ -5,7 +5,7 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 
-class ContentDescriptionWidget extends StatelessWidget {
+class ContentDescriptionWidget extends StatefulWidget {
   const ContentDescriptionWidget({
     super.key,
     required this.job,
@@ -14,9 +14,23 @@ class ContentDescriptionWidget extends StatelessWidget {
   final Job job;
 
   @override
+  State<ContentDescriptionWidget> createState() =>
+      _ContentDescriptionWidgetState();
+}
+
+class _ContentDescriptionWidgetState extends State<ContentDescriptionWidget> {
+  List<String> skill = [];
+
+  @override
+  void initState() {
+    skill = widget.job.jobSkill!.split("\n");
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    List<String> skill = job.jobSkill!.split("\n");
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15.w),
       child: Column(
@@ -31,7 +45,7 @@ class ContentDescriptionWidget extends StatelessWidget {
             ),
           ),
           SizedBox(height: size.height * .01.h),
-          Text(job.jobDescription!, style: AppConsts.style12),
+          Text(widget.job.jobDescription!, style: AppConsts.style12),
           SizedBox(height: size.height * .02.h),
           //skill required
           Text(
