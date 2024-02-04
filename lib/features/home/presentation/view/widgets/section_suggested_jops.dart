@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/empty_widget.dart';
-import 'package:jobsque/features/home/presentation/view/widgets/item_recent_jop.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
 
 import '../../../../../core/consts/assets.dart';
-import '../../../../../core/consts/routesPage.dart';
 import '../../../../../core/helper/custom_snack.dart';
 import '../../../../../core/models/job_model/job_model.dart';
 import '../../../../../core/widgets/small_loading_widget.dart';

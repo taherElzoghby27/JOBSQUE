@@ -4,6 +4,8 @@ sealed class ChangedPageState {}
 
 final class ChangedPageInitial extends ChangedPageState {}
 
+class ChangedLoading extends ChangedPageState {}
+
 class ChangedSuccess extends ChangedPageState {}
 
 class ChangedFailure extends ChangedPageState {

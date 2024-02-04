@@ -38,13 +38,17 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
       listener: (context, stateChangedPage) {
         ChangedPageCubit changedBloc = context.read<ChangedPageCubit>();
         if (stateChangedPage is ChangedSuccess) {
+          isLoading = false;
           currentPage = changedBloc.currentPage;
         } else if (stateChangedPage is ChangedFailure) {
+          isLoading = false;
           showSnack(
             context,
             message: stateChangedPage.message,
             background: AppConsts.danger500,
           );
+        } else if (stateChangedPage is ChangedLoading) {
+          isLoading = true;
         }
       },
       builder: (context, stateChangedPage) {

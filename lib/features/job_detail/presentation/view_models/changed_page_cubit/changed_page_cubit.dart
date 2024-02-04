@@ -59,6 +59,7 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
     required String status,
   }) {
     try {
+      emit(ChangedLoading());
       //next->next->submit
       nextOrSubmit(
         context,
@@ -69,7 +70,6 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
       );
       //check if in last page or not
       checkInLastPageOrNot(context: context, currentPage: currentPage);
-      emit(ChangedSuccess());
     } catch (error) {
       emit(ChangedFailure(message: error.toString()));
     }
@@ -92,6 +92,8 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
           background: AppConsts.danger500,
         );
       }
+    }else{
+      emit(ChangedSuccess());
     }
   }
 

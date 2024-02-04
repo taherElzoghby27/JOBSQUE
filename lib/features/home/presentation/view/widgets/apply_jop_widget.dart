@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 //import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
@@ -16,8 +17,6 @@ class SectionAppliedJop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //for test
-    bool accepted = false;
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(15),
@@ -67,10 +66,9 @@ class SectionAppliedJop extends StatelessWidget {
             Spacer(flex: 3),
             //submitted or accepted chip
             ChipResponseApplied(
-              label: accepted ? StringsEn.accepted : StringsEn.submited,
-              color: accepted ? AppConsts.success800 : AppConsts.primary700,
-              background:
-                  accepted ? AppConsts.success300 : AppConsts.primary200,
+              label: true ? StringsEn.accepted : StringsEn.submited,
+              color: true ? AppConsts.success800 : AppConsts.primary700,
+              background: true ? AppConsts.success300 : AppConsts.primary200,
             ),
             Spacer(flex: 2),
           ],
