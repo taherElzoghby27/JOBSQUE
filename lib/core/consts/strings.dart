@@ -348,6 +348,7 @@ abstract class StringsEn {
   static String personName='Dimas Adi Saputro';
   static String personPosition='Senior UI/UX Designer at Twitter';
   static String twitter='Twitter';
+  static String softwareEngineer='Software Engineer';
 }
 
 ///strings by arabic

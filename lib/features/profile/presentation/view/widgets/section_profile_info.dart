@@ -25,6 +25,7 @@ class SectionProfileInfo extends StatelessWidget {
   final BuildContext ctx;
   final String name;
   final String bio;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

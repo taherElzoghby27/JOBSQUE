@@ -31,7 +31,7 @@ class ProfileBody extends StatelessWidget {
                   SectionProfileInfo(
                     ctx: contextParent,
                     name: user.name!,
-                    bio: 'software engineer',
+                    bio: StringsEn.softwareEngineer,
                   ),
                   //section general
                   SectionGeneral(),
