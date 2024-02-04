@@ -22,7 +22,7 @@ class RecentSearch extends StatelessWidget {
           itemBuilder: (context, index) {
             return CustomRecentOrPopularWidget(
               leading: FontAwesomeIcons.clock,
-              jop: 'Junior Software Engineer',
+              jop: StringsEn.softwareEngineer,
               trailingOnTap: () {},
               trailing: FontAwesomeIcons.circleXmark,
             );

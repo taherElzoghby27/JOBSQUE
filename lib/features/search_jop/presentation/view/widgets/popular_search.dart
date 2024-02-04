@@ -23,7 +23,7 @@ class PopularSearch extends StatelessWidget {
           itemBuilder: (context, index) {
             return CustomRecentOrPopularWidget(
               leading: FontAwesomeIcons.magnifyingGlass,
-              jop: 'Junior Software Engineer',
+              jop: StringsEn.softwareEngineer,
               trailingOnTap: () {},
               trailing: FontAwesomeIcons.arrowRight,
               trailingColor: AppConsts.primary500,
