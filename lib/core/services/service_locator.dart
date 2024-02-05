@@ -7,6 +7,7 @@ import 'package:jobsque/core/services/api_service/auth_service/signout_service.d
 import 'package:jobsque/core/services/api_service/login_and_security_service/change_name_pass_service.dart';
 import 'package:jobsque/core/services/api_service/login_and_security_service/get_otp_service.dart';
 import 'package:jobsque/core/services/api_service/jop_service/filter_job_service.dart';
+import 'package:jobsque/core/services/api_service/profile_service/add_experience_service.dart';
 import 'package:jobsque/core/services/api_service/profile_service/add_portfolio_service.dart';
 import 'package:jobsque/core/services/api_service/profile_service/edit_profile_service.dart';
 import 'package:jobsque/core/services/api_service/api_service.dart';
@@ -14,6 +15,7 @@ import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
+import 'package:jobsque/features/complete_profile/data/repo/complete_profile_repo_impl.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
 import 'package:jobsque/features/notification/data/repos/notification_repo_implementation.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.dart';
@@ -132,6 +134,18 @@ void setupServiceLocator() {
     AppliedJobsRepoImplementation(
       apiService: getIt.get<ApiService>(),
       hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
+    ),
+  );
+  //addExperienceService
+  getIt.registerSingleton<AddExperienceService>(
+    AddExperienceService(
+      apiService: getIt.get<ApiService>(),
+    ),
+  );
+  //CompleteProfileRepoImpl
+  getIt.registerSingleton<CompleteProfileRepoImpl>(
+    CompleteProfileRepoImpl(
+      addExperienceService: getIt.get<AddExperienceService>(),
     ),
   );
 }

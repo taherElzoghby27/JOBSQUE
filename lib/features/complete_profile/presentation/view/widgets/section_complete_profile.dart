@@ -29,7 +29,7 @@ class SectionCompleteProfile extends StatelessWidget {
         ItemCompleteProfile(
           title: StringsEn.education,
           subTitle: StringsEn.enterEduca,
-          complete: true,
+          complete: false,
           onTap: () => GoRouter.of(context).push(
             completeProfileProcessPath,
             extra: StringsEn.education,

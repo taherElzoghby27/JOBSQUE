@@ -15,7 +15,7 @@ class AddExperienceService {
   Future<http.Response> addExperience({
     required ExperienceModel experienceModel,
   }) async {
-    http.Response response = await apiService.put(
+    http.Response response = await apiService.post(
       path: "${ApiConsts.experinceEndpoint}",
       body: experienceModel.toJson(),
       headers: {

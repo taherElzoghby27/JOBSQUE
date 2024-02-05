@@ -24,6 +24,7 @@ class CompleteProfileRepoImpl extends CompleteProfileRepo {
       response = await _addExperienceService.addExperience(
         experienceModel: experienceModel,
       );
+      print(response.body);
       if (response.statusCode == 200) {
         Map<String, dynamic> data = jsonDecode(response.body);
         ExperienceModel experienceModel = ExperienceModel.fromJson(

@@ -81,6 +81,18 @@ class SectionGeneral extends StatelessWidget {
           decoration: BoxDecoration(),
         ),
         CustomDivider(),
+        // complete profile
+        CustomButtonThreeWidget(
+          leading: CustomCircleButton(
+            icon: AppAssets.profileSvg,
+            color: AppConsts.primary100,
+          ),
+          title: StringsEn.completeProfile,
+          trailing: Icons.arrow_forward_outlined,
+          onTap: () => GoRouter.of(context).push(completeProfilePath),
+          decoration: BoxDecoration(),
+        ),
+        CustomDivider(),
       ],
     );
   }

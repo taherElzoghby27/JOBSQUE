@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_animation.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
+import 'package:jobsque/core/services/api_service/profile_service/add_experience_service.dart';
 import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/core/services/service_locator.dart';
@@ -13,8 +14,10 @@ import 'package:jobsque/features/applied/presentation/view_models/applied_job_cu
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/auth/presentation/view_model/auth_bloc/auth_bloc.dart';
 import 'package:jobsque/features/auth/presentation/view_model/work_location_cubit/work_location_cubit.dart';
+import 'package:jobsque/features/complete_profile/data/repo/complete_profile_repo_impl.dart';
 import 'package:jobsque/features/complete_profile/presentation/view/complete_profile_process_view.dart';
 import 'package:jobsque/features/complete_profile/presentation/view/complete_profile_view.dart';
+import 'package:jobsque/features/complete_profile/presentation/view_models/add_experience_cubit/add_experience_cubit.dart';
 import 'package:jobsque/features/help_center/presentation/view/help_center_view.dart';
 import 'package:jobsque/features/home/data/repo/home_repo.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
@@ -462,8 +465,13 @@ final router = GoRouter(
         return buildPageWithDefaultTransition(
           context: context,
           state: state,
-          child: CompleteProfileProcessView(
-            currentPage: data,
+          child: BlocProvider(
+            create: (_) => AddExperienceCubit(
+              getIt.get<CompleteProfileRepoImpl>(),
+            ),
+            child: CompleteProfileProcessView(
+              currentPage: data,
+            ),
           ),
         );
       },

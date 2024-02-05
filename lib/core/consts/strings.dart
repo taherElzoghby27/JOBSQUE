@@ -120,6 +120,7 @@ abstract class StringsEn {
   static String typeSomething = 'Type something...';
   static String recentSearches = 'Recent searches';
   static String popularSearches = 'Popular searches';
+  static String selectTypeOfWork = 'Select type of work';
   static String fullTime = 'Full Time';
   static String senior = 'Senior';
   static String month = 'Month';
