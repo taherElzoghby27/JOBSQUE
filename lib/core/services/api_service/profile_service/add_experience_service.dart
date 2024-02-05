@@ -6,10 +6,10 @@ import 'package:jobsque/core/services/api_service/api_service.dart';
 import 'package:jobsque/features/complete_profile/data/models/experience_model.dart';
 
 
-class EditProfileService {
+class AddExperienceService {
   ApiService apiService;
 
-  EditProfileService({required this.apiService});
+  AddExperienceService({required this.apiService});
 
   //edit profile method
   Future<http.Response> addExperience({
