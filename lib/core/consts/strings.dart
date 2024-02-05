@@ -1,5 +1,6 @@
 ///strings by english
 abstract class StringsEn {
+  static String titleApp = 'Jobsque';
   static String unCompleted = 'unCompleted';
   static String eenterCv = 'Please, Enter CV';
   static String token = 'token';

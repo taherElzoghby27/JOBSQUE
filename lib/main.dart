@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
+import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/services/bloc_observer.dart';
@@ -37,10 +38,12 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp.router(
           routerConfig: router,
-          title: 'Flutter Demo',
+          title: StringsEn.titleApp,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: AppConsts.primary500),
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: AppConsts.primary500,
+            ),
           ),
         );
       },
