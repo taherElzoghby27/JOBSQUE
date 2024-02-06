@@ -56,6 +56,11 @@ abstract class AppConsts {
   static const Color danger300 = Color.fromRGBO(255, 164, 127, 1);
   static const Color danger200 = Color.fromRGBO(255, 201, 170, 1);
   static const Color danger100 = Color.fromRGBO(255, 231, 212, 1);
+
+  //aspect ratio
+  static const double aspect16on2 = 16 / 2;
+  static const double aspect16on14=16/14;
+  //styles
   static const TextStyle styleHint14 = TextStyle(
     color: AppConsts.neutral400,
     fontSize: 14,
@@ -130,6 +135,10 @@ abstract class AppConsts {
   static OutlineInputBorder normalBorderField = OutlineInputBorder(
     borderRadius: BorderRadius.circular(13.sp),
     borderSide: BorderSide(color: neutral300, width: 1),
+  );
+  static BoxDecoration decorationLoadingMap = BoxDecoration(
+    borderRadius: BorderRadius.circular(15),
+    color: neutral200.withOpacity(.2),
   );
   static OutlineInputBorder focusedBorderField = OutlineInputBorder(
     borderRadius: BorderRadius.circular(13.sp),

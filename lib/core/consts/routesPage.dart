@@ -14,7 +14,6 @@ import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/auth/presentation/view_model/auth_bloc/auth_bloc.dart';
 import 'package:jobsque/features/auth/presentation/view_model/work_location_cubit/work_location_cubit.dart';
 import 'package:jobsque/features/complete_profile/data/repo/complete_profile_repo_impl.dart';
-import 'package:jobsque/features/complete_profile/presentation/view/complete_profile_process_view.dart';
 import 'package:jobsque/features/complete_profile/presentation/view/complete_profile_view.dart';
 import 'package:jobsque/features/complete_profile/presentation/view_models/add_experience_cubit/add_experience_cubit.dart';
 import 'package:jobsque/features/help_center/presentation/view/help_center_view.dart';
@@ -59,6 +58,7 @@ import '../../features/auth/presentation/view/interested_in_work_view.dart';
 import '../../features/auth/presentation/view/successfully_view.dart';
 import '../../features/auth/presentation/view/work_location_view.dart';
 import '../../features/auth/presentation/view_model/interested_in_work_cubit/interested_in_work_cubit.dart';
+import '../../features/complete_profile/presentation/view/complete_profile_process_view.dart';
 import '../../features/home/data/repo/home_repo_implementation.dart';
 import '../../features/home/presentation/view/suggested_or_recent_jop_view.dart';
 import '../../features/job_detail/presentation/view/jop_detail_view.dart';
@@ -93,7 +93,6 @@ const termConditionPath = '/termConditionPath';
 const completeProfilePath = '/completeProfilePath';
 const completeProfileProcessPath = '/completeProfileProcessPath';
 const suggestedOrRecentJopPath = '/suggestedJopPath';
-//const completeProfileProcessPath = '/completeProfileProcessPath';
 final router = GoRouter(
   routes: [
     GoRoute(
@@ -456,6 +455,7 @@ final router = GoRouter(
         child: CompleteProfileView(),
       ),
     ),
+
     GoRoute(
       path: completeProfileProcessPath,
       pageBuilder: (context, state) {

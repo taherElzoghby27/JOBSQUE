@@ -37,15 +37,10 @@ class CustomAppBar extends StatelessWidget {
                     height: size.height * .075.h,
                   ),
                 )
-              : Row(
-                  children: [
-                    IconButton(
-                      onPressed: leadingOnTap,
-                      icon: Icon(Icons.arrow_back, color: color),
-                    ),
-                    // SizedBox(width: size.width * .25.w),
-                  ],
-                ),
+              : IconButton(
+                onPressed: leadingOnTap,
+                icon: Icon(Icons.arrow_back, color: color),
+              ),
 
           Text(
             title,
@@ -58,7 +53,7 @@ class CustomAppBar extends StatelessWidget {
 
           ///reset
           trailingWidget == null
-              ? Container()
+              ? Container(width: 50,)
               : TextButton(
                   onPressed: trailingOnTap,
                   child: trailingWidget!,

@@ -130,6 +130,7 @@ class _CustomExperienceComponentState extends State<CustomExperienceComponent> {
                   label: StringsEn.location,
                   hint: StringsEn.location,
                   perfixIcon: Icon(Icons.location_on),
+
                   controller: bloc.location,
                 ),
                 CustomCheckBox(
