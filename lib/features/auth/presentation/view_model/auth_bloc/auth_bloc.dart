@@ -28,7 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           );
           result.fold(
             (fail) {
-              emit(LoginFailure(message: fail.message!));
+              emit(LoginFailure(message: fail.message));
             },
             (_user) {
               saveDataForUser(
@@ -50,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           );
           result.fold(
             (fail) {
-              emit(RegisterFailure(message: fail.message!));
+              emit(RegisterFailure(message: fail.message));
             },
             (_user) {
               saveDataForUser(

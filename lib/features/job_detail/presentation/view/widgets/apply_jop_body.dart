@@ -19,7 +19,6 @@ import 'package:jobsque/features/job_detail/presentation/view_models/apply_job_c
 import 'package:jobsque/features/job_detail/presentation/view_models/changed_page_cubit/changed_page_cubit.dart';
 
 import '../../../../../core/consts/assets.dart';
-import '../../view_models/upload_portfolio_cubit/upload_portfolio_cubit.dart';
 
 class ApplyJopBody extends StatefulWidget {
   const ApplyJopBody({super.key, required this.data});

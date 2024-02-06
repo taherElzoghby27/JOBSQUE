@@ -15,14 +15,13 @@ class NotificationCubit extends Cubit<NotificationState> {
 
   //get notification
   getNotification({required String id}) async {
-
     Either<FailureMessage, NotificationModel> notification =
         await notificationRepo.getNotification(id: '1');
     emit(NotificationLoading());
     notification.fold(
       (fail) {
         emit(
-          NotificationFailure(message: fail.message!),
+          NotificationFailure(message: fail.message),
         );
       },
       (notification) {

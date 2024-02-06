@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_animation.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/core/services/api_service/profile_service/add_experience_service.dart';
 import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
 import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 import 'package:jobsque/core/services/service_locator.dart';
@@ -19,7 +18,6 @@ import 'package:jobsque/features/complete_profile/presentation/view/complete_pro
 import 'package:jobsque/features/complete_profile/presentation/view/complete_profile_view.dart';
 import 'package:jobsque/features/complete_profile/presentation/view_models/add_experience_cubit/add_experience_cubit.dart';
 import 'package:jobsque/features/help_center/presentation/view/help_center_view.dart';
-import 'package:jobsque/features/home/data/repo/home_repo.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
 import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';

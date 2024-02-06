@@ -23,7 +23,7 @@ void main() async {
   await CacheHelper.init();
   setupServiceLocator();
   runZoned(
-    () => Bloc.observer = BlocObserverService(),
+    () => Bloc.observer = Observe(),
   );
   runApp(const MyApp());
 }

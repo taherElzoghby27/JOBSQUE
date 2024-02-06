@@ -22,7 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
               await jobFilterRepo.filterJobs();
           result.fold(
             (failure) {
-              emit(GetJobsFailure(message: failure.message!));
+              emit(GetJobsFailure(message: failure.message));
             },
             (jobs) {
               emit(GetJobsLoaded(jobs: jobs));

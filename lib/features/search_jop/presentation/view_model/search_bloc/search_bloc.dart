@@ -33,7 +33,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           );
           result.fold(
             (failure) {
-              emit(GetJobsFailure(message: failure.message!));
+              emit(GetJobsFailure(message: failure.message));
             },
             (jobs) {
               emit(GetJobsLoaded(jobs: jobs));

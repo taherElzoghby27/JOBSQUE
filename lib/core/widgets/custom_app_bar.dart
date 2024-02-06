@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -11,6 +10,7 @@ class CustomAppBar extends StatelessWidget {
     this.trailingOnTap,
     this.trailingWidget,
     this.image,
+    this.color = AppConsts.neutral900,
   });
 
   final void Function()? leadingOnTap;
@@ -18,54 +18,53 @@ class CustomAppBar extends StatelessWidget {
   final void Function()? trailingOnTap;
   final Widget? trailingWidget;
   final String? image;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ///arrow back
-        leadingOnTap == null
-            ? Container()
-            : IconButton(
-                onPressed: leadingOnTap,
-                icon: Icon(Icons.arrow_back),
-              ),
-        Spacer(),
-
-        ///set filter
-        image == null
-            ? Text(
-                title,
-                style: AppConsts.style20.copyWith(
-                  color: AppConsts.neutral900,
-                ),
-              )
-            : Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: SvgPicture.asset(image!),
+    Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: EdgeInsets.all(4.sp),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ///arrow back
+          leadingOnTap == null
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset(
+                    image!,
+                    height: size.height * .075.h,
                   ),
-                  SizedBox(width: 10.w),
-                  Text(
-                    title,
-                    style: AppConsts.style20.copyWith(
-                      color: AppConsts.neutral900,
+                )
+              : Row(
+                  children: [
+                    IconButton(
+                      onPressed: leadingOnTap,
+                      icon: Icon(Icons.arrow_back, color: color),
                     ),
-                  ),
-                ],
-              ),
-        Spacer(),
+                    // SizedBox(width: size.width * .25.w),
+                  ],
+                ),
 
-        ///reset
-        trailingWidget == null
-            ? Container()
-            : TextButton(
-                onPressed: trailingOnTap,
-                child: trailingWidget!,
-              ),
-      ],
+          Text(
+            title,
+            style: AppConsts.style20.copyWith(
+              color: color,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          //const Spacer(),
+
+          ///reset
+          trailingWidget == null
+              ? Container()
+              : TextButton(
+                  onPressed: trailingOnTap,
+                  child: trailingWidget!,
+                ),
+        ],
+      ),
     );
   }
 }

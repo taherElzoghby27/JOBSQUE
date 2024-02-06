@@ -35,11 +35,11 @@ class CompleteProfileRepoImpl extends CompleteProfileRepo {
       return Left(
         FailureMessage(message: 'No Internet connection'),
       );
-    } on TimeoutException catch (e) {
+    } on TimeoutException {
       return Left(
         FailureMessage(message: 'Connection timeout'),
       );
-    } on Error catch (e) {
+    } on Error {
       return Left(FailureMessage.fromHttpError(response));
     }
     return Left(
