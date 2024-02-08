@@ -35,7 +35,9 @@ class SectionCompleteProfile extends StatelessWidget {
             extra: StringsEn.personalDetails,
           ),
         ),
-        CustomVerticalDivider(color: AppConsts.primary500),
+        CustomVerticalDivider(
+          color: personalDetails ? AppConsts.primary500 : AppConsts.neutral300,
+        ),
         //education
         ItemCompleteProfile(
           title: StringsEn.education,
@@ -46,7 +48,9 @@ class SectionCompleteProfile extends StatelessWidget {
             extra: StringsEn.education,
           ),
         ),
-        CustomVerticalDivider(color: AppConsts.neutral300),
+        CustomVerticalDivider(
+          color: education ? AppConsts.primary500 : AppConsts.neutral300,
+        ),
         //experience
         ItemCompleteProfile(
           title: StringsEn.experience,
@@ -57,7 +61,9 @@ class SectionCompleteProfile extends StatelessWidget {
             extra: StringsEn.experience,
           ),
         ),
-        CustomVerticalDivider(color: AppConsts.neutral300),
+        CustomVerticalDivider(
+          color: experience ? AppConsts.primary500 : AppConsts.neutral300,
+        ),
         //portfolio
         ItemCompleteProfile(
           title: StringsEn.portfolio,
