@@ -67,7 +67,7 @@ class WorkLocationCubit extends Cubit<WorkLocationState> {
         .map((entry) => entry.key)
         .toList();
 
-    final joinedWorksLocation = selectedWorkLocation.join(' ');
+    final String joinedWorksLocation = selectedWorkLocation.join(' ');
     await editProfile(workLocation: joinedWorksLocation);
   }
 
