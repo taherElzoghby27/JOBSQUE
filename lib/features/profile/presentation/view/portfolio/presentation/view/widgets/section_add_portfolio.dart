@@ -10,7 +10,9 @@ class SectionAddPortfolio extends StatelessWidget {
     super.key,
     required this.onTap,
   });
+
   final void Function() onTap;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,9 +23,7 @@ class SectionAddPortfolio extends StatelessWidget {
           TitleField(label: StringsEn.addPortfolioHere),
           SizedBox(height: size.height * .01.h),
           //pdf
-          UploadYourOtherFileWidget(
-            onTap: onTap,
-          ),
+          UploadYourOtherFileWidget(onTap: onTap),
         ],
       ),
     );

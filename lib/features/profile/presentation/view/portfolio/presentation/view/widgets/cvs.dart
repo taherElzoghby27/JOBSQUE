@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/models/user_profile_model/portfolio.dart';
 import 'package:jobsque/core/widgets/small_loading_widget.dart';
@@ -37,7 +38,11 @@ class Portfolios extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is GetFilesFailure) {
-          showSnack(context, message: state.message);
+          showSnack(
+            context,
+            message: state.message,
+            background: AppConsts.danger500,
+          );
         }
       },
     );

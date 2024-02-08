@@ -17,8 +17,10 @@ import '../../../data/repo/portfolio_repo.dart';
 part 'portfolio_state.dart';
 
 class PortfolioCubit extends Cubit<PortfolioState> {
-  PortfolioRepo portfolioRepo;
+  final PortfolioRepo portfolioRepo;
+
   PortfolioCubit({required this.portfolioRepo}) : super(PortfolioInitial());
+
   //to save
   List<File> files = [];
 
@@ -45,10 +47,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
   add({required File file}) async {
     Either<FailureMessage, PortfolioCv> portfolio =
         await portfolioRepo.addPortFolio(
-      portfolioCv: PortfolioCv(
-        cvFile: file,
-        image: file,
-      ),
+      portfolioCv: PortfolioCv(cvFile: file, image: file),
     );
     getPortfolios();
     portfolio.fold(
