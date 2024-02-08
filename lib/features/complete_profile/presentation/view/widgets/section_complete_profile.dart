@@ -8,7 +8,18 @@ import 'package:jobsque/features/complete_profile/presentation/view/widgets/item
 import 'custom_vertical_divider.dart';
 
 class SectionCompleteProfile extends StatelessWidget {
-  const SectionCompleteProfile({super.key});
+  const SectionCompleteProfile({
+    super.key,
+    required this.personalDetails,
+    required this.education,
+    required this.experience,
+    required this.portfolio,
+  });
+
+  final bool personalDetails;
+  final bool education;
+  final bool experience;
+  final bool portfolio;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +29,7 @@ class SectionCompleteProfile extends StatelessWidget {
         ItemCompleteProfile(
           title: StringsEn.personalDetails,
           subTitle: StringsEn.fullNameEmail,
-          complete: true,
+          complete: personalDetails,
           onTap: () => GoRouter.of(context).push(
             completeProfileProcessPath,
             extra: StringsEn.personalDetails,
@@ -29,7 +40,7 @@ class SectionCompleteProfile extends StatelessWidget {
         ItemCompleteProfile(
           title: StringsEn.education,
           subTitle: StringsEn.enterEduca,
-          complete: false,
+          complete: education,
           onTap: () => GoRouter.of(context).push(
             completeProfileProcessPath,
             extra: StringsEn.education,
@@ -40,7 +51,7 @@ class SectionCompleteProfile extends StatelessWidget {
         ItemCompleteProfile(
           title: StringsEn.experience,
           subTitle: StringsEn.enterYourWorkExperience,
-          complete: false,
+          complete: experience,
           onTap: () => GoRouter.of(context).push(
             completeProfileProcessPath,
             extra: StringsEn.experience,
@@ -51,7 +62,7 @@ class SectionCompleteProfile extends StatelessWidget {
         ItemCompleteProfile(
           title: StringsEn.portfolio,
           subTitle: StringsEn.createPortfolio,
-          complete: false,
+          complete: portfolio,
           onTap: () => GoRouter.of(context).push(
             completeProfileProcessPath,
             extra: StringsEn.portfolio,

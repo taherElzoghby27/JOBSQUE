@@ -355,6 +355,10 @@ abstract class StringsEn {
   static const String addresSDetail = 'Enter the address in detail';
   static const String confirmAddress = 'Confirm address';
   static const String confirmed = "Confirmed";
+  static const String personalDetailsComplete = 'personalDetailsComplete';
+  static const String educationComplete = 'EducationComplete';
+  static const String experienceComplete = 'ExperienceComplete';
+  static const String portfolioComplete = 'portfolioComplete';
 }
 
 ///strings by arabic

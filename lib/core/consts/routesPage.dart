@@ -455,7 +455,6 @@ final router = GoRouter(
         child: CompleteProfileView(),
       ),
     ),
-
     GoRoute(
       path: completeProfileProcessPath,
       pageBuilder: (context, state) {
@@ -463,10 +462,19 @@ final router = GoRouter(
         return buildPageWithDefaultTransition(
           context: context,
           state: state,
-          child: BlocProvider(
-            create: (_) => AddExperienceCubit(
-              getIt.get<CompleteProfileRepoImpl>(),
-            ),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => AddExperienceCubit(
+                  getIt.get<CompleteProfileRepoImpl>(),
+                ),
+              ),
+              BlocProvider(
+                create: (_) => PortfolioCubit(
+                  portfolioRepo: getIt.get<PortfolioRepoImplementation>(),
+                ),
+              ),
+            ],
             child: CompleteProfileProcessView(
               currentPage: data,
             ),

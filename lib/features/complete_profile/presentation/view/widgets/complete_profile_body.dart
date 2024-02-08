@@ -1,14 +1,61 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/features/complete_profile/presentation/view/widgets/section_complete_profile.dart';
 import 'package:jobsque/features/complete_profile/presentation/view/widgets/section_percent_indicator.dart';
 
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 
-class CompleteProfileBody extends StatelessWidget {
+class CompleteProfileBody extends StatefulWidget {
   const CompleteProfileBody({super.key});
+
+  @override
+  State<CompleteProfileBody> createState() => _CompleteProfileBodyState();
+}
+
+class _CompleteProfileBodyState extends State<CompleteProfileBody> {
+  late bool personalDetailsStatus;
+  late bool educationStatus;
+  late bool experienceStatus;
+  late bool portfolioStatus;
+  int nOfTrue = 0;
+
+  @override
+  void initState() {
+    getData();
+    nOfTrue = calculateHowManyTrue();
+    super.initState();
+  }
+
+  getData() {
+    personalDetailsStatus =
+        CacheHelper.getData(key: StringsEn.personalDetailsComplete) ?? false;
+    educationStatus =
+        CacheHelper.getData(key: StringsEn.educationComplete) ?? false;
+    experienceStatus =
+        CacheHelper.getData(key: StringsEn.experienceComplete) ?? false;
+    portfolioStatus =
+        CacheHelper.getData(key: StringsEn.portfolioComplete) ?? false;
+  }
+
+  int calculateHowManyTrue() {
+    int trueCount = 0;
+    if (personalDetailsStatus == true) {
+      trueCount++;
+    }
+    if (educationStatus == true) {
+      trueCount++;
+    }
+    if (experienceStatus == true) {
+      trueCount++;
+    }
+    if (portfolioStatus == true) {
+      trueCount++;
+    }
+    return trueCount;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +74,14 @@ class CompleteProfileBody extends StatelessWidget {
           ),
           SizedBox(height: size.height * .02.h),
           //percent indicator
-          SectionPercentIndicator(),
+          SectionPercentIndicator(nOfManyTrue: nOfTrue),
           //complete your profile
-          SectionCompleteProfile(),
+          SectionCompleteProfile(
+            personalDetails: personalDetailsStatus,
+            education: educationStatus,
+            experience: experienceStatus,
+            portfolio: portfolioStatus,
+          ),
         ],
       ),
     );

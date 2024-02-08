@@ -8,6 +8,7 @@ import 'package:file_picker/file_picker.dart';
 
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
+import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/user_profile_model/portfolio.dart';
 import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/models/portfolio.dart';
@@ -52,7 +53,13 @@ class PortfolioCubit extends Cubit<PortfolioState> {
     getPortfolios();
     portfolio.fold(
       (l) => print("added failed"),
-      (r) => print("added success"),
+      (r) async {
+        await CacheHelper.saveData(
+          key: StringsEn.portfolioComplete,
+          value: true,
+        );
+        print("added success");
+      },
     );
   }
 

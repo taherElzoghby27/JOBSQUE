@@ -5,7 +5,9 @@ import 'package:jobsque/core/consts/style.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class SectionPercentIndicator extends StatelessWidget {
-  const SectionPercentIndicator({super.key});
+  const SectionPercentIndicator({super.key, required this.nOfManyTrue});
+
+  final int nOfManyTrue;
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +19,16 @@ class SectionPercentIndicator extends StatelessWidget {
           CircularPercentIndicator(
             radius: 60.0,
             lineWidth: 7.0,
-            percent: .7,
-            center: new Text(
-              "75%",
+            percent: nOfManyTrue/4,
+            center: Text(
+              calcPercentage,
               style: AppConsts.style24.copyWith(color: AppConsts.primary500),
             ),
             progressColor: AppConsts.primary500,
           ),
           SizedBox(height: size.height * .02.h),
           Text(
-            '2/4 ${StringsEn.completed}',
+            showStatus,
             style: AppConsts.style16White.copyWith(
               color: AppConsts.primary500,
             ),
@@ -38,4 +40,10 @@ class SectionPercentIndicator extends StatelessWidget {
       ),
     );
   }
+
+  String get calcPercentage => "${((nOfManyTrue / 4) * 100).toInt()}%";
+
+  String get showStatus => nOfManyTrue != 4
+      ? ("${nOfManyTrue}/4 ${StringsEn.completed}")
+      : "${StringsEn.completed}!";
 }

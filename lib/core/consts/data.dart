@@ -6,3 +6,4 @@ List<String> salaries = [
   '20k-25k',
   'more than 25k',
 ];
+
