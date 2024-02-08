@@ -55,7 +55,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
       (l) => print("added failed"),
       (r) async {
         await CacheHelper.saveData(
-          key: StringsEn.portfolioComplete,
+          key: StringsEn.portfolioCompleteK,
           value: true,
         );
         print("added success");

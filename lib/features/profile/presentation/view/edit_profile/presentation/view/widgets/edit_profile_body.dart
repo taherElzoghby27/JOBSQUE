@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/small_loading_widget.dart';
@@ -13,8 +14,15 @@ import '../../../../../../../../core/consts/routesPage.dart';
 import '../../../../../../../../core/consts/strings.dart';
 import '../../../../../../../../core/widgets/custom_app_bar.dart';
 
-class EditProfileBody extends StatelessWidget {
+class EditProfileBody extends StatefulWidget {
   const EditProfileBody({super.key});
+
+  @override
+  State<EditProfileBody> createState() => _EditProfileBodyState();
+}
+
+class _EditProfileBodyState extends State<EditProfileBody> {
+  bool isLoad = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +50,18 @@ class EditProfileBody extends StatelessWidget {
             width: size.width * .9.w,
             child: BlocConsumer<EditProfileCubit, EditProfileState>(
               builder: (context, state) {
-                bool isLoad = false;
+                return Visibility(
+                  visible: !isLoad,
+                  replacement: LoadingWidget(),
+                  child: CustomButton(
+                    text: StringsEn.save,
+                    onTap: () async {
+                      await BlocProvider.of<EditProfileCubit>(context).save();
+                    },
+                  ),
+                );
+              },
+              listener: (context, state) {
                 if (state is SavedLoading) {
                   isLoad = true;
                 } else if (state is SavedSuccess) {
@@ -50,22 +69,11 @@ class EditProfileBody extends StatelessWidget {
                   GoRouter.of(context).pushReplacement(homePath);
                 } else if (state is SavedFailure) {
                   isLoad = false;
-                }
-                return Visibility(
-                  visible: !isLoad,
-                  replacement: LoadingWidget(),
-                  child: CustomButton(
-                    text: StringsEn.save,
-                    onTap: () async {
-                      await BlocProvider.of<EditProfileCubit>(context)
-                          .save();
-                    },
-                  ),
-                );
-              },
-              listener: (context, state) {
-                if (state is SavedFailure) {
-                  showSnack(context, message: StringsEn.someThingError);
+                  showSnack(
+                    context,
+                    message: StringsEn.someThingError,
+                    background: AppConsts.danger500,
+                  );
                 }
               },
             ),

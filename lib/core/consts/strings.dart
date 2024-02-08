@@ -46,6 +46,8 @@ abstract class StringsEn {
   static const String  googleMap = 'Google Map';
   static const String  whatTypeOfWorkInterested =
       'What type of work are you interested in?';
+  static const String  whatTypeOfWorkInterestedKey=
+      'What type of work are you interested in key';
   static const String  whatTypeError = 'please, Enter work you are interested in.....';
   static const String  tellUsWhatYouAreInterestedIn =
       'Tell us what you’re interested in so we can customise the app for your needs.';
@@ -60,6 +62,7 @@ abstract class StringsEn {
   static const String  letUsKnowWhereIsTheWork =
       'Let us know, where is the work location you want at this time, so we can adjust it.';
   static const String  workFromOffice = 'Work From Office';
+  static const String  workLocationK = 'Work Location key';
   static const String  workDuring = 'Work during';
   static const String  remoteWork = 'Remote Work';
   static const String  remote = 'Remote';
@@ -355,10 +358,10 @@ abstract class StringsEn {
   static const String addresSDetail = 'Enter the address in detail';
   static const String confirmAddress = 'Confirm address';
   static const String confirmed = "Confirmed";
-  static const String personalDetailsComplete = 'personalDetailsComplete';
-  static const String educationComplete = 'EducationComplete';
-  static const String experienceComplete = 'ExperienceComplete';
-  static const String portfolioComplete = 'portfolioComplete';
+  static const String personalDetailsCompleteK = 'personalDetailsComplete';
+  static const String educationCompleteK = 'EducationComplete';
+  static const String experienceCompleteK = 'ExperienceComplete';
+  static const String portfolioCompleteK = 'portfolioComplete';
 }
 
 ///strings by arabic

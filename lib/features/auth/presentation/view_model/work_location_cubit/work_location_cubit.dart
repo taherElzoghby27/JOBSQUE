@@ -13,6 +13,7 @@ part 'work_location_state.dart';
 
 class WorkLocationCubit extends Cubit<WorkLocationState> {
   AuthRepo authRepo;
+
   WorkLocationCubit({required this.authRepo}) : super(WorkLocationInitial());
   Map<String, bool> workLocation = {
     StringsEn.malaysia: false,
@@ -30,6 +31,7 @@ class WorkLocationCubit extends Cubit<WorkLocationState> {
     StringsEn.argentina: false,
     StringsEn.egypt: false,
   };
+
 //set value
   void toggleWorkInterest({required String key, required bool status}) {
     workLocation[key] = status;
@@ -51,6 +53,7 @@ class WorkLocationCubit extends Cubit<WorkLocationState> {
 //if any true return true
   bool get hasSelectedWorkInterest =>
       workLocation.values.any((status) => status);
+
 //handle Next action
   Future<bool> handleNextAction() async {
     if (hasSelectedWorkInterest) {
@@ -68,28 +71,16 @@ class WorkLocationCubit extends Cubit<WorkLocationState> {
         .toList();
 
     final String joinedWorksLocation = selectedWorkLocation.join(' ');
-    await editProfile(workLocation: joinedWorksLocation);
+    await save(workLocation: joinedWorksLocation);
   }
 
 //edit user profile
-  editProfile({required workLocation}) async {
+  save({required workLocation}) async {
     emit(InterestedInWorkLoading());
-    Either<FailureMessage, ProfileModel> result = await authRepo.editProfile(
-      profileModel: ProfileModel(
-        interestedWork: CacheHelper.getData(
-          key: StringsEn.whatTypeOfWorkInterested,
-        ),
-        remotePlace: workLocation,
-        offlinePlace: workLocation,
-      ),
+    await CacheHelper.saveData(
+      key: StringsEn.workLocationK,
+      value: workLocation,
     );
-    result.fold(
-      (fail) {
-        emit(InterestedInWorkFailure());
-      },
-      (profile) {
-        emit(InterestedInWorkSuccess());
-      },
-    );
+    emit(InterestedInWorkSuccess());
   }
 }

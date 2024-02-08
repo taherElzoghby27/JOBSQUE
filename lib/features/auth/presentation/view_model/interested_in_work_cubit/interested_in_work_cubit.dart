@@ -50,7 +50,7 @@ class InterestedInWorkCubit extends Cubit<InterestedInWorkState> {
 //save in cache
   saveInCache({required String interestedIn}) async {
     await CacheHelper.saveData(
-      key: StringsEn.whatTypeOfWorkInterested,
+      key: StringsEn.whatTypeOfWorkInterestedKey,
       value: interestedIn,
     );
     emit(Success());

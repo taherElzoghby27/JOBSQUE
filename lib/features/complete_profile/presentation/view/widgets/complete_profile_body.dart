@@ -31,13 +31,13 @@ class _CompleteProfileBodyState extends State<CompleteProfileBody> {
 
   getData() {
     personalDetailsStatus =
-        CacheHelper.getData(key: StringsEn.personalDetailsComplete) ?? false;
+        CacheHelper.getData(key: StringsEn.personalDetailsCompleteK) ?? false;
     educationStatus =
-        CacheHelper.getData(key: StringsEn.educationComplete) ?? false;
+        CacheHelper.getData(key: StringsEn.educationCompleteK) ?? false;
     experienceStatus =
-        CacheHelper.getData(key: StringsEn.experienceComplete) ?? false;
+        CacheHelper.getData(key: StringsEn.experienceCompleteK) ?? false;
     portfolioStatus =
-        CacheHelper.getData(key: StringsEn.portfolioComplete) ?? false;
+        CacheHelper.getData(key: StringsEn.portfolioCompleteK) ?? false;
   }
 
   int calculateHowManyTrue() {

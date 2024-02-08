@@ -63,7 +63,6 @@ void setupServiceLocator() {
       registerApiService: getIt.get<RegisterApiService>(),
       loginApiService: getIt.get<LoginApiService>(),
       resetPassApiService: getIt.get<ResetPassApiService>(),
-      editProfileService: getIt.get<EditProfileService>(),
     ),
   );
   //job api service
@@ -93,6 +92,7 @@ void setupServiceLocator() {
     ProfileRepoImplementation(
       signOutService: getIt.get<SignOutService>(),
       apiService: getIt.get<ApiService>(),
+      editProfileService: getIt.get<EditProfileService>(),
     ),
   );
   //add portfolio api service

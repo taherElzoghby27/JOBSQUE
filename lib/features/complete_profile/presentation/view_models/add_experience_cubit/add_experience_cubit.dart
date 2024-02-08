@@ -73,7 +73,7 @@ class AddExperienceCubit extends Cubit<AddExperienceState> {
         (fail) => emit(AddedFailure(message: fail.message)),
         (experienceModel) async {
           await CacheHelper.saveData(
-            key: StringsEn.experienceComplete,
+            key: StringsEn.experienceCompleteK,
             value: true,
           );
           emit(AddedSuccess());

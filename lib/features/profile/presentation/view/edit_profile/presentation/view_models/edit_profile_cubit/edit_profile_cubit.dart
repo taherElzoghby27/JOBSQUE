@@ -4,17 +4,18 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/profile_model.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
-
-import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
+import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 
 part 'edit_profile_state.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {
-  AuthRepo authRepo;
+  ProfileRepo profileRepo;
 
-  EditProfileCubit({required this.authRepo}) : super(EditProfileInitial());
+  EditProfileCubit({required this.profileRepo}) : super(EditProfileInitial());
 
   //variables
   TextEditingController controllerName = TextEditingController();
@@ -49,16 +50,27 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         emit(SavedLoading());
         //edit profile
         Either<FailureMessage, ProfileModel> editProfileResult =
-            await authRepo.editProfile(
+            await profileRepo.editProfile(
           profileModel: ProfileModel(
             bio: controllerBio.text,
             address: controllerAddress.text,
             mobile: controllerMobileNumber.text,
+            interestedWork: CacheHelper.getData(
+              key: StringsEn.whatTypeOfWorkInterestedKey,
+            ),
+            remotePlace: CacheHelper.getData(key: StringsEn.workLocationK),
+            offlinePlace: CacheHelper.getData(key: StringsEn.workLocationK),
           ),
         );
         editProfileResult.fold(
           (failure) => emit(SavedFailure()),
-          (profile) => emit(SavedSuccess()),
+          (profile) async {
+            await CacheHelper.saveData(
+              key: StringsEn.personalDetailsCompleteK,
+              value: true,
+            );
+            emit(SavedSuccess());
+          },
         );
       } catch (error) {
         emit(SavedFailure());
@@ -66,6 +78,5 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     } else {
       emit(SavedFailure());
     }
-    return false;
   }
 }
