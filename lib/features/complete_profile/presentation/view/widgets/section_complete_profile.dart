@@ -30,10 +30,12 @@ class SectionCompleteProfile extends StatelessWidget {
           title: StringsEn.personalDetails,
           subTitle: StringsEn.fullNameEmail,
           complete: personalDetails,
-          onTap: () => GoRouter.of(context).push(
-            completeProfileProcessPath,
-            extra: StringsEn.personalDetails,
-          ),
+          onTap: !personalDetails
+              ? () => GoRouter.of(context).push(
+                    completeProfileProcessPath,
+                    extra: StringsEn.personalDetails,
+                  )
+              : () {},
         ),
         CustomVerticalDivider(
           color: personalDetails ? AppConsts.primary500 : AppConsts.neutral300,
@@ -43,10 +45,12 @@ class SectionCompleteProfile extends StatelessWidget {
           title: StringsEn.education,
           subTitle: StringsEn.enterEduca,
           complete: education,
-          onTap: () => GoRouter.of(context).push(
-            completeProfileProcessPath,
-            extra: StringsEn.education,
-          ),
+          onTap: !education
+              ? () => GoRouter.of(context).push(
+                    completeProfileProcessPath,
+                    extra: StringsEn.education,
+                  )
+              : () {},
         ),
         CustomVerticalDivider(
           color: education ? AppConsts.primary500 : AppConsts.neutral300,
@@ -56,10 +60,12 @@ class SectionCompleteProfile extends StatelessWidget {
           title: StringsEn.experience,
           subTitle: StringsEn.enterYourWorkExperience,
           complete: experience,
-          onTap: () => GoRouter.of(context).push(
-            completeProfileProcessPath,
-            extra: StringsEn.experience,
-          ),
+          onTap: !experience
+              ? () => GoRouter.of(context).push(
+                    completeProfileProcessPath,
+                    extra: StringsEn.experience,
+                  )
+              : () {},
         ),
         CustomVerticalDivider(
           color: experience ? AppConsts.primary500 : AppConsts.neutral300,
@@ -69,10 +75,12 @@ class SectionCompleteProfile extends StatelessWidget {
           title: StringsEn.portfolio,
           subTitle: StringsEn.createPortfolio,
           complete: portfolio,
-          onTap: () => GoRouter.of(context).push(
-            completeProfileProcessPath,
-            extra: StringsEn.portfolio,
-          ),
+          onTap: !portfolio
+              ? () => GoRouter.of(context).push(
+                    completeProfileProcessPath,
+                    extra: StringsEn.portfolio,
+                  )
+              : () {},
         ),
       ],
     );
