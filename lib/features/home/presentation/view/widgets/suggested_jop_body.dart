@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/section_suggested_jops.dart';
-
+import 'package:jobsque/core/consts/style.dart';
 import '../../../../../core/consts/routesPage.dart';
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
@@ -20,7 +19,7 @@ class SuggestedOrRecentJopBody extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
         //custom appBar
         CustomAppBar(
@@ -30,7 +29,7 @@ class SuggestedOrRecentJopBody extends StatelessWidget {
               : StringsEn.recentJob,
           trailingWidget: Container(),
         ),
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
         //suggested jops
         SectionSuggestedOrRecentJops(),
       ],

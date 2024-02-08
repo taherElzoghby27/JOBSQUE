@@ -40,7 +40,7 @@ class ItemSavedJop extends StatelessWidget {
                 icon: Icon(Icons.more_horiz),
               ),
             ),
-            SizedBox(height: size.height * .02.h),
+            const AspectRatio(aspectRatio:AppConsts.aspect16on1),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

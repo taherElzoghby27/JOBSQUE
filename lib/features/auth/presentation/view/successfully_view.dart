@@ -35,7 +35,7 @@ class SuccessfullView extends StatelessWidget {
 
                 ///icon
                 SvgPicture.asset(icon, height: size.height * .15),
-                SizedBox(height: size.height * .02.h),
+                const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
                 ///title
                 Text(

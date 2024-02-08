@@ -5,7 +5,7 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 
 import 'content_terms_and_condition.dart';
-
+import 'package:jobsque/core/consts/style.dart';
 class TermsAndConditionBody extends StatelessWidget {
   const TermsAndConditionBody({super.key});
 
@@ -17,13 +17,13 @@ class TermsAndConditionBody extends StatelessWidget {
       child: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
           CustomAppBar(
             leadingOnTap: () => GoRouter.of(context).pop(),
             title: StringsEn.termsCondition,
             trailingWidget: Container(),
           ),
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
           //content
           ContentTermsCond(
             heading: StringsEn.loremDolor,

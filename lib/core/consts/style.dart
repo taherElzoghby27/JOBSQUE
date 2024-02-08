@@ -60,6 +60,8 @@ abstract class AppConsts {
   //aspect ratio
   static const double aspect16on2 = 16 / 2;
   static const double aspect16on14=16/14;
+  static const double aspect16on1=16/1;
+  static const double aspect16on4=16/4;
   //styles
   static const TextStyle styleHint14 = TextStyle(
     color: AppConsts.neutral400,

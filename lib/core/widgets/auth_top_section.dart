@@ -22,7 +22,7 @@ class AuthTopSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
         ///logo
         Padding(

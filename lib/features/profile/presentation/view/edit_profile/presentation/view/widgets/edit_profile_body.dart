@@ -29,7 +29,7 @@ class _EditProfileBodyState extends State<EditProfileBody> {
     Size size = MediaQuery.of(context).size;
     return ListView(
       children: [
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
         //custom appBar
         CustomAppBar(
@@ -37,7 +37,7 @@ class _EditProfileBodyState extends State<EditProfileBody> {
           title: StringsEn.editProfile,
           trailingWidget: Container(),
         ),
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
         //edit photo
         SectionEditPhoto(),
         //edit personal info

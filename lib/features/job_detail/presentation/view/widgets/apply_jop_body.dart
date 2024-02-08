@@ -82,7 +82,7 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
                   height: size.height,
                   child: ListView(
                     children: [
-                      SizedBox(height: size.height * .02.h),
+                      const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
                       //custom appBar
                       CustomAppBar(
@@ -96,12 +96,12 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
                       status == StringsEn.notComplete
                           ? Column(
                               children: [
-                                SizedBox(height: size.height * .02.h),
+                                const AspectRatio(aspectRatio:AppConsts.aspect16on1),
                                 InfoSectionJopDetail(job: job),
                               ],
                             )
                           : Container(),
-                      SizedBox(height: size.height * .02.h),
+                      const AspectRatio(aspectRatio:AppConsts.aspect16on1),
                       //1  2  3 (circles bar)
                       Center(
                         child: CirclesBarSection(currentPage: currentPag),

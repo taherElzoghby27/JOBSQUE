@@ -36,7 +36,7 @@ class _ContentDescriptionWidgetState extends State<ContentDescriptionWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
           //jop description
           Text(
             StringsEn.jobDiscri,
@@ -46,7 +46,7 @@ class _ContentDescriptionWidgetState extends State<ContentDescriptionWidget> {
           ),
           SizedBox(height: size.height * .01.h),
           Text(widget.job.jobDescription!, style: AppConsts.style12),
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
           //skill required
           Text(
             StringsEn.skillRequired,

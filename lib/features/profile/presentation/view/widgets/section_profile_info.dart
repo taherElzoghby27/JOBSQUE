@@ -43,7 +43,7 @@ class SectionProfileInfo extends StatelessWidget {
                 color: AppConsts.primary100,
                 child: Column(
                   children: [
-                    SizedBox(height: size.height * .02.h),
+                    const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
                     //appBar
                     CustomAppBar(

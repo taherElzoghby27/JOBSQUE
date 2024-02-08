@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
@@ -22,7 +23,7 @@ class Jobs extends StatelessWidget {
       children: [
         //active - rejected
         CustomBarAppliedJob(),
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
         BlocConsumer<AppliedJobCubit, AppliedJobState>(
           builder: (context, state) {

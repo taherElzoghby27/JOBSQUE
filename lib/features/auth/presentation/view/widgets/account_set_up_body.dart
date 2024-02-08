@@ -30,7 +30,7 @@ class AccountSetUpBody extends StatelessWidget {
 
             ///icon
             SvgPicture.asset(AppAssets.user, height: size.height * .1),
-            SizedBox(height: size.height * .02.h),
+            const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
             ///title
             Text(

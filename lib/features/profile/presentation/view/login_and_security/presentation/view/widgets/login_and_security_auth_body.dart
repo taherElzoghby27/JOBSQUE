@@ -12,7 +12,7 @@ import 'package:jobsque/features/profile/presentation/view/login_and_security/pr
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/widgets/phone_number_component.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view_models/update_name_password_cubit/update_name_pass_cubit.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
+import 'package:jobsque/core/consts/style.dart';
 import '../../../../../../../../core/consts/routesPage.dart';
 import '../../../../../../../../core/consts/strings.dart';
 
@@ -76,7 +76,7 @@ class _LoginSecurityAuthBodyState extends State<LoginSecurityAuthBody> {
           ),
           child: Column(
             children: [
-              SizedBox(height: size.height * .02.h),
+              const AspectRatio(aspectRatio:AppConsts.aspect16on1),
               CustomAppBar(
                 leadingOnTap: () => GoRouter.of(context).pop(),
                 title: path == StringsEn.emailAddress

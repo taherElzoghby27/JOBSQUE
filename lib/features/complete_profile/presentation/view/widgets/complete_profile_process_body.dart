@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 
 import 'custom_education_component.dart';
@@ -19,12 +20,11 @@ class CompleteProfileProcessBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
       child: ListView(
         children: [
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
           //custom appBar
           CustomAppBar(
@@ -38,7 +38,7 @@ class CompleteProfileProcessBody extends StatelessWidget {
                         : StringsEn.portfolio,
             trailingWidget: Container(),
           ),
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
           currentPage == StringsEn.personalDetails
               ? CustomPersonalDetailsComponent()
               : currentPage == StringsEn.education

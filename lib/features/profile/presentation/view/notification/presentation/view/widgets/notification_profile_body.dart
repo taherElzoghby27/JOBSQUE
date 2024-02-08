@@ -5,7 +5,7 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/profile/presentation/view/notification/presentation/view/widgets/section_job_notification.dart';
 import 'package:jobsque/features/profile/presentation/view/notification/presentation/view/widgets/section_other_notification.dart';
-
+import 'package:jobsque/core/consts/style.dart';
 class NotificationProfileBody extends StatelessWidget {
   const NotificationProfileBody({super.key});
 
@@ -14,7 +14,7 @@ class NotificationProfileBody extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
         CustomAppBar(
           leadingOnTap: () => GoRouter.of(context).pop(),
           title: StringsEn.notification,

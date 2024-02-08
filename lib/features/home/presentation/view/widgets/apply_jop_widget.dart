@@ -33,7 +33,7 @@ class SectionAppliedJop extends StatelessWidget {
             //logo
             Column(
               children: [
-                SizedBox(height: size.height * .02.h),
+                const AspectRatio(aspectRatio:AppConsts.aspect16on1),
                 SvgPicture.asset(AppAssets.twitter),
               ],
             ),

@@ -70,7 +70,7 @@ class _InfoSectionJopDetailState extends State<InfoSectionJopDetail> {
             ),
           ),
         ),
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
         //senior fulltime onsite
         SizedBox(
           width: size.width * .6.w,

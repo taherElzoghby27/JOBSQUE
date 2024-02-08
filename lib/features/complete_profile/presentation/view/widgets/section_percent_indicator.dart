@@ -11,7 +11,6 @@ class SectionPercentIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
       child: Column(
@@ -26,16 +25,16 @@ class SectionPercentIndicator extends StatelessWidget {
             ),
             progressColor: AppConsts.primary500,
           ),
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
           Text(
             showStatus,
             style: AppConsts.style16White.copyWith(
               color: AppConsts.primary500,
             ),
           ),
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
           Text(StringsEn.completeYourProfile, style: AppConsts.style16),
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
         ],
       ),
     );

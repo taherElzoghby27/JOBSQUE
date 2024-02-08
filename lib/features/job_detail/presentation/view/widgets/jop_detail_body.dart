@@ -8,7 +8,7 @@ import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/description_company_people_section_jop_detail.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/info_section_jop_detail.dart';
-
+import 'package:jobsque/core/consts/style.dart';
 import '../../../../../core/widgets/bookmark_widget.dart';
 import 'blur_widget.dart';
 
@@ -33,7 +33,7 @@ class JopDetailBody extends StatelessWidget {
                   flexibleSpace: FlexibleSpaceBar(
                     background: ListView(
                       children: [
-                        SizedBox(height: size.height * .02.h),
+                        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
                         ///custom appBar
                         CustomAppBar(
@@ -43,7 +43,7 @@ class JopDetailBody extends StatelessWidget {
                           trailingOnTap: () {},
                           trailingWidget: BookmarkWidget(job: job),
                         ),
-                        SizedBox(height: size.height * .02.h),
+                        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
                         ///title - company -country
                         InfoSectionJopDetail(job: job),

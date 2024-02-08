@@ -1,13 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/widgets/load_json_widget.dart';
 import 'package:jobsque/features/notification/presentation/view/widgets/section_notification.dart';
 import 'package:jobsque/features/notification/presentation/view_model/notification_cubit.dart';
-
+import 'package:jobsque/core/consts/style.dart';
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 import '../../../../../core/widgets/empty_widget.dart';
@@ -20,7 +19,7 @@ class NotificationBody extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
         //custom appBar
         CustomAppBar(
@@ -28,7 +27,7 @@ class NotificationBody extends StatelessWidget {
           title: StringsEn.notification,
           trailingWidget: Container(),
         ),
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
         //notifications
         BlocBuilder<NotificationCubit, NotificationState>(
           builder: (context, state) {

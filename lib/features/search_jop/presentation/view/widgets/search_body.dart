@@ -6,7 +6,7 @@ import 'package:jobsque/features/search_jop/presentation/view/widgets/popular_se
 import 'package:jobsque/features/search_jop/presentation/view/widgets/recent_searchs.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/result_section.dart';
 import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
-
+import 'package:jobsque/core/consts/style.dart';
 import 'search_section.dart';
 
 class SearchBody extends StatelessWidget {
@@ -24,7 +24,7 @@ class SearchBody extends StatelessWidget {
         }
         return ListView(
           children: [
-            SizedBox(height: size.height * .02.h),
+            const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
             ///section search field
             SectionSearch(

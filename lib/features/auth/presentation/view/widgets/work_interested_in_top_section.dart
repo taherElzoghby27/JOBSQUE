@@ -22,7 +22,7 @@ class TopSectionTitle extends StatelessWidget {
           title,
           style: AppConsts.style24,
         ),
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
 
         ///Tell us what you’re interested in so we can customise the app for your needs.
         Text(

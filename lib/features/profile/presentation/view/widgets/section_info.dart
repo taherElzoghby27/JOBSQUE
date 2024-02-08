@@ -22,7 +22,7 @@ class Info extends StatelessWidget {
       children: [
         //photo
         CustomImage(image: image),
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
         //name
         Text(
           name,

@@ -27,7 +27,7 @@ class ContentTermsCond extends StatelessWidget {
           subHeading,
           style: AppConsts.style16.copyWith(fontSize: 14),
         ),
-        SizedBox(height: size.height * .02.h),
+        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
       ],
     );
   }

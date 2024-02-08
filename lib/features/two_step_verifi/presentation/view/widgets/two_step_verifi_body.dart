@@ -8,7 +8,7 @@ import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/custo
 import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/select_verifi_method.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/two_step_verifi_notes_component.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/verify_method.dart';
-
+import 'package:jobsque/core/consts/style.dart';
 import '../../../../../../../../core/widgets/customButton.dart';
 import '../../../../../../../../core/widgets/small_loading_widget.dart';
 
@@ -29,7 +29,7 @@ class _TwoStepVerifiBodyState extends State<TwoStepVerifiBody> {
       padding: EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         children: [
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
           CustomAppBar(
             leadingOnTap: () {
               if (current == 3) {
@@ -45,7 +45,7 @@ class _TwoStepVerifiBodyState extends State<TwoStepVerifiBody> {
             title: StringsEn.twoStepVerifi,
             trailingWidget: Container(),
           ),
-          SizedBox(height: size.height * .02.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
           //secureYourAccount
           current == 0 || current == 1
               ? custom_tile_switch_widget()
