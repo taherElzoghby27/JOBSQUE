@@ -31,7 +31,7 @@ class JopDetailBody extends StatelessWidget {
                   automaticallyImplyLeading: false,
                   expandedHeight: size.height * .33.h,
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Column(
+                    background: ListView(
                       children: [
                         SizedBox(height: size.height * .02.h),
 

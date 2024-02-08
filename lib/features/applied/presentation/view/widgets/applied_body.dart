@@ -14,7 +14,7 @@ class AppliedBody extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
-      child: Column(
+      child: ListView(
         children: [
           SizedBox(height: size.height * .02.h),
           CustomAppBar(
