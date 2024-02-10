@@ -4,10 +4,10 @@ import 'package:jobsque/features/profile/presentation/view/login_and_security/da
 
 abstract class LoginAndSecurityRepo {
   //get otp
-  Future<Either<FailureMessage, String>> getOtp({required String email});
+  Future<Either<Failure, String>> getOtp({required String email});
 
   //update name & pass
-  Future<Either<FailureMessage, UserModelUpdated>> updateNamePass({
+  Future<Either<Failure, UserModelUpdated>> updateNamePass({
     required String name,
     required String password,
   });

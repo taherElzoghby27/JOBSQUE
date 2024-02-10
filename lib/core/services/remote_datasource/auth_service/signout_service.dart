@@ -1,6 +1,5 @@
 import 'package:jobsque/core/helper/cache_helper.dart';
-
-import '../../local_database/hive_db_apply_user.dart';
+import 'package:jobsque/core/services/local_datasource/hive_db_apply_user.dart';
 
 class SignOutService {
   //signOut

@@ -13,4 +13,8 @@ class SavedLoading extends EditProfileState {}
 
 class SavedSuccess extends EditProfileState {}
 
-class SavedFailure extends EditProfileState {}
+class SavedFailure extends EditProfileState {
+  final String message;
+
+  SavedFailure({required this.message});
+}

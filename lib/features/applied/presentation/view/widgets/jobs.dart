@@ -23,7 +23,7 @@ class Jobs extends StatelessWidget {
       children: [
         //active - rejected
         CustomBarAppliedJob(),
-        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
         BlocConsumer<AppliedJobCubit, AppliedJobState>(
           builder: (context, state) {
@@ -50,8 +50,12 @@ class Jobs extends StatelessWidget {
             );
           },
           listener: (context, state) {
-            if (state is Failure) {
-              showSnack(context, message: StringsEn.someThingError);
+            if (state is AppliedJobFailure) {
+              showSnack(
+                context,
+                message: StringsEn.someThingError,
+                background: AppConsts.danger500,
+              );
             }
           },
         ),

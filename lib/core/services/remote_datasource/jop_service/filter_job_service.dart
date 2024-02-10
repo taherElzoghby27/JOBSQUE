@@ -1,10 +1,8 @@
-import 'package:http/http.dart' as http;
-import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/helper/cache_helper.dart';
+
 import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/core/services/api_service/api_service.dart';
 
 import '../../../consts/api.dart';
+import '../../../consts/api_service.dart';
 
 class JobApiService {
   ApiService apiService;
@@ -12,18 +10,15 @@ class JobApiService {
   JobApiService({required this.apiService});
 
   //filter jobs method
-  Future<http.Response> FilterJobApi({
+  Future<Map<String, dynamic>> FilterJobApi({
     required String name,
     required String location,
     required String salary,
   }) async {
     Job job = Job(name: name, location: location, salary: salary);
-    http.Response response = await apiService.post(
+    Map<String, dynamic> response = await apiService.post(
       path: "${ApiConsts.filterJobEndPoint}",
       body: job.toJson(),
-      headers: {
-        'Authorization': 'Bearer ${CacheHelper.getData(key: StringsEn.token)}',
-      },
     );
 
     return response;

@@ -1,18 +1,17 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 import 'package:jobsque/core/consts/api.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
-import 'package:jobsque/core/services/api_service/api_service.dart';
-import 'package:jobsque/core/services/api_service/profile_service/add_portfolio_service.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/models/portfolio.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo.dart';
+
+import '../../../../../../../core/consts/api_service.dart';
+import '../../../../../../../core/services/remote_datasource/profile_service/add_portfolio_service.dart';
 
 class PortfolioRepoImplementation extends PortfolioRepo {
   ApiService apiService;
@@ -24,52 +23,38 @@ class PortfolioRepoImplementation extends PortfolioRepo {
   });
 
   @override
-  Future<Either<FailureMessage, UserProfilePortfolioModel>>
-      getPortFolio() async {
+  Future<Either<Failure, UserProfilePortfolioModel>> getPortFolio() async {
     try {
-      http.Response result = await apiService.get(
+      Map<String, dynamic> result = await apiService.get(
         path:
             "${ApiConsts.getPortfolioEndPoint}?user_id=${CacheHelper.getData(key: StringsEn.userId)}",
       );
-      Map<String, dynamic> data = jsonDecode(result.body);
-
-      if (result.statusCode == 200) {
-        //success
-        UserProfilePortfolioModel profileUser =
-            UserProfilePortfolioModel.fromJson(data["data"]);
-        return Right(profileUser);
-      } else {
-        //fail
-        FailureMessage failModel = FailureMessage.fromJson(data);
-        return Left(failModel);
-      }
+      //success
+      UserProfilePortfolioModel profileUser =
+          UserProfilePortfolioModel.fromJson(result["data"]);
+      return Right(profileUser);
     } catch (error) {
-      return Left(FailureMessage(message: error.toString()));
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioError(error));
+      }
+      return Left(ServerFailure(message: error.toString()));
     }
   }
 
   @override
-  Future<Either<FailureMessage, PortfolioCv>> addPortFolio({
+  Future<Either<Failure, PortfolioCv>> addPortFolio({
     required PortfolioCv portfolioCv,
   }) async {
     try {
-      http.Response result =
+      Map<String, dynamic> result =
           await addPortfolioService.addPortfolio(portfolioCv: portfolioCv);
-      Map<String, dynamic> data = jsonDecode(result.body);
-
-      if (result.statusCode == 200) {
-        print("success");
-        //success
-        PortfolioCv portfolio = PortfolioCv.fromJson(data["data"]);
+        PortfolioCv portfolio = PortfolioCv.fromJson(result["data"]);
         return Right(portfolio);
-      } else {
-        //fail
-        FailureMessage failModel = FailureMessage.fromJson(data);
-        return Left(failModel);
-      }
     } catch (error) {
-      print("fail2");
-      return Left(FailureMessage(message: error.toString()));
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioError(error));
+      }
+      return Left(ServerFailure(message: error.toString()));
     }
   }
 

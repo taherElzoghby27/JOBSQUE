@@ -1,13 +1,10 @@
-import 'dart:convert';
-
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart' as http;
-import 'package:jobsque/core/consts/strings.dart';
+import 'package:dio/dio.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
-import 'package:jobsque/core/services/api_service/login_and_security_service/change_name_pass_service.dart';
-import 'package:jobsque/core/services/api_service/login_and_security_service/get_otp_service.dart';
+import 'package:jobsque/core/services/remote_datasource/login_and_security_service/change_name_pass_service.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/data/repo/login_security_repo.dart';
 
+import '../../../../../../../core/services/remote_datasource/login_and_security_service/get_otp_service.dart';
 import '../models/user_model_updated.dart';
 
 class LoginAndSecurityRepoImplementation extends LoginAndSecurityRepo {
@@ -20,54 +17,39 @@ class LoginAndSecurityRepoImplementation extends LoginAndSecurityRepo {
   });
 
   @override
-  Future<Either<FailureMessage, UserModelUpdated>> updateNamePass({
+  Future<Either<Failure, UserModelUpdated>> updateNamePass({
     required String name,
     required String password,
   }) async {
     try {
       //response
-      http.Response result = await updateNamePassService.updateData(
+      Map<String, dynamic> result = await updateNamePassService.updateData(
         name: name,
         password: password,
       );
-      Map<String, dynamic> data = jsonDecode(result.body);
-      //success
-      if (result.statusCode == 200) {
-        UserModelUpdated userInfo = UserModelUpdated.fromJson(data['data']);
-        return Right(userInfo);
-      } else if (result.statusCode == 401) {
-        //failure
-        return Left(FailureMessage.fromJson(data));
+      UserModelUpdated userInfo = UserModelUpdated.fromJson(result['data']);
+      return Right(userInfo);
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioError(error));
       }
-    } catch (e) {
-      //failure
-      return Left(FailureMessage(message: e.toString()));
+      return Left(ServerFailure(message: error.toString()));
     }
-    return Left(FailureMessage(message: StringsEn.someThingError));
   }
 
   @override
-  Future<Either<FailureMessage, String>> getOtp({
+  Future<Either<Failure, String>> getOtp({
     required String email,
   }) async {
     try {
       //response
-      http.Response result = await getOtpService.getOtp(email: email);
-      Map<String, dynamic> data = jsonDecode(result.body);
-      //success
-      if (result.statusCode == 200) {
-        print('success');
-        return Right(data['data']);
-      } else if (result.statusCode == 401) {
-        print('fail1');
-        //failure
-        return Left(FailureMessage.fromJson(data['message']));
+      Map<String, dynamic> result = await getOtpService.getOtp(email: email);
+      return Right(result['data']);
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioError(error));
       }
-    } catch (e) {
-      print('fail2');
-      //failure
-      return Left(FailureMessage(message: e.toString()));
+      return Left(ServerFailure(message: error.toString()));
     }
-    return Left(FailureMessage(message: StringsEn.someThingError));
   }
 }

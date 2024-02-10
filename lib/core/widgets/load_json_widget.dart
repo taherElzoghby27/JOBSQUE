@@ -10,15 +10,13 @@ class LoadJsonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Expanded(
-      child: Container(
-        color: AppConsts.neutral300.withOpacity(.45),
-        child: Center(
-          child: Lottie.asset(
-            AppAssets.loadJson,
-            height: size.height * .075.h,
-            alignment: Alignment.center,
-          ),
+    return Container(
+      color: AppConsts.neutral300.withOpacity(.45),
+      child: Center(
+        child: Lottie.asset(
+          AppAssets.loadJson,
+          height: size.height * .075.h,
+          alignment: Alignment.center,
         ),
       ),
     );

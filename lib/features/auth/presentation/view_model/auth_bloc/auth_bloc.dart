@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
+import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/features/auth/data/models/user_create/user_model.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user_login.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ///login
         if (event is LoginEvent) {
           emit(LoginLoading());
-          Either<FailureMessage, UserLogin> result = await authRepo.login(
+          Either<Failure, UserLogin> result = await authRepo.login(
             email: event.email,
             password: event.password,
           );
@@ -43,7 +43,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         } else if (event is RegisterEvent) {
           ///register
           emit(RegisterLoading());
-          Either<FailureMessage, UserSignUp> result = await authRepo.register(
+          Either<Failure, UserSignUp> result = await authRepo.register(
             name: event.name,
             email: event.email,
             password: event.password,

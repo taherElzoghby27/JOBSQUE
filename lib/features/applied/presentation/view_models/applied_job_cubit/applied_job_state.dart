@@ -13,9 +13,9 @@ class AppliedJobSuccess extends AppliedJobState {
   AppliedJobSuccess({required this.applyUsers});
 }
 
-class Failure extends AppliedJobState {
+class AppliedJobFailure extends AppliedJobState {
   final String message;
 
-  Failure({required this.message});
+  AppliedJobFailure({required this.message});
 }
 

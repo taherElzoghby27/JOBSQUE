@@ -1,4 +1,4 @@
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 abstract class Failure {
   final String message;
@@ -6,32 +6,45 @@ abstract class Failure {
   Failure({required this.message});
 }
 
-class FailureMessage extends Failure {
-  FailureMessage({required super.message});
-
-  factory FailureMessage.fromHttpError(http.Response response) {
-    switch (response.statusCode) {
-      case 400:
-      case 401:
-      case 403:
-        return FailureMessage(message: 'Unauthorised: ${response.body}');
-      case 404:
-        return FailureMessage(
-          message: 'Your request was not found, please try later',
+class ServerFailure extends Failure {
+  ServerFailure({required super.message});
+  factory ServerFailure.fromDioError(DioException error) {
+    switch (error.type) {
+      case DioExceptionType.connectionTimeout:
+        return ServerFailure(message: 'Connection timeout with api server');
+      case DioExceptionType.sendTimeout:
+        return ServerFailure(message: 'Send timeout with api server');
+      case DioExceptionType.receiveTimeout:
+        return ServerFailure(message: 'Receive timeout with api server');
+      case DioExceptionType.badCertificate:
+        return ServerFailure(message: 'badCertification with api server');
+      case DioExceptionType.badResponse:
+        return ServerFailure.fromDioResponse(
+          error.response!.statusCode!,
+          error.response,
         );
-      case 500:
-      default:
-        return FailureMessage(
-          message:
-              'Error During Communication: Error occured while Communication with Server',
+      case DioExceptionType.cancel:
+        return ServerFailure(message: 'Request to ApiServer was Canceld');
+      case DioExceptionType.connectionError:
+        return ServerFailure(message: 'No Internet Connection');
+      case DioExceptionType.unknown:
+        return ServerFailure(
+          message: 'Opps There was an Error, Please try again',
         );
     }
   }
-
-  factory FailureMessage.fromJson(Map<String, dynamic> json) {
-    return FailureMessage(
-        message: (json['massege'] is String
-            ? json['massege']
-            : json['massege']['email'][0]) as String);
+  factory ServerFailure.fromDioResponse(int statusCode, dynamic response) {
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+      return ServerFailure(message: response['error']['message']);
+    } else if (statusCode == 404) {
+      return ServerFailure(
+        message: 'Your request was not found, please try later',
+      );
+    } else if (statusCode == 500) {
+      return ServerFailure(
+        message: 'There is a problem with server,please try later',
+      );
+    }
+    return ServerFailure(message: 'there was an error, please try again');
   }
 }

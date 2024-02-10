@@ -1,14 +1,12 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:http/src/response.dart';
-import 'package:jobsque/core/consts/strings.dart';
+import 'package:dio/dio.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
-import 'package:jobsque/core/services/api_service/profile_service/add_experience_service.dart';
 import 'package:jobsque/features/complete_profile/data/models/experience_model.dart';
 import 'package:jobsque/features/complete_profile/data/repo/complete_profile_repo.dart';
+
+import '../../../../core/services/remote_datasource/profile_service/add_experience_service.dart';
 
 class CompleteProfileRepoImpl extends CompleteProfileRepo {
   final AddExperienceService _addExperienceService;
@@ -17,33 +15,22 @@ class CompleteProfileRepoImpl extends CompleteProfileRepo {
       : _addExperienceService = addExperienceService;
 
   @override
-  Future<Either<FailureMessage, ExperienceModel>> addExperience(
-      {required ExperienceModel experienceModel}) async {
-    late Response response;
+  Future<Either<Failure, ExperienceModel>> addExperience({
+    required ExperienceModel experModel,
+  }) async {
     try {
-      response = await _addExperienceService.addExperience(
-        experienceModel: experienceModel,
+      Map<String, dynamic> response = await _addExperienceService.addExperience(
+        experienceModel: experModel,
       );
-      if (response.statusCode == 200) {
-        Map<String, dynamic> data = jsonDecode(response.body);
-        ExperienceModel experienceModel = ExperienceModel.fromJson(
-          data['data'],
-        );
-        return Right(experienceModel);
+      ExperienceModel experienceModel = ExperienceModel.fromJson(
+        response['data'],
+      );
+      return Right(experienceModel);
+    } catch (error) {
+      if (error is DioException) {
+        return Left(ServerFailure.fromDioError(error));
       }
-    } on SocketException {
-      return Left(
-        FailureMessage(message: 'No Internet connection'),
-      );
-    } on TimeoutException {
-      return Left(
-        FailureMessage(message: 'Connection timeout'),
-      );
-    } on Error {
-      return Left(FailureMessage.fromHttpError(response));
+      return Left(ServerFailure(message: error.toString()));
     }
-    return Left(
-      FailureMessage(message: StringsEn.someThingError),
-    );
   }
 }

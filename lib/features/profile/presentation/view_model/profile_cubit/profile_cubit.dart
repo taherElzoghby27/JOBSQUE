@@ -27,7 +27,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   //get profile
   getProfile() async {
     emit(GetProfileLoading());
-    Either<FailureMessage, User> profile = await profileRepo.getProfile();
+    Either<Failure, User> profile = await profileRepo.getProfile();
     profile.fold(
       (failure) {
         emit(GetProfileFailure(message: failure.message));

@@ -1,9 +1,7 @@
-import 'package:http/http.dart' as http;
-import 'package:jobsque/core/helper/cache_helper.dart';
-import 'package:jobsque/core/services/api_service/api_service.dart';
+
+import 'package:jobsque/core/consts/api_service.dart';
 
 import '../../../consts/api.dart';
-import '../../../consts/strings.dart';
 
 class UpdateNamePassService {
   ApiService apiService;
@@ -11,18 +9,15 @@ class UpdateNamePassService {
   UpdateNamePassService({required this.apiService});
 
   //filter jobs method
-  Future<http.Response> updateData({
+  Future<Map<String, dynamic>> updateData({
     required String name,
     required String password,
   }) async {
-    http.Response response = await apiService.post(
+    Map<String, dynamic> response = await apiService.post(
       path: "${ApiConsts.updateNamePassEndPoint}",
       body: {
         'name': name,
         'password': password,
-      },
-      headers: {
-        'Authorization': 'Bearer ${CacheHelper.getData(key: StringsEn.token)}',
       },
     );
 

@@ -8,9 +8,9 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/services/bloc_observer.dart';
-import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
-import 'package:jobsque/core/services/local_database/hive_db_job.dart';
 
+import 'core/services/local_datasource/hive_db_apply_user.dart';
+import 'core/services/local_datasource/hive_db_job.dart';
 import 'core/services/service_locator.dart';
 
 void main() async {

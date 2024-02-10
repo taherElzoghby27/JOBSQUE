@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/core/services/local_database/hive_db_job.dart';
+import 'package:jobsque/core/services/local_datasource/hive_db_job.dart';
 import 'package:meta/meta.dart';
 
 part 'saved_state.dart';
@@ -36,7 +37,7 @@ class SavedCubit extends Cubit<SavedState> {
       savedJobsList = hiveDbJob.savedJobsList;
       emit(SavedJobsLoaded(savedJobs: savedJobsList));
     } catch (e) {
-      emit(SavedJobsFailure(message: e.toString()));
+      emit(SavedJobsFailure(message: StringsEn.someThingError));
     }
   }
 

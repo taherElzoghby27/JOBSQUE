@@ -5,8 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_animation.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
-import 'package:jobsque/core/services/local_database/hive_db_job.dart';
+import 'package:jobsque/core/services/local_datasource/hive_db_job.dart';
 import 'package:jobsque/core/services/service_locator.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
 import 'package:jobsque/features/applied/presentation/view_models/applied_job_cubit/applied_job_cubit.dart';
@@ -64,6 +63,7 @@ import '../../features/home/presentation/view/suggested_or_recent_jop_view.dart'
 import '../../features/job_detail/presentation/view/jop_detail_view.dart';
 import '../../features/job_detail/presentation/view_models/apply_job_cubit/apply_job_cubit.dart';
 import '../../features/onBoarding/presentation/view/on_boarding_view.dart';
+import '../services/local_datasource/hive_db_apply_user.dart';
 
 const splashPath = '/';
 const onBoardingPath = '/onBoard';
@@ -472,6 +472,11 @@ final router = GoRouter(
               BlocProvider(
                 create: (_) => PortfolioCubit(
                   portfolioRepo: getIt.get<PortfolioRepoImplementation>(),
+                ),
+              ),
+              BlocProvider(
+                create: (_) => EditProfileCubit(
+                  profileRepo: getIt.get<ProfileRepoImplementation>(),
                 ),
               ),
             ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jobsque/features/home/presentation/view/widgets/apply_jop_widget.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/recent_jop_section.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/suggested_jop_section.dart';
 
@@ -20,7 +19,7 @@ class HomeBody extends StatelessWidget {
         HomeTopSection(name: name),
 
         ///if apply jop
-        SectionAppliedJop(),
+        //SectionAppliedJop(),
 
         ///suggested jop section
         SuggestedJopSection(),

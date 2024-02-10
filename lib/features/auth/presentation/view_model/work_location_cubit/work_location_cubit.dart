@@ -65,7 +65,7 @@ class WorkLocationCubit extends Cubit<WorkLocationState> {
   }
 
   Future<void> saveWorkInterests() async {
-    final selectedWorkLocation = workLocation.entries
+    final List<String> selectedWorkLocation = workLocation.entries
         .where((entry) => entry.value)
         .map((entry) => entry.key)
         .toList();

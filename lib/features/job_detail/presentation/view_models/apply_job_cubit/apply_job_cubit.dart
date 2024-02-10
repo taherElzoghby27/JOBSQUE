@@ -10,7 +10,7 @@ import 'package:jobsque/features/job_detail/presentation/view_models/changed_pag
 import 'package:jobsque/features/job_detail/presentation/view_models/type_of_work_cubit/type_of_work_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/upload_portfolio_cubit/upload_portfolio_cubit.dart';
 
-import '../../../../../core/services/local_database/hive_db_apply_user.dart';
+import '../../../../../core/services/local_datasource/hive_db_apply_user.dart';
 
 part 'apply_job_state.dart';
 
@@ -105,7 +105,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
       hiveDbApplyUser.get();
     } catch (error) {
       emit(
-        ApplyJobFailure(message: error.toString()),
+        ApplyJobFailure(message: StringsEn.someThingError),
       );
     }
     //check if in last page or not

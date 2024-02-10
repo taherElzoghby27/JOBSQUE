@@ -3,10 +3,10 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/data.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/features/home/data/repo/home_repo.dart';
 
 import '../../../../../core/models/job_model/job_model.dart';
-import '../../../../../core/errors/failure_message.dart';
 
 part 'search_event.dart';
 
@@ -25,7 +25,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         if (event is SearchingEvent) {
           //get all jobs
           emit(GetJobsLoading());
-          Either<FailureMessage, List<Job>> result =
+          Either<Failure, List<Job>> result =
               await jobFilterRepo.filterJobs(
             name: event.searchText,
             location: event.location,

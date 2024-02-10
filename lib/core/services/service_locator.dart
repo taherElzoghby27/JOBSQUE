@@ -1,18 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:jobsque/core/services/api_service/apply_user_service/apply_user_service.dart';
-import 'package:jobsque/core/services/api_service/auth_service/login_auth_service.dart';
-import 'package:jobsque/core/services/api_service/auth_service/register_auth_service.dart';
-import 'package:jobsque/core/services/api_service/auth_service/reset_pass_auth_service.dart';
-import 'package:jobsque/core/services/api_service/auth_service/signout_service.dart';
-import 'package:jobsque/core/services/api_service/login_and_security_service/change_name_pass_service.dart';
-import 'package:jobsque/core/services/api_service/login_and_security_service/get_otp_service.dart';
-import 'package:jobsque/core/services/api_service/jop_service/filter_job_service.dart';
-import 'package:jobsque/core/services/api_service/profile_service/add_experience_service.dart';
-import 'package:jobsque/core/services/api_service/profile_service/add_portfolio_service.dart';
-import 'package:jobsque/core/services/api_service/profile_service/edit_profile_service.dart';
-import 'package:jobsque/core/services/api_service/api_service.dart';
-import 'package:jobsque/core/services/local_database/hive_db_apply_user.dart';
-import 'package:jobsque/core/services/local_database/hive_db_job.dart';
+import 'package:jobsque/core/services/local_datasource/hive_db_job.dart';
+import 'package:jobsque/core/services/remote_datasource/auth_service/register_auth_service.dart';
+import 'package:jobsque/core/services/remote_datasource/jop_service/filter_job_service.dart';
+import 'package:jobsque/core/services/remote_datasource/login_and_security_service/get_otp_service.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/complete_profile/data/repo/complete_profile_repo_impl.dart';
@@ -23,6 +14,16 @@ import 'package:jobsque/features/profile/presentation/view/login_and_security/da
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo_implementation.dart';
 
 import '../../features/home/data/repo/home_repo_implementation.dart';
+import '../consts/api_service.dart';
+import 'local_datasource/hive_db_apply_user.dart';
+import 'remote_datasource/apply_user_service/apply_user_service.dart';
+import 'remote_datasource/auth_service/login_auth_service.dart';
+import 'remote_datasource/auth_service/reset_pass_auth_service.dart';
+import 'remote_datasource/auth_service/signout_service.dart';
+import 'remote_datasource/login_and_security_service/change_name_pass_service.dart';
+import 'remote_datasource/profile_service/add_experience_service.dart';
+import 'remote_datasource/profile_service/add_portfolio_service.dart';
+import 'remote_datasource/profile_service/edit_profile_service.dart';
 
 final getIt = GetIt.instance;
 
@@ -32,7 +33,7 @@ void setupServiceLocator() {
   //hive db Apply user
   getIt.registerSingleton<HiveDbApplyUser>(HiveDbApplyUser());
   // api service
-  getIt.registerSingleton<ApiService>(ApiService());
+  getIt.registerSingleton<ApiService>(ApiService(dio: Dio()));
   //register api service
   getIt.registerSingleton<RegisterApiService>(
     RegisterApiService(
@@ -78,7 +79,11 @@ void setupServiceLocator() {
     ),
   );
   //apply user service
-  getIt.registerSingleton<ApplyUserService>(ApplyUserService());
+  getIt.registerSingleton<ApplyUserService>(
+    ApplyUserService(
+      apiService: getIt.get<ApiService>(),
+    ),
+  );
   //apply user repo implementation
   getIt.registerSingleton<ApplyUserRepoImplementation>(
     ApplyUserRepoImplementation(
@@ -96,7 +101,11 @@ void setupServiceLocator() {
     ),
   );
   //add portfolio api service
-  getIt.registerSingleton<AddPortfolioService>(AddPortfolioService());
+  getIt.registerSingleton<AddPortfolioService>(
+    AddPortfolioService(
+      apiService: getIt.get<ApiService>(),
+    ),
+  );
   //portfolio repo impl
   getIt.registerSingleton<PortfolioRepoImplementation>(
     PortfolioRepoImplementation(

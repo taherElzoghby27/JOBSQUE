@@ -32,12 +32,12 @@ class UpdateNamePassCubit extends Cubit<UpdateNamePassState> {
   getOtp() async {
     if (keyForm.currentState!.validate()) {
       emit(Loading());
-      Either<FailureMessage, String> result = await loginAndSecurityRepo.getOtp(
+      Either<Failure, String> result = await loginAndSecurityRepo.getOtp(
         email: email!,
       );
       result.fold(
         (fail) => emit(
-          Fail(message: StringsEn.someThingError),
+          Fail(message: fail.message),
         ),
         (success) {
           emit(Success());
@@ -50,7 +50,7 @@ class UpdateNamePassCubit extends Cubit<UpdateNamePassState> {
   updateNamePass() async {
     if (keyForm.currentState!.validate()) {
       emit(Loading());
-      Either<FailureMessage, UserModelUpdated> result =
+      Either<Failure, UserModelUpdated> result =
           await loginAndSecurityRepo.updateNamePass(
         name: name!,
         password: pass!,

@@ -1,12 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/features/home/data/repo/home_repo.dart';
 import 'package:meta/meta.dart';
-
+import 'package:dartz/dartz.dart';
 import '../../../data/repo/applied_job_repo.dart';
 
 part 'applied_job_state.dart';
@@ -34,7 +33,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
       );
       emit(AppliedJobSuccess(applyUsers: activeJobs));
     } catch (e) {
-      emit(Failure(message: e.toString()));
+      emit(AppliedJobFailure(message: StringsEn.someThingError));
     }
   }
 
@@ -51,16 +50,15 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
       );
       emit(AppliedJobSuccess(applyUsers: rejectedJobs));
     } catch (e) {
-      emit(Failure(message: e.toString()));
+      emit(AppliedJobFailure(message: e.toString()));
     }
   }
 
   //get jobs
   getJobs() async {
-    Either<FailureMessage, List<Job>> appliedJobs =
-        await jobFilterRepo.filterJobs();
+    Either<Failure, List<Job>> appliedJobs = await jobFilterRepo.filterJobs();
     appliedJobs.fold(
-      (fail) => emit(Failure(message: fail.message)),
+      (fail) => emit(AppliedJobFailure(message: fail.message)),
       (jobsList) => jobs = jobsList,
     );
   }

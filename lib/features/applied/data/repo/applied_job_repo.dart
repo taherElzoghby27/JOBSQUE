@@ -7,7 +7,7 @@ abstract class AppliedJobRepo {
   Future<List<ApplyUser>> getJobsAppliedLocal({required String userId});
 
   //get Jobs applied remote
-  Future<Either<FailureMessage, List<ApplyUser>>> getJobsAppliedRemote({
+  Future<Either<Failure, List<ApplyUser>>> getJobsAppliedRemote({
     required String userId,
   });
 }

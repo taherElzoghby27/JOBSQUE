@@ -5,9 +5,9 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/profile_model.dart';
-import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 
 part 'edit_profile_state.dart';
@@ -49,7 +49,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       try {
         emit(SavedLoading());
         //edit profile
-        Either<FailureMessage, ProfileModel> editProfileResult =
+        Either<Failure, ProfileModel> editProfileResult =
             await profileRepo.editProfile(
           profileModel: ProfileModel(
             bio: controllerBio.text,
@@ -63,7 +63,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           ),
         );
         editProfileResult.fold(
-          (failure) => emit(SavedFailure()),
+          (failure) => emit(SavedFailure(message: failure.message)),
           (profile) async {
             await CacheHelper.saveData(
               key: StringsEn.personalDetailsCompleteK,
@@ -73,10 +73,10 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           },
         );
       } catch (error) {
-        emit(SavedFailure());
+        emit(SavedFailure(message: StringsEn.someThingError));
       }
     } else {
-      emit(SavedFailure());
+      emit(SavedFailure(message: StringsEn.someThingError));
     }
   }
 }
