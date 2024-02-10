@@ -62,6 +62,8 @@ abstract class AppConsts {
   static const double aspect16on14=16/14;
   static const double aspect16on1=16/1;
   static const double aspect16on4=16/4;
+  static const double aspect40on1=40/1;
+  static const double aspectRatioButtonAuth = 3 / .4;
   //styles
   static const TextStyle styleHint14 = TextStyle(
     color: AppConsts.neutral400,

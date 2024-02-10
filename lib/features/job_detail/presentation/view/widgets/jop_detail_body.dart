@@ -29,7 +29,7 @@ class JopDetailBody extends StatelessWidget {
               return [
                 SliverAppBar(
                   automaticallyImplyLeading: false,
-                  expandedHeight: size.height * .33.h,
+                  expandedHeight: size.height * .35.h,
                   flexibleSpace: FlexibleSpaceBar(
                     background: ListView(
                       children: [
@@ -43,7 +43,7 @@ class JopDetailBody extends StatelessWidget {
                           trailingOnTap: () {},
                           trailingWidget: BookmarkWidget(job: job),
                         ),
-                        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+                        const AspectRatio(aspectRatio:AppConsts.aspect40on1),
 
                         ///title - company -country
                         InfoSectionJopDetail(job: job),
@@ -62,17 +62,19 @@ class JopDetailBody extends StatelessWidget {
           bottom: size.height * .06.h,
           width: size.width,
           child: Center(
-            child: SizedBox(
-              height: size.height * .055.h,
-              width: size.width * .9.w,
-              child: CustomButton(
-                text: StringsEn.applyNow,
-                onTap: () => GoRouter.of(context).push(
-                  applyJopPath,
-                  extra: {
-                    StringsEn.status: StringsEn.notOpen,
-                    StringsEn.jobId: job.id.toString(),
-                  },
+            child: Padding(
+              padding:  EdgeInsets.all(8.0.sp),
+              child: AspectRatio(
+                aspectRatio:AppConsts.aspectRatioButtonAuth.sp ,
+                child: CustomButton(
+                  text: StringsEn.applyNow,
+                  onTap: () => GoRouter.of(context).push(
+                    applyJopPath,
+                    extra: {
+                      StringsEn.status: StringsEn.notOpen,
+                      StringsEn.jobId: job.id.toString(),
+                    },
+                  ),
                 ),
               ),
             ),
