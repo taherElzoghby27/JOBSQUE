@@ -59,11 +59,13 @@ abstract class AppConsts {
 
   //aspect ratio
   static const double aspect16on2 = 16 / 2;
-  static const double aspect16on14=16/14;
-  static const double aspect16on1=16/1;
-  static const double aspect16on4=16/4;
-  static const double aspect40on1=40/1;
+  static const double aspect16on14 = 16 / 14;
+  static const double aspect16on1 = 16 / 1;
+  static const double aspect16on4 = 16 / 4;
+  static const double aspect40on1 = 40 / 1;
   static const double aspectRatioButtonAuth = 3 / .4;
+  static const double aspect13on9 = 13 / 9;
+
   //styles
   static const TextStyle styleHint14 = TextStyle(
     color: AppConsts.neutral400,
@@ -203,5 +205,13 @@ abstract class AppConsts {
   static BoxDecoration barDecoration = BoxDecoration(
     color: AppConsts.neutral200,
     borderRadius: BorderRadius.circular(40.sp),
+  );
+  static BoxDecoration decorationNeutral300border16 = BoxDecoration(
+    color: AppConsts.neutral300,
+    borderRadius: BorderRadius.circular(16),
+  );
+  static BoxDecoration decorationNeutral400border16 = BoxDecoration(
+    color: AppConsts.neutral400,
+    borderRadius: BorderRadius.circular(16),
   );
 }

@@ -28,7 +28,7 @@ class ItemSuggestedJop extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: AspectRatio(
-        aspectRatio: 13 / 9,
+        aspectRatio: AppConsts.aspect13on9,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
