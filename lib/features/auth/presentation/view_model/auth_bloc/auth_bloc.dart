@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ///login
         if (event is LoginEvent) {
           emit(LoginLoading());
-          Either<Failure, UserLogin> result = await authRepo.login(
+          Either<FailureServ, UserLogin> result = await authRepo.login(
             email: event.email,
             password: event.password,
           );
@@ -43,7 +43,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         } else if (event is RegisterEvent) {
           ///register
           emit(RegisterLoading());
-          Either<Failure, UserSignUp> result = await authRepo.register(
+          Either<FailureServ, UserSignUp> result = await authRepo.register(
             name: event.name,
             email: event.email,
             password: event.password,

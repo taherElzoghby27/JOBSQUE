@@ -27,7 +27,7 @@ class ProfileRepoImplementation extends ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, User>> getProfile() async {
+  Future<Either<FailureServ, User>> getProfile() async {
     try {
       Map<String, dynamic> result = await apiService.get(
         path: "${ApiConsts.getProfileEndPoint}",
@@ -44,7 +44,7 @@ class ProfileRepoImplementation extends ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, ProfileModel>> editProfile({
+  Future<Either<FailureServ, ProfileModel>> editProfile({
     required ProfileModel profileModel,
   }) async {
     try {

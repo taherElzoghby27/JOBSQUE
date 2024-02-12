@@ -13,7 +13,7 @@ class NotificationRepoImplementation extends NotificationRepo {
   NotificationRepoImplementation({required this.apiService});
 
   @override
-  Future<Either<Failure, NotificationModel>> getNotification({
+  Future<Either<FailureServ, NotificationModel>> getNotification({
     required String id,
   }) async {
     try {

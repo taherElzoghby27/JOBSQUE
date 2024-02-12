@@ -22,7 +22,7 @@ class AuthRepoImplementation implements AuthRepo {
   });
 
   @override
-  Future<Either<Failure, UserSignUp>> register({
+  Future<Either<FailureServ, UserSignUp>> register({
     required String name,
     required String email,
     required String password,
@@ -45,7 +45,7 @@ class AuthRepoImplementation implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserLogin>> login({
+  Future<Either<FailureServ, UserLogin>> login({
     required String email,
     required String password,
   }) async {
@@ -67,7 +67,7 @@ class AuthRepoImplementation implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, String>> resetPassword({
+  Future<Either<FailureServ, String>> resetPassword({
     required String email,
   }) async {
     try {

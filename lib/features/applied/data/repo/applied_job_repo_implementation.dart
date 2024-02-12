@@ -27,7 +27,7 @@ class AppliedJobsRepoImplementation extends AppliedJobRepo {
   }
 
   @override
-  Future<Either<Failure, List<ApplyUser>>> getJobsAppliedRemote({
+  Future<Either<FailureServ, List<ApplyUser>>> getJobsAppliedRemote({
     required String userId,
   }) async {
     try {

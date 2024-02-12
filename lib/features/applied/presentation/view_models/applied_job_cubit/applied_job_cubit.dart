@@ -56,7 +56,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
 
   //get jobs
   getJobs() async {
-    Either<Failure, List<Job>> appliedJobs = await jobFilterRepo.filterJobs();
+    Either<FailureServ, List<Job>> appliedJobs = await jobFilterRepo.filterJobs();
     appliedJobs.fold(
       (fail) => emit(AppliedJobFailure(message: fail.message)),
       (jobsList) => jobs = jobsList,

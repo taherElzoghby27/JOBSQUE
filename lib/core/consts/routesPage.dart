@@ -46,7 +46,7 @@ import 'package:jobsque/features/profile/presentation/view/portfolio/presentatio
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view_models/portfolio_cubit/portfolio_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:jobsque/features/search_jop/presentation/view/search_view.dart';
-import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
+import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_cubit.dart';
 import 'package:jobsque/features/splash/presentation/view/splash_view.dart';
 import 'package:jobsque/features/terms_and_conditions/presentation/view/terms_and_condition_view.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/two_step_verifi_view.dart';
@@ -242,8 +242,8 @@ final router = GoRouter(
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (_) => SearchBloc(
-                jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+              create: (_) => SearchCubit(
+                getIt.get<FilterJobsRepoImplementation>(),
               ),
             ),
             BlocProvider(

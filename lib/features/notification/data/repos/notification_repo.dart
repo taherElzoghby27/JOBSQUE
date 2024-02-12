@@ -5,5 +5,5 @@ import '../models/notification.dart';
 
 abstract class NotificationRepo {
   //get notifications
-  Future<Either<Failure, NotificationModel>> getNotification({required String id});
+  Future<Either<FailureServ, NotificationModel>> getNotification({required String id});
 }

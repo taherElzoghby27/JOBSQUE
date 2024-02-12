@@ -18,7 +18,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         if (event is GetJobsEvent) {
           //get all jobs
           emit(GetJobsLoading());
-          Either<Failure, List<Job>> result = await jobFilterRepo.filterJobs();
+          Either<FailureServ, List<Job>> result = await jobFilterRepo.filterJobs();
           result.fold(
             (failure) {
               emit(GetJobsFailure(message: failure.message));

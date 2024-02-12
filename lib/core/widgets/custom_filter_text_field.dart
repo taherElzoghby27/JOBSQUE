@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/text_field.dart';
 import 'package:jobsque/core/widgets/title_field.dart';
 
@@ -31,13 +31,12 @@ class CustomFilterTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //jop title
         TitleField(label: label, star: star),
-        SizedBox(height: size.height * .01.h),
+        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         //field
         CustomTextField(
           hint: hint ?? '',

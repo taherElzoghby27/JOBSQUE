@@ -58,7 +58,7 @@ class AddExperienceCubit extends Cubit<AddExperienceState> {
   addExperience() async {
     if (chechFields()) {
       emit(AddedLoading());
-      Either<Failure, ExperienceModel> result =
+      Either<FailureServ, ExperienceModel> result =
           await _completeProfileRepo.addExperience(
         experModel: ExperienceModel(
           userId: userId,

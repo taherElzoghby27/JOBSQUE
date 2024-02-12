@@ -15,7 +15,7 @@ class NotificationCubit extends Cubit<NotificationState> {
 
   //get notification
   getNotification({required String id}) async {
-    Either<Failure, NotificationModel> notification =
+    Either<FailureServ, NotificationModel> notification =
         await notificationRepo.getNotification(id: '1');
     emit(NotificationLoading());
     notification.fold(

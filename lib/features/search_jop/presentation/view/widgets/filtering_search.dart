@@ -13,7 +13,7 @@ import 'package:jobsque/core/widgets/jop_type_component_button.dart';
 import 'package:jobsque/features/home/data/repo/home_repo_implementation.dart';
 import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/custom_type_jop_widget.dart';
-import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
+import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_cubit.dart';
 
 import 'custom_component_jop_type.dart';
 
@@ -30,120 +30,118 @@ class SectionFiltering extends StatelessWidget {
         isScrollControlled: true,
         context: context,
         builder: (context) {
-          return Container(
-            height: size.height * .9.h,
-            width: double.infinity,
-            decoration: AppConsts.decorationSheet,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 16.h,
-                horizontal: 20.w,
-              ),
-              child: BlocProvider(
-                create: (_) => SearchBloc(
-                  jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+          return AspectRatio(
+            aspectRatio: AppConsts.aspect10on19,
+            child: Container(
+              decoration: AppConsts.decorationSheet,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 16.h,
+                  horizontal: 20.w,
                 ),
-                child: BlocBuilder<SearchBloc, SearchState>(
-                  builder: (context, state) {
-                    SearchBloc bloc = BlocProvider.of<SearchBloc>(context);
-                    String salary = bloc.salary;
-                    if (state is ChangedSalaryState) {
-                      salary = state.salary;
-                    }
-                    return Column(
-                      children: [
-                        CustomAppBar(
-                          leadingOnTap: () => GoRouter.of(context).pop(),
-                          title: StringsEn.setFilter,
-                          trailingOnTap: () => bloc.add(ResetEvent()),
-                          trailingWidget: Text(
-                            StringsEn.reset,
-                            style: TextStyle(color: AppConsts.primary500),
-                          ),
-                        ),
-                        SizedBox(height: size.height * .02.w),
-
-                        ///jop title
-                        CustomFilterTextField(
-                          label: StringsEn.jobTitle,
-                          hint: StringsEn.jobTitle,
-                          perfixIcon: Icon(
-                            FontAwesomeIcons.briefcase,
-                            size: 16.sp,
-                          ),
-                          controller: bloc.titleJopCont,
-                        ),
-                        SizedBox(height: size.height * .02.w),
-
-                        ///location
-                        CustomFilterTextField(
-                          label: StringsEn.location,
-                          hint: StringsEn.location,
-                          perfixIcon: Icon(
-                            Icons.location_on_outlined,
-                            size: 16.sp,
-                          ),
-                          controller: bloc.locationCont,
-                        ),
-                        SizedBox(height: size.height * .02.w),
-
-                        ///salary
-
-                        CustomFilterTextField(
-                          label: StringsEn.salary,
-                          hint: StringsEn.salary,
-                          perfixIcon: Icon(
-                            FontAwesomeIcons.circleDollarToSlot,
-                            size: 16.sp,
-                          ),
-                          suffixIcon: DropdownButton<String>(
-                            hint: Text('\t\t\t\t\t\t\t\t\t\t\t\t\t\t$salary'),
-                            underline: Container(),
-                            isExpanded: true,
-                            icon: Icon(Icons.arrow_drop_down),
-                            items: salaries
-                                .map(
-                                  (e) => DropdownMenuItem<String>(
-                                    value: e,
-                                    child: Text(e),
-                                    onTap: () {},
-                                  ),
-                                )
-                                .toList(),
-                            onChanged: (String? value) => bloc.add(
-                              ChangedSalaryEvent(value: value!),
+                child: BlocProvider(
+                  create: (_) => SearchCubit(
+                    getIt.get<FilterJobsRepoImplementation>(),
+                  ),
+                  child: BlocBuilder<SearchCubit, SearchState>(
+                    builder: (context, state) {
+                      SearchCubit bloc = BlocProvider.of<SearchCubit>(context);
+                      String salary = bloc.salary;
+                      if (state is ChangedSalaryState) {
+                        salary = state.salary;
+                      }
+                      return ListView(
+                        children: [
+                          CustomAppBar(
+                            leadingOnTap: () => GoRouter.of(context).pop(),
+                            title: StringsEn.setFilter,
+                            trailingOnTap: () => bloc.resetEvent(),
+                            trailingWidget: Text(
+                              StringsEn.reset,
+                              style: TextStyle(color: AppConsts.primary500),
                             ),
                           ),
-                          readOnly: true,
-                        ),
-                        SizedBox(height: size.height * .02.w),
+                          AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
-                        ///jop type
-                        CustomComponentJopType(),
-                        SizedBox(height: size.height * .15.w),
+                          ///jop title
+                          CustomFilterTextField(
+                            label: StringsEn.jobTitle,
+                            hint: StringsEn.jobTitle,
+                            perfixIcon: Icon(
+                              FontAwesomeIcons.briefcase,
+                              size: 16.sp,
+                            ),
+                            controller: bloc.titleJopCont,
+                          ),
+                          AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
-                        ///show result
-                        SizedBox(
-                          height: size.height * .06.h,
-                          width: size.width * .85.w,
-                          child: CustomButton(
-                            text: StringsEn.showResult,
-                            onTap: () {
-                              //show result
-                              bloc.add(
-                                SearchingEvent(
+                          ///location
+                          CustomFilterTextField(
+                            label: StringsEn.location,
+                            hint: StringsEn.location,
+                            perfixIcon: Icon(
+                              Icons.location_on_outlined,
+                              size: 16.sp,
+                            ),
+                            controller: bloc.locationCont,
+                          ),
+                          AspectRatio(aspectRatio: AppConsts.aspect16on1),
+
+                          ///salary
+
+                          CustomFilterTextField(
+                            label: StringsEn.salary,
+                            hint: StringsEn.salary,
+                            perfixIcon: Icon(
+                              FontAwesomeIcons.circleDollarToSlot,
+                              size: 16.sp,
+                            ),
+                            suffixIcon: DropdownButton<String>(
+                              hint: Text('\t\t\t\t\t\t\t\t\t\t\t\t\t\t$salary'),
+                              underline: Container(),
+                              isExpanded: true,
+                              icon: Icon(Icons.arrow_drop_down),
+                              items: salaries
+                                  .map(
+                                    (e) => DropdownMenuItem<String>(
+                                      value: e,
+                                      child: Text(e),
+                                      onTap: () {},
+                                    ),
+                                  )
+                                  .toList(),
+                              onChanged: (String? value) => bloc.ChangeSalary(
+                                value: value!,
+                              ),
+                            ),
+                            readOnly: true,
+                          ),
+                          AspectRatio(aspectRatio: AppConsts.aspect16on1),
+
+                          ///jop type
+                          CustomComponentJopType(),
+                          AspectRatio(aspectRatio: AppConsts.aspect16on4),
+
+                          ///show result
+                          AspectRatio(
+                            aspectRatio: AppConsts.aspectRatioButtonAuth,
+                            child: CustomButton(
+                              text: StringsEn.showResult,
+                              onTap: () async {
+                                //show result
+                                await bloc.search(
                                   searchText: bloc.titleJopCont.text,
                                   location: bloc.locationCont.text,
-                                ),
-                              );
-                              //navigate to pop
-                              GoRouter.of(context).pop();
-                            },
+                                );
+                                //navigate to pop
+                                GoRouter.of(context).pop();
+                              },
+                            ),
                           ),
-                        ),
-                      ],
-                    );
-                  },
+                        ],
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
@@ -158,61 +156,62 @@ class SectionFiltering extends StatelessWidget {
         isScrollControlled: true,
         context: context,
         builder: (context) {
-          return Container(
-            height: size.height * .35.h,
-            width: double.infinity,
-            decoration: AppConsts.decorationSheet,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 16.h,
-                horizontal: 20.w,
-              ),
-              child: Column(
-                children: [
-                  CustomAppBar(
-                    title: StringsEn.on_site,
-                  ),
-
-                  SizedBox(height: size.height * .04.w),
-                  Wrap(
-                    runSpacing: 6,
-                    spacing: 6,
-                    children: [
-                      CustomTypeJopWidget(
-                        label: StringsEn.remote,
-                        labelColor: AppConsts.primary500,
-                        onTap: () {},
-                      ),
-                      CustomTypeJopWidget(
-                        label: StringsEn.onSite,
-                        labelColor: AppConsts.neutral500,
-                        onTap: () {},
-                      ),
-                      CustomTypeJopWidget(
-                        label: StringsEn.hyprid,
-                        labelColor: AppConsts.neutral500,
-                        onTap: () {},
-                      ),
-                      CustomTypeJopWidget(
-                        label: StringsEn.any,
-                        labelColor: AppConsts.primary500,
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(height: size.height * .04.w),
-
-                  ///show result
-                  SizedBox(
-                    height: size.height * .06.h,
-                    width: size.width * .85.w,
-                    child: CustomButton(
-                      text: StringsEn.showResult,
-                      onTap: () {},
+          return AspectRatio(
+            aspectRatio: AppConsts.aspect16on14,
+            child: Container(
+              decoration: AppConsts.decorationSheet,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 16.h,
+                  horizontal: 20.w,
+                ),
+                child: Column(
+                  children: [
+                    CustomAppBar(
+                      leadingOnTap: () => GoRouter.of(context).pop(),
+                      title: StringsEn.on_site,
                     ),
-                  ),
-                ],
+
+                    SizedBox(height: size.height * .04.w),
+                    Wrap(
+                      runSpacing: 6,
+                      spacing: 6,
+                      children: [
+                        CustomTypeJopWidget(
+                          label: StringsEn.remote,
+                          labelColor: AppConsts.primary500,
+                          onTap: () {},
+                        ),
+                        CustomTypeJopWidget(
+                          label: StringsEn.onSite,
+                          labelColor: AppConsts.neutral500,
+                          onTap: () {},
+                        ),
+                        CustomTypeJopWidget(
+                          label: StringsEn.hyprid,
+                          labelColor: AppConsts.neutral500,
+                          onTap: () {},
+                        ),
+                        CustomTypeJopWidget(
+                          label: StringsEn.any,
+                          labelColor: AppConsts.primary500,
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: size.height * .04.w),
+
+                    ///show result
+                    AspectRatio(
+                      aspectRatio: AppConsts.aspectRatioButtonAuth,
+                      child: CustomButton(
+                        text: StringsEn.showResult,
+                        onTap: () {},
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

@@ -12,7 +12,7 @@ class FilterJobsRepoImplementation implements JobFilterRepo {
   FilterJobsRepoImplementation({required this.jobApiService});
 
   @override
-  Future<Either<Failure, List<Job>>> filterJobs({
+  Future<Either<FailureServ, List<Job>>> filterJobs({
     String name = '',
     String location = '',
     String salary = '',

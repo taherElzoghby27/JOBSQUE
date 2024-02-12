@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/filtering_search.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/popular_search.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/recent_searchs.dart';
-import 'package:jobsque/features/search_jop/presentation/view/widgets/result_section.dart';
-import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
+import 'package:jobsque/features/search_jop/presentation/view/widgets/section_result_listview_bloc_builder.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_cubit.dart';
 import 'search_section.dart';
 
 class SearchBody extends StatelessWidget {
@@ -16,7 +16,7 @@ class SearchBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return BlocBuilder<SearchBloc, SearchState>(
+    return BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {
         bool initial = false;
         if (state is SearchInitial) {
@@ -24,13 +24,13 @@ class SearchBody extends StatelessWidget {
         }
         return ListView(
           children: [
-            const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
             ///section search field
             SectionSearch(
               onChanged: (String value) =>
-                  BlocProvider.of<SearchBloc>(context).add(
-                SearchingEvent(searchText: value),
+                  BlocProvider.of<SearchCubit>(context).search(
+                searchText: value,
               ),
             ),
             SizedBox(height: size.height * .015.h),
@@ -48,7 +48,7 @@ class SearchBody extends StatelessWidget {
                       PopularSearch(),
                     ],
                   )
-                : SectionResult(),
+                : SectionResultListViewBlocBuilder(),
           ],
         );
       },

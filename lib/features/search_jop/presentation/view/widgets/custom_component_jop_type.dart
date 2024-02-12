@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/services/service_locator.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/custom_type_jop_widget.dart';
-import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_bloc.dart';
+import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_cubit.dart';
 
 import '../../../../../core/consts/strings.dart';
 import '../../../../home/data/repo/home_repo_implementation.dart';
@@ -14,7 +13,6 @@ class CustomComponentJopType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,14 +22,14 @@ class CustomComponentJopType extends StatelessWidget {
             color: AppConsts.neutral900,
           ),
         ),
-        SizedBox(height: size.height * .01.h),
+        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         BlocProvider(
-          create: (_) => SearchBloc(
-            jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+          create: (_) => SearchCubit(
+            getIt.get<FilterJobsRepoImplementation>(),
           ),
-          child: BlocBuilder<SearchBloc, SearchState>(
+          child: BlocBuilder<SearchCubit, SearchState>(
             builder: (context, state) {
-              SearchBloc bloc = BlocProvider.of<SearchBloc>(context);
+              SearchCubit bloc = BlocProvider.of<SearchCubit>(context);
               String fullTime = bloc.jopTimeType;
               if (state is ChangeJopTypeState) {
                 fullTime = state.jopType;
@@ -45,8 +43,9 @@ class CustomComponentJopType extends StatelessWidget {
                     labelColor: fullTime == StringsEn.fullTime
                         ? AppConsts.primary500
                         : AppConsts.neutral500,
-                    onTap: () => bloc
-                        .add(JopTimeTypeEvent(jopTimeType: StringsEn.fullTime)),
+                    onTap: () => bloc.JopTimeTypeEvent(
+                      jopTimeType: StringsEn.fullTime,
+                    ),
                   ),
                   CustomTypeJopWidget(
                     label: StringsEn.remote,
@@ -63,8 +62,8 @@ class CustomComponentJopType extends StatelessWidget {
                     labelColor: fullTime == StringsEn.partTime
                         ? AppConsts.primary500
                         : AppConsts.neutral500,
-                    onTap: () => bloc.add(
-                      JopTimeTypeEvent(jopTimeType: StringsEn.partTime),
+                    onTap: () => bloc.JopTimeTypeEvent(
+                      jopTimeType: StringsEn.partTime,
                     ),
                   ),
                   CustomTypeJopWidget(

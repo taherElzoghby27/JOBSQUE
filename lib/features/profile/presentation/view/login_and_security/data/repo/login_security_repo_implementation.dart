@@ -17,7 +17,7 @@ class LoginAndSecurityRepoImplementation extends LoginAndSecurityRepo {
   });
 
   @override
-  Future<Either<Failure, UserModelUpdated>> updateNamePass({
+  Future<Either<FailureServ, UserModelUpdated>> updateNamePass({
     required String name,
     required String password,
   }) async {
@@ -38,7 +38,7 @@ class LoginAndSecurityRepoImplementation extends LoginAndSecurityRepo {
   }
 
   @override
-  Future<Either<Failure, String>> getOtp({
+  Future<Either<FailureServ, String>> getOtp({
     required String email,
   }) async {
     try {

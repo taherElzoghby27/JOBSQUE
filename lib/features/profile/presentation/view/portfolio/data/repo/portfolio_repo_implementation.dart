@@ -23,7 +23,7 @@ class PortfolioRepoImplementation extends PortfolioRepo {
   });
 
   @override
-  Future<Either<Failure, UserProfilePortfolioModel>> getPortFolio() async {
+  Future<Either<FailureServ, UserProfilePortfolioModel>> getPortFolio() async {
     try {
       Map<String, dynamic> result = await apiService.get(
         path:
@@ -42,7 +42,7 @@ class PortfolioRepoImplementation extends PortfolioRepo {
   }
 
   @override
-  Future<Either<Failure, PortfolioCv>> addPortFolio({
+  Future<Either<FailureServ, PortfolioCv>> addPortFolio({
     required PortfolioCv portfolioCv,
   }) async {
     try {

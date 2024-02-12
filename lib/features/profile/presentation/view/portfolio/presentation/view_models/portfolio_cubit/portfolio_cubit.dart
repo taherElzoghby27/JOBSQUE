@@ -46,7 +46,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
 
   //add portfolio
   add({required File file}) async {
-    Either<Failure, PortfolioCv> portfolio =
+    Either<FailureServ, PortfolioCv> portfolio =
         await portfolioRepo.addPortFolio(
       portfolioCv: PortfolioCv(cvFile: file, image: file),
     );
@@ -67,7 +67,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
   getPortfolios() async {
     try {
       emit(GetFilesLoading());
-      Either<Failure, UserProfilePortfolioModel> portfolio =
+      Either<FailureServ, UserProfilePortfolioModel> portfolio =
           await portfolioRepo.getPortFolio();
       portfolio.fold(
         (fail) => emit(GetFilesFailure(message: StringsEn.someThingError)),

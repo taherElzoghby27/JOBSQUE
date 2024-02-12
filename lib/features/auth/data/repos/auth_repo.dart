@@ -6,19 +6,19 @@ import '../models/user_create/user_model.dart';
 
 abstract class AuthRepo {
   //create account
-  Future<Either<Failure, UserSignUp>> register({
+  Future<Either<FailureServ, UserSignUp>> register({
     required String name,
     required String email,
     required String password,
   });
 
   //login with account
-  Future<Either<Failure, UserLogin>> login({
+  Future<Either<FailureServ, UserLogin>> login({
     required String email,
     required String password,
   });
 
   //reset password with email address
-  Future<Either<Failure, String>> resetPassword({required String email});
+  Future<Either<FailureServ, String>> resetPassword({required String email});
 
 }

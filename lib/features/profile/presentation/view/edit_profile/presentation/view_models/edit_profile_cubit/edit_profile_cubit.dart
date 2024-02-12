@@ -49,7 +49,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       try {
         emit(SavedLoading());
         //edit profile
-        Either<Failure, ProfileModel> editProfileResult =
+        Either<FailureServ, ProfileModel> editProfileResult =
             await profileRepo.editProfile(
           profileModel: ProfileModel(
             bio: controllerBio.text,

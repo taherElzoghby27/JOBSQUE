@@ -15,7 +15,7 @@ class CompleteProfileRepoImpl extends CompleteProfileRepo {
       : _addExperienceService = addExperienceService;
 
   @override
-  Future<Either<Failure, ExperienceModel>> addExperience({
+  Future<Either<FailureServ, ExperienceModel>> addExperience({
     required ExperienceModel experModel,
   }) async {
     try {

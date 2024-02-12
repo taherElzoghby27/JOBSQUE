@@ -4,7 +4,7 @@ import 'package:jobsque/features/complete_profile/data/models/experience_model.d
 
 abstract class CompleteProfileRepo {
   //add experience method
-  Future<Either<Failure, ExperienceModel>> addExperience({
+  Future<Either<FailureServ, ExperienceModel>> addExperience({
     required ExperienceModel experModel,
   });
 }

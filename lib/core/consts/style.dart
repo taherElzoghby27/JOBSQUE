@@ -67,6 +67,7 @@ abstract class AppConsts {
   static const double aspectRatioButtonAuth = 3 / .4;
   static const double aspect13on9 = 13 / 9;
   static const double aspect13on5 = 13 / 5;
+  static const double aspect10on19 = 10 / 19;
 
   //styles
   static const TextStyle styleHint14 = TextStyle(

@@ -11,7 +11,7 @@ class ApplyUserRepoImplementation extends ApplyUserRepo {
   ApplyUserRepoImplementation({required this.applyUserService});
 
   @override
-  Future<Either<Failure, ApplyUser>> applyJob({
+  Future<Either<FailureServ, ApplyUser>> applyJob({
     required ApplyUser applyUser,
   }) async {
     try {
