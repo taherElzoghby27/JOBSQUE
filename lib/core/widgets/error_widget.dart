@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:jobsque/core/consts/strings.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/style.dart';
 
-class SomeThingErrorWidget extends StatelessWidget {
-  const SomeThingErrorWidget({
+class ErrorWidg extends StatelessWidget {
+  const ErrorWidg({
     super.key,
+    required this.message,
   });
+
+  final String message;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            StringsEn.someThingError,
-            style: AppConsts.style24,
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        AspectRatio(aspectRatio: AppConsts.aspect16on4),
+        AspectRatio(
+          aspectRatio: AppConsts.aspect13on9,
+          child: SvgPicture.asset(AppAssets.error),
+        ),
+        Text(
+          message,
+          style: AppConsts.style16Error,
+        ),
+      ],
     );
   }
 }

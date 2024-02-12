@@ -44,29 +44,27 @@ class _CustomFadingLoadingWidgetListState
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * .3,
-      child: AnimatedBuilder(
-        builder: (context, child) {
-          return Opacity(
-            opacity: opacity.value,
-            child: ListView.builder(
-              itemCount: 10,
-              scrollDirection: widget.scrollDirc,
-              physics: widget.isNeverScroll
-                  ? const NeverScrollableScrollPhysics()
-                  : const BouncingScrollPhysics(),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: widget.widget,
-                );
-              },
-            ),
-          );
-        },
-        animation: _controller,
-      ),
+    return AnimatedBuilder(
+      builder: (context, child) {
+        return Opacity(
+          opacity: opacity.value,
+          child: ListView.builder(
+            itemCount: 2,
+            shrinkWrap: true,
+            scrollDirection: widget.scrollDirc,
+            physics: widget.isNeverScroll
+                ? const NeverScrollableScrollPhysics()
+                : const BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: widget.widget,
+              );
+            },
+          ),
+        );
+      },
+      animation: _controller,
     );
   }
 }

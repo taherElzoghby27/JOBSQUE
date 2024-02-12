@@ -140,6 +140,13 @@ abstract class AppConsts {
     fontFamily: 'SF Pro Display',
     fontStyle: FontStyle.normal,
   );
+  static const TextStyle style16Error = TextStyle(
+    color: AppConsts.danger500,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'SF Pro Display',
+    fontStyle: FontStyle.normal,
+  );
   static OutlineInputBorder normalBorderField = OutlineInputBorder(
     borderRadius: BorderRadius.circular(13.sp),
     borderSide: BorderSide(color: neutral300, width: 1),

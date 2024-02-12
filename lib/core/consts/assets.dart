@@ -57,4 +57,5 @@ abstract class AppAssets {
   static const String arabic = 'assets/images/arabic.svg';
   static const String England = 'assets/images/England.svg';
   static const String appliedJobR = 'assets/images/applidJobEmpty.svg';
+  static const String error = 'assets/images/error.svg';
 }

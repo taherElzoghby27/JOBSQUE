@@ -47,7 +47,7 @@ class ProfileBody extends StatelessWidget {
             ],
           );
         }
-        return SomeThingErrorWidget();
+        return ErrorWidg(message: 'message');
       },
       listener: (context, state) {
         if (state is SignOutFailure || state is GetProfileFailure) {
