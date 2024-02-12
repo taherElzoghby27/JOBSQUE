@@ -5,9 +5,13 @@ class CustomFadingLoadingWidgetList extends StatefulWidget {
     super.key,
     required this.scrollDirc,
     required this.widget,
+    this.isNeverScroll = false,
   });
+
   final Axis scrollDirc;
   final Widget widget;
+  final bool isNeverScroll;
+
   @override
   State<CustomFadingLoadingWidgetList> createState() =>
       _CustomFadingLoadingWidgetListState();
@@ -18,6 +22,7 @@ class _CustomFadingLoadingWidgetListState
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> opacity;
+
   @override
   void initState() {
     _controller = AnimationController(
@@ -48,6 +53,9 @@ class _CustomFadingLoadingWidgetListState
             child: ListView.builder(
               itemCount: 10,
               scrollDirection: widget.scrollDirc,
+              physics: widget.isNeverScroll
+                  ? const NeverScrollableScrollPhysics()
+                  : const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),

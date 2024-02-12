@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/component_empty.dart';
 
-class CustomLoadingSuggestedJob extends StatelessWidget {
-  const CustomLoadingSuggestedJob({super.key});
+class CustomLoadingRecentJob extends StatelessWidget {
+  const CustomLoadingRecentJob({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class CustomLoadingSuggestedJob extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8),
       child: AspectRatio(
-        aspectRatio: AppConsts.aspect13on9,
+        aspectRatio: AppConsts.aspect13on5,
         child: Container(
           decoration: AppConsts.decorationNeutral300border16,
           child: Padding(
@@ -60,20 +60,12 @@ class CustomLoadingSuggestedJob extends StatelessWidget {
                       ),
                     ),
                     Spacer(),
-                  ],
-                ),
-                //salary - apply jop
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ComponentEmpty(
-                      height: size.height * .03.h,
-                      width: size.width * .3.w,
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: ComponentEmpty(height: size.height * .03.h),
+                      ),
                     ),
-                    ComponentEmpty(
-                      height: size.height * .045.h,
-                      width: size.width * .28.w,
-                    )
                   ],
                 ),
               ],
@@ -84,4 +76,3 @@ class CustomLoadingSuggestedJob extends StatelessWidget {
     );
   }
 }
-
