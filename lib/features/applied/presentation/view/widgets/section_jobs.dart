@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/functions.dart';
 import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/custom_divider.dart';
@@ -31,7 +32,10 @@ class SectionJobs extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              Job job = filterJob(userJobs[index]).first;
+              Job job = filterJob(
+                applyUser: userJobs[index],
+                jobs: jobs,
+              ).first;
               return FadeAnimation(
                 millSeconds: 250,
                 child: CustomItemAppliedJop(
@@ -42,17 +46,10 @@ class SectionJobs extends StatelessWidget {
             },
             itemCount: userJobs.length,
             separatorBuilder: (BuildContext context, int index) =>
-                CustomDivider(),
+                const CustomDivider(),
           ),
         ),
       ],
     );
   }
-
-//filterJob
-  List<Job> filterJob(ApplyUser applyUser) => jobs
-      .where(
-        (e) => e.id.toString() == applyUser.jobId,
-      )
-      .toList();
 }
