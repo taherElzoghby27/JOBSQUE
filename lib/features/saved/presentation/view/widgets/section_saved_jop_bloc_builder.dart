@@ -5,6 +5,7 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/custom_loading_recent_job.dart';
 import 'package:jobsque/core/widgets/error_widget.dart';
+import 'package:jobsque/core/widgets/fading_list_view.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/loading_listview_fading.dart';
 import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/features/saved/presentation/view/widgets/items_saved_widget.dart';
@@ -32,9 +33,11 @@ class SectionSavedJopsBlocBuilder extends StatelessWidget {
         } else if (state is SavedJobsFailure) {
           return ErrorWidg(message: state.message);
         } else {
-          return CustomFadingLoadingWidgetList(
-            scrollDirc: Axis.vertical,
-            widget: CustomLoadingRecentJob(),
+          return CustomFadingLoadingAnimation(
+            widget: FadingListView(
+              scrollDirc: Axis.vertical,
+              widget: CustomLoadingRecentJob(),
+            ),
           );
         }
       },

@@ -4,6 +4,7 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/custom_loading_suggested_job.dart';
 import 'package:jobsque/core/widgets/empty_widget.dart';
 import 'package:jobsque/core/widgets/error_widget.dart';
+import 'package:jobsque/core/widgets/fading_list_view.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/loading_listview_fading.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
 
@@ -32,9 +33,11 @@ class SectionSuggestedOrRecentJopsListViewBlocBuilder extends StatelessWidget {
         } else if (state is GetJobsFailure) {
           return ErrorWidg(message: state.message);
         } else {
-          return CustomFadingLoadingWidgetList(
-            scrollDirc: Axis.vertical,
-            widget: CustomLoadingSuggestedJob(),
+          return CustomFadingLoadingAnimation(
+            widget: FadingListView(
+              scrollDirc: Axis.vertical,
+              widget: CustomLoadingSuggestedJob(),
+            ),
           );
         }
       },

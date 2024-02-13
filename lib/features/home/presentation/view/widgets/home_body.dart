@@ -7,7 +7,9 @@ import 'home_top_section.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key, required this.name});
+
   final String name;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,10 +24,10 @@ class HomeBody extends StatelessWidget {
         //SectionAppliedJop(),
 
         ///suggested jop section
-        SuggestedJopSection(),
+        const SuggestedJopSection(),
 
         ///recent jop section
-        RecentJopSection(),
+        const RecentJopSection(),
       ],
     );
   }

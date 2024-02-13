@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/widgets/error_widget.dart';
+import 'package:jobsque/core/widgets/fading_list_view.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/loading_listview_fading.dart';
 import 'package:jobsque/features/notification/presentation/view/widgets/custom_fading_item_notification.dart';
 import 'package:jobsque/features/notification/presentation/view_model/notification_cubit.dart';
@@ -21,9 +22,11 @@ class NotificationsBlocBuilder extends StatelessWidget {
         } else if (state is NotificationFailure) {
           return ErrorWidg(message: state.message);
         } else {
-          return CustomFadingLoadingWidgetList(
-            scrollDirc: Axis.vertical,
-            widget: CustomFadingItemNotification(),
+          return CustomFadingLoadingAnimation(
+            widget: FadingListView(
+              scrollDirc: Axis.vertical,
+              widget: CustomFadingItemNotification(),
+            ),
           );
         }
       },

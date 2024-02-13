@@ -36,7 +36,6 @@ class SectionProfileInfo extends StatelessWidget {
           height: size.height * .35.h,
           child: Stack(
             children: [
-              //app bar
               //background
               Container(
                 height: size.height * .2.h,

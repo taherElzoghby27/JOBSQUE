@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/custom_loading_recent_job.dart';
+import 'package:jobsque/core/widgets/fading_list_view.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/loading_listview_fading.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
 
@@ -20,9 +21,11 @@ class RecentJobsListViewBlocConsumer extends StatelessWidget {
         } else if (state is GetJobsFailure) {
           return Text('error');
         } else {
-          return CustomFadingLoadingWidgetList(
-            scrollDirc: Axis.vertical,
-            widget: CustomLoadingRecentJob(),
+          return CustomFadingLoadingAnimation(
+            widget: FadingListView(
+              scrollDirc: Axis.vertical,
+              widget: CustomLoadingRecentJob(),
+            ),
           );
         }
       },

@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 
-class CustomFadingLoadingWidgetList extends StatefulWidget {
-  const CustomFadingLoadingWidgetList({
-    super.key,
-    required this.scrollDirc,
-    required this.widget,
-    this.isNeverScroll = false,
-  });
+class CustomFadingLoadingAnimation extends StatefulWidget {
+  const CustomFadingLoadingAnimation({super.key, required this.widget});
 
-  final Axis scrollDirc;
   final Widget widget;
-  final bool isNeverScroll;
 
   @override
-  State<CustomFadingLoadingWidgetList> createState() =>
-      _CustomFadingLoadingWidgetListState();
+  State<CustomFadingLoadingAnimation> createState() =>
+      _CustomFadingLoadingAnimationState();
 }
 
-class _CustomFadingLoadingWidgetListState
-    extends State<CustomFadingLoadingWidgetList>
+class _CustomFadingLoadingAnimationState
+    extends State<CustomFadingLoadingAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> opacity;
@@ -48,20 +41,7 @@ class _CustomFadingLoadingWidgetListState
       builder: (context, child) {
         return Opacity(
           opacity: opacity.value,
-          child: ListView.builder(
-            itemCount: 2,
-            shrinkWrap: true,
-            scrollDirection: widget.scrollDirc,
-            physics: widget.isNeverScroll
-                ? const NeverScrollableScrollPhysics()
-                : const BouncingScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.widget,
-              );
-            },
-          ),
+          child: widget.widget,
         );
       },
       animation: _controller,
