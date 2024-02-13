@@ -22,9 +22,9 @@ class CustomLoadingSuggestedJob extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    ComponentEmpty(
-                      width: size.width * .15.w,
-                      height: size.height * .055.h,
+                    CircleAvatar(
+                      radius: size.height * .025.h,
+                      backgroundColor: AppConsts.neutral400,
                     ),
                     Spacer(),
                     Column(

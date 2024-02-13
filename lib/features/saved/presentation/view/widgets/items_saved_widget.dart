@@ -21,6 +21,7 @@ class ItemsSavedWidget extends StatelessWidget {
     super.key,
     required this.savedList,
   });
+
   final List<Job> savedList;
 
   @override
@@ -89,8 +90,8 @@ class ItemsSavedWidget extends StatelessWidget {
     return Column(
       children: [
         //(number) Job Saved
-        SizedBox(
-          height: size.height * .04.h,
+        AspectRatio(
+          aspectRatio: AppConsts.aspect20on2,
           child: TileWidget(
             label: "${savedList.length}${StringsEn.jobSaved}",
             textAlign: TextAlign.center,

@@ -6,7 +6,6 @@ List<String> handleDate({required String date,String split=' '}) {
         convertStringToDateTime(date),
       );
   List<String> dt = dateTime.split(split);
-  print(dt);
   return dt;
 }
 
