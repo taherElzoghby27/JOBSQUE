@@ -10,7 +10,7 @@ class CustomDivider extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: AspectRatio(
-        aspectRatio: AppConsts.aspect225on1,
+        aspectRatio: AppConsts.aspect300on1,
         child: Container(color: AppConsts.neutral300),
       ),
     );
