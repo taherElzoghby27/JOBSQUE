@@ -21,7 +21,7 @@ class SectionResultListViewBlocBuilder extends StatelessWidget {
         if (state is GetJobsLoaded) {
           List<Job> jobs = state.jobs;
           return jobs.isEmpty
-              ? EmptyWidget(
+              ? const EmptyWidget(
                   icon: AppAssets.notFoundSearch,
                   title: StringsEn.searchNotFound,
                   subTitle: StringsEn.trySearchingWithDifferent,
@@ -30,7 +30,7 @@ class SectionResultListViewBlocBuilder extends StatelessWidget {
         } else if (state is GetJobsFailure) {
           return ErrorWidg(message: state.message);
         } else {
-          return CustomFadingLoadingWidgetList(
+          return const CustomFadingLoadingWidgetList(
             scrollDirc: Axis.vertical,
             widget: CustomLoadingRecentJob(),
           );

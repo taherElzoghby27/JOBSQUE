@@ -20,7 +20,7 @@ class _SavedViewState extends State<SavedView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: SavedBody(),
       ),

@@ -19,7 +19,7 @@ class SectionNotifications extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          AspectRatio(
+          const AspectRatio(
             aspectRatio: AppConsts.aspect20on2,
             child: TileWidget(label: StringsEn.notifications),
           ),
