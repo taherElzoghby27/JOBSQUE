@@ -1,7 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
+import 'package:jobsque/core/widgets/empty_widget.dart';
 import 'package:jobsque/features/messages/presentation/view/widgets/section_filter_messages.dart';
 import 'package:jobsque/features/messages/presentation/view/widgets/section_messages.dart';
 import '../../../../../core/consts/routesPage.dart';
@@ -12,7 +15,6 @@ class MessagesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
 
     return Column(
       children: [
@@ -27,12 +29,7 @@ class MessagesBody extends StatelessWidget {
         const AspectRatio(aspectRatio:AppConsts.aspect16on1),
         SectionFilterMessages(),
         //messages
-        SectionMessages(),
-        // EmptyWidget(
-        //   icon: AppAssets.noMessages,
-        //   title: StringsEn.youHaveNotReceivedMessages,
-        //   subTitle: StringsEn.onceYourAppHasReached,
-        // ),
+        const SectionMessages(),
       ],
     );
   }
