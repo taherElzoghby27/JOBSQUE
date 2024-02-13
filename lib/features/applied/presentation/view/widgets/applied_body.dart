@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
@@ -12,21 +12,20 @@ class AppliedBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
       child: ListView(
         children: [
-          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           CustomAppBar(
             leadingOnTap: () => GoRouter.of(context).pushReplacement(homePath),
             title: StringsEn.appliedJob,
             trailingWidget: Container(),
           ),
-          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           //jobs
-          SizedBox(
-            height: size.height * .8.h,
+          AspectRatio(
+            aspectRatio: AppConsts.aspect20on36,
             child: Jobs(),
           ),
         ],
