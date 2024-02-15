@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
@@ -27,11 +26,9 @@ class _WorkLocationBodyState extends State<WorkLocationBody> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Padding(
       padding: AppConsts.mainPadding,
-      child: Column(
+      child: ListView(
         children: [
           const AspectRatio(aspectRatio: AppConsts.aspect16on2),
 
@@ -43,7 +40,7 @@ class _WorkLocationBodyState extends State<WorkLocationBody> {
           const AspectRatio(aspectRatio: AppConsts.aspect16on2),
 
           ///home or office
-          HomeOrOfficeWidget(),
+          const HomeOrOfficeWidget(),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           Align(
             alignment: Alignment.centerLeft,
@@ -99,6 +96,7 @@ class _WorkLocationBodyState extends State<WorkLocationBody> {
               },
             ),
           ),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         ],
       ),
     );

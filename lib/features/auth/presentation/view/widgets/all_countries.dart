@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/data.dart';
+import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/features/auth/presentation/view_model/work_location_cubit/work_location_cubit.dart';
 
 import 'country_widget.dart';
@@ -20,8 +21,8 @@ class AllCountryWidget extends StatelessWidget {
               return Row(
                 children: rowCountries.map(
                   (country) {
-                    String label = country["label"]!;
-                    String flag = country["flag"]!;
+                    String label = country[StringsEn.label]!;
+                    String flag = country[StringsEn.flag]!;
                     return CountryWidget(
                       label: label,
                       flag: flag,

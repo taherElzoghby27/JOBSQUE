@@ -68,6 +68,8 @@ abstract class StringsEn {
   static const String  remote = 'Remote';
   static const String  design = 'Design';
   static const String  selectCountrForJop = 'Select the country you want for your job';
+  static const String label = 'label';
+  static const String flag = 'flag';
   static const String egypt = 'Egypt';
   static const String indonesia = 'Indonesia';
   static const String argentina = 'Argentina';

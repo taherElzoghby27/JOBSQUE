@@ -21,19 +21,21 @@ class BarComponent extends StatelessWidget {
       padding: const EdgeInsets.all(2),
       child: GestureDetector(
         onTap: onTap,
-        child: Container(
-          height: size.height * .06.h,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(40.sp),
-          ),
-          child: Center(
-            child: Text(
-              title,
-              style: AppConsts.style14.copyWith(
-                color: color == AppConsts.neutral200
-                    ? AppConsts.neutral500
-                    : AppConsts.neutral100,
+        child: AspectRatio(
+          aspectRatio: AppConsts.aspect16on4,
+          child: Container(
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(40.sp),
+            ),
+            child: Center(
+              child: Text(
+                title,
+                style: AppConsts.style14.copyWith(
+                  color: color == AppConsts.neutral200
+                      ? AppConsts.neutral500
+                      : AppConsts.neutral100,
+                ),
               ),
             ),
           ),

@@ -12,30 +12,39 @@ List<String> salaries = [
 
 final List<List<Map<String, String>>> countries = [
   [
-    {"label": StringsEn.malaysia, "flag": AppAssets.malaysia},
-    {"label": StringsEn.unitedStates, "flag": AppAssets.unitedStates},
+    {StringsEn.label: StringsEn.malaysia, StringsEn.flag: AppAssets.malaysia},
+    {
+      StringsEn.label: StringsEn.unitedStates,
+      StringsEn.flag: AppAssets.unitedStates
+    },
   ],
   [
-    {"label": StringsEn.singapore, "flag": AppAssets.singapore},
-    {"label": StringsEn.indonesia, "flag": AppAssets.indonesia},
+    {StringsEn.label: StringsEn.singapore, StringsEn.flag: AppAssets.singapore},
+    {StringsEn.label: StringsEn.indonesia, StringsEn.flag: AppAssets.indonesia},
   ],
   [
-    {"label": StringsEn.philiphines, "flag": AppAssets.philiphines},
-    {"label": StringsEn.polandia, "flag": AppAssets.polandia},
+    {
+      StringsEn.label: StringsEn.philiphines,
+      StringsEn.flag: AppAssets.philiphines
+    },
+    {StringsEn.label: StringsEn.polandia, StringsEn.flag: AppAssets.polandia},
   ],
   [
-    {"label": StringsEn.vietnam, "flag": AppAssets.vietnam},
-    {"label": StringsEn.china, "flag": AppAssets.china},
-    {"label": StringsEn.india, "flag": AppAssets.india},
+    {StringsEn.label: StringsEn.vietnam, StringsEn.flag: AppAssets.vietnam},
+    {StringsEn.label: StringsEn.china, StringsEn.flag: AppAssets.china},
+    {StringsEn.label: StringsEn.india, StringsEn.flag: AppAssets.india},
   ],
   [
-    {"label": StringsEn.china, "flag": AppAssets.china},
-    {"label": StringsEn.saudiArabia, "flag": AppAssets.saudiArabia},
-    {"label": StringsEn.egypt, "flag": AppAssets.egypt},
+    {StringsEn.label: StringsEn.china, StringsEn.flag: AppAssets.china},
+    {
+      StringsEn.label: StringsEn.saudiArabia,
+      StringsEn.flag: AppAssets.saudiArabia
+    },
+    {StringsEn.label: StringsEn.egypt, StringsEn.flag: AppAssets.egypt},
   ],
   [
-    {"label": StringsEn.canada, "flag": AppAssets.canada},
-    {"label": StringsEn.brazil, "flag": AppAssets.brazil},
-    {"label": StringsEn.argentina, "flag": AppAssets.argentina},
+    {StringsEn.label: StringsEn.canada, StringsEn.flag: AppAssets.canada},
+    {StringsEn.label: StringsEn.brazil, StringsEn.flag: AppAssets.brazil},
+    {StringsEn.label: StringsEn.argentina, StringsEn.flag: AppAssets.argentina},
   ],
 ];

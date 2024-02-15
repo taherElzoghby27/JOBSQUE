@@ -21,12 +21,11 @@ class CountryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(4),
+      padding:  EdgeInsets.all(5.sp),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(25.sp),
         child: Container(
-          height: size.height * .0525.h,
           decoration: BoxDecoration(
             color: isSelected
                 ? AppConsts.primary500.withOpacity(.15)
@@ -37,7 +36,7 @@ class CountryWidget extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(8),
+            padding:  EdgeInsets.symmetric(horizontal: 7.w,vertical: 5.h),
             child: Row(
               children: [
                 SvgPicture.asset(
