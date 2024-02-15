@@ -25,47 +25,49 @@ class WorkTypeComponent extends StatelessWidget {
       borderRadius: BorderRadius.circular(15.sp),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          height: size.height * .16.h,
-          decoration: BoxDecoration(
-            color: color.withOpacity(.15),
-            borderRadius: BorderRadius.circular(15.sp),
-            border: Border.all(color: color),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: size.height * .055.h,
-                  width: size.width * .12.w,
-                  decoration: BoxDecoration(
-                    color: color == AppConsts.neutral300
-                        ? AppConsts.neutral300.withOpacity(.5)
-                        : AppConsts.neutral100,
-                    borderRadius: BorderRadius.circular(25.sp),
-                    border: Border.all(color: color),
-                  ),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      icon,
-                      color: color == AppConsts.neutral300
-                          ? AppConsts.neutral900
-                          : AppConsts.primary500,
+        child: AspectRatio(
+          aspectRatio: AppConsts.aspect13on10,
+          child: Container(
+            decoration: BoxDecoration(
+              color: color.withOpacity(.15),
+              borderRadius: BorderRadius.circular(15.sp),
+              border: Border.all(color: color),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: color == AppConsts.neutral300
+                            ? AppConsts.neutral300.withOpacity(.5)
+                            : AppConsts.neutral100,
+                        borderRadius: BorderRadius.circular(25.sp),
+                        border: Border.all(color: color),
+                      ),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          icon,
+                          color: color == AppConsts.neutral300
+                              ? AppConsts.neutral900
+                              : AppConsts.primary500,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+                  const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
-                ///title
-                Text(
-                  title,
-                  style: AppConsts.style16.copyWith(
-                    color: AppConsts.neutral900,
+                  ///title
+                  Text(
+                    title,
+                    style: AppConsts.style16.copyWith(
+                      color: AppConsts.neutral900,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
