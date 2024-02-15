@@ -54,7 +54,7 @@ import 'package:jobsque/features/two_step_verifi/presentation/view_models/two_st
 import '../../features/auth/presentation/view/auth_view.dart';
 import '../../features/auth/presentation/view/create_new_pass_view.dart';
 import '../../features/auth/presentation/view/interested_in_work_view.dart';
-import '../../features/auth/presentation/view/successfully_view.dart';
+import '../widgets/successfully_view.dart';
 import '../../features/auth/presentation/view/work_location_view.dart';
 import '../../features/auth/presentation/view_model/interested_in_work_cubit/interested_in_work_cubit.dart';
 import '../../features/complete_profile/presentation/view/complete_profile_process_view.dart';
