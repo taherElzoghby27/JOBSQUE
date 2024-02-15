@@ -16,34 +16,48 @@ class BoardStructure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Center(
-      child: Column(
-        children: [
-          SizedBox(height: size.height * .1.h),
-          Image.asset(image),
-          SizedBox(height: size.height * .04.h),
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              children: [
-                ///title
-                Text.rich(
-                  TextSpan(children: titles),
-                  style: AppConsts.style32,
-                ),
+    return LayoutBuilder(
+      builder: (context, constrains) {
+        double maxScreen = constrains.maxHeight;
+        return Center(
+          child: ListView(
+            children: [
+              const AspectRatio(aspectRatio: AppConsts.aspect16on3),
+              AspectRatio(
+                aspectRatio: AppConsts.aspect13on9,
+                child: Image.asset(image),
+              ),
+              const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: AspectRatio(
+                  aspectRatio: AppConsts.aspect13on9,
+                  child: Column(
+                    children: [
+                      ///title
+                      Text.rich(
+                        TextSpan(children: titles),
+                        style: maxScreen > 565
+                            ? AppConsts.style32
+                            : AppConsts.style32.copyWith(fontSize: 20),
+                      ),
 
-                ///sub title
-                Text(
-                  subTitle,
-                  style: AppConsts.style16,
-                  textAlign: TextAlign.start,
+                      ///sub title
+                      Text(
+                        subTitle,
+                        style: maxScreen > 565
+                            ? AppConsts.style16
+                            : AppConsts.style16.copyWith(fontSize: 14),
+                        textAlign: TextAlign.start,
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          )
-        ],
-      ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }
