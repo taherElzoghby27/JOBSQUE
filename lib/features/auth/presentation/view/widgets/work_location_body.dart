@@ -30,19 +30,21 @@ class _WorkLocationBodyState extends State<WorkLocationBody> {
     Size size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: EdgeInsets.all(25.sp),
+      padding: AppConsts.mainPadding,
       child: Column(
         children: [
+          const AspectRatio(aspectRatio: AppConsts.aspect16on2),
+
           ///title in location work in page
           TopSectionTitle(
             title: StringsEn.whereAreYouLocation,
             subTitle: StringsEn.letUsKnowWhereIsTheWork,
           ),
-          SizedBox(height: size.height * .04.h),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on2),
 
           ///home or office
           HomeOrOfficeWidget(),
-          SizedBox(height: size.height * .03.h),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -50,16 +52,15 @@ class _WorkLocationBodyState extends State<WorkLocationBody> {
               style: AppConsts.style16,
             ),
           ),
-          SizedBox(height: size.height * .03.h),
+          const AspectRatio(aspectRatio: AppConsts.aspect40on1),
 
           ///countries
-          AllCountryWidget(),
-          SizedBox(height: size.height * .1.h),
+          const AllCountryWidget(),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on2),
 
           ///next
-          SizedBox(
-            height: size.height * .055.h,
-            width: size.width * .9.w,
+          AspectRatio(
+            aspectRatio: AppConsts.aspectRatioButtonAuth,
             child: BlocConsumer<WorkLocationCubit, WorkLocationState>(
               listener: (context, state) {
                 if (state is InterestedInWorkLoading) {
@@ -86,7 +87,7 @@ class _WorkLocationBodyState extends State<WorkLocationBody> {
               builder: (context, state) {
                 return Visibility(
                   visible: !loading,
-                  replacement: LoadingWidget(),
+                  replacement: const LoadingWidget(),
                   child: CustomButton(
                     text: StringsEn.next,
                     onTap: () async {
