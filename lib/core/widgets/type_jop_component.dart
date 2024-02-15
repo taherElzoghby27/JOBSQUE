@@ -14,23 +14,24 @@ class TypeJopComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 6.w),
       child: Container(
-        height: size.height * .035.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.sp),
           color: color == AppConsts.neutral100
               ? AppConsts.primary100.withOpacity(.2)
               : AppConsts.primary100,
         ),
-        child: Center(
-          child: Text(
-            label,
-            style: AppConsts.styleHint14.copyWith(
-              color: color,
-              fontSize: 12,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Text(
+              label,
+              style: AppConsts.styleHint14.copyWith(
+                color: color,
+                fontSize: 12,
+              ),
             ),
           ),
         ),

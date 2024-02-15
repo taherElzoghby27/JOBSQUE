@@ -32,9 +32,9 @@ class LogoTitleIconWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ///logo
-          CustomPhoto(
-            image: logo,
-            height: size.height * .055.h,
+          CircleAvatar(
+            radius: size.height * .025.h,
+            child: CustomPhoto(image: logo),
           ),
           SizedBox(width: size.width * .02.w),
 

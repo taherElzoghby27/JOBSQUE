@@ -6,11 +6,11 @@ import '../helper/handle_image.dart';
 class CustomPhoto extends StatelessWidget {
   const CustomPhoto({
     super.key,
-    required this.height,
+     this.height,
     required this.image,
   });
 
-  final double height;
+  final double? height;
   final String image;
 
   @override

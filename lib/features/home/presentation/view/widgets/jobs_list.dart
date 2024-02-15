@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
+import 'package:jobsque/core/consts/style.dart';
 import '../../../../../core/models/job_model/job_model.dart';
 import 'item_suggested_jop.dart';
 
@@ -34,8 +35,8 @@ class _JobsListState extends State<JobsList> {
     Future future = Future(() {});
     for (var job in jobs) {
       future = future.then(
-            (value) => Future.delayed(const Duration(milliseconds: 100)).then(
-              (value) {
+        (value) => Future.delayed(const Duration(milliseconds: 100)).then(
+          (value) {
             jobsWidget.add(_buildWidget(job));
             keyList.currentState!.insertItem(jobsWidget.length - 1);
           },
@@ -69,7 +70,10 @@ class _JobsListState extends State<JobsList> {
             position: animation.drive(
               index % 2 == 0 ? offsetEven : offsetOdd,
             ),
-            child: jobsWidget[index],
+            child: AspectRatio(
+              aspectRatio: AppConsts.aspect13on8,
+              child: jobsWidget[index],
+            ),
           ),
         );
       },

@@ -69,6 +69,8 @@ abstract class AppConsts {
   static const double aspect40on1 = 40 / 1;
   static const double aspect300on1 = 300 / 1;
   static const double aspectRatioButtonAuth = 3 / .4;
+  static const double aspectRatioButtonApply=2.1 / .65;
+  static const double aspect13on8 = 13 / 8;
   static const double aspect13on9 = 13 / 9;
   static const double aspect13on10= 13 /10;
   static const double aspect13on5 = 13 / 5;

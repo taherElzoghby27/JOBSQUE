@@ -14,6 +14,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   String name = '';
+
   @override
   void initState() {
     BlocProvider.of<ProfileCubit>(context).getProfile();

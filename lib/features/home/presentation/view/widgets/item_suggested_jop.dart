@@ -27,91 +27,91 @@ class ItemSuggestedJop extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      child: AspectRatio(
-        aspectRatio: AppConsts.aspect13on9,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppConsts.primary900,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  //logo jopName
-                  Row(
-                    children: [
-                      ///logo
-                      CustomPhoto(
-                        image: job.image!,
-                        height: size.height * .055.h,
-                      ),
-                      Spacer(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          width: size.width * .8.w,
+          decoration: BoxDecoration(
+            color: AppConsts.primary900,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                //logo jopName
+                Row(
+                  children: [
+                    ///logo
+                    CircleAvatar(
+                      radius: size.height * .025.h,
+                      child: CustomPhoto(image: job.image!),
+                    ),
+                    Spacer(),
 
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ///title
-                          SizedBox(
-                            width: size.width * .4.w,
-                            child: Text(
-                              job.name!,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppConsts.style32.copyWith(
-                                color: AppConsts.neutral100,
-                                fontSize: 18,
-                              ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ///title
+                        SizedBox(
+                          width: size.width * .4.w,
+                          child: Text(
+                            job.name!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppConsts.style32.copyWith(
+                              color: AppConsts.neutral100,
+                              fontSize: 18,
                             ),
                           ),
+                        ),
 
-                          ///company.country
-                          SizedBox(
-                            width: size.width * .4.w,
-                            child: Text(
-                              '${job.compName}.${job.location}',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: AppConsts.styleHint14.copyWith(
-                                fontSize: 12,
-                              ),
+                        ///company.country
+                        SizedBox(
+                          width: size.width * .4.w,
+                          child: Text(
+                            '${job.compName}.${job.location}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppConsts.styleHint14.copyWith(
+                              fontSize: 12,
                             ),
                           ),
-                        ],
-                      ),
-                      Spacer(),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
 
-                      ///bookmark
-                      BookmarkWidget(job: job, color: AppConsts.neutral100),
-                    ],
-                  ),
-                  //full time -remote -design
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Expanded(
-                        child: TypeJopComponent(
-                          label: job.jobTimeType!,
-                          color: AppConsts.neutral100,
-                        ),
+                    ///bookmark
+                    BookmarkWidget(job: job, color: AppConsts.neutral100),
+                  ],
+                ),
+                //full time -remote -design
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      child: TypeJopComponent(
+                        label: job.jobTimeType!,
+                        color: AppConsts.neutral100,
                       ),
-                      Expanded(
-                        child: TypeJopComponent(
-                          label: StringsEn.remote,
-                          color: AppConsts.neutral100,
-                        ),
+                    ),
+                    Expanded(
+                      child: TypeJopComponent(
+                        label: StringsEn.remote,
+                        color: AppConsts.neutral100,
                       ),
-                      Spacer(),
-                    ],
-                  ),
-                  //salary - apply jop
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+                    ),
+                    Spacer(),
+                  ],
+                ),
+                //salary - apply jop
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Row(
                         children: [
                           Text(
                             '\$${job.salary}',
@@ -123,9 +123,10 @@ class ItemSuggestedJop extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: size.height * .045.h,
-                        width: size.width * .28.w,
+                    ),
+                    Expanded(
+                      child: AspectRatio(
+                        aspectRatio: AppConsts.aspectRatioButtonApply,
                         child: CustomButton(
                           text: StringsEn.applyNow,
                           onTap: () => GoRouter.of(context).push(
@@ -136,11 +137,11 @@ class ItemSuggestedJop extends StatelessWidget {
                             },
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
             ),
           ),
         ),

@@ -19,7 +19,7 @@ class EmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Center(
-      child: Column(
+      child: ListView(
         children: [
           SizedBox(height: size.height * .15.h),
           //icon

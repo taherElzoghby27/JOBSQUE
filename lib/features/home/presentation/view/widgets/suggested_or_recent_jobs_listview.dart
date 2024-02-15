@@ -28,10 +28,7 @@ class SuggestedOrRecentJobsListView extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: JobsList(jobs: jobs),
-        ),
+        JobsList(jobs: jobs),
       ],
     );
   }

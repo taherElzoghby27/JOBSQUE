@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/suggested_jobs_listview_bloc_consumer.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/tile_recent_suggested_widget.dart';
 import '../../../../../core/consts/routesPage.dart';
@@ -14,7 +15,7 @@ class SuggestedJopSection extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return  Column(
+    return Column(
       children: [
         ///suggested jop       view all
         TileRecentOrSuggested(
@@ -26,10 +27,10 @@ class SuggestedJopSection extends StatelessWidget {
         ),
 
         ///suggested jops
-        SizedBox(
-          height: size.height * .275.h,
+        AspectRatio(
+          aspectRatio: AppConsts.aspect13on8,
           child: SuggestedJobsListViewBlocConsumer(),
-        )
+        ),
       ],
     );
   }
