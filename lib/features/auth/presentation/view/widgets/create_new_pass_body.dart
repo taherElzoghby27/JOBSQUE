@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -16,9 +15,8 @@ class CreatePassBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       child: Form(
         //key: _formKey,
         child: ListView(
@@ -47,7 +45,7 @@ class CreatePassBody extends StatelessWidget {
               StringsEn.passwordLeast8Cha,
               style: AppConsts.style16.copyWith(color: AppConsts.neutral400),
             ),
-            SizedBox(height: size.height * .05.h),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
             ///Password
             CustomTextFormField(
@@ -62,12 +60,11 @@ class CreatePassBody extends StatelessWidget {
               StringsEn.bothPassMustMatch,
               style: AppConsts.style16.copyWith(color: AppConsts.neutral400),
             ),
-            SizedBox(height: size.height * .3.h),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on8),
 
             ///Create account or login or reset pass
-            SizedBox(
-              height: size.height * .055.h,
-              width: size.width * .9.w,
+            AspectRatio(
+              aspectRatio: AppConsts.aspectRatioButtonAuth,
               child: CustomButton(
                 text: StringsEn.resetPass,
                 onTap: () => GoRouter.of(context).pushReplacement(
@@ -82,6 +79,7 @@ class CreatePassBody extends StatelessWidget {
                 ),
               ),
             ),
+            const AspectRatio(aspectRatio: AppConsts.aspect40on1),
           ],
         ),
       ),

@@ -73,6 +73,10 @@ abstract class AppConsts {
   static const double aspect13on5 = 13 / 5;
   static const double aspect10on19 = 10 / 19;
   static const double aspect16on7 = 16 / 7;
+  static const double halfScreenHeight = 565;
+
+  //padding
+  static const EdgeInsets mainPadding = EdgeInsets.symmetric(horizontal: 15);
 
   //styles
   static const TextStyle styleHint14 = TextStyle(

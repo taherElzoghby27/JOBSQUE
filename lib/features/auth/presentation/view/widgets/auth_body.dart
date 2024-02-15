@@ -81,12 +81,18 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BlocConsumer<AuthBloc, AuthState>(
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+          padding: AppConsts.mainPadding,
           child: Form(
             key: _formKey,
             child: FadeAnimation(
@@ -107,15 +113,16 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                             : StringsEn.pleaseCreateAccount,
                     widget: Container(),
                   ),
-                  //fields
+
+                  ///fields
                   AnimatedBuilder(
                     animation: controller,
                     builder: (context, child) {
                       return AnimatedSlide(
                         offset: offsetAnimation.value,
                         duration: const Duration(milliseconds: 200),
-                        child: SizedBox(
-                          height: size.height * .425.h,
+                        child: AspectRatio(
+                          aspectRatio: AppConsts.aspect13on9,
                           child: Column(
                             children: [
                               ///username
@@ -130,7 +137,8 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                                           onChanged: (String? value) =>
                                               name = value,
                                         ),
-                              SizedBox(height: size.height * .0175.h),
+                              const AspectRatio(
+                                  aspectRatio: AppConsts.aspect40on1),
 
                               ///Email
 
@@ -139,7 +147,8 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                                 hint: StringsEn.email,
                                 onChanged: (String? value) => email = value,
                               ),
-                              SizedBox(height: size.height * .0175.h),
+                              const AspectRatio(
+                                  aspectRatio: AppConsts.aspect40on1),
 
                               ///Password
                               _authMode == AuthMode.ResetPassword
@@ -182,6 +191,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                       );
                     },
                   ),
+                  const AspectRatio(aspectRatio: AppConsts.aspect16on4),
 
                   ///already have an account
                   Row(
@@ -209,14 +219,13 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                       ),
                     ],
                   ),
-                  SizedBox(height: size.height * .01.h),
 
                   ///Create account or login or reset pass
                   AspectRatio(
-                    aspectRatio:AppConsts.aspectRatioButtonAuth.sp ,
+                    aspectRatio: AppConsts.aspectRatioButtonAuth.sp,
                     child: Visibility(
                       visible: !isLoading,
-                      replacement: LoadingWidget(),
+                      replacement: const LoadingWidget(),
                       child: CustomButton(
                         text: _authMode == AuthMode.ResetPassword
                             ? StringsEn.requestPass
@@ -226,7 +235,11 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                         onTap: () {
                           ///create account
                           if (_formKey.currentState!.validate()) {
-                            _authMode == AuthMode.SignUp ? register() : login();
+                            _authMode == AuthMode.ResetPassword
+                                ? requestPass()
+                                : _authMode == AuthMode.SignUp
+                                    ? register()
+                                    : login();
                             if (controller.isAnimating) {
                               controller.stop();
                               controller.reset();
@@ -249,7 +262,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                       ),
                     ),
                   ),
-                  SizedBox(height: size.height * .015.h),
+                  const AspectRatio(aspectRatio: AppConsts.aspect40on1),
                   _authMode == AuthMode.ResetPassword
                       ? Container()
                       : Column(
@@ -260,8 +273,9 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                                   ? StringsEn.orLoginWithAccount
                                   : StringsEn.orSignUp,
                             ),
-                            SizedBox(height: size.height * .0175.h),
-                            SignWithGoogleAndFaceBookWidget(size: size),
+                            const AspectRatio(
+                                aspectRatio: AppConsts.aspect40on1),
+                            SignWithGoogleAndFaceBookWidget(),
                           ],
                         ),
                 ],
@@ -313,12 +327,16 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
     );
   }
 
+  requestPass() {
+    navigateToAnotherPage();
+  }
+
   //navigate to another page
   navigateToAnotherPage() async {
-    await Future.delayed(Duration(milliseconds: 1500));
+    await Future.delayed(Duration(seconds: 1));
     GoRouter.of(context).pushReplacement(
       _authMode == AuthMode.ResetPassword
-          ? successfullyPagePath
+          ? createPassPath
           : _authMode == AuthMode.Login
               ? homePath
               : interestedInWorkPath,

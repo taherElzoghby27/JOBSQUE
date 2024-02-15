@@ -6,8 +6,10 @@ class CreatePassView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CreatePassBody(),
+    return const Scaffold(
+      body: SafeArea(
+        child: CreatePassBody(),
+      ),
     );
   }
 }

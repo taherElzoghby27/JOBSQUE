@@ -6,12 +6,11 @@ import '../../../../../core/consts/strings.dart';
 import '../../../../../core/widgets/custom_button_with_widget.dart';
 
 class SignWithGoogleAndFaceBookWidget extends StatelessWidget {
-  const SignWithGoogleAndFaceBookWidget({super.key, required this.size});
-
-  final Size size;
+  const SignWithGoogleAndFaceBookWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Row(
       children: [
         ///google

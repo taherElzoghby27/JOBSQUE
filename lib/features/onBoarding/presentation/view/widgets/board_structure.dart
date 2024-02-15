@@ -37,7 +37,7 @@ class BoardStructure extends StatelessWidget {
                       ///title
                       Text.rich(
                         TextSpan(children: titles),
-                        style: maxScreen > 565
+                        style: maxScreen > AppConsts.halfScreenHeight
                             ? AppConsts.style32
                             : AppConsts.style32.copyWith(fontSize: 20),
                       ),
@@ -45,7 +45,7 @@ class BoardStructure extends StatelessWidget {
                       ///sub title
                       Text(
                         subTitle,
-                        style: maxScreen > 565
+                        style: maxScreen > AppConsts.halfScreenHeight
                             ? AppConsts.style16
                             : AppConsts.style16.copyWith(fontSize: 14),
                         textAlign: TextAlign.start,
