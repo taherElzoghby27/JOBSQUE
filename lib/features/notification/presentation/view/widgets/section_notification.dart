@@ -27,10 +27,8 @@ class SectionNotifications extends StatelessWidget {
           ///notification
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: NotificationListView(
-                notificationModel: notificationModel,
-              ),
+              padding: AppConsts.padding10,
+              child: NotificationListView(notificationModel: notificationModel),
             ),
           ),
         ],

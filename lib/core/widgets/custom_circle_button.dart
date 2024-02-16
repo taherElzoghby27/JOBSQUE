@@ -19,22 +19,19 @@ class CustomCircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(25.sp),
       child: Container(
-        height: size.height * .055.h,
-        width: size.width * .12.w,
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(25.sp),
           border: Border.all(color: color ?? AppConsts.neutral300),
         ),
-        child: Center(
-          child: SvgPicture.asset(
-            icon,
-            color: colorIcon,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: SvgPicture.asset(icon, color: colorIcon),
           ),
         ),
       ),

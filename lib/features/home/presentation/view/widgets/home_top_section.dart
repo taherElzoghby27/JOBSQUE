@@ -13,6 +13,7 @@ import '../../../../../core/consts/strings.dart';
 
 class HomeTopSection extends StatelessWidget {
   const HomeTopSection({super.key, required this.name});
+
   final String name;
 
   @override
@@ -26,28 +27,31 @@ class HomeTopSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: size.width * .75.w,
-                    child: Text(
+              Expanded(
+                flex: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
                       '${StringsEn.hi}$name',
                       style: AppConsts.style24,
                       overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
-                  ),
-                  Text(
-                    StringsEn.createBetterFuture,
-                    style: AppConsts.style14.copyWith(
-                      color: AppConsts.neutral500,
+                    Text(
+                      StringsEn.createBetterFuture,
+                      style: AppConsts.style14.copyWith(
+                        color: AppConsts.neutral500,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              CustomCircleButton(
-                icon: AppAssets.notification,
-                onTap: () => GoRouter.of(context).push(notificationPath),
+              Expanded(
+                child: CustomCircleButton(
+                  icon: AppAssets.notification,
+                  onTap: () => GoRouter.of(context).push(notificationPath),
+                ),
               ),
             ],
           ),

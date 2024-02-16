@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/assets.dart';
@@ -25,6 +24,7 @@ class NotificationListView extends StatelessWidget {
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
+        List<String> date = handleDate(date: notificationModel.updatedAt!);
         return FadeAnimation(
           millSeconds: 250,
           child: Padding(
@@ -46,19 +46,14 @@ class NotificationListView extends StatelessWidget {
                   DefaultTextStyle(
                     style: AppConsts.style12.copyWith(fontSize: 12),
                     child: Column(
-                      mainAxisAlignment:
-                      MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          handleDate(
-                            date: notificationModel.updatedAt!,
-                          )[0],
+                          date[0],
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
-                          handleDate(
-                            date: notificationModel.updatedAt!,
-                          )[1],
+                          date[1],
                           overflow: TextOverflow.ellipsis,
                         ),
                       ],
@@ -72,7 +67,7 @@ class NotificationListView extends StatelessWidget {
       },
       itemCount: 3,
       separatorBuilder: (BuildContext context, int index) =>
-      const CustomDivider(),
+          const CustomDivider(),
     );
   }
 }

@@ -33,7 +33,9 @@ class ItemRecentJop extends StatelessWidget {
                 jopTitle: job.name!,
                 company: job.compName!,
                 country: job.location!,
-                trailing: BookmarkWidget(job: job),
+                trailing: Expanded(
+                  child: BookmarkWidget(job: job),
+                ),
               ),
               //full time -remote -design
               Row(

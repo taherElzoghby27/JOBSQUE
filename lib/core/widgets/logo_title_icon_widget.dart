@@ -65,12 +65,10 @@ class LogoTitleIconWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(width: size.width * .03.w),
+          SizedBox(width: size.width * .02.w),
 
           ///trailing
-          Expanded(
-            child: Center(child: trailing),
-          ),
+          trailing,
         ],
       ),
     );
