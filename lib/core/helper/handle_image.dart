@@ -6,18 +6,27 @@ import 'package:jobsque/core/consts/strings.dart';
 import '../widgets/small_loading_widget.dart';
 
 //handle image
-Widget handleImage(String image, double? height) {
+Widget handleImage(String image, double? height, double? width) {
   String type = checkPhotoType(image);
   switch (type) {
     case 'jpg' || 'png':
-      return Image.asset(image, height: height);
+      return Image.asset(
+        image,
+        height: height,
+        width: width,
+      );
     case 'svg':
-      return SvgPicture.asset(image, height: height);
+      return SvgPicture.asset(
+        image,
+        height: height,
+        width: width,
+      );
     case 'network':
       return CachedNetworkImage(
         height: height,
+        width: width,
         imageUrl: image,
-        placeholder: (context, url) => LoadingWidget(),
+        placeholder: (context, url) => const LoadingWidget(),
         errorWidget: (context, url, error) => Icon(Icons.error),
       );
     default:

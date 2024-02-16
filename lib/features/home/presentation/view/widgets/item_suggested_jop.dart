@@ -42,21 +42,20 @@ class ItemSuggestedJop extends StatelessWidget {
               children: [
                 //logo jopName
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ///logo
-                    CircleAvatar(
-                      radius: size.height * .025.h,
+                    Expanded(
                       child: CustomPhoto(image: job.image!),
                     ),
-                    Spacer(),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ///title
-                        SizedBox(
-                          width: size.width * .4.w,
-                          child: Text(
+                    SizedBox(width: size.width * .03.w),
+                    Expanded(
+                      flex: 4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ///title
+                          Text(
                             job.name!,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -65,12 +64,9 @@ class ItemSuggestedJop extends StatelessWidget {
                               fontSize: 18,
                             ),
                           ),
-                        ),
 
-                        ///company.country
-                        SizedBox(
-                          width: size.width * .4.w,
-                          child: Text(
+                          ///company.country
+                          Text(
                             '${job.compName}.${job.location}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -78,13 +74,18 @@ class ItemSuggestedJop extends StatelessWidget {
                               fontSize: 12,
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                    Spacer(),
+                    SizedBox(width: size.width * .03.w),
 
                     ///bookmark
-                    BookmarkWidget(job: job, color: AppConsts.neutral100),
+                    Expanded(
+                      child: BookmarkWidget(
+                        job: job,
+                        color: AppConsts.neutral100,
+                      ),
+                    ),
                   ],
                 ),
                 //full time -remote -design

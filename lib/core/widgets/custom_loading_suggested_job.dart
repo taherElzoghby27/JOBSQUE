@@ -22,26 +22,28 @@ class CustomLoadingSuggestedJob extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
-                      radius: size.height * .025.h,
-                      backgroundColor: AppConsts.neutral400,
+                    Expanded(
+                      child: Container(color: AppConsts.neutral400),
                     ),
-                    Spacer(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ComponentEmpty(
-                          width: size.width * .4.w,
-                          height: size.height * .01.h,
-                        ),
-                        SizedBox(height: size.height * .01.h),
-                        ComponentEmpty(
-                          width: size.width * .4.w,
-                          height: size.height * .01.h,
-                        ),
-                      ],
+                    SizedBox(width: size.width * .03.w),
+                    Expanded(
+                      flex: 4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ComponentEmpty(
+                            width: size.width * .4.w,
+                            height: size.height * .01.h,
+                          ),
+                          SizedBox(height: size.height * .01.h),
+                          ComponentEmpty(
+                            width: size.width * .4.w,
+                            height: size.height * .01.h,
+                          ),
+                        ],
+                      ),
                     ),
-                    Spacer(),
+                    SizedBox(width: size.width * .03.w),
                   ],
                 ),
                 Row(
@@ -84,4 +86,3 @@ class CustomLoadingSuggestedJob extends StatelessWidget {
     );
   }
 }
-

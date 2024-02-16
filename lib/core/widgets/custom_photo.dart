@@ -6,18 +6,20 @@ import '../helper/handle_image.dart';
 class CustomPhoto extends StatelessWidget {
   const CustomPhoto({
     super.key,
-     this.height,
+    this.height,
     required this.image,
+    this.width,
   });
 
   final double? height;
+  final double? width;
   final String image;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.sp),
-      child: handleImage(image, height),
+      child: handleImage(image, height, width),
     );
   }
 }

@@ -32,13 +32,13 @@ class LogoTitleIconWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ///logo
-          CircleAvatar(
-            radius: size.height * .025.h,
+          Expanded(
             child: CustomPhoto(image: logo),
           ),
-          SizedBox(width: size.width * .02.w),
+          SizedBox(width: size.width * .03.w),
 
           Expanded(
+            flex: 5,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -65,11 +65,10 @@ class LogoTitleIconWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(width: size.width * .02.w),
+          SizedBox(width: size.width * .03.w),
 
           ///trailing
-          SizedBox(
-            width: size.width * .2.w,
+          Expanded(
             child: Center(child: trailing),
           ),
         ],
