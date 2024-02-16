@@ -12,9 +12,7 @@ class RecentSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TileWidget(
-          label: StringsEn.recentSearches,
-        ),
+        TileWidget(label: StringsEn.recentSearches),
 
         ///recent searches
         ListView.builder(

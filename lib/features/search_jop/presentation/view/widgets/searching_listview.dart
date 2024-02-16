@@ -22,15 +22,11 @@ class SearchingListView extends StatefulWidget {
 class _SearchingListViewState extends State<SearchingListView> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        SizedBox(
-          height: size.height * .04.h,
-          child: TileWidget(
-            label:
-                "${StringsEn.featuring} ${widget.jobs.length} ${StringsEn.jobs}",
-          ),
+        TileWidget(
+          label:
+              "${StringsEn.featuring} ${widget.jobs.length} ${StringsEn.jobs}",
         ),
 
         ///searching jops

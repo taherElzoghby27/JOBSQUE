@@ -35,8 +35,8 @@ class CustomComponentJopType extends StatelessWidget {
                 fullTime = state.jopType;
               }
               return Wrap(
-                runSpacing: 10,
-                spacing: 25,
+                runSpacing: 15,
+                spacing: 15,
                 children: [
                   CustomTypeJopWidget(
                     label: StringsEn.fullTime,

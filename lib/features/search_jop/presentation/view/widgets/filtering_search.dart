@@ -35,10 +35,7 @@ class SectionFiltering extends StatelessWidget {
             child: Container(
               decoration: AppConsts.decorationSheet,
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 16.h,
-                  horizontal: 20.w,
-                ),
+                padding: AppConsts.mainPadding,
                 child: BlocProvider(
                   create: (_) => SearchCubit(
                     getIt.get<FilterJobsRepoImplementation>(),
@@ -61,7 +58,7 @@ class SectionFiltering extends StatelessWidget {
                               style: TextStyle(color: AppConsts.primary500),
                             ),
                           ),
-                          AspectRatio(aspectRatio: AppConsts.aspect16on1),
+                          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
                           ///jop title
                           CustomFilterTextField(
@@ -73,7 +70,7 @@ class SectionFiltering extends StatelessWidget {
                             ),
                             controller: bloc.titleJopCont,
                           ),
-                          AspectRatio(aspectRatio: AppConsts.aspect16on1),
+                          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
                           ///location
                           CustomFilterTextField(
@@ -85,7 +82,7 @@ class SectionFiltering extends StatelessWidget {
                             ),
                             controller: bloc.locationCont,
                           ),
-                          AspectRatio(aspectRatio: AppConsts.aspect16on1),
+                          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
                           ///salary
 
@@ -116,11 +113,11 @@ class SectionFiltering extends StatelessWidget {
                             ),
                             readOnly: true,
                           ),
-                          AspectRatio(aspectRatio: AppConsts.aspect16on1),
+                          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
                           ///jop type
-                          CustomComponentJopType(),
-                          AspectRatio(aspectRatio: AppConsts.aspect16on4),
+                          const CustomComponentJopType(),
+                          const AspectRatio(aspectRatio: AppConsts.aspect16on3),
 
                           ///show result
                           AspectRatio(
@@ -157,14 +154,11 @@ class SectionFiltering extends StatelessWidget {
         context: context,
         builder: (context) {
           return AspectRatio(
-            aspectRatio: AppConsts.aspect16on14,
+            aspectRatio: AppConsts.aspect13on9,
             child: Container(
               decoration: AppConsts.decorationSheet,
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 16.h,
-                  horizontal: 20.w,
-                ),
+                padding: AppConsts.mainPadding,
                 child: Column(
                   children: [
                     CustomAppBar(
@@ -172,10 +166,10 @@ class SectionFiltering extends StatelessWidget {
                       title: StringsEn.on_site,
                     ),
 
-                    SizedBox(height: size.height * .04.w),
+                    const AspectRatio(aspectRatio: AppConsts.aspect16on2),
                     Wrap(
-                      runSpacing: 6,
-                      spacing: 6,
+                      runSpacing: 10,
+                      spacing: 10,
                       children: [
                         CustomTypeJopWidget(
                           label: StringsEn.remote,
@@ -200,7 +194,7 @@ class SectionFiltering extends StatelessWidget {
                       ],
                     ),
 
-                    SizedBox(height: size.height * .04.w),
+                    const AspectRatio(aspectRatio: AppConsts.aspect16on3),
 
                     ///show result
                     AspectRatio(

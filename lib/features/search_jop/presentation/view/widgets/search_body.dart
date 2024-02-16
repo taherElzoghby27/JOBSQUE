@@ -33,19 +33,19 @@ class SearchBody extends StatelessWidget {
                 searchText: value,
               ),
             ),
-            SizedBox(height: size.height * .015.h),
+            const AspectRatio(aspectRatio: AppConsts.aspect40on1),
 
             ///section filtering
-            initial ? Container() : SectionFiltering(),
-            SizedBox(height: size.height * .015.h),
+            initial ? Container() : const SectionFiltering(),
+            const AspectRatio(aspectRatio: AppConsts.aspect40on1),
 
             ///section result
             initial
                 ? Column(
                     children: [
-                      RecentSearch(),
+                      const RecentSearch(),
                       SizedBox(height: size.height * .015.h),
-                      PopularSearch(),
+                      const PopularSearch(),
                     ],
                   )
                 : SectionResultListViewBlocBuilder(),

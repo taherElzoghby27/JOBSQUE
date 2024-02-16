@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class JopTypeComponent extends StatelessWidget {
@@ -18,12 +17,10 @@ class JopTypeComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(20),
       child: Container(
-        height: size.height * .045.h,
         decoration: BoxDecoration(
           color: backColor,
           borderRadius: BorderRadius.circular(20),
@@ -34,7 +31,7 @@ class JopTypeComponent extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.w),
+          padding: AppConsts.padding10h8v,
           child: Row(
             children: [
               Text(
