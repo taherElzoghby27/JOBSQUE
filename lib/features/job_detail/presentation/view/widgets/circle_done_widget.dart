@@ -9,14 +9,15 @@ class CircleDoneWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height * .055.h,
-      width: size.width * .12.w,
-      decoration: AppConsts.decorationCircleDone,
-      child: Center(
-        child: Icon(
-          FontAwesomeIcons.check,
-          color: AppConsts.neutral100,
+    return CircleAvatar(
+      radius: size.height * .035.h,
+      child: Container(
+        decoration: AppConsts.decorationCircleDone,
+        child: Center(
+          child: Icon(
+            FontAwesomeIcons.check,
+            color: AppConsts.neutral100,
+          ),
         ),
       ),
     );

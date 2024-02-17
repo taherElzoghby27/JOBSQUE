@@ -15,18 +15,19 @@ class CircleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height * .055.h,
-      width: size.width * .12.w,
-      decoration: color == AppConsts.primary500
-          ? AppConsts.decorationCircleNotCheck.copyWith(
-              border: Border.all(color: AppConsts.primary500),
-            )
-          : AppConsts.decorationCircleNotCheck,
-      child: Center(
-        child: Text(
-          label,
-          style: TextStyle(color: color),
+    return CircleAvatar(
+      radius: size.height * .0325.h,
+      child: Container(
+        decoration: color == AppConsts.primary500
+            ? AppConsts.decorationCircleNotCheck.copyWith(
+                border: Border.all(color: AppConsts.primary500),
+              )
+            : AppConsts.decorationCircleNotCheck,
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(color: color),
+          ),
         ),
       ),
     );

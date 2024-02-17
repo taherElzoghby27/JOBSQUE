@@ -23,7 +23,7 @@ class CirclesBarSection extends StatelessWidget {
           Column(
             children: [
               currentPage == 2 || currentPage == 3 || currentPage == 4
-                  ? CircleDoneWidget()
+                  ? const CircleDoneWidget()
                   : CircleWidget(
                       label: StringsEn.one,
                       color: currentPage == 1
@@ -56,7 +56,7 @@ class CirclesBarSection extends StatelessWidget {
           Column(
             children: [
               currentPage == 3 || currentPage == 4
-                  ? CircleDoneWidget()
+                  ? const CircleDoneWidget()
                   : CircleWidget(
                       label: StringsEn.two,
                       color: currentPage == 2
@@ -88,8 +88,8 @@ class CirclesBarSection extends StatelessWidget {
           //3
           Column(
             children: [
-               currentPage == 4
-                  ? CircleDoneWidget()
+              currentPage == 4
+                  ? const CircleDoneWidget()
                   : CircleWidget(
                       label: StringsEn.three,
                       color: currentPage == 3 || currentPage == 4

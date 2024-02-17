@@ -1,6 +1,5 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
@@ -9,18 +8,18 @@ import 'package:jobsque/core/widgets/custom_button_icon.dart';
 
 class UploadYourOtherFileWidget extends StatelessWidget {
   const UploadYourOtherFileWidget({super.key, required this.onTap});
+
   final void Function() onTap;
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 5.w),
-      child: DottedBorder(
-        dashPattern: [4, 4],
-        strokeWidth: 1,
-        color: AppConsts.primary500,
+    return DottedBorder(
+      dashPattern: [4, 4],
+      strokeWidth: 1,
+      color: AppConsts.primary500,
+      child: AspectRatio(
+        aspectRatio: AppConsts.aspect13on9,
         child: Container(
-          height: size.height * .275.h,
           color: AppConsts.primary400.withOpacity(.25),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -42,17 +41,20 @@ class UploadYourOtherFileWidget extends StatelessWidget {
                   ),
                 ),
                 //button
-                CustomButtonIcon(
-                  onTap: onTap,
-                  label: Text(
-                    StringsEn.addFile,
-                    style: AppConsts.style16White.copyWith(
+                AspectRatio(
+                  aspectRatio: AppConsts.aspectRatioButtonAuth,
+                  child: CustomButtonIcon(
+                    onTap: onTap,
+                    label: Text(
+                      StringsEn.addFile,
+                      style: AppConsts.style16White.copyWith(
+                        color: AppConsts.primary500,
+                      ),
+                    ),
+                    icon: Icon(
+                      Icons.ios_share_rounded,
                       color: AppConsts.primary500,
                     ),
-                  ),
-                  icon: Icon(
-                    Icons.ios_share_rounded,
-                    color: AppConsts.primary500,
                   ),
                 ),
               ],

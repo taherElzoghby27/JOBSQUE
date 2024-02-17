@@ -15,7 +15,6 @@ class UploadPortoflioContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return BlocListener<UploadPortfolioCubit, UploadPortfolioState>(
       listener: (context, state) {
         if (state is PickedFileFailure) {
@@ -30,13 +29,13 @@ class UploadPortoflioContentWidget extends StatelessWidget {
         children: [
           //Upload cv
           TitleField(label: StringsEn.uplaodCv, star: StringsEn.star),
-          SizedBox(height: size.height * .01.h),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           //pdf
-          CvPdfs(),
-          SizedBox(height: size.height * .01.h),
+          const CvPdfs(),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           //other file
           TitleField(label: StringsEn.otherFile),
-          SizedBox(height: size.height * .01.h),
+          const AspectRatio(aspectRatio: AppConsts.aspect40on1),
           //pdf
           UploadYourOtherFileWidget(
             onTap: () {

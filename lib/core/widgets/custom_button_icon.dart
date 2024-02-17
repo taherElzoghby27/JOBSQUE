@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class CustomButtonIcon extends StatelessWidget {
@@ -17,13 +16,10 @@ class CustomButtonIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(25),
       child: Container(
-        height: size.height * .0475.h,
-        width: size.width * .85.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
           border: Border.all(color: AppConsts.primary500),

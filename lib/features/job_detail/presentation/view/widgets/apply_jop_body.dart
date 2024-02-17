@@ -82,7 +82,7 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
                   height: size.height,
                   child: ListView(
                     children: [
-                      const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+                      const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
                       //custom appBar
                       CustomAppBar(
@@ -96,19 +96,25 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
                       status == StringsEn.notComplete
                           ? Column(
                               children: [
-                                const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+                                const AspectRatio(
+                                  aspectRatio: AppConsts.aspect16on1,
+                                ),
                                 InfoSectionJopDetail(job: job),
                               ],
                             )
                           : Container(),
-                      const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+                      const AspectRatio(aspectRatio: AppConsts.aspect16on1),
                       //1  2  3 (circles bar)
                       Center(
                         child: CirclesBarSection(currentPage: currentPag),
                       ),
-                      SizedBox(height: size.height * .035.h),
+                      const AspectRatio(aspectRatio: AppConsts.aspect16on2),
                       //info
-                      SectionInfo(currentPage: currentPag),
+                      Padding(
+                        padding: AppConsts.mainPadding,
+                        child: SectionInfo(currentPage: currentPag),
+                      ),
+                      const AspectRatio(aspectRatio: AppConsts.aspect16on1),
                     ],
                   ),
                 ),
@@ -116,10 +122,10 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
                 Positioned(
                   bottom: size.height * .06.h,
                   width: size.width,
-                  child: Center(
-                    child: SizedBox(
-                      height: size.height * .055.h,
-                      width: size.width * .9.w,
+                  child: Padding(
+                    padding: AppConsts.mainPadding,
+                    child: AspectRatio(
+                      aspectRatio: AppConsts.aspectRatioButtonAuth,
                       child: Visibility(
                         visible: !isLoading,
                         replacement: const LoadingWidget(),
