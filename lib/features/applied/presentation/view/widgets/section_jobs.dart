@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/functions.dart';
 import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
@@ -26,7 +27,7 @@ class SectionJobs extends StatelessWidget {
       children: [
         TileWidget(label: '${userJobs.length} ${StringsEn.jobs}'),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          padding:AppConsts.mainPadding,
           child: ListView.separated(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,

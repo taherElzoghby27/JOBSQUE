@@ -19,39 +19,42 @@ class _CustomBarAppliedJobState extends State<CustomBarAppliedJob> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     final bloc = BlocProvider.of<AppliedJobCubit>(context);
-    return Container(
-      height: size.height * .06.h,
-      width: size.width * .85.w,
-      decoration: AppConsts.barDecoration,
-      child: Row(
-        children: [
-          Expanded(
-            child: BarComponent(
-              title: StringsEn.active,
-              color: currentPage == 0
-                  ? AppConsts.primary900
-                  : AppConsts.neutral200,
-              onTap: () {
-                setState(() => currentPage = 0);
-                bloc.getActiveJobs();
-              },
-            ),
+    return Padding(
+      padding: AppConsts.mainPadding,
+      child: AspectRatio(
+        aspectRatio: AppConsts.aspect16on2,
+        child: Container(
+          decoration: AppConsts.barDecoration,
+          child: Row(
+            children: [
+              Expanded(
+                child: BarComponent(
+                  title: StringsEn.active,
+                  color: currentPage == 0
+                      ? AppConsts.primary900
+                      : AppConsts.neutral200,
+                  onTap: () {
+                    setState(() => currentPage = 0);
+                    bloc.getActiveJobs();
+                  },
+                ),
+              ),
+              Expanded(
+                child: BarComponent(
+                  title: StringsEn.rejected,
+                  color: currentPage == 1
+                      ? AppConsts.primary900
+                      : AppConsts.neutral200,
+                  onTap: () {
+                    setState(() => currentPage = 1);
+                    bloc.getRejectedJobs();
+                  },
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: BarComponent(
-              title: StringsEn.rejected,
-              color: currentPage == 1
-                  ? AppConsts.primary900
-                  : AppConsts.neutral200,
-              onTap: () {
-                setState(() => currentPage = 1);
-                bloc.getRejectedJobs();
-              },
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

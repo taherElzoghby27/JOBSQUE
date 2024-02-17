@@ -46,7 +46,7 @@ class _CustomItemAppliedJopState extends State<CustomItemAppliedJop> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h),
       child: AspectRatio(
-        aspectRatio: 13 / 8,
+        aspectRatio: AppConsts.aspect13on9,
         child: InkWell(
           onTap: () => current == 4
               ? showSnack(context, message: StringsEn.appliedCompleted)

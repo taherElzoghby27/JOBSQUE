@@ -12,24 +12,21 @@ class AppliedBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.w),
-      child: ListView(
-        children: [
-          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-          CustomAppBar(
-            leadingOnTap: () => GoRouter.of(context).pushReplacement(homePath),
-            title: StringsEn.appliedJob,
-            trailingWidget: Container(),
-          ),
-          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-          //jobs
-          AspectRatio(
-            aspectRatio: AppConsts.aspect20on36,
-            child: Jobs(),
-          ),
-        ],
-      ),
+    return ListView(
+      children: [
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+        CustomAppBar(
+          leadingOnTap: () => GoRouter.of(context).pushReplacement(homePath),
+          title: StringsEn.appliedJob,
+          trailingWidget: Container(),
+        ),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+        //jobs
+        AspectRatio(
+          aspectRatio: AppConsts.aspect20on36,
+          child: const Jobs(),
+        ),
+      ],
     );
   }
 }

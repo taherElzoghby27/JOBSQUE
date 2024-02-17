@@ -44,7 +44,7 @@ class AppliedJobsBlocConsumer extends StatelessWidget {
           return CustomFadingLoadingAnimation(
             widget: FadingListView(
               scrollDirc: Axis.vertical,
-              widget: CustomLoadingRecentJob(),
+              widget: const CustomLoadingRecentJob(),
             ),
           );
         }
