@@ -16,6 +16,7 @@ class Jobs extends StatelessWidget {
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
         const AppliedJobsBlocConsumer(),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on2),
       ],
     );
   }
