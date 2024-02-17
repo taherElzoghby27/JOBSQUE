@@ -20,74 +20,81 @@ class JopDetailBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        SizedBox(
-          height: size.height,
-          child: NestedScrollView(
-            headerSliverBuilder: (context, innerBox) {
-              return [
-                SliverAppBar(
-                  automaticallyImplyLeading: false,
-                  expandedHeight: size.height * .35.h,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: ListView(
-                      children: [
-                        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double maxScreenHeight = constraints.maxHeight;
+        return Stack(
+          children: [
+            NestedScrollView(
+              headerSliverBuilder: (context, innerBox) {
+                return [
+                  SliverAppBar(
+                    automaticallyImplyLeading: false,
+                    expandedHeight: maxScreenHeight > AppConsts.halfScreenHeight
+                        ? size.height * .35.h
+                        : size.height * .7.h,
+                    flexibleSpace: FlexibleSpaceBar(
+                      stretchModes: [StretchMode.blurBackground],
+                      background: ListView(
+                        children: [
+                          const AspectRatio(aspectRatio: AppConsts.aspect40on1),
 
-                        ///custom appBar
-                        CustomAppBar(
-                          leadingOnTap: () =>
-                              GoRouter.of(context).pushReplacement(homePath),
-                          title: StringsEn.jobDetail,
-                          trailingOnTap: () {},
-                          trailingWidget: BookmarkWidget(job: job),
-                        ),
-                        const AspectRatio(aspectRatio:AppConsts.aspect40on1),
+                          ///custom appBar
+                          CustomAppBar(
+                            leadingOnTap: () =>
+                                GoRouter.of(context).pushReplacement(
+                              homePath,
+                            ),
+                            title: StringsEn.jobDetail,
+                            trailingOnTap: () {},
+                            trailingWidget: BookmarkWidget(job: job),
+                          ),
+                          const AspectRatio(aspectRatio: AppConsts.aspect40on1),
 
-                        ///title - company -country
-                        InfoSectionJopDetail(job: job),
-                      ],
+                          ///title - company -country
+                          InfoSectionJopDetail(job: job),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ];
-            },
-            body: DescriptionCompanyPeopleSectionJopDetail(job: job),
-          ),
-        ),
+                ];
+              },
+              body: DescriptionCompanyPeopleSectionJopDetail(job: job),
+            ),
 
-        ///apply now
-        Positioned(
-          bottom: size.height * .06.h,
-          width: size.width,
-          child: Center(
-            child: Padding(
-              padding:  EdgeInsets.all(8.0.sp),
-              child: AspectRatio(
-                aspectRatio:AppConsts.aspectRatioButtonAuth.sp ,
-                child: CustomButton(
-                  text: StringsEn.applyNow,
-                  onTap: () => GoRouter.of(context).push(
-                    applyJopPath,
-                    extra: {
-                      StringsEn.status: StringsEn.notOpen,
-                      StringsEn.jobId: job.id.toString(),
-                    },
+            ///apply now
+            Positioned(
+              bottom: size.height * .06.h,
+              width: size.width,
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0.sp),
+                  child: AspectRatio(
+                    aspectRatio: AppConsts.aspectRatioButtonAuth.sp,
+                    child: CustomButton(
+                      text: StringsEn.applyNow,
+                      onTap: () => GoRouter.of(context).push(
+                        applyJopPath,
+                        extra: {
+                          StringsEn.status: StringsEn.notOpen,
+                          StringsEn.jobId: job.id.toString(),
+                        },
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ),
 
-        ///
-        Positioned(
-          bottom: 0,
-          width: size.width,
-          child: BlurWidget(),
-        ),
-      ],
+            ///
+            Positioned(
+              bottom: 0,
+              width: size.width,
+              child: BlurWidget(),
+            ),
+          ],
+        );
+      },
     );
   }
 }

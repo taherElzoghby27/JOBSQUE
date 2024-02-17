@@ -41,7 +41,7 @@ class _InfoSectionJopDetailState extends State<InfoSectionJopDetail> {
           image: job.image!,
           height: size.height * .055.h,
         ),
-        SizedBox(height: size.height * .01.h),
+        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         //title
         SizedBox(
           width: size.width * .65.w,
@@ -55,7 +55,7 @@ class _InfoSectionJopDetailState extends State<InfoSectionJopDetail> {
             textAlign: TextAlign.center,
           ),
         ),
-        SizedBox(height: size.height * .01.h),
+        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         //company.country
         SizedBox(
           width: size.width * .425.w,
@@ -72,28 +72,20 @@ class _InfoSectionJopDetailState extends State<InfoSectionJopDetail> {
         ),
         const AspectRatio(aspectRatio:AppConsts.aspect40on1),
         //senior fulltime onsite
-        SizedBox(
-          width: size.width * .6.w,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: TypeJopComponent(
-                  label: job.jobTimeType!,
-                  color: AppConsts.primary500,
-                ),
-              ),
-              Expanded(
-                child: TypeJopComponent(
-                  label: StringsEn.onSite,
-                  color: AppConsts.primary500,
-                ),
-              ),
-              Spacer(),
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TypeJopComponent(
+              label: job.jobTimeType!,
+              color: AppConsts.primary500,
+            ),
+            TypeJopComponent(
+              label:job.jobType!,
+              color: AppConsts.primary500,
+            ),
+          ],
         ),
-        SizedBox(height: size.height * .01.h),
+        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
       ],
     );
   }

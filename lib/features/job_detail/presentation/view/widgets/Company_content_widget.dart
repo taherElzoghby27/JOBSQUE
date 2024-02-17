@@ -28,7 +28,7 @@ class CompanyContentWidget extends StatelessWidget {
               color: AppConsts.neutral900,
             ),
           ),
-          SizedBox(height: size.height * .01.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect40on1),
           Row(
             children: [
               Expanded(
@@ -54,7 +54,7 @@ class CompanyContentWidget extends StatelessWidget {
               color: AppConsts.neutral900,
             ),
           ),
-          SizedBox(height: size.height * .01.h),
+          const AspectRatio(aspectRatio:AppConsts.aspect40on1),
 
           Text(job.aboutComp!, style: AppConsts.style12),
         ],

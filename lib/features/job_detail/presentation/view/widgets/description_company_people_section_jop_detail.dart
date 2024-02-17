@@ -27,7 +27,7 @@ class DescriptionCompanyPeopleSectionJopDetail extends StatelessWidget {
         return ListView(
           physics: const BouncingScrollPhysics(),
           children: [
-            Center(child: BarWidgetJobDetail()),
+            Center(child: const BarWidgetJobDetail()),
             current == 0
                 ? ContentDescriptionWidget(job: job)
                 : current == 1
