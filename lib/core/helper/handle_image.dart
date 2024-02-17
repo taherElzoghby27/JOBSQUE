@@ -6,7 +6,7 @@ import 'package:jobsque/core/consts/strings.dart';
 import '../widgets/small_loading_widget.dart';
 
 //handle image
-Widget handleImage(String image, double? height, double? width) {
+Widget handleImage(String image, {double? height, double? width}) {
   String type = checkPhotoType(image);
   switch (type) {
     case 'jpg' || 'png':

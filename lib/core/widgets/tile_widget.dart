@@ -9,11 +9,13 @@ class TileWidget extends StatelessWidget {
     this.textAlign,
     this.trailingOnTap,
     this.trailingLabel,
+    this.leadingOnTap,
   });
 
   final String label;
   final TextAlign? textAlign;
   final void Function()? trailingOnTap;
+  final void Function()? leadingOnTap;
   final String? trailingLabel;
 
   @override
@@ -33,10 +35,13 @@ class TileWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                label,
-                style: AppConsts.style14,
-                textAlign: textAlign ?? TextAlign.left,
+              TextButton(
+                onPressed: leadingOnTap,
+                child: Text(
+                  label,
+                  style: AppConsts.style14,
+                  textAlign: textAlign ?? TextAlign.left,
+                ),
               ),
               TextButton(
                 onPressed: trailingOnTap,

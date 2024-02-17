@@ -23,6 +23,7 @@ class SectionMessages extends StatelessWidget {
               label: StringsEn.unRead,
               trailingLabel: StringsEn.readAllMessages,
               trailingOnTap: () {},
+              leadingOnTap: () {},
             ),
           ),
           //chats

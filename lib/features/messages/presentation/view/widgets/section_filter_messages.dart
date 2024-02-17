@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/helper/handle_image.dart';
 import 'package:jobsque/core/widgets/custom_circle_button.dart';
 import 'package:jobsque/core/widgets/text_field.dart';
 
@@ -23,47 +24,45 @@ class SectionFilterMessages extends StatelessWidget {
         isScrollControlled: true,
         context: context,
         builder: (context) {
-          return Container(
-            height: size.height * .35.h,
-            width: double.infinity,
-            decoration: AppConsts.decorationSheet,
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 16.h,
-                horizontal: 20.w,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Center(child: SvgPicture.asset(AppAssets.line)),
-                  //message filtering
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      StringsEn.messageFilter,
-                      style: AppConsts.style32.copyWith(fontSize: 18),
+          return AspectRatio(
+            aspectRatio: AppConsts.aspect13on10,
+            child: Container(
+              decoration: AppConsts.decorationSheet,
+              child: Padding(
+                padding: AppConsts.padding10h8v,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Center(child: handleImage(AppAssets.line)),
+                    //message filtering
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        StringsEn.messageFilter,
+                        style: AppConsts.style32.copyWith(fontSize: 18),
+                      ),
                     ),
-                  ),
-                  //unread
-                  CustomButtonThreeWidget(
-                    title: StringsEn.unRead,
-                    trailing: Icons.arrow_forward_ios,
-                    onTap: () {},
-                  ),
-                  //spam
-                  CustomButtonThreeWidget(
-                    title: StringsEn.spam,
-                    trailing: Icons.arrow_forward_ios,
-                    onTap: () {},
-                  ),
-                  //archieved
-                  CustomButtonThreeWidget(
-                    title: StringsEn.archived,
-                    trailing: Icons.arrow_forward_ios,
-                    onTap: () {},
-                  ),
-                  SizedBox(height: size.height * .03.h),
-                ],
+                    //unread
+                    CustomButtonThreeWidget(
+                      title: StringsEn.unRead,
+                      trailing: Icons.arrow_forward_ios,
+                      onTap: () {},
+                    ),
+                    //spam
+                    CustomButtonThreeWidget(
+                      title: StringsEn.spam,
+                      trailing: Icons.arrow_forward_ios,
+                      onTap: () {},
+                    ),
+                    //archieved
+                    CustomButtonThreeWidget(
+                      title: StringsEn.archived,
+                      trailing: Icons.arrow_forward_ios,
+                      onTap: () {},
+                    ),
+                    const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+                  ],
+                ),
               ),
             ),
           );
@@ -77,7 +76,7 @@ class SectionFilterMessages extends StatelessWidget {
         //search field
         Expanded(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
+            padding: AppConsts.padding10h8v,
             child: CustomTextField(
               perfixIcon: Icon(FontAwesomeIcons.magnifyingGlass),
               hint: StringsEn.searchMessages,

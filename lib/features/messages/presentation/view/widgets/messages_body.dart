@@ -15,10 +15,9 @@ class MessagesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
-        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
         //custom appBar
         CustomAppBar(
@@ -26,8 +25,8 @@ class MessagesBody extends StatelessWidget {
           title: StringsEn.messages,
           trailingWidget: Container(),
         ),
-        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
-        SectionFilterMessages(),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+        const SectionFilterMessages(),
         //messages
         const SectionMessages(),
       ],
