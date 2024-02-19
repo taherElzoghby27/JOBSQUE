@@ -6,7 +6,7 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_animation.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/services/local_datasource/hive_db_job.dart';
-import 'package:jobsque/core/services/service_locator.dart';
+import 'package:jobsque/service_locator.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
 import 'package:jobsque/features/applied/presentation/view_models/applied_job_cubit/applied_job_cubit.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
@@ -118,9 +118,9 @@ final router = GoRouter(
         state: state,
         child: BlocProvider(
           create: (_) => AuthBloc(
-            authRepo: getIt.get<AuthRepoImplementation>(),
+            authRepo: sl.get<AuthRepoImplementation>(),
           ),
-          child: AuthView(),
+          child: const AuthView(),
         ),
       ),
     ),
@@ -134,23 +134,23 @@ final router = GoRouter(
             providers: [
               BlocProvider(
                 create: (_) => HomeBloc(
-                  jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+                  jobFilterRepo: sl.get<FilterJobsRepoImplementation>(),
                 )..add(GetJobsEvent()),
               ),
               BlocProvider(
                 create: (_) => SavedCubit(
-                  hiveDbJob: getIt.get<HiveDbJob>(),
+                  hiveDbJob: sl.get<HiveDbJob>(),
                 ),
               ),
               BlocProvider(
                 create: (_) => ProfileCubit(
-                  profileRepo: getIt.get<ProfileRepoImplementation>(),
+                  profileRepo: sl.get<ProfileRepoImplementation>(),
                 ),
               ),
               BlocProvider(
                 create: (_) => AppliedJobCubit(
-                  appliedJobRepo: getIt.get<AppliedJobsRepoImplementation>(),
-                  jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+                  appliedJobRepo: sl.get<AppliedJobsRepoImplementation>(),
+                  jobFilterRepo: sl.get<FilterJobsRepoImplementation>(),
                 )..getActiveJobs(),
               ),
             ],
@@ -170,12 +170,12 @@ final router = GoRouter(
             providers: [
               BlocProvider(
                 create: (_) => HomeBloc(
-                  jobFilterRepo: getIt.get<FilterJobsRepoImplementation>(),
+                  jobFilterRepo: sl.get<FilterJobsRepoImplementation>(),
                 )..add(GetJobsEvent()),
               ),
               BlocProvider(
                 create: (_) => SavedCubit(
-                  hiveDbJob: getIt.get<HiveDbJob>(),
+                  hiveDbJob: sl.get<HiveDbJob>(),
                 ),
               ),
             ],
@@ -202,7 +202,7 @@ final router = GoRouter(
         state: state,
         child: BlocProvider(
           create: (_) => WorkLocationCubit(
-            authRepo: getIt.get<AuthRepoImplementation>(),
+            authRepo: sl.get<AuthRepoImplementation>(),
           ),
           child: WorkLocationView(),
         ),
@@ -243,12 +243,12 @@ final router = GoRouter(
           providers: [
             BlocProvider(
               create: (_) => SearchCubit(
-                getIt.get<FilterJobsRepoImplementation>(),
+                sl.get<FilterJobsRepoImplementation>(),
               ),
             ),
             BlocProvider(
               create: (_) => SavedCubit(
-                hiveDbJob: getIt.get<HiveDbJob>(),
+                hiveDbJob: sl.get<HiveDbJob>(),
               ),
             ),
           ],
@@ -268,7 +268,7 @@ final router = GoRouter(
               BlocProvider(create: (_) => JobDetailsCubit()),
               BlocProvider(
                 create: (_) => SavedCubit(
-                  hiveDbJob: getIt.get<HiveDbJob>(),
+                  hiveDbJob: sl.get<HiveDbJob>(),
                 ),
               ),
             ],
@@ -289,8 +289,8 @@ final router = GoRouter(
             providers: [
               BlocProvider(
                 create: (BuildContext context) => ApplyJobCubit(
-                  hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
-                  applyUserRepo: getIt.get<ApplyUserRepoImplementation>(),
+                  hiveDbApplyUser: sl.get<HiveDbApplyUser>(),
+                  applyUserRepo: sl.get<ApplyUserRepoImplementation>(),
                 ),
               ),
               BlocProvider(
@@ -319,7 +319,7 @@ final router = GoRouter(
         state: state,
         child: BlocProvider(
           create: (_) => NotificationCubit(
-            notificationRepo: getIt.get<NotificationRepoImplementation>(),
+            notificationRepo: sl.get<NotificationRepoImplementation>(),
           ),
           child: NotificationView(),
         ),
@@ -348,7 +348,7 @@ final router = GoRouter(
         state: state,
         child: BlocProvider(
           create: (_) => EditProfileCubit(
-            profileRepo: getIt.get<ProfileRepoImplementation>(),
+            profileRepo: sl.get<ProfileRepoImplementation>(),
           ),
           child: EditProfileView(),
         ),
@@ -363,7 +363,7 @@ final router = GoRouter(
           providers: [
             BlocProvider(
               create: (BuildContext context) => PortfolioCubit(
-                portfolioRepo: getIt.get<PortfolioRepoImplementation>(),
+                portfolioRepo: sl.get<PortfolioRepoImplementation>(),
               ),
             ),
           ],
@@ -405,7 +405,7 @@ final router = GoRouter(
           child: BlocProvider(
             create: (_) => UpdateNamePassCubit(
               loginAndSecurityRepo:
-                  getIt.get<LoginAndSecurityRepoImplementation>(),
+                  sl.get<LoginAndSecurityRepoImplementation>(),
             ),
             child: LoginSecurityAuthView(path: data),
           ),
@@ -466,17 +466,17 @@ final router = GoRouter(
             providers: [
               BlocProvider(
                 create: (_) => AddExperienceCubit(
-                  getIt.get<CompleteProfileRepoImpl>(),
+                  sl.get<CompleteProfileRepoImpl>(),
                 ),
               ),
               BlocProvider(
                 create: (_) => PortfolioCubit(
-                  portfolioRepo: getIt.get<PortfolioRepoImplementation>(),
+                  portfolioRepo: sl.get<PortfolioRepoImplementation>(),
                 ),
               ),
               BlocProvider(
                 create: (_) => EditProfileCubit(
-                  profileRepo: getIt.get<ProfileRepoImplementation>(),
+                  profileRepo: sl.get<ProfileRepoImplementation>(),
                 ),
               ),
             ],

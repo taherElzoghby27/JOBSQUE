@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/services/service_locator.dart';
+import 'package:jobsque/service_locator.dart';
 import 'package:jobsque/features/search_jop/presentation/view/widgets/custom_type_jop_widget.dart';
 import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_cubit.dart';
 
@@ -25,7 +25,7 @@ class CustomComponentJopType extends StatelessWidget {
         const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         BlocProvider(
           create: (_) => SearchCubit(
-            getIt.get<FilterJobsRepoImplementation>(),
+            sl.get<FilterJobsRepoImplementation>(),
           ),
           child: BlocBuilder<SearchCubit, SearchState>(
             builder: (context, state) {

@@ -21,7 +21,7 @@ class TileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: AppConsts.aspect16on1,
+      aspectRatio: AppConsts.aspect20on2,
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(

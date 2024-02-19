@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/data.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/services/service_locator.dart';
+import 'package:jobsque/service_locator.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/core/widgets/jop_type_component_button.dart';
@@ -38,7 +38,7 @@ class SectionFiltering extends StatelessWidget {
                 padding: AppConsts.mainPadding,
                 child: BlocProvider(
                   create: (_) => SearchCubit(
-                    getIt.get<FilterJobsRepoImplementation>(),
+                    sl.get<FilterJobsRepoImplementation>(),
                   ),
                   child: BlocBuilder<SearchCubit, SearchState>(
                     builder: (context, state) {

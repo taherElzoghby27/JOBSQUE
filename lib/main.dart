@@ -12,7 +12,7 @@ import 'package:jobsque/core/services/bloc_observer.dart';
 
 import 'core/services/local_datasource/hive_db_apply_user.dart';
 import 'core/services/local_datasource/hive_db_job.dart';
-import 'core/services/service_locator.dart';
+import 'service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
