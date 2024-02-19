@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/recent_jobs_listview_bloc_consumer.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/tile_recent_suggested_widget.dart';
 
@@ -25,7 +26,7 @@ class RecentJopSection extends StatelessWidget {
 
         ///recent jops
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          padding: AppConsts.mainPadding,
           child:RecentJobsListViewBlocConsumer(),
         ),
       ],

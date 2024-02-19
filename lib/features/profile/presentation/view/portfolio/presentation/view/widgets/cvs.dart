@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/models/user_profile_model/portfolio.dart';
@@ -14,11 +13,10 @@ class Portfolios extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return BlocConsumer<PortfolioCubit, PortfolioState>(
       builder: (context, state) {
         if (state is GetFilesLoading) {
-          return LoadingWidget(height: size.height * .2.h);
+          return const LoadingWidget();
         } else if (state is GetFilesSuccess) {
           List<PortfolioModel>? cvs = state.cvs;
           return Center(

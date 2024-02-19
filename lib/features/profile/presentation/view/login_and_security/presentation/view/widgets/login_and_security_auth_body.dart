@@ -28,9 +28,10 @@ class LoginSecurityAuthBody extends StatefulWidget {
 class _LoginSecurityAuthBodyState extends State<LoginSecurityAuthBody> {
   bool load = false;
   late String path;
+
   @override
   void initState() {
-    path=widget.path;
+    path = widget.path;
     super.initState();
   }
 
@@ -65,53 +66,57 @@ class _LoginSecurityAuthBodyState extends State<LoginSecurityAuthBody> {
           );
         } else if (state is Fail) {
           load = false;
-          showSnack(context, message: state.message);
+          showSnack(
+            context,
+            message: state.message,
+            background: AppConsts.danger500,
+          );
         }
       },
       builder: (context, state) {
         return ModalProgressHUD(
           inAsyncCall: load,
-          progressIndicator: LoadingWidget(
-            height: size.height * .4.h,
-          ),
-          child: Column(
-            children: [
-              const AspectRatio(aspectRatio:AppConsts.aspect16on1),
-              CustomAppBar(
-                leadingOnTap: () => GoRouter.of(context).pop(),
-                title: path == StringsEn.emailAddress
-                    ? StringsEn.emailAddress
-                    : path == StringsEn.phoneNumber
-                        ? StringsEn.phoneNumber
-                        : StringsEn.updateNamePass,
-                trailingWidget: Container(),
-              ),
-
-              path == StringsEn.emailAddress
-                  ? EmailAddressPage()
-                  : path == StringsEn.changePassword
-                      ? ChangePassComponent()
-                      : PhoneNumberComponent(),
-              Spacer(),
-              //button
-              SizedBox(
-                height: size.height * .055.h,
-                width: size.width * .9.w,
-                child: CustomButton(
-                  text: path == StringsEn.emailAddress
-                      ? StringsEn.verify
-                      : StringsEn.save,
-                  onTap: () async {
-                    if (path == StringsEn.emailAddress) {
-                      await bloc.getOtp();
-                    } else if (path == StringsEn.changePassword) {
-                      await bloc.updateNamePass();
-                    }
-                  },
+          progressIndicator: const LoadingWidget(),
+          child: Padding(
+            padding: AppConsts.mainPadding,
+            child: Column(
+              children: [
+                const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+                CustomAppBar(
+                  leadingOnTap: () => GoRouter.of(context).pop(),
+                  title: path == StringsEn.emailAddress
+                      ? StringsEn.emailAddress
+                      : path == StringsEn.phoneNumber
+                          ? StringsEn.phoneNumber
+                          : StringsEn.updateNamePass,
+                  trailingWidget: Container(),
                 ),
-              ),
-              SizedBox(height: size.height * .035.w),
-            ],
+
+                path == StringsEn.emailAddress
+                    ? const EmailAddressPage()
+                    : path == StringsEn.changePassword
+                        ? const ChangePassComponent()
+                        : const PhoneNumberComponent(),
+                const Spacer(),
+                //button
+                AspectRatio(
+                  aspectRatio: AppConsts.aspectRatioButtonAuth,
+                  child: CustomButton(
+                    text: path == StringsEn.emailAddress
+                        ? StringsEn.verify
+                        : StringsEn.save,
+                    onTap: () async {
+                      if (path == StringsEn.emailAddress) {
+                        await bloc.getOtp();
+                      } else if (path == StringsEn.changePassword) {
+                        await bloc.updateNamePass();
+                      }
+                    },
+                  ),
+                ),
+                const AspectRatio(aspectRatio: AppConsts.aspect20on2),
+              ],
+            ),
           ),
         );
       },

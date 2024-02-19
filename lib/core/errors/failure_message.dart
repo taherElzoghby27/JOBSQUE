@@ -8,6 +8,7 @@ abstract class FailureServ {
 
 class ServerFailure extends FailureServ {
   ServerFailure({required super.message});
+
   factory ServerFailure.fromDioError(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
@@ -21,7 +22,7 @@ class ServerFailure extends FailureServ {
       case DioExceptionType.badResponse:
         return ServerFailure.fromDioResponse(
           error.response!.statusCode!,
-          error.response,
+          error.response!.data,
         );
       case DioExceptionType.cancel:
         return ServerFailure(message: 'Request to ApiServer was Canceld');
@@ -33,9 +34,10 @@ class ServerFailure extends FailureServ {
         );
     }
   }
+
   factory ServerFailure.fromDioResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(message: response['error']['message']);
+      return ServerFailure(message: response['message']);
     } else if (statusCode == 404) {
       return ServerFailure(
         message: 'Your request was not found, please try later',
