@@ -32,7 +32,7 @@ class PortfolioBody extends StatelessWidget {
         PortfolioCubit bloc = BlocProvider.of<PortfolioCubit>(context);
         return ListView(
           children: [
-            const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
             CustomAppBar(
               leadingOnTap: () => GoRouter.of(context).pop(),
               title: StringsEn.portfolio,
@@ -45,9 +45,9 @@ class PortfolioBody extends StatelessWidget {
                 await bloc.getPortfolios();
               },
             ),
-            SizedBox(height: size.height * .01.h),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
             //pdfs
-            Portfolios(),
+            const Portfolios(),
           ],
         );
       },

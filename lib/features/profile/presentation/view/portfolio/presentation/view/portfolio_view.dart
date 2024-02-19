@@ -19,7 +19,7 @@ class _PortfolioViewState extends State<PortfolioView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
         child: PortfolioBody(),
       ),
