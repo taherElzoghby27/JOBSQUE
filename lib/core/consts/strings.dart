@@ -221,6 +221,8 @@ abstract class StringsEn {
   static const String  deleteConversion = 'Delete conversation';
   static const String  icon = 'icon';
   static const String  title = 'title';
+  static const String  trailing = 'trailing';
+  static const String  leading = 'leading';
   static const String  subTitle = 'subTitle';
   static const String  labelButton = 'labelButton';
   static const String  path = 'path';

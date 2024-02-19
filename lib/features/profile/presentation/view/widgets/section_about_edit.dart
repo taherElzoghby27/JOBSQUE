@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class SectionAboutEdit extends StatelessWidget {
@@ -19,7 +18,7 @@ class SectionAboutEdit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 18.w),
+      padding: AppConsts.mainPadding,
       child: Column(
         children: [
           Row(

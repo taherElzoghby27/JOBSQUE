@@ -1,7 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:jobsque/core/consts/routesPage.dart';
+import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/widgets/custom_circle_button.dart';
+
 import 'assets.dart';
 import 'strings.dart';
 
-List<String> salaries = [
+const List<String> salaries = [
   'less than 5k',
   '5k-10k',
   '10k-15k',
@@ -10,7 +15,7 @@ List<String> salaries = [
   'more than 25k',
 ];
 
-final List<List<Map<String, String>>> countries = [
+const List<List<Map<String, String>>> countries = [
   [
     {StringsEn.label: StringsEn.malaysia, StringsEn.flag: AppAssets.malaysia},
     {
@@ -47,4 +52,84 @@ final List<List<Map<String, String>>> countries = [
     {StringsEn.label: StringsEn.brazil, StringsEn.flag: AppAssets.brazil},
     {StringsEn.label: StringsEn.argentina, StringsEn.flag: AppAssets.argentina},
   ],
+];
+
+List<Map<String, dynamic>> generalDataProfile = [
+  {
+    StringsEn.leading: CustomCircleButton(
+      icon: AppAssets.profileSvg,
+      color: AppConsts.primary100,
+    ),
+    StringsEn.title: StringsEn.editProfile,
+    StringsEn.trailing: Icons.arrow_forward_outlined,
+    StringsEn.path: editProfilePath,
+  },
+  {
+    StringsEn.leading: CustomCircleButton(
+      icon: AppAssets.portfolio,
+      color: AppConsts.primary100,
+    ),
+    StringsEn.title: StringsEn.portfolio,
+    StringsEn.trailing: Icons.arrow_forward_outlined,
+    StringsEn.path: portfolioPath,
+  },
+  {
+    StringsEn.leading: CustomCircleButton(
+      icon: AppAssets.global,
+      color: AppConsts.primary100,
+    ),
+    StringsEn.title: StringsEn.language,
+    StringsEn.trailing: Icons.arrow_forward_outlined,
+    StringsEn.path: languagePath,
+  },
+  {
+    StringsEn.leading: CustomCircleButton(
+      icon: AppAssets.notification,
+      color: AppConsts.primary100,
+      colorIcon: AppConsts.primary500,
+    ),
+    StringsEn.title: StringsEn.notification,
+    StringsEn.trailing: Icons.arrow_forward_outlined,
+    StringsEn.path: notificationProfilePath,
+  },
+  {
+    StringsEn.leading: CustomCircleButton(
+      icon: AppAssets.lockSvg,
+      color: AppConsts.primary100,
+    ),
+    StringsEn.title: StringsEn.loginAndSeurity,
+    StringsEn.trailing: Icons.arrow_forward_outlined,
+    StringsEn.path: loginSecurityPath,
+  },
+  {
+    StringsEn.leading: CustomCircleButton(
+      icon: AppAssets.profileSvg,
+      color: AppConsts.primary100,
+    ),
+    StringsEn.title: StringsEn.completeProfile,
+    StringsEn.trailing: Icons.arrow_forward_outlined,
+    StringsEn.path: completeProfilePath,
+  },
+];
+List<Map<String, dynamic>> othersDataProfile = [
+  {
+    StringsEn.title: StringsEn.accesibility,
+    StringsEn.trailing: Icons.arrow_forward_outlined,
+    StringsEn.path: '',
+  },
+  {
+    StringsEn.title: StringsEn.helpCenter,
+    StringsEn.trailing: Icons.arrow_forward_outlined,
+    StringsEn.path: helpCenterPath,
+  },
+  {
+    StringsEn.title: StringsEn.termsCondition,
+    StringsEn.trailing: Icons.arrow_forward_outlined,
+    StringsEn.path: termConditionPath,
+  },
+  {
+    StringsEn.title: StringsEn.privacyPolicy,
+    StringsEn.trailing: Icons.arrow_forward_outlined,
+    StringsEn.path: privacyPath,
+  },
 ];

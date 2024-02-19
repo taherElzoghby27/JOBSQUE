@@ -32,51 +32,53 @@ class SectionProfileInfo extends StatelessWidget {
 
     return Column(
       children: [
-        Container(
-          height: size.height * .35.h,
+        AspectRatio(
+          aspectRatio: AppConsts.aspect13on10,
           child: Stack(
             children: [
               //background
-              Container(
-                height: size.height * .2.h,
-                color: AppConsts.primary100,
-                child: Column(
-                  children: [
-                    const AspectRatio(aspectRatio:AppConsts.aspect16on1),
-
-                    //appBar
-                    CustomAppBar(
-                      leadingOnTap: () =>
-                          GoRouter.of(context).pushReplacement(homePath),
-                      title: StringsEn.profile,
-                      trailingWidget: IconButton(
-                        onPressed: () async {
-                          await BlocProvider.of<ProfileCubit>(context).signOut()
-                              ? GoRouter.of(ctx).pushReplacement(splashPath)
-                              : () {};
-                        },
-                        icon: Icon(Icons.logout, color: AppConsts.danger500),
-                      ),
-                    ),
-                  ],
-                ),
+              AspectRatio(
+                aspectRatio: AppConsts.aspect16on8,
+                child: Container(color: AppConsts.primary100),
               ),
 
               //info
               Positioned(
-                top: size.height * .135.h,
                 width: size.width,
-                child: Info(
-                  image: AppAssets.board3,
-                  name: name,
-                  titleJob: bio,
+                child: Column(
+                  children: [
+                    const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+
+                    //appBar
+                    CustomAppBar(
+                      leadingOnTap: () => GoRouter.of(context).pushReplacement(
+                        homePath,
+                      ),
+                      title: StringsEn.profile,
+                      trailingOnTap: () async {
+                        await BlocProvider.of<ProfileCubit>(context).signOut()
+                            ? GoRouter.of(ctx).pushReplacement(splashPath)
+                            : () {};
+                      },
+                      trailingWidget: Icon(
+                        Icons.logout,
+                        color: AppConsts.danger500,
+                      ),
+                    ),
+                    const AspectRatio(aspectRatio: AppConsts.aspect20on2),
+                    Info(
+                      image: AppAssets.board3,
+                      name: name,
+                      titleJob: bio,
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
         ),
         //info about job(applied-reviewed-contacted)
-        SectionInfoJobs(),
+        const SectionInfoJobs(),
         //about
         SectionAboutEdit(
           leading: StringsEn.about,

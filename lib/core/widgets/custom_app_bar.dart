@@ -23,43 +23,39 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.all(4.sp),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ///arrow back
-          leadingOnTap == null
-              ? ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    image!,
-                    height: size.height * .075.h,
-                  ),
-                )
-              : IconButton(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        ///arrow back
+        leadingOnTap == null
+            ? ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  image!,
+                  height: size.height * .075.h,
+                ),
+              )
+            : IconButton(
                 onPressed: leadingOnTap,
                 icon: Icon(Icons.arrow_back, color: color),
               ),
 
-          Text(
-            title,
-            style: AppConsts.style20.copyWith(
-              color: color,
-            ),
-            textAlign: TextAlign.center,
+        Text(
+          title,
+          style: AppConsts.style20.copyWith(
+            color: color,
           ),
-          //const Spacer(),
+          textAlign: TextAlign.center,
+        ),
 
-          ///reset
-          trailingWidget == null
-              ? Container(width: 50,)
-              : TextButton(
-                  onPressed: trailingOnTap,
-                  child: trailingWidget!,
-                ),
-        ],
-      ),
+        ///reset
+        trailingWidget == null
+            ? Container(width: 50)
+            : IconButton(
+                onPressed: trailingOnTap,
+                icon: trailingWidget!,
+              ),
+      ],
     );
   }
 }

@@ -1,72 +1,50 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/helper/custom_snack.dart';
-import 'package:jobsque/core/widgets/error_widget.dart';
 import 'package:jobsque/core/widgets/load_json_widget.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user.dart';
-import 'package:jobsque/features/profile/presentation/view/widgets/custom_fading_profile.dart';
-import 'package:jobsque/features/profile/presentation/view/widgets/section_general.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_others.dart';
-import 'package:jobsque/features/profile/presentation/view/widgets/section_profile_info.dart';
-import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 
-import '../../../../home/presentation/view/widgets/loading_listview_fading.dart';
+import '../../../../../core/consts/strings.dart';
+import 'section_general.dart';
+import 'section_profile_info.dart';
 
 class ProfileBody extends StatelessWidget {
-  const ProfileBody({super.key});
+  const ProfileBody({
+    super.key,
+    required this.user,
+    required this.ctx,
+    required this.isSignOutStateLoading,
+  });
+
+  final User user;
+  final BuildContext ctx;
+  final bool isSignOutStateLoading;
 
   @override
-  Widget build(BuildContext contextParent) {
-    return BlocConsumer<ProfileCubit, ProfileState>(
-      builder: (context, state) {
-        if (state is GetProfileFailure) {
-          return ErrorWidg(message: state.message);
-        } else if (state is GetProfileSuccess) {
-          User user = state.userProfileModel;
-          return Stack(
-            children: [
-              ListView(
-                physics: const BouncingScrollPhysics(),
-                children: [
-                  //section profile
-                  SectionProfileInfo(
-                    ctx: contextParent,
-                    name: user.name!,
-                    bio: StringsEn.softwareEngineer,
-                  ),
-                  //section general
-                  SectionGeneral(),
-                  //section others
-                  SectionOthers(),
-                ],
-              ),
-              Positioned(
-                child: state is SignOutLoading
-                    ? Center(child: LoadJsonWidget())
-                    : Container(),
-              ),
-            ],
-          );
-        } else {
-          return const CustomFadingLoadingAnimation(
-            widget: CustomFadingProfile(),
-          );
-        }
-      },
-      listener: (context, state) {
-        if (state is SignOutFailure || state is GetProfileFailure) {
-          showSnack(
-            context,
-            message: StringsEn.someThingError,
-            background: AppConsts.danger500,
-          );
-        } else if (state is SignOutSucess) {
-          showSnack(context, message: StringsEn.signOutSuccess);
-        }
-      },
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ListView(
+          physics: const BouncingScrollPhysics(),
+          children: [
+            //section profile
+            SectionProfileInfo(
+              ctx: ctx,
+              name: user.name!,
+              bio: StringsEn.softwareEngineer,
+            ),
+            //section general
+            const SectionGeneral(),
+            //section others
+            const SectionOthers(),
+          ],
+        ),
+        Positioned(
+          child: isSignOutStateLoading
+              ? Center(child: const LoadJsonWidget())
+              : Container(),
+        ),
+      ],
     );
   }
 }

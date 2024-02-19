@@ -23,7 +23,7 @@ class _InfoSectionJopDetailState extends State<InfoSectionJopDetail> {
 
   @override
   void initState() {
-    job=widget.job;
+    job = widget.job;
     position = job.location!.split(',');
     sizeLocation = position.length;
     super.initState();
@@ -39,7 +39,7 @@ class _InfoSectionJopDetailState extends State<InfoSectionJopDetail> {
         //company logo
         CustomPhoto(
           image: job.image!,
-          height: size.height * .055.h,
+          height: size.height * .065.h,
         ),
         const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         //title
@@ -70,7 +70,7 @@ class _InfoSectionJopDetailState extends State<InfoSectionJopDetail> {
             ),
           ),
         ),
-        const AspectRatio(aspectRatio:AppConsts.aspect40on1),
+        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         //senior fulltime onsite
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +80,7 @@ class _InfoSectionJopDetailState extends State<InfoSectionJopDetail> {
               color: AppConsts.primary500,
             ),
             TypeJopComponent(
-              label:job.jobType!,
+              label: job.jobType!,
               color: AppConsts.primary500,
             ),
           ],

@@ -11,7 +11,7 @@ class SectionInfoJobs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding:AppConsts.mainPadding,
       child: Container(
         decoration: AppConsts.decorationRadius8.copyWith(
           color: AppConsts.neutral300.withOpacity(.1),

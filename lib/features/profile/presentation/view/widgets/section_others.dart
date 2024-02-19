@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/data.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_button_three_widget.dart';
 import 'package:jobsque/core/widgets/custom_divider.dart';
 import 'package:jobsque/core/widgets/tile_widget.dart';
@@ -12,43 +14,33 @@ class SectionOthers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         TileWidget(label: StringsEn.others),
-        SizedBox(height: size.height * .01.h),
-        //accesibility
-        CustomButtonThreeWidget(
-          title: StringsEn.accesibility,
-          trailing: Icons.arrow_forward_outlined,
-          onTap: () {},
-          decoration: BoxDecoration(),
+        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
+        Column(
+          children: othersDataProfile
+              .map(
+                (Map<String, dynamic> item) => Column(
+                  children: [
+                    Padding(
+                      padding: AppConsts.allPadding8,
+                      child: CustomButtonThreeWidget(
+                        title: item[StringsEn.title],
+                        trailing: item[StringsEn.trailing],
+                        onTap: () => GoRouter.of(context).push(
+                          item[StringsEn.path],
+                        ),
+                        decoration: BoxDecoration(),
+                      ),
+                    ),
+                    const CustomDivider(),
+                  ],
+                ),
+              )
+              .toList(),
         ),
-        CustomDivider(),
-        // help center
-        CustomButtonThreeWidget(
-          title: StringsEn.helpCenter,
-          trailing: Icons.arrow_forward_outlined,
-          onTap: () => GoRouter.of(context).push(helpCenterPath),
-          decoration: BoxDecoration(),
-        ),
-        CustomDivider(),
-        // term & conditions
-        CustomButtonThreeWidget(
-          title: StringsEn.termsCondition,
-          trailing: Icons.arrow_forward_outlined,
-          onTap: () => GoRouter.of(context).push(termConditionPath),
-          decoration: BoxDecoration(),
-        ),
-        CustomDivider(),
-        //privacy
-        CustomButtonThreeWidget(
-          title: StringsEn.privacyPolicy,
-          trailing: Icons.arrow_forward_outlined,
-          onTap: () => GoRouter.of(context).push(privacyPath),
-          decoration: BoxDecoration(),
-        ),
-        CustomDivider(),
+        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
       ],
     );
   }
