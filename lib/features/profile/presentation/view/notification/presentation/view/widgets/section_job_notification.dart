@@ -24,10 +24,8 @@ class _SectionJopNotificationState extends State<SectionJopNotification> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        //job notif
-        TileWidget(
-          label: StringsEn.jopNotification,
-        ),
+        //job notification
+        TileWidget(label: StringsEn.jopNotification),
         //yourJopSearchAlert
         CustomTileSwitch(
           label: StringsEn.yourJopSearchAlert,
