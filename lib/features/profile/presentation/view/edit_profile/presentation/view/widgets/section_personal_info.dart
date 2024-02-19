@@ -13,53 +13,50 @@ class SectionPersonalInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     EditProfileCubit bloc = BlocProvider.of<EditProfileCubit>(context);
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 17.w),
-      child: Column(
-        children: [
-          //name
-          CustomFilterTextField(
-            label: StringsEn.name,
-            hint: StringsEn.name,
-            controller: bloc.controllerName,
-          ),
-          SizedBox(height: size.height * .022.w),
+    return Column(
+      children: [
+        //name
+        CustomFilterTextField(
+          label: StringsEn.name,
+          hint: StringsEn.name,
+          controller: bloc.controllerName,
+        ),
+        SizedBox(height: size.height * .022.w),
 
-          //bio
-          CustomFilterTextField(
-            label: StringsEn.bio,
-            hint: StringsEn.bio,
-            controller: bloc.controllerBio,
-          ),
-          SizedBox(height: size.height * .022.w),
+        //bio
+        CustomFilterTextField(
+          label: StringsEn.bio,
+          hint: StringsEn.bio,
+          controller: bloc.controllerBio,
+        ),
+        SizedBox(height: size.height * .022.w),
 
-          //address
-          CustomFilterTextField(
-            label: StringsEn.address,
-            hint: StringsEn.address,
-            controller: bloc.controllerAddress,
+        //address
+        CustomFilterTextField(
+          label: StringsEn.address,
+          hint: StringsEn.address,
+          controller: bloc.controllerAddress,
+        ),
+        SizedBox(height: size.height * .022.w),
+        //no handphone
+        CustomFilterTextField(
+          label: StringsEn.noHandPhone,
+          hint: StringsEn.phone,
+          perfixIcon: CountryCodePicker(
+            initialSelection: StringsEn.eg,
+            flagWidth: 25,
+            onChanged: (CountryCode code) =>
+                bloc.onChangedCountry(code: code),
+            showDropDownButton: true,
+            showCountryOnly: true,
+            showOnlyCountryWhenClosed: true,
+            showFlagDialog: true,
+            hideMainText: true,
+            showFlagMain: true,
           ),
-          SizedBox(height: size.height * .022.w),
-          //no handphone
-          CustomFilterTextField(
-            label: StringsEn.noHandPhone,
-            hint: StringsEn.phone,
-            perfixIcon: CountryCodePicker(
-              initialSelection: StringsEn.eg,
-              flagWidth: 25,
-              onChanged: (CountryCode code) =>
-                  bloc.onChangedCountry(code: code),
-              showDropDownButton: true,
-              showCountryOnly: true,
-              showOnlyCountryWhenClosed: true,
-              showFlagDialog: true,
-              hideMainText: true,
-              showFlagMain: true,
-            ),
-            controller: bloc.controllerMobileNumber,
-          ),
-        ],
-      ),
+          controller: bloc.controllerMobileNumber,
+        ),
+      ],
     );
   }
 }

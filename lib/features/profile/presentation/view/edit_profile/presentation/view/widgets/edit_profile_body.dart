@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
@@ -26,60 +25,62 @@ class _EditProfileBodyState extends State<EditProfileBody> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return ListView(
-      children: [
-        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+    return Padding(
+      padding: AppConsts.mainPadding,
+      child: ListView(
+        children: [
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
-        //custom appBar
-        CustomAppBar(
-          leadingOnTap: () => GoRouter.of(context).pop(),
-          title: StringsEn.editProfile,
-          trailingWidget: Container(),
-        ),
-        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
-        //edit photo
-        SectionEditPhoto(),
-        //edit personal info
-        SectionPersonalInfo(),
-        SizedBox(height: size.height * .1.h),
-        //save
-        Center(
-          child: SizedBox(
-            height: size.height * .055.h,
-            width: size.width * .9.w,
-            child: BlocConsumer<EditProfileCubit, EditProfileState>(
-              builder: (context, state) {
-                return Visibility(
-                  visible: !isLoad,
-                  replacement: LoadingWidget(),
-                  child: CustomButton(
-                    text: StringsEn.save,
-                    onTap: () async {
-                      await BlocProvider.of<EditProfileCubit>(context).save();
-                    },
-                  ),
-                );
-              },
-              listener: (context, state) {
-                if (state is SavedLoading) {
-                  isLoad = true;
-                } else if (state is SavedSuccess) {
-                  isLoad = false;
-                  GoRouter.of(context).pushReplacement(homePath);
-                } else if (state is SavedFailure) {
-                  isLoad = false;
-                  showSnack(
-                    context,
-                    message: StringsEn.someThingError,
-                    background: AppConsts.danger500,
+          //custom appBar
+          CustomAppBar(
+            leadingOnTap: () => GoRouter.of(context).pop(),
+            title: StringsEn.editProfile,
+            trailingWidget: Container(),
+          ),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+          //edit photo
+          const SectionEditPhoto(),
+          //edit personal info
+          const SectionPersonalInfo(),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+          //save
+          Center(
+            child: AspectRatio(
+              aspectRatio: AppConsts.aspectRatioButtonAuth,
+              child: BlocConsumer<EditProfileCubit, EditProfileState>(
+                builder: (context, state) {
+                  return Visibility(
+                    visible: !isLoad,
+                    replacement: LoadingWidget(),
+                    child: CustomButton(
+                      text: StringsEn.save,
+                      onTap: () async {
+                        await BlocProvider.of<EditProfileCubit>(context).save();
+                      },
+                    ),
                   );
-                }
-              },
+                },
+                listener: (context, state) {
+                  if (state is SavedLoading) {
+                    isLoad = true;
+                  } else if (state is SavedSuccess) {
+                    isLoad = false;
+                    GoRouter.of(context).pushReplacement(homePath);
+                  } else if (state is SavedFailure) {
+                    isLoad = false;
+                    showSnack(
+                      context,
+                      message: StringsEn.someThingError,
+                      background: AppConsts.danger500,
+                    );
+                  }
+                },
+              ),
             ),
           ),
-        ),
-      ],
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+        ],
+      ),
     );
   }
 }
