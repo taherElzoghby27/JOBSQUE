@@ -227,6 +227,7 @@ abstract class StringsEn {
   static const String  subTitle = 'subTitle';
   static const String  labelButton = 'labelButton';
   static const String  path = 'path';
+  static const String  extra = 'extra';
   static const String  employeeFor = 'Employee For';
   static const String  dashs = '-----';
   static const String  one = '1';
@@ -268,7 +269,7 @@ abstract class StringsEn {
   static const String  showProfile = 'Show Profile';
   static const String  allMessage = 'All Message';
   static const String  messageNudges = 'Message Nudges';
-  static const String  accoutAccess = 'Accont access';
+  static const String  accoutAccess = 'Account access';
   static const String  emailAddress = 'Email address';
   static const String  phoneNumber = 'Phone number';
   static const String  changePassword = 'Change password';

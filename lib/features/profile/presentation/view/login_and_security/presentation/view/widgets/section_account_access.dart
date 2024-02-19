@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jobsque/core/consts/routesPage.dart';
+import 'package:jobsque/core/consts/data.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/helper/cache_helper.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_divider.dart';
 import 'package:jobsque/core/widgets/tile_widget.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/presentation/view/widgets/custom_tile.dart';
@@ -16,43 +15,29 @@ class SectionAccountAccess extends StatelessWidget {
     return Column(
       children: [
         TileWidget(label: StringsEn.accoutAccess),
-        SizedBox(height: 10.h),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         //
-        CustomTile(
-          label: StringsEn.emailAddress,
-          hintTrailing: CacheHelper.getData(key: StringsEn.email),
+        Column(
+          children: accountAccess
+              .map(
+                (item) => Column(
+                  children: [
+                    CustomTile(
+                      label: item[StringsEn.title],
+                      hintTrailing: item[StringsEn.trailing],
+                      onTap: (item[StringsEn.path] as String).isNotEmpty
+                          ? () => GoRouter.of(context).push(
+                                item[StringsEn.path],
+                                extra: item[StringsEn.extra],
+                              )
+                          : () {},
+                    ),
+                    const CustomDivider(),
+                  ],
+                ),
+              )
+              .toList(),
         ),
-        CustomDivider(),
-        CustomTile(
-          label: StringsEn.phoneNumber,
-          onTap: () => GoRouter.of(context).push(
-            loginSecurityAuthPath,
-            extra: StringsEn.phoneNumber,
-          ),
-        ),
-        CustomDivider(),
-        CustomTile(
-          label: StringsEn.changePassword,
-          onTap: () => GoRouter.of(context).push(
-            loginSecurityAuthPath,
-            extra: StringsEn.emailAddress,
-          ),
-        ),
-        CustomDivider(),
-        CustomTile(
-          label: StringsEn.twoStepVerifi,
-          hintTrailing: StringsEn.nonActive,
-          onTap: () => GoRouter.of(context).push(twoStepVerifiPath),
-        ),
-        CustomDivider(),
-        CustomTile(
-          label: StringsEn.faceId,
-          onTap: () => GoRouter.of(context).push(
-            loginSecurityAuthPath,
-            extra: StringsEn.faceId,
-          ),
-        ),
-        CustomDivider(),
       ],
     );
   }

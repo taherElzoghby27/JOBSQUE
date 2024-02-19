@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/widgets/custom_circle_button.dart';
 
 import 'assets.dart';
@@ -131,5 +132,37 @@ List<Map<String, dynamic>> othersDataProfile = [
     StringsEn.title: StringsEn.privacyPolicy,
     StringsEn.trailing: Icons.arrow_forward_outlined,
     StringsEn.path: privacyPath,
+  },
+];
+List<Map<String, dynamic>> accountAccess = [
+  {
+    StringsEn.title: StringsEn.emailAddress,
+    StringsEn.trailing: CacheHelper.getData(key: StringsEn.email),
+    StringsEn.path: '',
+    StringsEn.extra: '',
+  },
+  {
+    StringsEn.title: StringsEn.phoneNumber,
+    StringsEn.trailing: '',
+    StringsEn.path: loginSecurityAuthPath,
+    StringsEn.extra: StringsEn.phoneNumber,
+  },
+  {
+    StringsEn.title: StringsEn.changePassword,
+    StringsEn.trailing: '',
+    StringsEn.path: loginSecurityAuthPath,
+    StringsEn.extra: StringsEn.emailAddress,
+  },
+  {
+    StringsEn.title: StringsEn.twoStepVerifi,
+    StringsEn.trailing: StringsEn.nonActive,
+    StringsEn.path: twoStepVerifiPath,
+    StringsEn.extra: '',
+  },
+  {
+    StringsEn.title: StringsEn.faceId,
+    StringsEn.trailing: '',
+    StringsEn.path: '',
+    StringsEn.extra: '',
   },
 ];
