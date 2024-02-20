@@ -17,14 +17,11 @@ class SectionMessages extends StatelessWidget {
       child: Column(
         children: [
           //unread     read all messages
-          AspectRatio(
-            aspectRatio: AppConsts.aspect20on2,
-            child: TileWidget(
-              label: StringsEn.unRead,
-              trailingLabel: StringsEn.readAllMessages,
-              trailingOnTap: () {},
-              leadingOnTap: () {},
-            ),
+          TileWidget(
+            label: StringsEn.unRead,
+            trailingLabel: StringsEn.readAllMessages,
+            trailingOnTap: () {},
+            leadingOnTap: () {},
           ),
           //chats
           chats_list.isEmpty
