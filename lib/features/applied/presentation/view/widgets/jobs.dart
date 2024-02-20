@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/features/applied/presentation/view/widgets/custom_bar_applied_job.dart';
+import '../../../../../core/consts/style.dart';
+import 'custom_bar_applied_job.dart';
 
 import 'applied_jobs_bloc_consumer.dart';
 

@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/widgets/custom_loading_recent_job.dart';
-import 'package:jobsque/core/widgets/fading_list_view.dart';
-import 'package:jobsque/features/applied/presentation/view/widgets/section_jobs.dart';
-import 'package:jobsque/features/applied/presentation/view_models/applied_job_cubit/applied_job_cubit.dart';
+import '../../../../../core/consts/style.dart';
+import '../../../../../core/widgets/custom_loading_recent_job.dart';
+import '../../../../../core/widgets/fading_list_view.dart';
+import 'section_jobs.dart';
+import '../../view_models/applied_job_cubit/applied_job_cubit.dart';
 
-import 'package:jobsque/core/helper/custom_snack.dart';
-import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
-import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/core/widgets/empty_widget.dart';
-import 'package:jobsque/core/widgets/small_loading_widget.dart';
+import '../../../../../core/helper/custom_snack.dart';
+import '../../../../../core/models/apply_user_model/apply_user_model.dart';
+import '../../../../../core/models/job_model/job_model.dart';
+import '../../../../../core/widgets/empty_widget.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jobsque/core/consts/assets.dart';
-import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/features/home/presentation/view/widgets/loading_listview_fading.dart';
+import '../../../../../core/consts/assets.dart';
+import '../../../../../core/consts/strings.dart';
+import '../../../../home/presentation/view/widgets/loading_listview_fading.dart';
 
 class AppliedJobsBlocConsumer extends StatelessWidget {
   const AppliedJobsBlocConsumer({super.key});

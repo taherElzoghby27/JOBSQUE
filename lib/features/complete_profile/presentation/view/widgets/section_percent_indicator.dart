@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/consts/style.dart';
+import '../../../../../core/consts/strings.dart';
+import '../../../../../core/consts/style.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class SectionPercentIndicator extends StatelessWidget {
@@ -18,23 +18,23 @@ class SectionPercentIndicator extends StatelessWidget {
           CircularPercentIndicator(
             radius: 60.0,
             lineWidth: 7.0,
-            percent: nOfManyTrue/4,
+            percent: nOfManyTrue / 4,
             center: Text(
               calcPercentage,
               style: AppConsts.style24.copyWith(color: AppConsts.primary500),
             ),
             progressColor: AppConsts.primary500,
           ),
-          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           Text(
             showStatus,
             style: AppConsts.style16White.copyWith(
               color: AppConsts.primary500,
             ),
           ),
-          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           Text(StringsEn.completeYourProfile, style: AppConsts.style16),
-          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         ],
       ),
     );

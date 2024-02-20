@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/functions.dart';
-import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
-import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/core/widgets/custom_divider.dart';
-import 'package:jobsque/core/widgets/fade_animation_widget.dart';
-import 'package:jobsque/core/widgets/tile_widget.dart';
-import 'package:jobsque/features/applied/presentation/view/widgets/custom_item_applied_job.dart';
+import '../../../../../core/consts/strings.dart';
+import '../../../../../core/consts/style.dart';
+import '../../../../../core/functions.dart';
+import '../../../../../core/models/apply_user_model/apply_user_model.dart';
+import '../../../../../core/models/job_model/job_model.dart';
+import '../../../../../core/widgets/custom_divider.dart';
+import '../../../../../core/widgets/fade_animation_widget.dart';
+import '../../../../../core/widgets/tile_widget.dart';
+import 'custom_item_applied_job.dart';
 
 class SectionJobs extends StatelessWidget {
   const SectionJobs({
@@ -27,7 +27,7 @@ class SectionJobs extends StatelessWidget {
       children: [
         TileWidget(label: '${userJobs.length} ${StringsEn.jobs}'),
         Padding(
-          padding:AppConsts.mainPadding,
+          padding: AppConsts.mainPadding,
           child: ListView.separated(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,

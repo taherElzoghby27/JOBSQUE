@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/features/job_detail/presentation/view/widgets/circles_bar_section.dart';
+import '../../../../../core/consts/style.dart';
+import '../../../../job_detail/presentation/view/widgets/circles_bar_section.dart';
 
 class CustomApplyJobProcess extends StatelessWidget {
   const CustomApplyJobProcess({

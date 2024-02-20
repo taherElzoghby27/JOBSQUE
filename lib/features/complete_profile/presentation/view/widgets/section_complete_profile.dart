@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jobsque/core/consts/routesPage.dart';
-import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/features/complete_profile/presentation/view/widgets/item_complete_profile.dart';
+import '../../../../../core/consts/routesPage.dart';
+import '../../../../../core/consts/strings.dart';
+import '../../../../../core/consts/style.dart';
+import 'item_complete_profile.dart';
 
 import 'custom_vertical_divider.dart';
 

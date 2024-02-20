@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/errors/failure_message.dart';
-import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
-import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/features/home/data/repo/home_repo.dart';
+import '../../../../../core/consts/strings.dart';
+import '../../../../../core/errors/failure_message.dart';
+import '../../../../../core/models/apply_user_model/apply_user_model.dart';
+import '../../../../../core/models/job_model/job_model.dart';
+import '../../../../home/data/repo/home_repo.dart';
 import 'package:meta/meta.dart';
 import 'package:dartz/dartz.dart';
 import '../../../data/repo/applied_job_repo.dart';
@@ -56,7 +56,8 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
 
   //get jobs
   getJobs() async {
-    Either<FailureServ, List<Job>> appliedJobs = await jobFilterRepo.filterJobs();
+    Either<FailureServ, List<Job>> appliedJobs =
+        await jobFilterRepo.filterJobs();
     appliedJobs.fold(
       (fail) => emit(AppliedJobFailure(message: fail.message)),
       (jobsList) => jobs = jobsList,
