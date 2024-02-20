@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/widgets/smart_fresher.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/recent_jop_section.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/suggested_jop_section.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
-import '../../../../../core/widgets/footer_smart_refresh.dart';
-import '../../../../../core/widgets/header_smart_refresh.dart';
 import 'home_top_section.dart';
 
 class HomeBody extends StatefulWidget {
@@ -38,11 +36,8 @@ class _HomeBodyState extends State<HomeBody> {
 
   @override
   Widget build(BuildContext context) {
-    return SmartRefresher(
-      enablePullDown: true,
-      header: const HeaderSmartRefresh(),
-      footer: const FooterSmartRefresh(),
-      controller: _refreshController,
+    return SmartRefreshWidget(
+      refreshController: _refreshController,
       onRefresh: _onRefresh,
       child: ListView(
         children: [

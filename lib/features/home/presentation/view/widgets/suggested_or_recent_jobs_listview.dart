@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/core/widgets/header_smart_refresh.dart';
 import 'package:jobsque/core/widgets/tile_widget.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../../../../../core/widgets/footer_smart_refresh.dart';
+import '../../../../../core/widgets/smart_fresher.dart';
 import '../../view_models/home_bloc/home_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
 
@@ -40,11 +39,8 @@ class _SuggestedOrRecentJobsListViewState
 
   @override
   Widget build(BuildContext context) {
-    return SmartRefresher(
-      enablePullDown: true,
-      header: const HeaderSmartRefresh(),
-      footer: const FooterSmartRefresh(),
-      controller: _refreshController,
+    return SmartRefreshWidget(
+      refreshController: _refreshController,
       onRefresh: _onRefresh,
       child: ListView(
         physics: const BouncingScrollPhysics(),
