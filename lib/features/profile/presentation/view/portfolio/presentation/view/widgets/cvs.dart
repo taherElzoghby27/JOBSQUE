@@ -22,7 +22,9 @@ class PortfoliosBlocConsumer extends StatelessWidget {
           return Center(
             child: cvs.isEmpty
                 ? const InitialCvWidget()
-                : CvsListView(cvs: cvs),
+                : CvsListView(
+                    cvs: cvs,
+                  ),
           );
         } else if (state is GetFilesLoading) {
           return const CustomFadingLoadingAnimation(
@@ -44,6 +46,16 @@ class PortfoliosBlocConsumer extends StatelessWidget {
             message: state.message,
             background: AppConsts.danger500,
           );
+        }
+        if (state is DeletedFailure) {
+          showSnack(
+            context,
+            message: state.message,
+            background: AppConsts.danger500,
+          );
+        }
+        if (state is DeletedSuccess) {
+          showSnack(context, message: state.message);
         }
       },
     );

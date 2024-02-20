@@ -4,24 +4,15 @@ import 'package:jobsque/core/services/local_datasource/hive_db_job.dart';
 import 'package:jobsque/core/services/remote_datasource/auth_service/register_auth_service.dart';
 import 'package:jobsque/core/services/remote_datasource/jop_service/filter_job_service.dart';
 import 'package:jobsque/core/services/remote_datasource/login_and_security_service/get_otp_service.dart';
+import 'package:jobsque/core/services/remote_datasource/profile_service/delete_portfolio_service.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
-import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
 import 'package:jobsque/features/complete_profile/data/repo/complete_profile_repo_impl.dart';
-import 'package:jobsque/features/home/data/repo/home_repo.dart';
-import 'package:jobsque/features/job_detail/data/repo/apply_job_repo.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
-import 'package:jobsque/features/notification/data/repos/notification_repo.dart';
 import 'package:jobsque/features/notification/data/repos/notification_repo_implementation.dart';
-import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.dart';
-import 'package:jobsque/features/profile/presentation/view/login_and_security/data/repo/login_security_repo.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/data/repo/login_security_repo_implementation.dart';
-import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo_implementation.dart';
-
-import 'features/applied/data/repo/applied_job_repo.dart';
-import 'features/complete_profile/data/repo/complete_profile_repo.dart';
 import 'features/home/data/repo/home_repo_implementation.dart';
 import 'core/consts/api_service.dart';
 import 'core/services/local_datasource/hive_db_apply_user.dart';
@@ -82,6 +73,7 @@ initRepository() {
     () => PortfolioRepoImplementation(
       apiService: sl.get<ApiService>(),
       addPortfolioService: sl.get<AddPortfolioService>(),
+      deletePortfolioService: sl.get<DeletePortfolioService>(),
     ),
   );
   //notification repo implementation
@@ -188,6 +180,12 @@ initService() {
   //addExperienceService
   sl.registerLazySingleton(
     () => AddExperienceService(
+      apiService: sl.get<ApiService>(),
+    ),
+  );
+  //delete portfolio service
+  sl.registerLazySingleton(
+    () => DeletePortfolioService(
       apiService: sl.get<ApiService>(),
     ),
   );

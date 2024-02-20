@@ -80,5 +80,18 @@ class PortfolioCubit extends Cubit<PortfolioState> {
   }
 
   //delete portfolios
-  deletePortfolio() {}
+  deletePortfolio({required int idPortfolio}) async {
+    emit(DeletedLoading());
+    Either<FailureServ, String> result = await portfolioRepo.deletePortFolio(
+      idPortfolio: idPortfolio,
+    );
+    result.fold(
+      (failure) {
+        emit(DeletedFailure(message: failure.message));
+      },
+      (message) {
+        emit(DeletedSuccess(message: message));
+      },
+    );
+  }
 }

@@ -30,3 +30,18 @@ class PickedFileFailure extends PortfolioState {
 
   PickedFileFailure({required this.message});
 }
+
+//deleted states
+class DeletedLoading extends PortfolioState {}
+
+class DeletedSuccess extends PortfolioState {
+  final String message;
+
+  DeletedSuccess({required this.message});
+}
+
+class DeletedFailure extends PortfolioState {
+  final String message;
+
+  DeletedFailure({required this.message});
+}

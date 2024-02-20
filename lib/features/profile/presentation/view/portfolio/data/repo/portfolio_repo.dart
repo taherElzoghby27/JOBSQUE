@@ -6,10 +6,14 @@ import 'package:jobsque/features/profile/presentation/view/portfolio/data/models
 abstract class PortfolioRepo {
   //get portfolios
   Future<Either<FailureServ, UserProfilePortfolioModel>> getPortFolio();
+
   //add portfolios
   Future<Either<FailureServ, PortfolioCv>> addPortFolio({
     required PortfolioCv portfolioCv,
   });
+
   //delete portfolios
-  void deletePortFolio();
+  Future<Either<FailureServ, String>> deletePortFolio({
+    required int idPortfolio,
+  });
 }
