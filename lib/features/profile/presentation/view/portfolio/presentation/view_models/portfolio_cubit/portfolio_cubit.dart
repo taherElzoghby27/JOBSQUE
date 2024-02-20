@@ -36,6 +36,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
         File cvFile = File(result.files.first.path!);
         files.add(cvFile);
         add(file: cvFile);
+        print(files);
       } else {
         emit(PickedFileFailure(message: StringsEn.someThingError));
       }

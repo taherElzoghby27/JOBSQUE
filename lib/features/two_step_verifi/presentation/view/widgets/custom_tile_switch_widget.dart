@@ -24,7 +24,7 @@ class CustomTileSwitchWidget extends StatelessWidget {
               status = state.status;
             }
             return Padding(
-              padding: AppConsts.padding10,
+              padding: AppConsts.padding10Horiz,
               child: CustomTileSwitch(
                 label: StringsEn.secureYourAccount,
                 value: status,

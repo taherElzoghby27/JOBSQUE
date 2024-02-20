@@ -47,7 +47,7 @@ class PortfolioBody extends StatelessWidget {
             ),
             const AspectRatio(aspectRatio: AppConsts.aspect16on1),
             //pdfs
-            const Portfolios(),
+            const PortfoliosBlocConsumer(),
           ],
         );
       },

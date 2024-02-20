@@ -11,20 +11,17 @@ import 'custom_personal_details_component.dart';
 import 'custom_portfolio_component.dart';
 
 class CompleteProfileProcessBody extends StatelessWidget {
-  const CompleteProfileProcessBody({
-    super.key,
-    required this.currentPage,
-  });
+  const CompleteProfileProcessBody({super.key, required this.currentPage});
 
   final String currentPage;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.w),
+      padding: AppConsts.mainPadding,
       child: ListView(
         children: [
-          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
           //custom appBar
           CustomAppBar(
@@ -38,14 +35,14 @@ class CompleteProfileProcessBody extends StatelessWidget {
                         : StringsEn.portfolio,
             trailingWidget: Container(),
           ),
-          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           currentPage == StringsEn.personalDetails
-              ? CustomPersonalDetailsComponent()
+              ? const CustomPersonalDetailsComponent()
               : currentPage == StringsEn.education
-                  ? CustomEducationComponent()
+                  ? const CustomEducationComponent()
                   : currentPage == StringsEn.experience
-                      ? CustomExperienceComponent()
-                      : CustomPortfolioComponent(),
+                      ? const CustomExperienceComponent()
+                      : const CustomPortfolioComponent(),
         ],
       ),
     );

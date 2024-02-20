@@ -72,7 +72,7 @@ class _CompleteProfileBodyState extends State<CompleteProfileBody> {
             title: StringsEn.completeProfile,
             trailingWidget: Container(),
           ),
-          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           //percent indicator
           SectionPercentIndicator(nOfManyTrue: nOfTrue),
           //complete your profile
@@ -82,6 +82,7 @@ class _CompleteProfileBodyState extends State<CompleteProfileBody> {
             experience: experienceStatus,
             portfolio: portfolioStatus,
           ),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         ],
       ),
     );

@@ -39,7 +39,7 @@ class LogoTitleIconWidget extends StatelessWidget {
           Expanded(
             flex: 5,
             child: Padding(
-              padding: AppConsts.padding10,
+              padding: AppConsts.padding10Horiz,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view/widgets/section_edit_photo.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view/widgets/section_personal_info.dart';
 
@@ -12,22 +12,20 @@ class CustomPersonalDetailsComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         //edit photo
-        SectionEditPhoto(),
+        const SectionEditPhoto(),
         //edit personal info
-        SectionPersonalInfo(),
-        SizedBox(height: size.height * .1.h),
+        const SectionPersonalInfo(),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on2),
         //save
         Center(
-          child: SizedBox(
-            height: size.height * .055.h,
-            width: size.width * .9.w,
+          child: AspectRatio(
+            aspectRatio: AppConsts.aspectRatioButtonAuth,
             child: Visibility(
               visible: true,
-              replacement: LoadingWidget(),
+              replacement:const LoadingWidget(),
               child: CustomButton(
                 text: StringsEn.save,
                 onTap: () {},

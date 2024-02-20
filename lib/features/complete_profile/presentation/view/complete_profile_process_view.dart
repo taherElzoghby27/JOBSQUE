@@ -10,7 +10,9 @@ class CompleteProfileProcessView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: CompleteProfileProcessBody(currentPage: currentPage),
+        child: CompleteProfileProcessBody(
+          currentPage: currentPage,
+        ),
       ),
     );
   }

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/widgets/cvs.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/widgets/section_add_portfolio.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view_models/portfolio_cubit/portfolio_cubit.dart';
 
-
 class CustomPortfolioComponent extends StatefulWidget {
   const CustomPortfolioComponent({super.key});
 
   @override
-  State<CustomPortfolioComponent> createState() => _CustomPortfolioComponentState();
+  State<CustomPortfolioComponent> createState() =>
+      _CustomPortfolioComponentState();
 }
 
 class _CustomPortfolioComponentState extends State<CustomPortfolioComponent> {
@@ -21,9 +20,9 @@ class _CustomPortfolioComponentState extends State<CustomPortfolioComponent> {
     BlocProvider.of<PortfolioCubit>(context).getPortfolios();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return BlocConsumer<PortfolioCubit, PortfolioState>(
       listener: (context, state) {
         if (state is PickedFileFailure) {
@@ -45,9 +44,9 @@ class _CustomPortfolioComponentState extends State<CustomPortfolioComponent> {
                 await bloc.getPortfolios();
               },
             ),
-            SizedBox(height: size.height * .01.h),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
             //pdfs
-            Portfolios(),
+            const PortfoliosBlocConsumer(),
           ],
         );
       },

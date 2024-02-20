@@ -63,7 +63,7 @@ class _CustomExperienceComponentState extends State<CustomExperienceComponent> {
     return Container(
       decoration: AppConsts.decorationRadius8,
       child: Padding(
-        padding: EdgeInsets.all(10.sp),
+        padding: AppConsts.allPadding8,
         child: BlocConsumer<AddExperienceCubit, AddExperienceState>(
           listener: (context, state) {
             if (state is AddedLoading) {
@@ -90,7 +90,7 @@ class _CustomExperienceComponentState extends State<CustomExperienceComponent> {
                   hint: StringsEn.position,
                   controller: bloc.position,
                 ),
-                SizedBox(height: size.height * .022.w),
+                const AspectRatio(aspectRatio: AppConsts.aspect40on1),
 
                 //type of work
                 CustomFilterTextField(
@@ -115,7 +115,7 @@ class _CustomExperienceComponentState extends State<CustomExperienceComponent> {
                   ),
                   readOnly: true,
                 ),
-                SizedBox(height: size.height * .022.w),
+                const AspectRatio(aspectRatio: AppConsts.aspect40on1),
 
                 //company name
                 CustomFilterTextField(
@@ -124,13 +124,12 @@ class _CustomExperienceComponentState extends State<CustomExperienceComponent> {
                   star: StringsEn.star,
                   controller: bloc.compName,
                 ),
-                SizedBox(height: size.height * .022.w),
+                const AspectRatio(aspectRatio: AppConsts.aspect40on1),
                 // location
                 CustomFilterTextField(
                   label: StringsEn.location,
                   hint: StringsEn.location,
                   perfixIcon: Icon(Icons.location_on),
-
                   controller: bloc.location,
                 ),
                 CustomCheckBox(
@@ -140,7 +139,7 @@ class _CustomExperienceComponentState extends State<CustomExperienceComponent> {
                       : bloc.isCheckedCurrentInRole,
                   onChanged: (value) => bloc.changeCurrentInRole(value: value!),
                 ),
-                SizedBox(height: size.height * .01.h),
+                const AspectRatio(aspectRatio: AppConsts.aspect40on1),
                 //start year
                 CustomFilterTextField(
                   label: StringsEn.startYear,
@@ -156,12 +155,11 @@ class _CustomExperienceComponentState extends State<CustomExperienceComponent> {
                   ),
                   readOnly: true,
                 ),
-                SizedBox(height: size.height * .05.h),
+                const AspectRatio(aspectRatio: AppConsts.aspect16on2),
                 //save
                 Center(
-                  child: SizedBox(
-                    height: size.height * .055.h,
-                    width: size.width * .9.w,
+                  child: AspectRatio(
+                    aspectRatio: AppConsts.aspectRatioButtonAuth,
                     child: Visibility(
                       visible: !isLoad,
                       replacement: LoadingWidget(),
@@ -174,6 +172,7 @@ class _CustomExperienceComponentState extends State<CustomExperienceComponent> {
                     ),
                   ),
                 ),
+                const AspectRatio(aspectRatio: AppConsts.aspect16on1),
               ],
             );
           },

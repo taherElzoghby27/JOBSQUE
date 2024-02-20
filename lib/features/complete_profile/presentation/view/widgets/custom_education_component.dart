@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
@@ -77,11 +75,10 @@ class _CustomEducationComponentState extends State<CustomEducationComponent> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       decoration: AppConsts.decorationRadius8,
       child: Padding(
-        padding: EdgeInsets.all(10.sp),
+        padding: AppConsts.allPadding8,
         child: Column(
           children: [
             //university
@@ -90,14 +87,13 @@ class _CustomEducationComponentState extends State<CustomEducationComponent> {
               star: StringsEn.star,
               hint: StringsEn.university,
             ),
-            SizedBox(height: size.height * .022.w),
-
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
             //title
             CustomFilterTextField(
               label: StringsEn.title,
               hint: StringsEn.title,
             ),
-            SizedBox(height: size.height * .022.w),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
             //start year
             CustomFilterTextField(
@@ -112,7 +108,7 @@ class _CustomEducationComponentState extends State<CustomEducationComponent> {
               readOnly: true,
               onChanged: (String? value) {},
             ),
-            SizedBox(height: size.height * .022.w),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
             //end year
             CustomFilterTextField(
               label: StringsEn.endYear,
@@ -126,15 +122,14 @@ class _CustomEducationComponentState extends State<CustomEducationComponent> {
               readOnly: true,
               onChanged: (String? value) {},
             ),
-            SizedBox(height: size.height * .05.h),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on3),
             //save
             Center(
-              child: SizedBox(
-                height: size.height * .055.h,
-                width: size.width * .9.w,
+              child: AspectRatio(
+                aspectRatio: AppConsts.aspectRatioButtonAuth,
                 child: Visibility(
                   visible: true,
-                  replacement: LoadingWidget(),
+                  replacement: const LoadingWidget(),
                   child: CustomButton(
                     text: StringsEn.save,
                     onTap: () {},
@@ -142,6 +137,7 @@ class _CustomEducationComponentState extends State<CustomEducationComponent> {
                 ),
               ),
             ),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           ],
         ),
       ),
