@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
@@ -12,24 +11,23 @@ import 'package:jobsque/core/consts/style.dart';
 import '../../../../../../../../core/widgets/customButton.dart';
 import '../../../../../../../../core/widgets/small_loading_widget.dart';
 
-class TwoStepVerifiBody extends StatefulWidget {
-  const TwoStepVerifiBody({super.key});
+class TwoStepVerBody extends StatefulWidget {
+  const TwoStepVerBody({super.key});
 
   @override
-  State<TwoStepVerifiBody> createState() => _TwoStepVerifiBodyState();
+  State<TwoStepVerBody> createState() => _TwoStepVerBodyState();
 }
 
-class _TwoStepVerifiBodyState extends State<TwoStepVerifiBody> {
+class _TwoStepVerBodyState extends State<TwoStepVerBody> {
   int current = 0;
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: AppConsts.mainPadding,
       child: Column(
         children: [
-          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           CustomAppBar(
             leadingOnTap: () {
               if (current == 3) {
@@ -45,28 +43,27 @@ class _TwoStepVerifiBodyState extends State<TwoStepVerifiBody> {
             title: StringsEn.twoStepVerifi,
             trailingWidget: Container(),
           ),
-          const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           //secureYourAccount
           current == 0 || current == 1
-              ? custom_tile_switch_widget()
+              ? const CustomTileSwitchWidget()
               : Container(),
-          SizedBox(height: size.height * .025.h),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
           current == 0
-              ? TwoStepVerifiNotesComponent()
+              ? const TwoStepVerifiNotesComponent()
               : current == 1
-                  ? SelectVerifiMethod()
+                  ? const SelectVerifiMethod()
                   : current == 2
-                      ? AddPhoneNumberMethod()
-                      : VerifyMethod(),
-          Spacer(),
+                      ? const AddPhoneNumberMethod()
+                      : const VerifyMethod(),
+          const Spacer(),
           //button
-          SizedBox(
-            height: size.height * .055.h,
-            width: size.width * .9.w,
+          AspectRatio(
+            aspectRatio: AppConsts.aspectRatioButtonAuth,
             child: Visibility(
               visible: true,
-              replacement: LoadingWidget(),
+              replacement:const LoadingWidget(),
               child: CustomButton(
                 text: current == 0 || current == 1
                     ? StringsEn.next
@@ -85,7 +82,7 @@ class _TwoStepVerifiBodyState extends State<TwoStepVerifiBody> {
               ),
             ),
           ),
-          SizedBox(height: size.height * .035.w),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         ],
       ),
     );

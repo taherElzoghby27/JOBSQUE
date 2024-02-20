@@ -419,7 +419,7 @@ final router = GoRouter(
         state: state,
         child: BlocProvider(
           create: (_) => TwoStepVerificationCubit(),
-          child: TwoStepVeriView(),
+          child: TwoStepVerView(),
         ),
       ),
     ),

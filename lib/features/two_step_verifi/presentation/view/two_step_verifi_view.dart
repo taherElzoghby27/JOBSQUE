@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/two_step_verifi_body.dart';
 
-class TwoStepVeriView extends StatelessWidget {
-  const TwoStepVeriView({super.key});
+class TwoStepVerView extends StatelessWidget {
+  const TwoStepVerView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
-        child: TwoStepVerifiBody(),
+        child: TwoStepVerBody(),
       ),
     );
   }

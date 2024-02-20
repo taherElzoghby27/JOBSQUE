@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
 
 import '../../../../../../../../core/consts/strings.dart';
@@ -10,10 +9,9 @@ class SelectVerifiMethod extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        SizedBox(height: size.height * .02.w),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on2),
 
         //Select a verification method
         CustomFilterTextField(
@@ -34,7 +32,7 @@ class SelectVerifiMethod extends StatelessWidget {
           ),
           readOnly: true,
         ),
-        SizedBox(height: size.height * .02.w),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         //note
         Text(
           StringsEn.noteTurning,

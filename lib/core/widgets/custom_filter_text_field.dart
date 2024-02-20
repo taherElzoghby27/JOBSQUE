@@ -36,7 +36,7 @@ class CustomFilterTextField extends StatelessWidget {
       children: [
         //jop title
         TitleField(label: label, star: star),
-        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
+        const AspectRatio(aspectRatio: AppConsts.aspect300on1),
         //field
         CustomTextField(
           hint: hint ?? '',

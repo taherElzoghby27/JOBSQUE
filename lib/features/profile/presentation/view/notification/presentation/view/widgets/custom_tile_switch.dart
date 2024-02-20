@@ -20,25 +20,22 @@ class CustomTileSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            width: size.width * .6.w,
-            child: Text(
-              label,
-              style: styleText,
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+          width: size.width * .6.w,
+          child: Text(
+            label,
+            style: styleText,
           ),
-          CupertinoSwitch(
-            activeColor: AppConsts.primary500,
-            value: value,
-            onChanged: onChanged,
-          ),
-        ],
-      ),
+        ),
+        CupertinoSwitch(
+          activeColor: AppConsts.primary500,
+          value: value,
+          onChanged: onChanged,
+        ),
+      ],
     );
   }
 }
