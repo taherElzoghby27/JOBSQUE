@@ -19,7 +19,11 @@ class CustomPhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15.sp),
-      child: handleImage(image, height: height, width: width),
+      child: handleImage(
+        image,
+        height: height,
+        width: width,
+      ),
     );
   }
 }

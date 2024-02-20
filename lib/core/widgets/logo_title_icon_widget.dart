@@ -35,37 +35,38 @@ class LogoTitleIconWidget extends StatelessWidget {
           Expanded(
             child: CustomPhoto(image: logo),
           ),
-          SizedBox(width: size.width * .03.w),
 
           Expanded(
             flex: 5,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ///title
-                Text(
-                  jopTitle,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppConsts.style32.copyWith(
-                    fontSize: 18,
+            child: Padding(
+              padding: AppConsts.padding10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ///title
+                  Text(
+                    jopTitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppConsts.style32.copyWith(
+                      fontSize: 18,
+                    ),
                   ),
-                ),
 
-                ///company.country
-                Text(
-                  '$company.$country',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: AppConsts.styleHint14.copyWith(
-                    fontSize: 12,
-                    color: AppConsts.neutral700,
+                  ///company.country
+                  Text(
+                    '$company.$country',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppConsts.styleHint14.copyWith(
+                      fontSize: 12,
+                      color: AppConsts.neutral700,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-          SizedBox(width: size.width * .02.w),
 
           ///trailing
           trailing,

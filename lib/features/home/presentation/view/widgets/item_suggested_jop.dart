@@ -48,36 +48,37 @@ class ItemSuggestedJop extends StatelessWidget {
                     Expanded(
                       child: CustomPhoto(image: job.image!),
                     ),
-                    SizedBox(width: size.width * .03.w),
                     Expanded(
                       flex: 4,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ///title
-                          Text(
-                            job.name!,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppConsts.style32.copyWith(
-                              color: AppConsts.neutral100,
-                              fontSize: 18,
+                      child: Padding(
+                        padding: AppConsts.mainPadding,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ///title
+                            Text(
+                              job.name!,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppConsts.style32.copyWith(
+                                color: AppConsts.neutral100,
+                                fontSize: 18,
+                              ),
                             ),
-                          ),
 
-                          ///company.country
-                          Text(
-                            '${job.compName}.${job.location}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppConsts.styleHint14.copyWith(
-                              fontSize: 12,
+                            ///company.country
+                            Text(
+                              '${job.compName}.${job.location}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: AppConsts.styleHint14.copyWith(
+                                fontSize: 12,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                    SizedBox(width: size.width * .03.w),
 
                     ///bookmark
                     Expanded(
