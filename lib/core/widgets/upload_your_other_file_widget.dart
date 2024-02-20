@@ -22,7 +22,7 @@ class UploadYourOtherFileWidget extends StatelessWidget {
         child: Container(
           color: AppConsts.primary400.withOpacity(.25),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: AppConsts.allPadding8,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

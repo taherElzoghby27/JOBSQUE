@@ -22,7 +22,7 @@ class MessagesListView extends StatelessWidget {
         return FadeAnimation(
           millSeconds: 250,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: AppConsts.allPadding8,
             child: LogoTitleIconWidget(
               logo: chats_list[index].logo,
               jopTitle: chats_list[index].name,

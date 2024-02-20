@@ -24,7 +24,7 @@ class TypeJopComponent extends StatelessWidget {
               : AppConsts.primary100,
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: AppConsts.allPadding8,
           child: Center(
             child: Text(
               label,

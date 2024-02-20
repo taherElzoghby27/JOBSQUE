@@ -24,7 +24,7 @@ class WorkTypeComponent extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(15.sp),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: AppConsts.allPadding8,
         child: AspectRatio(
           aspectRatio: AppConsts.aspect13on10,
           child: Container(

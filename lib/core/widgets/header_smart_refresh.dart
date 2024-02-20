@@ -4,7 +4,12 @@ import 'package:jobsque/core/consts/style.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HeaderSmartRefresh extends StatelessWidget {
-  const HeaderSmartRefresh({super.key});
+  const HeaderSmartRefresh({
+    super.key,
+    required this.loadedLabel,
+  });
+
+  final String loadedLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,7 @@ class HeaderSmartRefresh extends StatelessWidget {
         ),
       ),
       complete: Text(
-        StringsEn.JobsLoaded,
+        loadedLabel,
         style: AppConsts.style16.copyWith(
           color: AppConsts.success500,
         ),

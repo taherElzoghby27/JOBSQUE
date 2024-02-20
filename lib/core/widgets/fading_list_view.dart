@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../consts/style.dart';
+
 class FadingListView extends StatelessWidget {
   const FadingListView({
     super.key,
@@ -24,7 +26,7 @@ class FadingListView extends StatelessWidget {
           : const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: AppConsts.allPadding8,
           child: widget,
         );
       },

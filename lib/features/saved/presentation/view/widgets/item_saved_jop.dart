@@ -27,7 +27,7 @@ class ItemSavedJop extends StatelessWidget {
         extra: job,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: AppConsts.allPadding8,
         child: Column(
           children: [
             LogoTitleIconWidget(

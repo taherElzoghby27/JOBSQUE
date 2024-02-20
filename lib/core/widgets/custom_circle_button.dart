@@ -29,7 +29,7 @@ class CustomCircleButton extends StatelessWidget {
           border: Border.all(color: color ?? AppConsts.neutral300),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: AppConsts.allPadding8,
           child: Center(
             child: SvgPicture.asset(icon, color: colorIcon),
           ),

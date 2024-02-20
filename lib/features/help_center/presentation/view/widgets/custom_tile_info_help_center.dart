@@ -23,7 +23,7 @@ class _CustomTileInfoHelpCenterState extends State<CustomTileInfoHelpCenter> {
       child: Container(
         decoration: AppConsts.decorationRadius8,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: AppConsts.allPadding8,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

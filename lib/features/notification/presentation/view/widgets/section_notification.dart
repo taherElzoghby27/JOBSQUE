@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/tile_widget.dart';
@@ -19,10 +18,7 @@ class SectionNotifications extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          const AspectRatio(
-            aspectRatio: AppConsts.aspect20on2,
-            child: TileWidget(label: StringsEn.notifications),
-          ),
+          const TileWidget(label: StringsEn.notifications),
 
           ///notification
           Expanded(

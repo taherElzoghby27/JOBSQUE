@@ -33,7 +33,7 @@ class ItemCompleteProfile extends StatelessWidget {
               )
             : AppConsts.decorationRadius8,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: AppConsts.allPadding8,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

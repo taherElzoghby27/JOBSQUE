@@ -111,7 +111,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
           child: Align(
             alignment: Alignment.center,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: AppConsts.allPadding8,
               child: AspectRatio(
                 aspectRatio:AppConsts.aspectRatioButtonAuth.sp,
                 child: CustomButton(

@@ -369,6 +369,7 @@ abstract class StringsEn {
   static const String experienceCompleteK = 'ExperienceComplete';
   static const String portfolioCompleteK = 'portfolioComplete';
   static const String JobsLoaded = "Jobs Loaded";
+  static const String notificationsLoaded = "Notifications Loaded";
   static const String releaseToLoadMore ="release to load more";
   static const String loadFailedClickRetry = "Load Failed!Click retry!";
   static const String noMoreData ="No more Data";

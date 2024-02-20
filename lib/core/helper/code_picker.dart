@@ -42,7 +42,7 @@
 //     this.initialSelection,
 //     this.favorite = const [],
 //     this.textStyle,
-//     this.padding = const EdgeInsets.all(8.0),
+//     this.padding = AppConsts.allPadding8,
 //     this.showCountryOnly = false,
 //     this.searchDecoration = const InputDecoration(),
 //     this.searchStyle,

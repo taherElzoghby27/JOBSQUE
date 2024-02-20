@@ -20,7 +20,7 @@ class CustomItemLanguage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: AppConsts.allPadding8,
       child: Row(
         children: [
           //logo
