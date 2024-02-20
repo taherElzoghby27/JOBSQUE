@@ -25,7 +25,6 @@ class _HomeBodyState extends State<HomeBody> {
   );
 
   void _onRefresh() async {
-    // monitor network fetch
     BlocProvider.of<HomeBloc>(context).add(GetJobsEvent());
     await Future.delayed(Duration(milliseconds: 1000));
     _refreshController.refreshCompleted();
