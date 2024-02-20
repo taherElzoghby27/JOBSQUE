@@ -16,7 +16,7 @@ class TileRecentOrSuggested extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10.h, right: 15.h, left: 15.h),
+      padding:AppConsts.padding10h8v,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

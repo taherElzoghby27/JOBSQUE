@@ -36,17 +36,16 @@ class ItemSuggestedJop extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(15),
+            padding: AppConsts.allPadding15,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 //logo jopName
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ///logo
                     Expanded(
-                      child: CustomPhoto(image: job.image!),
+                      child: CustomPhoto(image: job.image),
                     ),
                     Expanded(
                       flex: 4,
@@ -81,11 +80,9 @@ class ItemSuggestedJop extends StatelessWidget {
                     ),
 
                     ///bookmark
-                    Expanded(
-                      child: BookmarkWidget(
-                        job: job,
-                        color: AppConsts.neutral100,
-                      ),
+                    BookmarkWidget(
+                      job: job,
+                      color: AppConsts.neutral100,
                     ),
                   ],
                 ),

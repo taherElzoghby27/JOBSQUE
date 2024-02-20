@@ -10,27 +10,17 @@ Widget handleImage(String image, {double? height, double? width}) {
   String type = checkPhotoType(image);
   switch (type) {
     case 'jpg' || 'png':
-      return Image.asset(
-        image,
-        height: height,
-        width: width,
-      );
+      return Image.asset(image);
     case 'svg':
-      return SvgPicture.asset(
-        image,
-        height: height,
-        width: width,
-      );
+      return SvgPicture.asset(image);
     case 'network':
       return CachedNetworkImage(
-        height: height,
-        width: width,
         imageUrl: image,
         placeholder: (context, url) => const LoadingWidget(),
-        errorWidget: (context, url, error) => Icon(Icons.error),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
       );
     default:
-      return Icon(Icons.error);
+      return const Icon(Icons.error);
   }
 }
 

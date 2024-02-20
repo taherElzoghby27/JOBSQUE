@@ -14,6 +14,7 @@ class SuggestedJobsListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
+      shrinkWrap: true,
       itemBuilder: (context, index) {
         return FadeAnimation(
           millSeconds: 250,

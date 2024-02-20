@@ -21,7 +21,7 @@ class SuggestedJobsListViewBlocConsumer extends StatelessWidget {
         } else if (state is GetJobsFailure) {
           return Text(state.message);
         } else {
-          return CustomFadingLoadingAnimation(
+          return const CustomFadingLoadingAnimation(
             widget: FadingListView(
               scrollDirc: Axis.horizontal,
               widget: CustomLoadingSuggestedJob(),

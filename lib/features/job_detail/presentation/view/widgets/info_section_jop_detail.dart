@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/type_jop_component.dart';
@@ -37,9 +36,9 @@ class _InfoSectionJopDetailState extends State<InfoSectionJopDetail> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         //company logo
-        CustomPhoto(
-          image: job.image!,
-          height: size.height * .065.h,
+        SizedBox(
+          height: size.height * .07.h,
+          child: CustomPhoto(image: job.image!),
         ),
         const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         //title
