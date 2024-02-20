@@ -23,13 +23,16 @@ class CustomTileSwitchWidget extends StatelessWidget {
             if (state is ChangedSwitch) {
               status = state.status;
             }
-            return CustomTileSwitch(
-              label: StringsEn.secureYourAccount,
-              value: status,
-              styleText: AppConsts.style16.copyWith(
-                fontWeight: FontWeight.w500,
+            return Padding(
+              padding: AppConsts.padding10,
+              child: CustomTileSwitch(
+                label: StringsEn.secureYourAccount,
+                value: status,
+                styleText: AppConsts.style16.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
+                onChanged: (bool value) => bloc.changeSwitchTile(value),
               ),
-              onChanged: (bool value) => bloc.changeSwitchTile(value),
             );
           },
         ),
