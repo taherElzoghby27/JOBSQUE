@@ -25,52 +25,56 @@ class LogoTitleIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: onTap,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ///logo
-          Expanded(
-            child: CustomPhoto(image: logo),
-          ),
+      child: AspectRatio(
+        aspectRatio: AppConsts.aspect16on3,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ///logo
+            Expanded(
+              child: CustomPhoto(image: logo),
+            ),
 
-          Expanded(
-            flex: 5,
-            child: Padding(
-              padding: AppConsts.padding10Horiz,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ///title
-                  Text(
-                    jopTitle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppConsts.style32.copyWith(
-                      fontSize: 18,
+            Expanded(
+              flex: 5,
+              child: Padding(
+                padding: AppConsts.padding10Horiz,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ///title
+                    Text(
+                      jopTitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppConsts.style32.copyWith(
+                        fontSize: 18,
+                      ),
                     ),
-                  ),
 
-                  ///company.country
-                  Text(
-                    '$company.$country',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppConsts.styleHint14.copyWith(
-                      fontSize: 12,
-                      color: AppConsts.neutral700,
+                    ///company.country
+                    Text(
+                      '$company.$country',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppConsts.styleHint14.copyWith(
+                        fontSize: 12,
+                        color: AppConsts.neutral700,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
 
-          ///trailing
-          trailing,
-        ],
+            ///trailing
+            trailing,
+          ],
+        ),
       ),
     );
   }

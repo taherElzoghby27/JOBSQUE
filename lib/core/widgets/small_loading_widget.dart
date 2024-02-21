@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class LoadingWidget extends StatelessWidget {
@@ -7,8 +7,8 @@ class LoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Expanded(
-        child: CircularProgressIndicator(color: AppConsts.primary500),
+      child: CupertinoActivityIndicator(
+        color: AppConsts.primary500,
       ),
     );
   }

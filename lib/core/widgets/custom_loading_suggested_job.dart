@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/loading_widget_jobs_suggested_recent_body.dart';
 
@@ -7,10 +8,11 @@ class CustomLoadingSuggestedJob extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: AppConsts.mainPadding,
-      child: AspectRatio(
-        aspectRatio: AppConsts.aspect13on9,
+      child: Container(
+        width: size.width * .8.w,
         child: const LoadingWidgetJobsSuggestedRecentBody(),
       ),
     );

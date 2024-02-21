@@ -27,7 +27,7 @@ class CvWidget extends StatelessWidget {
     return Padding(
       padding: AppConsts.padding10h8v,
       child: AspectRatio(
-        aspectRatio: AppConsts.aspect16on3,
+        aspectRatio: AppConsts.aspect16on4,
         child: Container(
           decoration: AppConsts.decorationRadius8,
           child: Padding(

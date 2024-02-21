@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
+import 'package:jobsque/core/helper/handle_image.dart';
 import 'package:jobsque/core/widgets/auth_top_section.dart';
 import 'package:jobsque/core/widgets/fade_animation_widget.dart';
 import 'package:jobsque/core/widgets/or_sign_up_with_account_widget.dart';
@@ -122,7 +123,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                         offset: offsetAnimation.value,
                         duration: const Duration(milliseconds: 200),
                         child: AspectRatio(
-                          aspectRatio: AppConsts.aspect13on9,
+                          aspectRatio: AppConsts.aspect16on13,
                           child: Column(
                             children: [
                               ///username
@@ -132,7 +133,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                                       ? Container()
                                       : CustomTextFormField(
                                           perfixIcon:
-                                              Image.asset(AppAssets.profile),
+                                          HandleImageWidget(image:AppAssets.profile),
                                           hint: StringsEn.userName,
                                           onChanged: (String? value) =>
                                               name = value,
@@ -143,18 +144,19 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                               ///Email
 
                               CustomTextFormField(
-                                perfixIcon: Image.asset(AppAssets.sms),
+                                perfixIcon: HandleImageWidget(image:AppAssets.sms),
                                 hint: StringsEn.email,
                                 onChanged: (String? value) => email = value,
                               ),
                               const AspectRatio(
-                                  aspectRatio: AppConsts.aspect40on1),
+                                aspectRatio: AppConsts.aspect40on1,
+                              ),
 
                               ///Password
                               _authMode == AuthMode.ResetPassword
                                   ? Container()
                                   : CustomTextFormField(
-                                      perfixIcon: Image.asset(AppAssets.lock),
+                                      perfixIcon: HandleImageWidget(image:AppAssets.lock),
                                       hint: StringsEn.password,
                                       obscureText: visible,
                                       onChanged: (String? value) =>
@@ -168,7 +170,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: <Widget>[
-                                        RemeberMeWidget(),
+                                        const RemeberMeWidget(),
                                         SizedBox(width: size.width * .2.w),
                                         TextButton(
                                           onPressed: () => setState(

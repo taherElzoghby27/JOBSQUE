@@ -33,7 +33,7 @@ class SectionFilterMessages extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Center(child: handleImage(AppAssets.line)),
+                    Center(child: HandleImageWidget(image:AppAssets.line)),
                     //message filtering
                     Align(
                       alignment: Alignment.centerLeft,

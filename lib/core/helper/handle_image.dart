@@ -5,22 +5,30 @@ import 'package:jobsque/core/consts/strings.dart';
 
 import '../widgets/small_loading_widget.dart';
 
-//handle image
-Widget handleImage(String image, {double? height, double? width}) {
-  String type = checkPhotoType(image);
-  switch (type) {
-    case 'jpg' || 'png':
-      return Image.asset(image);
-    case 'svg':
-      return SvgPicture.asset(image);
-    case 'network':
-      return CachedNetworkImage(
-        imageUrl: image,
-        placeholder: (context, url) => const LoadingWidget(),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
-      );
-    default:
-      return const Icon(Icons.error);
+class HandleImageWidget extends StatelessWidget {
+  const HandleImageWidget({super.key, required this.image});
+
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    String type = checkPhotoType(image);
+    switch (type) {
+      case 'jpg' || 'png':
+        return Image.asset(image);
+      case 'svg':
+        return SvgPicture.asset(image);
+      case 'network':
+        return CachedNetworkImage(
+          imageUrl: image,
+          progressIndicatorBuilder:
+              (context, String data, DownloadProgress pr) =>
+                  const LoadingWidget(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        );
+      default:
+        return const Icon(Icons.error);
+    }
   }
 }
 
