@@ -12,7 +12,6 @@ class RecentJopSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         ///recent jop       view all
@@ -27,7 +26,7 @@ class RecentJopSection extends StatelessWidget {
         ///recent jops
         Padding(
           padding: AppConsts.mainPadding,
-          child:RecentJobsListViewBlocConsumer(),
+          child: const RecentJobsListViewBlocConsumer(),
         ),
       ],
     );

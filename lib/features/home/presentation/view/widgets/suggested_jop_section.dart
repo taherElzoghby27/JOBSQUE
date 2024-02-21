@@ -12,7 +12,6 @@ class SuggestedJopSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         ///suggested jop       view all
@@ -27,7 +26,7 @@ class SuggestedJopSection extends StatelessWidget {
         ///suggested jops
         AspectRatio(
           aspectRatio: AppConsts.aspect13on8,
-          child: SuggestedJobsListViewBlocConsumer(),
+          child: const SuggestedJobsListViewBlocConsumer(),
         ),
       ],
     );

@@ -5,6 +5,7 @@ import 'package:jobsque/core/widgets/custom_loading_suggested_job.dart';
 import 'package:jobsque/core/widgets/fading_list_view.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
 
+import '../../../../../core/widgets/error_widget.dart';
 import 'loading_listview_fading.dart';
 import 'suggested_jobs_list_view.dart';
 
@@ -19,7 +20,7 @@ class SuggestedJobsListViewBlocConsumer extends StatelessWidget {
           List<Job> jobs = state.jobs;
           return SuggestedJobsListView(jobs: jobs);
         } else if (state is GetJobsFailure) {
-          return Text(state.message);
+          return ErrorWidg(message: state.message);
         } else {
           return const CustomFadingLoadingAnimation(
             widget: FadingListView(
