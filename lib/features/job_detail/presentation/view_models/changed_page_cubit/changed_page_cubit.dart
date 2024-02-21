@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
+import 'package:jobsque/core/network_info/network_info.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/apply_job_cubit/apply_job_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/bio_data_cubit/bio_data_cubit.dart';
 
 part 'changed_page_state.dart';
 
 class ChangedPageCubit extends Cubit<ChangedPageState> {
-  ChangedPageCubit() : super(ChangedPageInitial());
+  NetworkInfo networkInfo;
+
+  ChangedPageCubit({
+    required this.networkInfo,
+  }) : super(ChangedPageInitial());
   int currentPage = 1;
 
   //change page
@@ -29,7 +34,7 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
     required int currentPage,
     ApplyUser? applyUser,
   }) {
-    BlocProvider.of<ApplyJobCubit>(context).applyUser(
+    BlocProvider.of<ApplyJobCubit>(context).applyUserMethod(
       context,
       jobId: jobId,
       status: status,
@@ -51,15 +56,19 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
     required String jobId,
     ApplyUser? applyUser,
     required String status,
-  }) {
-    //next->next->submit
-    nextOrSubmit(
-      context,
-      jobId: jobId,
-      applyUser: applyUser,
-      status: status,
-      currentPage: currentPage,
-    );
-    emit(ChangedSuccess(currentPage: currentPage));
+  }) async {
+    if (await networkInfo.isConnected) {
+      //next->next->submit
+      nextOrSubmit(
+        context,
+        jobId: jobId,
+        applyUser: applyUser,
+        status: status,
+        currentPage: currentPage,
+      );
+      emit(ChangedSuccess(currentPage: currentPage));
+    } else {
+      emit(ChangedFailure(message: StringsEn.noInternetConnection));
+    }
   }
 }

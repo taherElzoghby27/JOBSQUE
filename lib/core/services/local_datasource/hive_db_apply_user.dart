@@ -17,7 +17,7 @@ class HiveDbApplyUser {
   }
 
 //add apply user
-  add({required ApplyUser user}) => applyUsers.put(user.jobId, user);
+  add({required ApplyUser user}) =>  applyUsers.put(user.jobId, user);
 
 //get users apply
   get() {

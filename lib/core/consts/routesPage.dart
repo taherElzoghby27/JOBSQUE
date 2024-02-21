@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_animation.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
+import 'package:jobsque/core/network_info/network_info.dart';
 import 'package:jobsque/core/services/local_datasource/hive_db_job.dart';
 import 'package:jobsque/service_locator.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
@@ -289,7 +290,6 @@ final router = GoRouter(
             providers: [
               BlocProvider(
                 create: (BuildContext context) => ApplyJobCubit(
-                  hiveDbApplyUser: sl.get<HiveDbApplyUser>(),
                   applyUserRepo: sl.get<ApplyUserRepoImplementation>(),
                 ),
               ),
@@ -297,7 +297,9 @@ final router = GoRouter(
                 create: (BuildContext context) => BioDataCubit(),
               ),
               BlocProvider(
-                create: (BuildContext context) => ChangedPageCubit(),
+                create: (BuildContext context) => ChangedPageCubit(
+                  networkInfo: sl.get<NetworkInfoImpl>(),
+                ),
               ),
               BlocProvider(
                 create: (BuildContext context) => TypeOfWorkCubit(),

@@ -3,7 +3,11 @@ import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
 
 abstract class ApplyUserRepo {
-  Future<Either<FailureServ, ApplyUser>> applyJob({
+  Future<Either<FailureServ, ApplyUser>> applyJobRemote({
+    required ApplyUser applyUser,
+  });
+
+  Future<Either<String, String>> applyJobLocal({
     required ApplyUser applyUser,
   });
 }

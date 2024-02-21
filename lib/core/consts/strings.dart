@@ -112,6 +112,7 @@ abstract class StringsEn {
   static const String  bothPassMustMatch = 'Both password must match';
   static const String  passChangeSuccess = 'Password changed succesfully!';
   static const String  success = 'Success';
+  static const String  noInternetConnection ='No Internet Connection';
   static const String  namePassUpdatedSuccessfully = 'Name and Password changed succesfully';
   static const String  yourPassChanged =
       'Your password has been changed successfully, we will let you know if there are more problems with your account';

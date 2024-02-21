@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,21 +11,15 @@ import 'package:jobsque/features/job_detail/presentation/view_models/changed_pag
 import 'package:jobsque/features/job_detail/presentation/view_models/type_of_work_cubit/type_of_work_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/upload_portfolio_cubit/upload_portfolio_cubit.dart';
 
-import '../../../../../core/services/local_datasource/hive_db_apply_user.dart';
-
 part 'apply_job_state.dart';
 
 class ApplyJobCubit extends Cubit<ApplyJobState> {
-  HiveDbApplyUser hiveDbApplyUser;
   ApplyUserRepo applyUserRepo;
 
-  ApplyJobCubit({
-    required this.applyUserRepo,
-    required this.hiveDbApplyUser,
-  }) : super(ApplyJobInitial());
+  ApplyJobCubit({required this.applyUserRepo}) : super(ApplyJobInitial());
 
   //add to apply user box
-  applyUser(
+  applyUserMethod(
     BuildContext context, {
     required String jobId,
     required String status,
@@ -36,13 +31,11 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
       BioDataCubit blocBioData = BlocProvider.of<BioDataCubit>(context);
       TypeOfWorkCubit typeOfWorkCubit =
           BlocProvider.of<TypeOfWorkCubit>(context);
-      ChangedPageCubit changedPageCubit =
-          BlocProvider.of<ChangedPageCubit>(context);
       UploadPortfolioCubit portfolioCubit =
           BlocProvider.of<UploadPortfolioCubit>(context);
       //save data in hive
-      hiveDbApplyUser.add(
-        user: ApplyUser(
+      Either<String, String> result = await applyUserRepo.applyJobLocal(
+        applyUser: ApplyUser(
           name: status == StringsEn.notComplete
               ? applyUser!.name
               : blocBioData.nameCont.text,
@@ -64,7 +57,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
           userId: userId,
           status:
               currentPage == 3 ? StringsEn.completed : StringsEn.unCompleted,
-          reviewed: 0,
+          reviewed: false,
           updatedAt: '${DateTime.now()}',
           createdAt: '${DateTime.now()}',
           id: 0,
@@ -72,42 +65,69 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
       );
       //apply job
 
-      if (changedPageCubit.currentPage == 3) {
-        emit(ApplyJobLoading());
-        applyUserRepo.applyJob(
-          applyUser: ApplyUser(
-            name: status == StringsEn.notComplete
-                ? applyUser!.name
-                : blocBioData.nameCont.text,
-            email: status == StringsEn.notComplete
-                ? applyUser!.email
-                : blocBioData.emailCont.text,
-            phone: status == StringsEn.notComplete
-                ? applyUser!.phone
-                : blocBioData.phoneCont.text,
-            typeOfWork: status == StringsEn.notComplete && currentPage == 3
-                ? applyUser!.typeOfWork
-                : typeOfWorkCubit.group,
-            cv: portfolioCubit.files[0],
-            otherFiles: portfolioCubit.files[1],
-            jobId: jobId,
-            userId: userId,
-            status: StringsEn.completed,
-            reviewed: 0,
-            updatedAt: '${DateTime.now()}',
-            createdAt: '${DateTime.now()}',
-            id: 0,
-          ),
+      if (currentPage == 3) {
+        await applyUserRemote(
+          blocBioData: blocBioData,
+          typeOfWorkCubit: typeOfWorkCubit,
+          portfolioCubit: portfolioCubit,
+          userId: userId,
+          jobId: jobId,
+          status: status,
+          currentPage: currentPage,
         );
-        emit(ApplyJobSuccess());
       }
-
-      hiveDbApplyUser.get();
-    } catch (error) {
+      result.fold(
+        (failureMessage) => emit(
+          ApplyJobFailure(message: failureMessage),
+        ),
+        (successMessage) {},
+      );
+    } catch (e) {
       emit(
         ApplyJobFailure(message: StringsEn.someThingError),
       );
     }
-    //check if in last page or not
+  }
+
+  applyUserRemote({
+    required BioDataCubit blocBioData,
+    required TypeOfWorkCubit typeOfWorkCubit,
+    required UploadPortfolioCubit portfolioCubit,
+    required String userId,
+    required String jobId,
+    required String status,
+    required int currentPage,
+    ApplyUser? applyUser,
+  }) async {
+    emit(ApplyJobLoading());
+    final result = await applyUserRepo.applyJobRemote(
+      applyUser: ApplyUser(
+        name: status == StringsEn.notComplete
+            ? applyUser!.name
+            : blocBioData.nameCont.text,
+        email: status == StringsEn.notComplete
+            ? applyUser!.email
+            : blocBioData.emailCont.text,
+        phone: status == StringsEn.notComplete
+            ? applyUser!.phone
+            : blocBioData.phoneCont.text,
+        typeOfWork: status == StringsEn.notComplete && currentPage == 3
+            ? applyUser!.typeOfWork
+            : typeOfWorkCubit.group,
+        cv: portfolioCubit.files[0],
+        otherFiles: portfolioCubit.files[1],
+        jobId: jobId,
+        userId: userId,
+        status: StringsEn.completed,
+        reviewed: false,
+        updatedAt: '${DateTime.now()}',
+        createdAt: '${DateTime.now()}',
+        id: 0,
+      ),
+    );
+    result.fold(
+      (failure) => emit(ApplyJobFailure(message: failure.message)),
+      (success) => emit(ApplyJobSuccess()),
+    );
   }
 }

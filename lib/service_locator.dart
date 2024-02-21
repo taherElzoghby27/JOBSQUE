@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:jobsque/core/network_info/network_info.dart';
 import 'package:jobsque/core/services/local_datasource/hive_db_job.dart';
 import 'package:jobsque/core/services/remote_datasource/auth_service/register_auth_service.dart';
 import 'package:jobsque/core/services/remote_datasource/jop_service/filter_job_service.dart';
@@ -58,6 +60,8 @@ initRepository() {
   sl.registerLazySingleton<ApplyUserRepoImplementation>(
     () => ApplyUserRepoImplementation(
       applyUserService: sl.get<ApplyUserService>(),
+      hiveDbApplyUser: sl.get<HiveDbApplyUser>(),
+      networkInfo: sl.get<NetworkInfoImpl>(),
     ),
   );
   //profile Repo Implementation
@@ -110,6 +114,12 @@ initService() {
   sl.registerLazySingleton(() => HiveDbJob());
   //hive db Apply user
   sl.registerLazySingleton(() => HiveDbApplyUser());
+  //network info
+  sl.registerSingleton<NetworkInfoImpl>(
+    NetworkInfoImpl(
+      sl.get<InternetConnectionChecker>(),
+    ),
+  );
   // api service
   sl.registerSingleton<ApiService>(
     ApiService(dio: sl.get<Dio>()),
@@ -193,4 +203,5 @@ initService() {
 
 initExternal() {
   sl.registerSingleton(Dio());
+  sl.registerSingleton(InternetConnectionChecker());
 }
