@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/widgets/custom_loading_recent_job.dart';
 import 'package:jobsque/core/widgets/empty_widget.dart';
 import 'package:jobsque/core/widgets/error_widget.dart';
 import 'package:jobsque/core/widgets/fading_list_view.dart';
+import 'package:jobsque/core/widgets/loading_widget_jobs_suggested_recent_body.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/loading_listview_fading.dart';
 import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_cubit.dart';
 
@@ -34,7 +34,7 @@ class SectionResultListViewBlocBuilder extends StatelessWidget {
           return CustomFadingLoadingAnimation(
             widget: FadingListView(
               scrollDirc: Axis.vertical,
-              widget: CustomLoadingRecentJob(),
+              widget: const LoadingWidgetJobsSuggestedRecentBody(),
             ),
           );
         }

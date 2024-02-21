@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jobsque/core/widgets/loading_widget_jobs_suggested_recent_body.dart';
 import '../../../../../core/consts/style.dart';
-import '../../../../../core/widgets/custom_loading_recent_job.dart';
 import '../../../../../core/widgets/fading_list_view.dart';
 import 'section_jobs.dart';
 import '../../view_models/applied_job_cubit/applied_job_cubit.dart';
@@ -42,7 +42,7 @@ class AppliedJobsBlocConsumer extends StatelessWidget {
           return CustomFadingLoadingAnimation(
             widget: FadingListView(
               scrollDirc: Axis.vertical,
-              widget: const CustomLoadingRecentJob(),
+              widget: const LoadingWidgetJobsSuggestedRecentBody(),
             ),
           );
         }
