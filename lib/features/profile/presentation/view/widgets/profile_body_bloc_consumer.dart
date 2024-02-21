@@ -35,7 +35,13 @@ class ProfileBodyBlocConsumer extends StatelessWidget {
         }
       },
       listener: (context, state) {
-        if (state is SignOutFailure || state is GetProfileFailure) {
+        if (state is GetProfileFailure) {
+          showSnack(
+            context,
+            message: state.message,
+            background: AppConsts.danger500,
+          );
+        } else if (state is SignOutFailure) {
           showSnack(
             context,
             message: StringsEn.someThingError,

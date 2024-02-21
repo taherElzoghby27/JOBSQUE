@@ -83,6 +83,7 @@ abstract class AppConsts {
 
   //padding
   static const EdgeInsets mainPadding = EdgeInsets.symmetric(horizontal: 15);
+  static const EdgeInsets passing25 = EdgeInsets.symmetric(horizontal: 25);
   static const EdgeInsets padding10Horiz = EdgeInsets.symmetric(horizontal: 10);
   static const EdgeInsets padding10h8v =
       EdgeInsets.symmetric(horizontal: 10, vertical: 8);

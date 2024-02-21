@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/helper/handle_image.dart';
 
 class EmptyWidget extends StatelessWidget {
   const EmptyWidget({
@@ -17,16 +16,14 @@ class EmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const AspectRatio(aspectRatio: AppConsts.aspect16on4),
         //icon
-        SvgPicture.asset(
-          icon,
-          fit: BoxFit.fill,
-          height: size.height * .15.h,
+        AspectRatio(
+          aspectRatio: AppConsts.aspect16on5,
+          child: HandleImageWidget(image: icon),
         ),
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         //title
@@ -37,8 +34,8 @@ class EmptyWidget extends StatelessWidget {
         ),
         const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         //sub title
-        SizedBox(
-          width: size.width * .7.w,
+        Padding(
+          padding: AppConsts.passing25,
           child: Text(
             subTitle,
             style: AppConsts.style16,

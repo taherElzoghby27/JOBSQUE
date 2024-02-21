@@ -19,6 +19,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
     required this.jobFilterRepo,
   }) : super(AppliedJobInitial());
   List<Job> jobs = [];
+  String status = StringsEn.active;
 
 //get active jobs
   getActiveJobs() async {
@@ -31,6 +32,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
         appliedJobs,
         status: StringsEn.active,
       );
+      status=StringsEn.active;
       emit(AppliedJobSuccess(applyUsers: activeJobs));
     } catch (e) {
       emit(AppliedJobFailure(message: StringsEn.someThingError));
@@ -48,6 +50,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
         appliedJobs,
         status: StringsEn.rejected,
       );
+      status=StringsEn.rejected;
       emit(AppliedJobSuccess(applyUsers: rejectedJobs));
     } catch (e) {
       emit(AppliedJobFailure(message: e.toString()));

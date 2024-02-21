@@ -321,6 +321,8 @@ abstract class StringsEn {
   static const String  noAppWereRejected = 'No applications were rejected';
   static const String  ifThereIsAnApp =
       'If there is an application that is rejected by the company it will appear here';
+  static const String  noAppliedJobs =
+      'No Applied Jobs';
   static const String  completeProfile = 'Complete Profile';
   static const String  completed = 'Completed';
   static const String  completeYourProfile =

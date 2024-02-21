@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/widgets/loading_widget_jobs_suggested_recent_body.dart';
 import '../../../../../core/consts/style.dart';
+import '../../../../../core/widgets/error_widget.dart';
 import '../../../../../core/widgets/fading_list_view.dart';
 import 'section_jobs.dart';
 import '../../view_models/applied_job_cubit/applied_job_cubit.dart';
@@ -26,11 +27,16 @@ class AppliedJobsBlocConsumer extends StatelessWidget {
         if (state is AppliedJobSuccess) {
           List<Job> jobs = bloc.jobs;
           List<ApplyUser> jobsApplied = state.applyUsers;
+          String status = bloc.status;
           return jobsApplied.isEmpty
               ? EmptyWidget(
                   icon: AppAssets.appliedJobR,
-                  title: StringsEn.noAppWereRejected,
-                  subTitle: StringsEn.ifThereIsAnApp,
+                  title: status == StringsEn.rejected
+                      ? StringsEn.noAppWereRejected
+                      : StringsEn.noAppliedJobs,
+                  subTitle: status == StringsEn.rejected
+                      ? StringsEn.ifThereIsAnApp
+                      : '',
                 )
               : Expanded(
                   child: SectionJobs(
@@ -38,8 +44,10 @@ class AppliedJobsBlocConsumer extends StatelessWidget {
                     jobs: jobs,
                   ),
                 );
+        } else if (state is AppliedJobFailure) {
+          return ErrorWidg(message: state.message);
         } else {
-          return CustomFadingLoadingAnimation(
+          return const CustomFadingLoadingAnimation(
             widget: FadingListView(
               scrollDirc: Axis.vertical,
               widget: const LoadingWidgetJobsSuggestedRecentBody(),
@@ -51,7 +59,7 @@ class AppliedJobsBlocConsumer extends StatelessWidget {
         if (state is AppliedJobFailure) {
           showSnack(
             context,
-            message: StringsEn.someThingError,
+            message: state.message,
             background: AppConsts.danger500,
           );
         }
