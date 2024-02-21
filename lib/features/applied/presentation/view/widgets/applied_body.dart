@@ -23,7 +23,7 @@ class AppliedBody extends StatelessWidget {
         //jobs
         AspectRatio(
           aspectRatio: AppConsts.aspect20on36,
-          child: const Jobs(),
+          child: const JobsWidget(),
         ),
       ],
     );

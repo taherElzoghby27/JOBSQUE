@@ -16,7 +16,7 @@ class CvPdfs extends StatelessWidget {
     return BlocBuilder<UploadPortfolioCubit, UploadPortfolioState>(
       builder: (context, state) {
         if (state is GetFilesLoading) {
-          return LoadingWidget();
+          return const LoadingWidget();
         } else if (state is GetFilesSuccess) {
           List<Pdf> cvs = state.cvs;
           return cvs.isEmpty

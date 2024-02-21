@@ -9,5 +9,5 @@ List<Job> filterJob({
     jobs
         .where(
           (e) => e.id.toString() == applyUser.jobId,
-        )
+    )
         .toList();

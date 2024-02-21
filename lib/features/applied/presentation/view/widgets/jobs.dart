@@ -4,8 +4,8 @@ import 'custom_bar_applied_job.dart';
 
 import 'applied_jobs_bloc_consumer.dart';
 
-class Jobs extends StatelessWidget {
-  const Jobs({super.key});
+class JobsWidget extends StatelessWidget {
+  const JobsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
