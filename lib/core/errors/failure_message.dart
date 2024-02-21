@@ -37,7 +37,7 @@ class ServerFailure extends FailureServ {
 
   factory ServerFailure.fromDioResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(message: response['message']);
+      return ServerFailure.fromJson(response);
     } else if (statusCode == 404) {
       return ServerFailure(
         message: 'Your request was not found, please try later',
@@ -49,4 +49,11 @@ class ServerFailure extends FailureServ {
     }
     return ServerFailure(message: 'there was an error, please try again');
   }
+
+  factory ServerFailure.fromJson(Map<String, dynamic> response) =>
+      ServerFailure(
+        message: response['message'] ??
+            response['massage'] ??
+            response['massege']['email'][0] as String,
+      );
 }
