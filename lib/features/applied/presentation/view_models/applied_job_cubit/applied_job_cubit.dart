@@ -26,13 +26,12 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
     try {
       emit(AppliedJobLoading());
       await getJobs();
-      List<ApplyUser> appliedJobs =
-          await appliedJobRepo.getJobsAppliedLocal(userId: '2');
+      List<ApplyUser> appliedJobs = await appliedJobRepo.getJobsAppliedLocal();
       List<ApplyUser> activeJobs = filterJobs(
         appliedJobs,
         status: StringsEn.active,
       );
-      status=StringsEn.active;
+      status = StringsEn.active;
       emit(AppliedJobSuccess(applyUsers: activeJobs));
     } catch (e) {
       emit(AppliedJobFailure(message: StringsEn.someThingError));
@@ -44,13 +43,12 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
     try {
       emit(AppliedJobLoading());
       await getJobs();
-      List<ApplyUser> appliedJobs =
-          await appliedJobRepo.getJobsAppliedLocal(userId: '2');
+      List<ApplyUser> appliedJobs = await appliedJobRepo.getJobsAppliedLocal();
       List<ApplyUser> rejectedJobs = filterJobs(
         appliedJobs,
         status: StringsEn.rejected,
       );
-      status=StringsEn.rejected;
+      status = StringsEn.rejected;
       emit(AppliedJobSuccess(applyUsers: rejectedJobs));
     } catch (e) {
       emit(AppliedJobFailure(message: e.toString()));
@@ -74,7 +72,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
   }) =>
       appliedJobs
           .where((element) => status == StringsEn.active
-              ? (element.reviewed == 0 || element.accept == true)
+              ? (element.reviewed == false || element.accept == true)
               : (element.accept == false))
           .toList();
 

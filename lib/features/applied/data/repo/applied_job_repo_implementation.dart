@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
@@ -19,9 +18,7 @@ class AppliedJobsRepoImplementation extends AppliedJobRepo {
   });
 
   @override
-  Future<List<ApplyUser>> getJobsAppliedLocal({
-    required String userId,
-  }) async {
+  Future<List<ApplyUser>> getJobsAppliedLocal() async {
     List<ApplyUser> appliedJobs = await hiveDbApplyUser.get();
     return appliedJobs;
   }
