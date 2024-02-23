@@ -42,7 +42,6 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
         final changedBloc = BlocProvider.of<ChangedPageCubit>(context);
         if (stateChangedPage is ChangedSuccess) {
           currentPage = changedBloc.currentPage;
-          print("7777 : $currentPage");
         } else if (stateChangedPage is ChangedFailure) {
           showSnack(
             context,
@@ -140,23 +139,13 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
                           text: currentPage == 3 || currentPag == 3
                               ? StringsEn.submit
                               : StringsEn.next,
-                          onTap: () => status == StringsEn.notComplete
-                              ? context
-                                  .read<ChangedPageCubit>()
-                                  .buttonNextSubmit(
+                          onTap: () =>
+                              context.read<ChangedPageCubit>().buttonNextSubmit(
                                     context: context,
                                     currentPage: currentPag,
                                     jobId: jobId,
                                     status: status,
                                     applyUser: applyUser,
-                                  )
-                              : context
-                                  .read<ChangedPageCubit>()
-                                  .buttonNextSubmit(
-                                    context: context,
-                                    currentPage: currentPag,
-                                    jobId: jobId,
-                                    status: status,
                                   ),
                         ),
                       ),

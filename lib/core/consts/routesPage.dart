@@ -152,7 +152,7 @@ final router = GoRouter(
                 create: (_) => AppliedJobCubit(
                   appliedJobRepo: sl.get<AppliedJobsRepoImplementation>(),
                   jobFilterRepo: sl.get<FilterJobsRepoImplementation>(),
-                )..getAppliedJobs(),
+                ),
               ),
             ],
             child: NavView(),

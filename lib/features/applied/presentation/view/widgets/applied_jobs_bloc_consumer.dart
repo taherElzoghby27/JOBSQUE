@@ -23,7 +23,7 @@ class AppliedJobsBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppliedJobCubit, AppliedJobState>(
       builder: (context, state) {
-        AppliedJobCubit bloc = BlocProvider.of<AppliedJobCubit>(context);
+        final bloc = BlocProvider.of<AppliedJobCubit>(context);
         if (state is AppliedJobSuccess) {
           List<Job> jobs = bloc.jobs;
           List<ApplyUser> jobsApplied = state.applyUsers;

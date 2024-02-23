@@ -39,6 +39,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
 //get rejected jobs
   getRejectedJobs() async {
     emit(AppliedJobLoading());
+    await getJobs();
     Either<FailureServ, List<ApplyUser>> result = await getAppliedJobRemote();
     result.fold(
       (failure) => emit(
@@ -58,6 +59,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
   //get applied jobs
   getAppliedJobs() async {
     emit(AppliedJobLoading());
+    await getJobs();
     Either<FailureServ, List<ApplyUser>> result = await getAppliedJobRemote();
     result.fold(
       (failure) => emit(
@@ -103,7 +105,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
   //filter not complete jobs
   List<ApplyUser> filterNotCompleteJobs(List<ApplyUser> appliedJobs) =>
       appliedJobs
-          .where((element) => element.status != StringsEn.completed)
+          .where((element) => element.status == StringsEn.unCompleted)
           .toList();
 
   Future<Either<FailureServ, List<ApplyUser>>> getAppliedJobRemote() async {

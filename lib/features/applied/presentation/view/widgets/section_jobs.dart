@@ -35,7 +35,7 @@ class SectionJobs extends StatelessWidget {
               Job job = filterJob(
                 applyUser: userJobs[index],
                 jobs: jobs,
-              ).first;
+              );
               return FadeAnimation(
                 millSeconds: 250,
                 child: CustomItemAppliedJop(

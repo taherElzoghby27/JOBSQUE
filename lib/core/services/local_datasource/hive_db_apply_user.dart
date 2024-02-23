@@ -23,7 +23,7 @@ class HiveDbApplyUser {
   delete({required ApplyUser user}) => applyUsers.delete(user.jobId);
 
 //get users apply
-  get() {
+  List<ApplyUser> get() {
     List<ApplyUser> appUsers = List<ApplyUser>.from(
       (applyUsers.values).map((user) => user),
     ).toList();

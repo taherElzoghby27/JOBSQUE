@@ -34,6 +34,7 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
     required int currentPag,
     ApplyUser? applyUser,
   }) async {
+    currentPage = (status == StringsEn.notComplete ? currentPag : currentPage);
     BlocProvider.of<ApplyJobCubit>(context).applyUserMethod(
       context,
       jobId: jobId,
@@ -42,8 +43,7 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
       currentPage: currentPage,
     );
     if (status == StringsEn.notComplete) {
-      print("not complete : $currentPag");
-      changePage(context, current: currentPag);
+      changePage(context, current: currentPage);
       applyUser!.status = StringsEn.doing;
     } else {
       changePage(context);
