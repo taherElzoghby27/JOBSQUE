@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:hive/hive.dart';
 
+import 'package:dio/dio.dart';
 import 'package:jobsque/core/consts/strings.dart';
 
 part 'apply_user_model.g.dart';
@@ -28,7 +29,7 @@ class ApplyUser extends HiveObject {
   @HiveField(8)
   String? status;
   @HiveField(9)
-  bool? reviewed;
+  dynamic? reviewed;
   @HiveField(10)
   String? updatedAt;
   @HiveField(11)
@@ -78,16 +79,23 @@ class ApplyUser extends HiveObject {
         accept: json['accept'],
       );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['mobile'] = this.phone;
-    data['work_type'] = this.typeOfWork;
-    data['cv_file'] = this.cv;
-    data['other_file'] = this.otherFiles;
-    data['jobs_id'] = this.jobId;
-    data['user_id'] = this.userId;
-    return data;
+  Future<FormData> toMap() async {
+    FormData formData = FormData.fromMap({
+      'name': this.name!,
+      'email': this.email!,
+      'mobile': this.phone!,
+      'work_type': this.typeOfWork!,
+      'jobs_id': this.jobId!,
+      'user_id': this.userId!,
+      'cv_file': await MultipartFile.fromFile(
+        this.cv!.path,
+        filename: this.cv!.path.split('/').last,
+      ),
+      'other_file': await MultipartFile.fromFile(
+        this.otherFiles!.path,
+        filename: this.otherFiles!.path.split('/').last,
+      ),
+    });
+    return formData;
   }
 }

@@ -11,7 +11,7 @@ class JobsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        //active - rejected
+        //active - rejected -not completed
         const CustomBarAppliedJob(),
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 

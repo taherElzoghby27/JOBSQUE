@@ -39,10 +39,7 @@ class AppliedJobsBlocConsumer extends StatelessWidget {
                       : '',
                 )
               : Expanded(
-                  child: SectionJobs(
-                    userJobs: jobsApplied,
-                    jobs: jobs,
-                  ),
+                  child: SectionJobs(userJobs: jobsApplied, jobs: jobs),
                 );
         } else if (state is AppliedJobFailure) {
           return ErrorWidg(message: state.message);

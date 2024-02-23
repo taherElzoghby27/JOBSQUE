@@ -10,8 +10,21 @@ import 'package:jobsque/features/job_detail/presentation/view_models/upload_port
 
 import '../../../../../core/consts/style.dart';
 
-class UploadPortoflioContentWidget extends StatelessWidget {
-  const UploadPortoflioContentWidget({super.key});
+class UploadPortfolioContentWidget extends StatefulWidget {
+  const UploadPortfolioContentWidget({super.key});
+
+  @override
+  State<UploadPortfolioContentWidget> createState() =>
+      _UploadPortfolioContentWidgetState();
+}
+
+class _UploadPortfolioContentWidgetState
+    extends State<UploadPortfolioContentWidget> {
+  @override
+  void initState() {
+    BlocProvider.of<UploadPortfolioCubit>(context)..getFiles();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

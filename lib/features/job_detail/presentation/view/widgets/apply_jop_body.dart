@@ -39,9 +39,10 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
 
     return BlocConsumer<ChangedPageCubit, ChangedPageState>(
       listener: (context, stateChangedPage) {
-        ChangedPageCubit changedBloc = context.read<ChangedPageCubit>();
+        final changedBloc = BlocProvider.of<ChangedPageCubit>(context);
         if (stateChangedPage is ChangedSuccess) {
           currentPage = changedBloc.currentPage;
+          print("7777 : $currentPage");
         } else if (stateChangedPage is ChangedFailure) {
           showSnack(
             context,
@@ -77,11 +78,11 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
                 ? job.id.toString()
                 : widget.data[StringsEn.jobId];
             String ApplyUserStatus = applyUser.status ?? '';
-            int currentPag = ApplyUserStatus == StringsEn.doing
+            int currentPag = (ApplyUserStatus == StringsEn.doing
                 ? currentPage
                 : status == StringsEn.notComplete
                     ? widget.data[StringsEn.currentStatus]
-                    : currentPage;
+                    : currentPage);
             return Stack(
               children: [
                 SizedBox(

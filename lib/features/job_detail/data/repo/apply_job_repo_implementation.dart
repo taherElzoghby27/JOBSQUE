@@ -20,12 +20,16 @@ class ApplyUserRepoImplementation extends ApplyUserRepo {
   });
 
   @override
-  Future<Either<FailureServ, ApplyUser>> applyJobRemote({
+  Future<Either<FailureServ, void>> applyJobRemote({
     required ApplyUser applyUser,
   }) async {
     try {
-      var response = await applyUserService.applyUser(applyUser: applyUser);
+      Map<String, dynamic> response = await applyUserService.applyUser(
+        applyUser: applyUser,
+      );
       ApplyUser applyJobModel = ApplyUser.fromJson(response["data"]);
+      //delete from local  after completed
+      await hiveDbApplyUser.delete(user: applyJobModel);
       return Right(applyJobModel);
     } catch (error) {
       if (error is DioException) {

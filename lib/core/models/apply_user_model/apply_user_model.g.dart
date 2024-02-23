@@ -26,7 +26,7 @@ class ApplyUserAdapter extends TypeAdapter<ApplyUser> {
       userId: fields[6] as String?,
       jobId: fields[7] as String?,
       status: fields[8] as String?,
-      reviewed: fields[9] as bool?,
+      reviewed: fields[9] as dynamic,
       updatedAt: fields[10] as String?,
       createdAt: fields[11] as String?,
       id: fields[12] as int?,

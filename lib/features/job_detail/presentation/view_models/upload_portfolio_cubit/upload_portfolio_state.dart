@@ -1,27 +1,43 @@
 part of 'upload_portfolio_cubit.dart';
 
-abstract class UploadPortfolioState {}
+abstract class UploadPortfolioState extends Equatable {
+  const UploadPortfolioState();
 
-class UploadPortfolioInitial extends UploadPortfolioState {}
+  @override
+  List<Object?> get props => [];
+}
 
-//get files states
-class GetFilesLoading extends UploadPortfolioState {}
+class UploadPortfolioInitial extends UploadPortfolioState {
+  const UploadPortfolioInitial();
+}
+
+class GetFilesLoading extends UploadPortfolioState {
+  const GetFilesLoading();
+}
 
 class GetFilesSuccess extends UploadPortfolioState {
   final List<Pdf> cvs;
 
-  GetFilesSuccess({required this.cvs});
+  const GetFilesSuccess({required this.cvs});
+
+  @override
+  List<Object?> get props => [cvs];
 }
 
 class GetFilesFailure extends UploadPortfolioState {
   final String message;
 
-  GetFilesFailure({required this.message});
+  const GetFilesFailure({required this.message});
+
+  @override
+  List<Object?> get props => [message];
 }
-//add file states
 
 class PickedFileFailure extends UploadPortfolioState {
   final String message;
 
-  PickedFileFailure({required this.message});
+  const PickedFileFailure({required this.message});
+
+  @override
+  List<Object?> get props => [message];
 }

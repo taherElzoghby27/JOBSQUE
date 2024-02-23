@@ -38,13 +38,14 @@ class _CustomItemAppliedJopState extends State<CustomItemAppliedJop> {
     current = BlocProvider.of<AppliedJobCubit>(context).checkStatusAppliedJob(
       applyUser: widget.applyUser,
     );
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.h),
+      padding: AppConsts.verticalPadding10,
       child: AspectRatio(
         aspectRatio: AppConsts.aspect13on9,
         child: InkWell(

@@ -36,7 +36,7 @@ class _CustomBarAppliedJobState extends State<CustomBarAppliedJob> {
                       : AppConsts.neutral200,
                   onTap: () {
                     setState(() => currentPage = 0);
-                    bloc.getActiveJobs();
+                    bloc.getAppliedJobs();
                   },
                 ),
               ),
@@ -49,6 +49,18 @@ class _CustomBarAppliedJobState extends State<CustomBarAppliedJob> {
                   onTap: () {
                     setState(() => currentPage = 1);
                     bloc.getRejectedJobs();
+                  },
+                ),
+              ),
+              Expanded(
+                child: BarComponent(
+                  title: StringsEn.notComplete,
+                  color: currentPage == 2
+                      ? AppConsts.primary900
+                      : AppConsts.neutral200,
+                  onTap: () {
+                    setState(() => currentPage = 2);
+                    bloc.getNotCompleteJobs();
                   },
                 ),
               ),

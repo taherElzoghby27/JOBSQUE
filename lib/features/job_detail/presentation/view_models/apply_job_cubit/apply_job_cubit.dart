@@ -29,6 +29,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
     try {
       String userId = CacheHelper.getData(key: StringsEn.userId);
       BioDataCubit blocBioData = BlocProvider.of<BioDataCubit>(context);
+      ChangedPageCubit changeCubit = BlocProvider.of<ChangedPageCubit>(context);
       TypeOfWorkCubit typeOfWorkCubit =
           BlocProvider.of<TypeOfWorkCubit>(context);
       UploadPortfolioCubit portfolioCubit =
@@ -57,14 +58,13 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
           userId: userId,
           status:
               currentPage == 3 ? StringsEn.completed : StringsEn.unCompleted,
-          reviewed: false,
+          reviewed: 0,
           updatedAt: '${DateTime.now()}',
           createdAt: '${DateTime.now()}',
           id: 0,
         ),
       );
       //apply job
-
       if (currentPage == 3) {
         await applyUserRemote(
           blocBioData: blocBioData,
@@ -76,6 +76,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
           currentPage: currentPage,
         );
       }
+
       result.fold(
         (failureMessage) => emit(
           ApplyJobFailure(message: failureMessage),
@@ -119,7 +120,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
         jobId: jobId,
         userId: userId,
         status: StringsEn.completed,
-        reviewed: false,
+        reviewed: 0,
         updatedAt: '${DateTime.now()}',
         createdAt: '${DateTime.now()}',
         id: 0,
@@ -127,7 +128,9 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
     );
     result.fold(
       (failure) => emit(ApplyJobFailure(message: failure.message)),
-      (success) => emit(ApplyJobSuccess()),
+      (success) {
+        emit(ApplyJobSuccess());
+      },
     );
   }
 }

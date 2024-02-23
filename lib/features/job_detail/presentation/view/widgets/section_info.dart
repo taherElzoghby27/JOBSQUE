@@ -33,7 +33,7 @@ class SectionInfo extends StatelessWidget {
               ? const BioDataContentWidget()
               : currentPage == 2
                   ? const TypeOfWorkContentWidget()
-                  : const UploadPortoflioContentWidget(),
+                  : const UploadPortfolioContentWidget(),
           const AspectRatio(aspectRatio: AppConsts.aspect16on4),
         ],
       ),

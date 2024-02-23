@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
@@ -18,7 +19,6 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
 
   //change page
   changePage(context, {int? current}) {
-    print("current ${(current ?? currentPage)}");
     if ((current ?? currentPage) == 1) {
       BlocProvider.of<BioDataCubit>(context).checkFieldsIsValidOrNot(context);
     } else if ((current ?? currentPage) == 2) {
@@ -31,9 +31,9 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
     BuildContext context, {
     required String jobId,
     required String status,
-    required int currentPage,
+    required int currentPag,
     ApplyUser? applyUser,
-  }) {
+  }) async {
     BlocProvider.of<ApplyJobCubit>(context).applyUserMethod(
       context,
       jobId: jobId,
@@ -42,7 +42,8 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
       currentPage: currentPage,
     );
     if (status == StringsEn.notComplete) {
-      changePage(context, current: currentPage);
+      print("not complete : $currentPag");
+      changePage(context, current: currentPag);
       applyUser!.status = StringsEn.doing;
     } else {
       changePage(context);
@@ -64,7 +65,7 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
         jobId: jobId,
         applyUser: applyUser,
         status: status,
-        currentPage: currentPage,
+        currentPag: currentPage,
       );
       emit(ChangedSuccess(currentPage: currentPage));
     } else {

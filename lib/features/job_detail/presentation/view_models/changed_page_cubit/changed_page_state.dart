@@ -1,19 +1,40 @@
 part of 'changed_page_cubit.dart';
 
-sealed class ChangedPageState {}
+abstract class ChangedPageState extends Equatable {
+  const ChangedPageState();
 
-final class ChangedPageInitial extends ChangedPageState {}
+  @override
+  List<Object> get props => [];
+}
 
-class ChangedLoading extends ChangedPageState {}
+class ChangedPageInitial extends ChangedPageState {
+  const ChangedPageInitial();
+
+  @override
+  List<Object> get props => [];
+}
+
+class ChangedLoading extends ChangedPageState {
+  const ChangedLoading();
+
+  @override
+  List<Object> get props => [];
+}
 
 class ChangedSuccess extends ChangedPageState {
   final int currentPage;
 
-  ChangedSuccess({required this.currentPage});
+  const ChangedSuccess({required this.currentPage});
+
+  @override
+  List<Object> get props => [currentPage];
 }
 
 class ChangedFailure extends ChangedPageState {
   final String message;
 
-  ChangedFailure({required this.message});
+  const ChangedFailure({required this.message});
+
+  @override
+  List<Object> get props => [message];
 }

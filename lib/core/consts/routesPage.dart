@@ -152,7 +152,7 @@ final router = GoRouter(
                 create: (_) => AppliedJobCubit(
                   appliedJobRepo: sl.get<AppliedJobsRepoImplementation>(),
                   jobFilterRepo: sl.get<FilterJobsRepoImplementation>(),
-                )..getActiveJobs(),
+                )..getAppliedJobs(),
               ),
             ],
             child: NavView(),
@@ -305,8 +305,7 @@ final router = GoRouter(
                 create: (BuildContext context) => TypeOfWorkCubit(),
               ),
               BlocProvider(
-                create: (BuildContext context) =>
-                    UploadPortfolioCubit()..getFiles(),
+                create: (BuildContext context) => UploadPortfolioCubit(),
               ),
             ],
             child: ApplyJopView(data: data),

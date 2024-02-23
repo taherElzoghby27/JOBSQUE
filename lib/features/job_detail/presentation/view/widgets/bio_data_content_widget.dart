@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/bio_data_cubit/bio_data_cubit.dart';
 
 import '../../../../../core/widgets/custom_filter_text_form_field.dart';
@@ -12,7 +13,6 @@ class BioDataContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     BioDataCubit bloc = BlocProvider.of<BioDataCubit>(context);
     return Form(
       key: bloc.keyFormApplyJop1,
@@ -27,7 +27,7 @@ class BioDataContentWidget extends StatelessWidget {
             controller: bloc.nameCont,
             autoFocus: true,
           ),
-          SizedBox(height: size.height * .022.w),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
           //email
           CustomFilterTextFormField(
@@ -37,7 +37,7 @@ class BioDataContentWidget extends StatelessWidget {
             perfixIcon: Icon(Icons.mail, size: 16.sp),
             controller: bloc.emailCont,
           ),
-          SizedBox(height: size.height * .022.w),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
           //phone number
           CustomFilterTextFormField(
@@ -58,7 +58,7 @@ class BioDataContentWidget extends StatelessWidget {
             ),
             controller: bloc.phoneCont,
           ),
-          SizedBox(height: size.height * .022.w),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         ],
       ),
     );
