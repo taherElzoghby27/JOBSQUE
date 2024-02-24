@@ -11,7 +11,8 @@ import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/user_profile_model/portfolio.dart';
 import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
-import 'package:jobsque/features/profile/presentation/view/portfolio/data/models/portfolio.dart';
+import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
+import 'package:jobsque/service_locator.dart';
 
 import '../../../data/repo/portfolio_repo.dart';
 
@@ -19,8 +20,12 @@ part 'portfolio_state.dart';
 
 class PortfolioCubit extends Cubit<PortfolioState> {
   final PortfolioRepo portfolioRepo;
+  final ProfileRepo profileRepo;
 
-  PortfolioCubit({required this.portfolioRepo}) : super(PortfolioInitial());
+  PortfolioCubit({
+    required this.portfolioRepo,
+    required this.profileRepo,
+  }) : super(PortfolioInitial());
 
   //to save
   List<File> files = [];
@@ -47,11 +52,11 @@ class PortfolioCubit extends Cubit<PortfolioState> {
 
   //add portfolio
   add({required File file}) async {
-    Either<FailureServ, PortfolioCv> portfolio =
+    Either<FailureServ, PortfolioModel> portfolio =
         await portfolioRepo.addPortFolio(
-      portfolioCv: PortfolioCv(cvFile: file, image: file),
+      portfolioCv: PortfolioModel(cvFile: file.path, image: file),
     );
-    getPortfolios();
+
     portfolio.fold(
       (l) => print("added failed"),
       (r) async {
@@ -59,6 +64,8 @@ class PortfolioCubit extends Cubit<PortfolioState> {
           key: StringsEn.portfolioCompleteK,
           value: true,
         );
+        profileRepo.getProfile();
+        getPortfolios();
         print("added success");
       },
     );
@@ -68,12 +75,9 @@ class PortfolioCubit extends Cubit<PortfolioState> {
   getPortfolios() async {
     try {
       emit(GetFilesLoading());
-      Either<FailureServ, UserProfilePortfolioModel> portfolio =
-          await portfolioRepo.getPortFolio();
-      portfolio.fold(
-        (fail) => emit(GetFilesFailure(message: StringsEn.someThingError)),
-        (portfolioCv) => emit(GetFilesSuccess(cvs: portfolioCv.portfolio)),
-      );
+      UserProfilePortfolioModel portfolios =
+          await getIt.get<UserProfilePortfolioModel>();
+      emit(GetFilesSuccess(cvs: portfolios.portfolio));
     } catch (error) {
       emit(GetFilesFailure(message: StringsEn.someThingError));
     }
@@ -90,6 +94,8 @@ class PortfolioCubit extends Cubit<PortfolioState> {
         emit(DeletedFailure(message: failure.message));
       },
       (message) {
+        profileRepo.getProfile();
+        getPortfolios();
         emit(DeletedSuccess(message: message));
       },
     );
