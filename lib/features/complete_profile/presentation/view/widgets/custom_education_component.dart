@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
-import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
+import 'package:jobsque/features/complete_profile/presentation/view/widgets/fields_education_page.dart';
+import 'package:jobsque/features/complete_profile/presentation/view_models/add_education_cubit/add_education_cubit.dart';
 
 import '../../../../../core/widgets/small_loading_widget.dart';
 
@@ -16,62 +18,7 @@ class CustomEducationComponent extends StatefulWidget {
 }
 
 class _CustomEducationComponentState extends State<CustomEducationComponent> {
-  DateTime? startYear;
-  DateTime? endYear;
-
-  ///select start
-  selectStartYear(context) async {
-    await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2010),
-      lastDate: DateTime(2025),
-      builder: (context, widget) => Theme(
-          data: ThemeData.light().copyWith(
-            colorScheme: const ColorScheme.light().copyWith(
-              primary: AppConsts.primary500,
-            ),
-          ),
-          child: widget!),
-    ).then(
-      (value) {
-        if (value == null) {
-          return;
-        } else {
-          setState(() {
-            startYear = value;
-          });
-        }
-      },
-    );
-  }
-
-  ///select end
-  selectEndYear(context) async {
-    await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2010),
-      lastDate: DateTime(2025),
-      builder: (context, widget) => Theme(
-          data: ThemeData.light().copyWith(
-            colorScheme: const ColorScheme.light().copyWith(
-              primary: AppConsts.primary500,
-            ),
-          ),
-          child: widget!),
-    ).then(
-      (value) {
-        if (value == null) {
-          return;
-        } else {
-          setState(() {
-            endYear = value;
-          });
-        }
-      },
-    );
-  }
+  bool isLoad = false;
 
   @override
   Widget build(BuildContext context) {
@@ -81,59 +28,36 @@ class _CustomEducationComponentState extends State<CustomEducationComponent> {
         padding: AppConsts.allPadding8,
         child: Column(
           children: [
-            //university
-            CustomFilterTextField(
-              label: StringsEn.university,
-              star: StringsEn.star,
-              hint: StringsEn.university,
-            ),
-            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-            //title
-            CustomFilterTextField(
-              label: StringsEn.title,
-              hint: StringsEn.title,
-            ),
-            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-
-            //start year
-            CustomFilterTextField(
-              label: StringsEn.startYear,
-              hint: startYear == null
-                  ? StringsEn.defaultDate
-                  : DateFormat(StringsEn.formatDate).format(startYear!),
-              suffixIcon: IconButton(
-                onPressed: () => selectStartYear(context),
-                icon: Icon(Icons.calendar_month),
-              ),
-              readOnly: true,
-              onChanged: (String? value) {},
-            ),
-            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-            //end year
-            CustomFilterTextField(
-              label: StringsEn.endYear,
-              hint: endYear == null
-                  ? StringsEn.defaultDate
-                  : DateFormat(StringsEn.formatDate).format(endYear!),
-              suffixIcon: IconButton(
-                onPressed: () => selectEndYear(context),
-                icon: Icon(Icons.calendar_month),
-              ),
-              readOnly: true,
-              onChanged: (String? value) {},
-            ),
-            const AspectRatio(aspectRatio: AppConsts.aspect16on3),
-            //save
+            const FieldsEducationPage(), //save
             Center(
               child: AspectRatio(
                 aspectRatio: AppConsts.aspectRatioButtonAuth,
-                child: Visibility(
-                  visible: true,
-                  replacement: const LoadingWidget(),
-                  child: CustomButton(
-                    text: StringsEn.save,
-                    onTap: () {},
-                  ),
+                child: BlocConsumer<AddEducationCubit, AddEducationState>(
+                  builder: (context, state) {
+                    return Visibility(
+                      visible: !isLoad,
+                      replacement: const LoadingWidget(),
+                      child: CustomButton(
+                        text: StringsEn.save,
+                        onTap: () =>
+                            BlocProvider.of<AddEducationCubit>(context).save(),
+                      ),
+                    );
+                  },
+                  listener: (context, state) {
+                    if (state is AddedSuccessfullyState) {
+                      isLoad = false;
+                    } else if (state is AddedLoadingState) {
+                      isLoad = true;
+                    } else if (state is AddedFailureState) {
+                      isLoad = false;
+                      showSnack(
+                        context,
+                        message: state.message,
+                        background: AppConsts.danger500,
+                      );
+                    }
+                  },
                 ),
               ),
             ),
