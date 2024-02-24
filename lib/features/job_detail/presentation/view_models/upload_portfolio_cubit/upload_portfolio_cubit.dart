@@ -67,7 +67,7 @@ class UploadPortfolioCubit extends Cubit<UploadPortfolioState> {
   File filterFiles(Pdf pdf) => (files
       .where(
         (element) => element.path == pdf.path,
-      )
+  )
       .toList())[0];
 
   //convert bytes to megabytes
