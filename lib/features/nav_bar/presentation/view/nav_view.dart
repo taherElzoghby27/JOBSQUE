@@ -17,11 +17,11 @@ class NavView extends StatefulWidget {
 class _NavViewState extends State<NavView> {
   int currentIndex = 0;
   List<Widget> screens = [
-    HomeView(),
-    MessagesView(),
-    AppliedView(),
-    SavedView(),
-    ProfileView(),
+    const HomeView(),
+    const MessagesView(),
+    const AppliedView(),
+    const SavedView(),
+    const ProfileView(),
   ];
 
   @override

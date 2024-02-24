@@ -20,7 +20,9 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
   //change page
   changePage(context, {int? current}) {
     if ((current ?? currentPage) == 1) {
-      BlocProvider.of<BioDataCubit>(context).checkFieldsIsValidOrNot(context);
+      BlocProvider.of<BioDataCubit>(context).checkFieldsIsValidOrNot(
+        context,
+      );
     } else if ((current ?? currentPage) == 2) {
       currentPage = 3;
     }
@@ -35,6 +37,7 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
     ApplyUser? applyUser,
   }) async {
     currentPage = (status == StringsEn.notComplete ? currentPag : currentPage);
+
     BlocProvider.of<ApplyJobCubit>(context).applyUserMethod(
       context,
       jobId: jobId,

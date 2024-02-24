@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jobsque/core/widgets/load_json_widget.dart';
-import 'package:jobsque/features/auth/data/models/user_login/user.dart';
+import 'package:jobsque/core/widgets/small_loading_widget.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_others.dart';
 import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -57,8 +56,8 @@ class _ProfileBodyState extends State<ProfileBody> {
               //section profile
               SectionProfileInfo(
                 ctx: widget.ctx,
-                name: widget.user.profile!.name!,
-                bio: StringsEn.softwareEngineer,
+                name: widget.user.profile!.name ?? StringsEn.unKnown,
+                bio: widget.user.profile?.bio ?? StringsEn.unKnown,
               ),
               //section general
               const SectionGeneral(),
@@ -69,7 +68,7 @@ class _ProfileBodyState extends State<ProfileBody> {
         ),
         Positioned(
           child: widget.isSignOutStateLoading
-              ? Center(child: const LoadJsonWidget())
+              ? Center(child: const LoadingWidget())
               : Container(),
         ),
       ],

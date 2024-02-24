@@ -102,7 +102,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: SplashView(),
+        child: const SplashView(),
       ),
     ),
     GoRoute(
@@ -110,7 +110,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: OnBoardingView(),
+        child: const OnBoardingView(),
       ),
     ),
     GoRoute(
@@ -156,7 +156,7 @@ final router = GoRouter(
                 ),
               ),
             ],
-            child: NavView(),
+            child: const NavView(),
           ),
         );
       },
@@ -193,7 +193,7 @@ final router = GoRouter(
         state: state,
         child: BlocProvider(
           create: (_) => InterestedInWorkCubit(),
-          child: InteresetedInWorkView(),
+          child: const InteresetedInWorkView(),
         ),
       ),
     ),
@@ -206,7 +206,7 @@ final router = GoRouter(
           create: (_) => WorkLocationCubit(
             authRepo: getIt.get<AuthRepoImplementation>(),
           ),
-          child: WorkLocationView(),
+          child: const WorkLocationView(),
         ),
       ),
     ),
@@ -233,7 +233,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: CreatePassView(),
+        child: const CreatePassView(),
       ),
     ),
     GoRoute(
@@ -254,7 +254,7 @@ final router = GoRouter(
               ),
             ),
           ],
-          child: SearchView(),
+          child: const SearchView(),
         ),
       ),
     ),
@@ -323,7 +323,7 @@ final router = GoRouter(
           create: (_) => NotificationCubit(
             notificationRepo: getIt.get<NotificationRepoImplementation>(),
           ),
-          child: NotificationView(),
+          child: const NotificationView(),
         ),
       ),
     ),
@@ -332,7 +332,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: MessagesView(),
+        child: const MessagesView(),
       ),
     ),
     GoRoute(
@@ -340,7 +340,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: ChatView(),
+        child: const ChatView(),
       ),
     ),
     GoRoute(
@@ -351,8 +351,9 @@ final router = GoRouter(
         child: BlocProvider(
           create: (_) => EditProfileCubit(
             editProfileRepo: getIt.get<EditProfileRepoImpl>(),
+            profileRepo: getIt.get<ProfileRepoImplementation>(),
           ),
-          child: EditProfileView(),
+          child: const EditProfileView(),
         ),
       ),
     ),
@@ -370,7 +371,7 @@ final router = GoRouter(
               ),
             ),
           ],
-          child: PortfolioView(),
+          child: const PortfolioView(),
         ),
       ),
     ),
@@ -379,7 +380,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: NotificationProfileView(),
+        child: const NotificationProfileView(),
       ),
     ),
     GoRoute(
@@ -387,7 +388,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: LoginSecurityView(),
+        child: const LoginSecurityView(),
       ),
     ),
     GoRoute(
@@ -395,7 +396,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: LanguagesView(),
+        child: const LanguagesView(),
       ),
     ),
     GoRoute(
@@ -422,7 +423,7 @@ final router = GoRouter(
         state: state,
         child: BlocProvider(
           create: (_) => TwoStepVerificationCubit(),
-          child: TwoStepVerView(),
+          child: const TwoStepVerView(),
         ),
       ),
     ),
@@ -431,7 +432,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: HelpCenterView(),
+        child: const HelpCenterView(),
       ),
     ),
     GoRoute(
@@ -439,7 +440,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: PrivacyView(),
+        child: const PrivacyView(),
       ),
     ),
     GoRoute(
@@ -447,7 +448,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: TermsAndConditionView(),
+        child: const TermsAndConditionView(),
       ),
     ),
     GoRoute(
@@ -455,7 +456,7 @@ final router = GoRouter(
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
         context: context,
         state: state,
-        child: CompleteProfileView(),
+        child: const CompleteProfileView(),
       ),
     ),
     GoRoute(
@@ -481,6 +482,7 @@ final router = GoRouter(
               BlocProvider(
                 create: (_) => EditProfileCubit(
                   editProfileRepo: getIt.get<EditProfileRepoImpl>(),
+                  profileRepo: getIt.get<ProfileRepoImplementation>(),
                 ),
               ),
             ],

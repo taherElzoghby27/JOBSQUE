@@ -15,7 +15,6 @@ abstract class AppAssets {
   static const String board3 = 'assets/images/board3.png';
   static const String profile = 'assets/images/profile.png';
   static const String profileSvg = 'assets/images/profile.svg';
-  static const String loadJson = 'assets/images/load.json';
   static const String portfolio = 'assets/images/folder-favorite.svg';
   static const String lockSvg = 'assets/images/lock.svg';
   static const String sms = 'assets/images/sms.png';
