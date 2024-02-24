@@ -70,6 +70,7 @@ class AddEducationCubit extends Cubit<AddEducationState> {
           personalDetailed: '',
         ),
       );
+      Future.delayed(Duration(seconds: 2));
       editProfileResult.fold(
         (failure) => emit(AddedFailureState(message: failure.message)),
         (profile) async {

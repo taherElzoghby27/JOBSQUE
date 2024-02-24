@@ -30,6 +30,7 @@ class InterestedInWorkCubit extends Cubit<InterestedInWorkState> {
   //next
   handleNextAction() async {
     emit(Loading());
+    Future.delayed(Duration(seconds: 2));
     if (workInterestedHasTrue) {
       await saveInterestedIn();
     } else {

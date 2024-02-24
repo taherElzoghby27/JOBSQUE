@@ -75,6 +75,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           personalDetailed: '',
         ),
       );
+      Future.delayed(Duration(seconds: 2));
       editProfileResult.fold(
         (failure) => emit(SavedFailure(message: failure.message)),
         (profile) async {

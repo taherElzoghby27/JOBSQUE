@@ -146,6 +146,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
         id: 0,
       ),
     );
+     Future.delayed(Duration(seconds: 2));
     result.fold(
       (failure) => emit(ApplyJobFailure(message: failure.message)),
       (success) {

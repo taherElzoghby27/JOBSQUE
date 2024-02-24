@@ -77,6 +77,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
       emit(GetFilesLoading());
       UserProfilePortfolioModel portfolios =
           await getIt.get<UserProfilePortfolioModel>();
+      Future.delayed(Duration(seconds: 2));
       emit(GetFilesSuccess(cvs: portfolios.portfolio));
     } catch (error) {
       emit(GetFilesFailure(message: StringsEn.someThingError));
@@ -89,6 +90,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
     Either<FailureServ, String> result = await portfolioRepo.deletePortFolio(
       idPortfolio: idPortfolio,
     );
+    Future.delayed(Duration(seconds: 2));
     result.fold(
       (failure) {
         emit(DeletedFailure(message: failure.message));

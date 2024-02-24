@@ -35,6 +35,7 @@ class UpdateNamePassCubit extends Cubit<UpdateNamePassState> {
       Either<FailureServ, String> result = await loginAndSecurityRepo.getOtp(
         email: email!,
       );
+      Future.delayed(Duration(seconds: 2));
       result.fold(
         (fail) => emit(
           Fail(message: fail.message),

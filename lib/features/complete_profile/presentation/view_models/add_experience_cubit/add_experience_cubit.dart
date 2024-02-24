@@ -69,6 +69,7 @@ class AddExperienceCubit extends Cubit<AddExperienceState> {
           start: startYear.toString(),
         ),
       );
+      Future.delayed(Duration(seconds: 2));
       result.fold(
         (fail) => emit(AddedFailure(message: fail.message)),
         (experienceModel) async {

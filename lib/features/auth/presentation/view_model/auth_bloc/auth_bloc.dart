@@ -26,6 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             email: event.email,
             password: event.password,
           );
+          Future.delayed(Duration(seconds: 2));
           result.fold(
             (fail) {
               emit(LoginFailure(message: fail.message));
@@ -48,6 +49,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             email: event.email,
             password: event.password,
           );
+          Future.delayed(Duration(seconds: 2));
           result.fold(
             (fail) {
               emit(RegisterFailure(message: fail.message));

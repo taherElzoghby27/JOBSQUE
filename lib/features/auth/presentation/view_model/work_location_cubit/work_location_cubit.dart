@@ -77,6 +77,7 @@ class WorkLocationCubit extends Cubit<WorkLocationState> {
 //edit user profile
   save({required workLocation}) async {
     emit(InterestedInWorkLoading());
+    Future.delayed(Duration(seconds: 2));
     await CacheHelper.saveData(
       key: StringsEn.workLocationK,
       value: workLocation,

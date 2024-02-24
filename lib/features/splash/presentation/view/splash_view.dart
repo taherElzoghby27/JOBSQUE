@@ -23,7 +23,7 @@ class _SplashViewState extends State<SplashView> {
   ///navigate to board
   navigateToBoarding() {
     Future.delayed(
-      Duration(seconds: 2),
+      Duration(seconds: 3),
       () => GoRouter.of(context).pushReplacement(
         checkLoggedIn() ? homePath : onBoardingPath,
       ),
