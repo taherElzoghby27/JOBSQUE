@@ -80,7 +80,7 @@ class AddExperienceCubit extends Cubit<AddExperienceState> {
         },
       );
     } else {
-      emit(AddedFailure(message: 'Please ,enter your Information'));
+      emit(AddedFailure(message: StringsEn.fieldsNotComplted));
     }
   }
 }
