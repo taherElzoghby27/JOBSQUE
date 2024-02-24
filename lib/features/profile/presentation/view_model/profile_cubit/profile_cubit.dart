@@ -5,14 +5,16 @@ import 'package:equatable/equatable.dart';
 
 import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
-import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
+import 'package:jobsque/service_locator.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileRepo profileRepo;
+
   ProfileCubit({required this.profileRepo}) : super(ProfileInitial());
+
   //signout
   Future<bool> signOut() async {
     emit(SignOutLoading());
@@ -28,12 +30,16 @@ class ProfileCubit extends Cubit<ProfileState> {
   //get profile
   getProfile() async {
     emit(GetProfileLoading());
-    Either<FailureServ, UserProfilePortfolioModel> profile = await profileRepo.getProfile();
+    Either<FailureServ, UserProfilePortfolioModel> profile =
+        await profileRepo.getProfile();
     profile.fold(
       (failure) {
         emit(GetProfileFailure(message: failure.message));
       },
       (userProfile) {
+        //save model in service locator
+        getIt.registerSingleton<UserProfilePortfolioModel>(userProfile);
+        //emit success
         emit(GetProfileSuccess(userProfileModel: userProfile));
       },
     );
