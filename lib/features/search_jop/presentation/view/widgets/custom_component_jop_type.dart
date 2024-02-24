@@ -25,7 +25,7 @@ class CustomComponentJopType extends StatelessWidget {
         const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         BlocProvider(
           create: (_) => SearchCubit(
-            sl.get<FilterJobsRepoImplementation>(),
+            getIt.get<FilterJobsRepoImplementation>(),
           ),
           child: BlocBuilder<SearchCubit, SearchState>(
             builder: (context, state) {

@@ -38,7 +38,7 @@ class SectionFiltering extends StatelessWidget {
                 padding: AppConsts.mainPadding,
                 child: BlocProvider(
                   create: (_) => SearchCubit(
-                    sl.get<FilterJobsRepoImplementation>(),
+                    getIt.get<FilterJobsRepoImplementation>(),
                   ),
                   child: BlocBuilder<SearchCubit, SearchState>(
                     builder: (context, state) {
