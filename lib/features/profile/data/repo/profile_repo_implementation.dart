@@ -2,24 +2,19 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:jobsque/core/consts/api.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
-import 'package:jobsque/core/models/profile_model.dart';
 import 'package:jobsque/core/services/remote_datasource/auth_service/signout_service.dart';
-import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 
 import '../../../../core/consts/api_service.dart';
 import '../../../../core/models/user_profile_model/user_profile_portolio_model.dart';
-import '../../../../core/services/remote_datasource/profile_service/edit_profile_service.dart';
 
 class ProfileRepoImplementation extends ProfileRepo {
   final SignOutService signOutService;
   final ApiService apiService;
-  final EditProfileService editProfileService;
 
   ProfileRepoImplementation({
     required this.signOutService,
     required this.apiService,
-    required this.editProfileService,
   });
 
   @override
@@ -34,27 +29,9 @@ class ProfileRepoImplementation extends ProfileRepo {
         path: "${ApiConsts.getPortfolioEndPoint}",
       );
 
-      UserProfilePortfolioModel profileUser = UserProfilePortfolioModel.fromJson(result["data"]);
+      UserProfilePortfolioModel profileUser =
+          UserProfilePortfolioModel.fromJson(result["data"]);
       return Right(profileUser);
-    } catch (error) {
-      if (error is DioException) {
-        return Left(ServerFailure.fromDioError(error));
-      }
-      return Left(ServerFailure(message: error.toString()));
-    }
-  }
-
-  @override
-  Future<Either<FailureServ, ProfileModel>> editProfile({
-    required ProfileModel profileModel,
-  }) async {
-    try {
-      //response
-      Map<String, dynamic> result = await editProfileService.editProfile(
-        profileModel: profileModel,
-      );
-      ProfileModel model = ProfileModel.fromJson(result["data"]);
-      return Right(model);
     } catch (error) {
       if (error is DioException) {
         return Left(ServerFailure.fromDioError(error));
