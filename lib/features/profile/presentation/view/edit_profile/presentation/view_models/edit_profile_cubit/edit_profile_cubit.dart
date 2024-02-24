@@ -8,14 +8,15 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/profile_model.dart';
-import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
+import 'package:jobsque/features/profile/presentation/view/edit_profile/data/repo/edit_profile_repo.dart';
 
 part 'edit_profile_state.dart';
 
 class EditProfileCubit extends Cubit<EditProfileState> {
-  ProfileRepo profileRepo;
+  EditProfileRepo editProfileRepo;
 
-  EditProfileCubit({required this.profileRepo}) : super(EditProfileInitial());
+  EditProfileCubit({required this.editProfileRepo})
+      : super(EditProfileInitial());
 
   //variables
   TextEditingController controllerName = TextEditingController();
@@ -50,7 +51,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         emit(SavedLoading());
         //edit profile
         Either<FailureServ, ProfileModel> editProfileResult =
-            await profileRepo.editProfile(
+            await editProfileRepo.editProfile(
           profileModel: ProfileModel(
             bio: controllerBio.text,
             address: controllerAddress.text,
