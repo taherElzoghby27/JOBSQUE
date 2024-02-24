@@ -64,7 +64,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
           key: StringsEn.portfolioCompleteK,
           value: true,
         );
-        profileRepo.getProfile();
+        await profileRepo.getProfile();
         getPortfolios();
         print("added success");
       },
@@ -93,8 +93,8 @@ class PortfolioCubit extends Cubit<PortfolioState> {
       (failure) {
         emit(DeletedFailure(message: failure.message));
       },
-      (message) {
-        profileRepo.getProfile();
+      (message) async {
+        await profileRepo.getProfile();
         getPortfolios();
         emit(DeletedSuccess(message: message));
       },
