@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
+import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
 import 'package:jobsque/core/widgets/error_widget.dart';
-import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/custom_fading_profile.dart';
 import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 
@@ -22,7 +22,7 @@ class ProfileBodyBlocConsumer extends StatelessWidget {
         if (state is GetProfileFailure) {
           return ErrorWidg(message: state.message);
         } else if (state is GetProfileSuccess) {
-          User user = state.userProfileModel;
+          UserProfilePortfolioModel user = state.userProfileModel;
           return ProfileBody(
             user: user,
             ctx: contextParent,

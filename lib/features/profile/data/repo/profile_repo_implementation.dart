@@ -8,6 +8,7 @@ import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 
 import '../../../../core/consts/api_service.dart';
+import '../../../../core/models/user_profile_model/user_profile_portolio_model.dart';
 import '../../../../core/services/remote_datasource/profile_service/edit_profile_service.dart';
 
 class ProfileRepoImplementation extends ProfileRepo {
@@ -27,13 +28,13 @@ class ProfileRepoImplementation extends ProfileRepo {
   }
 
   @override
-  Future<Either<FailureServ, User>> getProfile() async {
+  Future<Either<FailureServ, UserProfilePortfolioModel>> getProfile() async {
     try {
       Map<String, dynamic> result = await apiService.get(
-        path: "${ApiConsts.getProfileEndPoint}",
+        path: "${ApiConsts.getPortfolioEndPoint}",
       );
 
-      User profileUser = User.fromJson(result["data"]);
+      UserProfilePortfolioModel profileUser = UserProfilePortfolioModel.fromJson(result["data"]);
       return Right(profileUser);
     } catch (error) {
       if (error is DioException) {

@@ -7,6 +7,7 @@ import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/p
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../core/consts/strings.dart';
+import '../../../../../core/models/user_profile_model/user_profile_portolio_model.dart';
 import '../../../../../core/widgets/smart_fresher.dart';
 import 'section_general.dart';
 import 'section_profile_info.dart';
@@ -19,7 +20,7 @@ class ProfileBody extends StatefulWidget {
     required this.isSignOutStateLoading,
   });
 
-  final User user;
+  final UserProfilePortfolioModel user;
   final BuildContext ctx;
   final bool isSignOutStateLoading;
 
@@ -56,7 +57,7 @@ class _ProfileBodyState extends State<ProfileBody> {
               //section profile
               SectionProfileInfo(
                 ctx: widget.ctx,
-                name: widget.user.name!,
+                name: widget.user.profile!.name!,
                 bio: StringsEn.softwareEngineer,
               ),
               //section general
