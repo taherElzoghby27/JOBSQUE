@@ -13,6 +13,7 @@ import 'package:jobsque/features/complete_profile/data/repo/complete_profile_rep
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
 import 'package:jobsque/features/notification/data/repos/notification_repo_implementation.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.dart';
+import 'package:jobsque/features/profile/presentation/view/edit_profile/data/repo/edit_profile_repo_impl.dart';
 import 'package:jobsque/features/profile/presentation/view/login_and_security/data/repo/login_security_repo_implementation.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/portfolio_repo_implementation.dart';
 import 'features/home/data/repo/home_repo_implementation.dart';
@@ -27,7 +28,7 @@ import 'core/services/remote_datasource/profile_service/add_experience_service.d
 import 'core/services/remote_datasource/profile_service/add_portfolio_service.dart';
 import 'core/services/remote_datasource/profile_service/edit_profile_service.dart';
 
-final sl = GetIt.instance;
+final getIt = GetIt.instance;
 
 void setupServiceLocator() {
   ///External
@@ -43,165 +44,169 @@ void setupServiceLocator() {
 
 initRepository() {
   //Auth repo implementation
-  sl.registerLazySingleton<AuthRepoImplementation>(
+  getIt.registerLazySingleton<AuthRepoImplementation>(
     () => AuthRepoImplementation(
-      registerApiService: sl.get<RegisterApiService>(),
-      loginApiService: sl.get<LoginApiService>(),
-      resetPassApiService: sl.get<ResetPassApiService>(),
+      registerApiService: getIt.get<RegisterApiService>(),
+      loginApiService: getIt.get<LoginApiService>(),
+      resetPassApiService: getIt.get<ResetPassApiService>(),
     ),
   );
   //jobs repo implementation
-  sl.registerLazySingleton<FilterJobsRepoImplementation>(
+  getIt.registerLazySingleton<FilterJobsRepoImplementation>(
     () => FilterJobsRepoImplementation(
-      jobApiService: sl.get<JobApiService>(),
+      jobApiService: getIt.get<JobApiService>(),
     ),
   );
   //apply user repo implementation
-  sl.registerLazySingleton<ApplyUserRepoImplementation>(
+  getIt.registerLazySingleton<ApplyUserRepoImplementation>(
     () => ApplyUserRepoImplementation(
-      applyUserService: sl.get<ApplyUserService>(),
-      hiveDbApplyUser: sl.get<HiveDbApplyUser>(),
-      networkInfo: sl.get<NetworkInfoImpl>(),
+      applyUserService: getIt.get<ApplyUserService>(),
+      hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
+      networkInfo: getIt.get<NetworkInfoImpl>(),
     ),
   );
   //profile Repo Implementation
-  sl.registerLazySingleton<ProfileRepoImplementation>(
+  getIt.registerLazySingleton<ProfileRepoImplementation>(
     () => ProfileRepoImplementation(
-      signOutService: sl.get<SignOutService>(),
-      apiService: sl.get<ApiService>(),
-      editProfileService: sl.get<EditProfileService>(),
+      signOutService: getIt.get<SignOutService>(),
+      apiService: getIt.get<ApiService>(),
+    ),
+  );
+  //edit profile Repo Implementation
+  getIt.registerLazySingleton<EditProfileRepoImpl>(
+    () => EditProfileRepoImpl(
+      editProfileService: getIt.get<EditProfileService>(),
     ),
   );
   //portfolio repo impl
-  sl.registerLazySingleton<PortfolioRepoImplementation>(
+  getIt.registerLazySingleton<PortfolioRepoImplementation>(
     () => PortfolioRepoImplementation(
-      apiService: sl.get<ApiService>(),
-      addPortfolioService: sl.get<AddPortfolioService>(),
-      deletePortfolioService: sl.get<DeletePortfolioService>(),
+      addPortfolioService: getIt.get<AddPortfolioService>(),
+      deletePortfolioService: getIt.get<DeletePortfolioService>(),
     ),
   );
   //notification repo implementation
-  sl.registerLazySingleton<NotificationRepoImplementation>(
+  getIt.registerLazySingleton<NotificationRepoImplementation>(
     () => NotificationRepoImplementation(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //login and security repo impl
-  sl.registerLazySingleton<LoginAndSecurityRepoImplementation>(
+  getIt.registerLazySingleton<LoginAndSecurityRepoImplementation>(
     () => LoginAndSecurityRepoImplementation(
-      getOtpService: sl.get<GetOtpService>(),
-      updateNamePassService: sl.get<UpdateNamePassService>(),
+      getOtpService: getIt.get<GetOtpService>(),
+      updateNamePassService: getIt.get<UpdateNamePassService>(),
     ),
   );
 
   //applied repo impl
-  sl.registerLazySingleton<AppliedJobsRepoImplementation>(
+  getIt.registerLazySingleton<AppliedJobsRepoImplementation>(
     () => AppliedJobsRepoImplementation(
-      apiService: sl.get<ApiService>(),
-      hiveDbApplyUser: sl.get<HiveDbApplyUser>(),
+      apiService: getIt.get<ApiService>(),
+      hiveDbApplyUser: getIt.get<HiveDbApplyUser>(),
     ),
   );
   //CompleteProfileRepoImpl
-  sl.registerLazySingleton<CompleteProfileRepoImpl>(
+  getIt.registerLazySingleton<CompleteProfileRepoImpl>(
     () => CompleteProfileRepoImpl(
-      addExperienceService: sl.get<AddExperienceService>(),
+      addExperienceService: getIt.get<AddExperienceService>(),
     ),
   );
 }
 
 initService() {
   //hive db job
-  sl.registerLazySingleton(() => HiveDbJob());
+  getIt.registerLazySingleton(() => HiveDbJob());
   //hive db Apply user
-  sl.registerLazySingleton(() => HiveDbApplyUser());
+  getIt.registerLazySingleton(() => HiveDbApplyUser());
   //network info
-  sl.registerSingleton<NetworkInfoImpl>(
+  getIt.registerSingleton<NetworkInfoImpl>(
     NetworkInfoImpl(
-      sl.get<InternetConnectionChecker>(),
+      getIt.get<InternetConnectionChecker>(),
     ),
   );
   // api service
-  sl.registerSingleton<ApiService>(
-    ApiService(dio: sl.get<Dio>()),
+  getIt.registerSingleton<ApiService>(
+    ApiService(dio: getIt.get<Dio>()),
   );
   //register api service
-  sl.registerLazySingleton<RegisterApiService>(
+  getIt.registerLazySingleton<RegisterApiService>(
     () => RegisterApiService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //login api service
-  sl.registerLazySingleton<LoginApiService>(
+  getIt.registerLazySingleton<LoginApiService>(
     () => LoginApiService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
 
   //reset pass api service
-  sl.registerLazySingleton<ResetPassApiService>(
+  getIt.registerLazySingleton<ResetPassApiService>(
     () => ResetPassApiService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //edit profile service
-  sl.registerLazySingleton(
+  getIt.registerLazySingleton(
     () => EditProfileService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
 
   //job api service
-  sl.registerLazySingleton(
+  getIt.registerLazySingleton(
     () => JobApiService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
 
   //apply user service
-  sl.registerLazySingleton(
+  getIt.registerLazySingleton(
     () => ApplyUserService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
 
   //sign out service
-  sl.registerLazySingleton(() => SignOutService());
+  getIt.registerLazySingleton(() => SignOutService());
 
   //add portfolio api service
-  sl.registerLazySingleton(
+  getIt.registerLazySingleton(
     () => AddPortfolioService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
 
   //get Otp service
-  sl.registerLazySingleton(
+  getIt.registerLazySingleton(
     () => GetOtpService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //update name Pass service
-  sl.registerLazySingleton(
+  getIt.registerLazySingleton(
     () => UpdateNamePassService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
 
   //addExperienceService
-  sl.registerLazySingleton(
+  getIt.registerLazySingleton(
     () => AddExperienceService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
   //delete portfolio service
-  sl.registerLazySingleton(
+  getIt.registerLazySingleton(
     () => DeletePortfolioService(
-      apiService: sl.get<ApiService>(),
+      apiService: getIt.get<ApiService>(),
     ),
   );
 }
 
 initExternal() {
-  sl.registerSingleton(Dio());
-  sl.registerSingleton(InternetConnectionChecker());
+  getIt.registerSingleton(Dio());
+  getIt.registerSingleton(InternetConnectionChecker());
 }
