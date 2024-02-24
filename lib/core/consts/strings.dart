@@ -182,6 +182,7 @@ abstract class StringsEn {
   static const String uplaodCv = 'Upload CV (pdf)';
   static const String pdfExtension = 'pdf';
   static const String someThingError = 'something error';
+  static const String fieldsNotComplted = 'fields Not Completed';
   static const String signOutSuccess = 'Sign out Successful';
   static const String unKnown = 'unknown';
   static const String cvpdf = 'CV.pdf';
