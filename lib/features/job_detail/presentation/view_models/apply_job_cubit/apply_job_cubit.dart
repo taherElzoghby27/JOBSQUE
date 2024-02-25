@@ -8,7 +8,6 @@ import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
 import 'package:jobsque/features/job_detail/data/models/Pdf.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/bio_data_cubit/bio_data_cubit.dart';
-import 'package:jobsque/features/job_detail/presentation/view_models/changed_page_cubit/changed_page_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/type_of_work_cubit/type_of_work_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/upload_portfolio_cubit/upload_portfolio_cubit.dart';
 

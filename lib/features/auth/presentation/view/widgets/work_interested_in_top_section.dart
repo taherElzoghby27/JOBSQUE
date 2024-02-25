@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class TopSectionTitle extends StatelessWidget {
@@ -14,7 +13,6 @@ class TopSectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         ///What type of work are you interested in?

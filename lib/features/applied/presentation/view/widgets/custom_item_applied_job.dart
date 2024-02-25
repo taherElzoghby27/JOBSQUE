@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/consts/routesPage.dart';
 import '../../../../../core/consts/strings.dart';
@@ -60,7 +59,7 @@ class _CustomItemAppliedJopState extends State<CustomItemAppliedJop> {
                     StringsEn.applyUser: widget.applyUser,
                   },
                 ),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: AppConsts.radius15,
           child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class CustomTypeJopWidget extends StatelessWidget {
@@ -20,12 +19,11 @@ class CustomTypeJopWidget extends StatelessWidget {
       onTap: onTap,
       child: FittedBox(
         child: Container(
-          //width: size.width*.2.w,
           decoration: BoxDecoration(
             color: labelColor == AppConsts.neutral500
                 ? AppConsts.neutral100
                 : labelColor.withOpacity(.3),
-            borderRadius: BorderRadius.circular(25),
+            borderRadius: AppConsts.radius25,
             border: Border.all(color: labelColor),
           ),
           child: Center(

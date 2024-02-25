@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 
 import 'package:jobsque/features/auth/data/models/user_login/user.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user_login.dart';

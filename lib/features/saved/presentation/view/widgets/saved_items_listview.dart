@@ -13,10 +13,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../core/widgets/custom_button_three_widget.dart';
-import '../../../../../core/widgets/smart_fresher.dart';
 
 class SavedItemsListView extends StatefulWidget {
   const SavedItemsListView({super.key, required this.savedList});

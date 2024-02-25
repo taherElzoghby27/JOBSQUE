@@ -90,8 +90,13 @@ abstract class AppConsts {
   static const EdgeInsets allPadding8 = EdgeInsets.all(8);
   static const EdgeInsets allPadding15 = EdgeInsets.all(15);
   static const EdgeInsets verticalPadding5 = EdgeInsets.symmetric(vertical: 5);
-  static const EdgeInsets verticalPadding10 = EdgeInsets.symmetric(vertical: 10);
-  static const EdgeInsets topPadding20 = EdgeInsets.only(top:20);
+  static const EdgeInsets verticalPadding10 =
+      EdgeInsets.symmetric(vertical: 10);
+  static const EdgeInsets topPadding20 = EdgeInsets.only(top: 20);
+
+//radius
+  static BorderRadius radius15 = AppConsts.radius15;
+  static BorderRadius radius25=AppConsts.radius25;
 
   //styles
   static const TextStyle styleHint14 = TextStyle(
@@ -177,7 +182,7 @@ abstract class AppConsts {
     borderSide: BorderSide(color: neutral300, width: 1),
   );
   static BoxDecoration decorationLoadingMap = BoxDecoration(
-    borderRadius: BorderRadius.circular(15),
+    borderRadius: AppConsts.radius15,
     color: neutral200.withOpacity(.2),
   );
   static OutlineInputBorder focusedBorderField = OutlineInputBorder(

@@ -16,12 +16,12 @@ class ItemContactUsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => launchUr(context, url: value),
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: AppConsts.radius15,
       child: AspectRatio(
         aspectRatio: AppConsts.aspect16on8,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: AppConsts.radius15,
             border: Border.all(color: AppConsts.neutral200),
           ),
           child: Padding(

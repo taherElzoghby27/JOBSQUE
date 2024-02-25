@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/style.dart';

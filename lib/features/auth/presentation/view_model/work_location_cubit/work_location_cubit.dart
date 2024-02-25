@@ -1,8 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
-import 'package:jobsque/core/models/profile_model.dart';
-import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:meta/meta.dart';
 
 import 'package:jobsque/core/consts/strings.dart';

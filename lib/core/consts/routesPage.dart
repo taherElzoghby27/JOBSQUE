@@ -65,7 +65,6 @@ import '../../features/home/presentation/view/suggested_or_recent_jop_view.dart'
 import '../../features/job_detail/presentation/view/jop_detail_view.dart';
 import '../../features/job_detail/presentation/view_models/apply_job_cubit/apply_job_cubit.dart';
 import '../../features/onBoarding/presentation/view/on_boarding_view.dart';
-import '../services/local_datasource/hive_db_apply_user.dart';
 
 const splashPath = '/';
 const onBoardingPath = '/onBoard';

@@ -27,11 +27,10 @@ class ApplyUserRepoImplementation extends ApplyUserRepo {
       Map<String, dynamic> response = await applyUserService.applyUser(
         applyUser: applyUser,
       );
-      //ApplyUser applyJobModel = ApplyUser.fromJson(response["data"]);
-      print('success fully');
+      ApplyUser applyJobModel = ApplyUser.fromJson(response["data"]);
       //delete from local  after completed
       await hiveDbApplyUser.delete(user: applyUser);
-      return Right('applyJobModel');
+      return Right(applyJobModel);
     } catch (error) {
       if (error is DioException) {
         return Left(ServerFailure.fromDioError(error));

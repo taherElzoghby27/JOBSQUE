@@ -18,10 +18,10 @@ class CustomButtonIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: AppConsts.radius25,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: AppConsts.radius25,
           border: Border.all(color: AppConsts.primary500),
         ),
         child: Center(

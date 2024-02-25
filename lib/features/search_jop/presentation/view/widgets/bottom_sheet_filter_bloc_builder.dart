@@ -122,7 +122,6 @@ class _BottomSheetFilterBlocBuilderState
                     text: StringsEn.showResult,
                     onTap: () async {
                       GoRouter.of(context).pop();
-                      //show result
                       await bloc.search(
                         searchText: bloc.titleJopCont.text,
                         location: bloc.locationCont.text,

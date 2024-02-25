@@ -29,7 +29,7 @@ class ApplyUser extends HiveObject {
   @HiveField(8)
   String? status;
   @HiveField(9)
-  dynamic? reviewed;
+  dynamic reviewed;
   @HiveField(10)
   String? updatedAt;
   @HiveField(11)

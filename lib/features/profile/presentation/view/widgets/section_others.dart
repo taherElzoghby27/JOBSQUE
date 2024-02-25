@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/data.dart';
-import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_button_three_widget.dart';

@@ -19,7 +19,6 @@ class WorkTypeComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(15.sp),

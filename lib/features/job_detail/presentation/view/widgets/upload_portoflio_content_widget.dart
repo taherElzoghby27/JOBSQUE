@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/widgets/cvs_pdf.dart';

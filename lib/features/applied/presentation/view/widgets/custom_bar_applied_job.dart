@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/widgets/bar_component.dart';
 import '../../view_models/applied_job_cubit/applied_job_cubit.dart';

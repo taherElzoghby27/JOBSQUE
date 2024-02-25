@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/fake_data.dart';
 import 'package:jobsque/core/consts/strings.dart';
-import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/empty_widget.dart';
 import 'package:jobsque/core/widgets/tile_widget.dart';
 import 'package:jobsque/features/messages/presentation/view/widgets/messages_list_view.dart';

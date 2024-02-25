@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/helper/dialog_help.dart';
@@ -37,7 +36,6 @@ class _LoginSecurityAuthBodyState extends State<LoginSecurityAuthBody> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     final bloc = BlocProvider.of<UpdateNamePassCubit>(context);
 
     return BlocConsumer<UpdateNamePassCubit, UpdateNamePassState>(

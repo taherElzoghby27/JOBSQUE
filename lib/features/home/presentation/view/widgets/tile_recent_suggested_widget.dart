@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 
