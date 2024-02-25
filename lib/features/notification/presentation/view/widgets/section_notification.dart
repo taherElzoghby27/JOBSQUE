@@ -15,20 +15,16 @@ class SectionNotifications extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          const TileWidget(label: StringsEn.notifications),
+    return Column(
+      children: [
+        const TileWidget(label: StringsEn.notifications),
 
-          ///notification
-          Expanded(
-            child: Padding(
-              padding: AppConsts.padding10Horiz,
-              child: NotificationListView(notificationModel: notificationModel),
-            ),
-          ),
-        ],
-      ),
+        ///notification
+        Padding(
+          padding: AppConsts.padding10Horiz,
+          child: NotificationListView(notificationModel: notificationModel),
+        ),
+      ],
     );
   }
 }

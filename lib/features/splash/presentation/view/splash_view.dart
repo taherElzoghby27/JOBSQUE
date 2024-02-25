@@ -26,6 +26,7 @@ class _SplashViewState extends State<SplashView> {
       Duration(seconds: 3),
       () => GoRouter.of(context).pushReplacement(
         checkLoggedIn() ? homePath : onBoardingPath,
+        extra: 0,
       ),
     );
   }

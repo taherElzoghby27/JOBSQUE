@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
-import 'package:jobsque/features/saved/presentation/view/widgets/section_saved_jop_bloc_builder.dart';
+import 'package:jobsque/features/saved/presentation/view/widgets/section_saved_jop_smart_refresh.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class SavedBody extends StatelessWidget {
@@ -17,13 +17,18 @@ class SavedBody extends StatelessWidget {
 
         //custom appBar
         CustomAppBar(
-          leadingOnTap: () => GoRouter.of(context).pushReplacement(homePath),
+          leadingOnTap: () => GoRouter.of(context).pushReplacement(
+            homePath,
+            extra: 0,
+          ),
           title: StringsEn.saved,
           trailingWidget: Container(),
         ),
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         //saved jops
-        const SectionSavedJopsBlocBuilder(),
+        Expanded(
+          child: const SectionSavedJobsSmartRefresh(),
+        ),
       ],
     );
   }

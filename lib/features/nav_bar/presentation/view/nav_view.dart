@@ -8,21 +8,30 @@ import 'package:jobsque/features/saved/presentation/view/saved_view.dart';
 import '../../../profile/presentation/view/profile_view.dart';
 
 class NavView extends StatefulWidget {
-  const NavView({super.key});
+  const NavView({super.key, this.currentPage = 0});
+
+  final int currentPage;
 
   @override
   State<NavView> createState() => _NavViewState();
 }
 
 class _NavViewState extends State<NavView> {
-  int currentIndex = 0;
+  late int currentIndex;
+
   List<Widget> screens = [
-    const HomeView(),
-    const MessagesView(),
-    const AppliedView(),
-    const SavedView(),
-    const ProfileView(),
+    const HomeView(), //0
+    const MessagesView(), //1
+    const AppliedView(), //2
+    const SavedView(), //3
+    const ProfileView(), //4
   ];
+
+  @override
+  void initState() {
+    currentIndex = widget.currentPage;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

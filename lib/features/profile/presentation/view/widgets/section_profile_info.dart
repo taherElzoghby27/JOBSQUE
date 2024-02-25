@@ -53,6 +53,7 @@ class SectionProfileInfo extends StatelessWidget {
                     CustomAppBar(
                       leadingOnTap: () => GoRouter.of(context).pushReplacement(
                         homePath,
+                        extra: 0,
                       ),
                       title: StringsEn.profile,
                       trailingOnTap: () async {

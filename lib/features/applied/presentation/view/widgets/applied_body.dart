@@ -15,7 +15,10 @@ class AppliedBody extends StatelessWidget {
       children: [
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         CustomAppBar(
-          leadingOnTap: () => GoRouter.of(context).pushReplacement(homePath),
+          leadingOnTap: () => GoRouter.of(context).pushReplacement(
+            homePath,
+            extra: 0,
+          ),
           title: StringsEn.appliedJob,
           trailingWidget: Container(),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/features/complete_profile/presentation/view/widgets/section_complete_profile.dart';
@@ -61,14 +62,17 @@ class _CompleteProfileBodyState extends State<CompleteProfileBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.w),
+      padding: AppConsts.mainPadding,
       child: ListView(
         children: [
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
           //custom appBar
           CustomAppBar(
-            leadingOnTap: () => GoRouter.of(context).pop(),
+            leadingOnTap: () => GoRouter.of(context).pushReplacement(
+              homePath,
+              extra: 4,
+            ),
             title: StringsEn.completeProfile,
             trailingWidget: Container(),
           ),

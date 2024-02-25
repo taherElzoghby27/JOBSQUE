@@ -92,7 +92,10 @@ class _ApplyJopBodyState extends State<ApplyJopBody> {
 
                       //custom appBar
                       CustomAppBar(
-                        leadingOnTap: () => GoRouter.of(context).pop(),
+                        leadingOnTap: () => GoRouter.of(context).pushReplacement(
+                          homePath,
+                          extra: 0,
+                        ),
                         title: status == StringsEn.notComplete
                             ? StringsEn.appliedJob
                             : StringsEn.applyJob,

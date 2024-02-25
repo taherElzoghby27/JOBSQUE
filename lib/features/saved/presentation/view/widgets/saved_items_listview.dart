@@ -28,26 +28,16 @@ class SavedItemsListView extends StatefulWidget {
 }
 
 class _SavedItemsListViewState extends State<SavedItemsListView> {
-  RefreshController _refreshController = RefreshController(
-    initialRefresh: false,
-  );
-
-  void _onRefresh() async {
-    BlocProvider.of<SavedCubit>(context).getSavedJobs();
-    await Future.delayed(Duration(milliseconds: 1000));
-    _refreshController.refreshCompleted();
-  }
+  late SavedCubit bloc;
 
   @override
-  void dispose() {
-    _refreshController.dispose();
-    super.dispose();
+  void initState() {
+    bloc = BlocProvider.of<SavedCubit>(context);
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    SavedCubit bloc = BlocProvider.of<SavedCubit>(context);
-
     ///show setting jop
     _showSettingJopSheet(BuildContext context, {required Job job}) {
       showModalBottomSheet(
@@ -110,25 +100,21 @@ class _SavedItemsListViewState extends State<SavedItemsListView> {
       );
     }
 
-    return SmartRefreshWidget(
-      refreshController: _refreshController,
-      onRefresh: _onRefresh,
-      child: ListView.separated(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return ItemSavedJop(
+    return ListView.separated(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, index) {
+        return ItemSavedJop(
+          job: widget.savedList[index],
+          onTapTrailing: () => _showSettingJopSheet(
+            context,
             job: widget.savedList[index],
-            onTapTrailing: () => _showSettingJopSheet(
-              context,
-              job: widget.savedList[index],
-            ),
-          );
-        },
-        itemCount: widget.savedList.length,
-        separatorBuilder: (BuildContext context, int index) => CustomDivider(),
-      ),
+          ),
+        );
+      },
+      itemCount: widget.savedList.length,
+      separatorBuilder: (BuildContext context, int index) => CustomDivider(),
     );
   }
 }

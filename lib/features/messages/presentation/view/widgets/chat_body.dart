@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
+import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
@@ -16,8 +16,6 @@ class ChatBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     ///show setting chat
     _showSettingChatSheet(BuildContext context) {
       showModalBottomSheet(
@@ -30,10 +28,7 @@ class ChatBody extends StatelessWidget {
               width: double.infinity,
               decoration: AppConsts.decorationSheet,
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  vertical: 16.h,
-                  horizontal: 20.w,
-                ),
+                padding: AppConsts.padding10Horiz,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -80,7 +75,7 @@ class ChatBody extends StatelessWidget {
                       trailing: Icons.arrow_forward_ios,
                       onTap: () {},
                     ),
-                    SizedBox(height: size.height * .03.h),
+                    const AspectRatio(aspectRatio: AppConsts.aspect16on1),
                   ],
                 ),
               ),
@@ -95,7 +90,10 @@ class ChatBody extends StatelessWidget {
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         //back   title   settings
         CustomAppBar(
-          leadingOnTap: () => GoRouter.of(context).pop(),
+          leadingOnTap: () => GoRouter.of(context).pushReplacement(
+            homePath,
+            extra: 1,
+          ),
           image: AppAssets.twitter,
           title: StringsEn.twitter,
           trailingWidget: Icon(Icons.more_horiz, color: AppConsts.neutral900),

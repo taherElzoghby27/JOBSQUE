@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/widgets/text_field.dart';
 
+import '../../../../../core/consts/routesPage.dart';
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/consts/style.dart';
 
@@ -23,14 +24,17 @@ class SectionSearch extends StatelessWidget {
       children: [
         ///back
         IconButton(
-          onPressed: () => GoRouter.of(context).pop(),
+          onPressed: () => GoRouter.of(context).pushReplacement(
+            homePath,
+            extra: 0,
+          ),
           icon: Icon(Icons.arrow_back),
         ),
 
         ///search field
         Expanded(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
+            padding: AppConsts.padding10Horiz,
             child: CustomTextField(
               perfixIcon: Icon(FontAwesomeIcons.magnifyingGlass),
               hint: StringsEn.typeSomething,

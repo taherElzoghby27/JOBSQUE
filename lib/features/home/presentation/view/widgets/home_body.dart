@@ -41,7 +41,7 @@ class _HomeBodyState extends State<HomeBody> {
       onRefresh: _onRefresh,
       child: ListView(
         children: [
-          const AspectRatio(aspectRatio: AppConsts.aspect16on2),
+          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
           ///Home top section
           HomeTopSection(name: widget.name),

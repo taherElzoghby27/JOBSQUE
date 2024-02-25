@@ -129,6 +129,7 @@ final router = GoRouter(
     GoRoute(
       path: homePath,
       pageBuilder: (context, state) {
+        int currentPage = state.extra as int;
         return buildPageWithDefaultTransition(
           context: context,
           state: state,
@@ -156,7 +157,7 @@ final router = GoRouter(
                 ),
               ),
             ],
-            child: const NavView(),
+            child: NavView(currentPage: currentPage),
           ),
         );
       },

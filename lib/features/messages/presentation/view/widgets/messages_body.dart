@@ -1,10 +1,8 @@
-import 'package:dartz/dartz.dart';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
-import 'package:jobsque/core/widgets/empty_widget.dart';
 import 'package:jobsque/features/messages/presentation/view/widgets/section_filter_messages.dart';
 import 'package:jobsque/features/messages/presentation/view/widgets/section_messages.dart';
 import '../../../../../core/consts/routesPage.dart';
@@ -21,12 +19,16 @@ class MessagesBody extends StatelessWidget {
 
         //custom appBar
         CustomAppBar(
-          leadingOnTap: () => GoRouter.of(context).pushReplacement(homePath),
+          leadingOnTap: () => GoRouter.of(context).pushReplacement(
+            homePath,
+            extra: 0,
+          ),
           title: StringsEn.messages,
           trailingWidget: Container(),
         ),
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-        const SectionFilterMessages(),
+        const SectionFilteringMessages(),
+        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
         //messages
         const SectionMessages(),
       ],

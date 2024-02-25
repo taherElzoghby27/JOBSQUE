@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_divider.dart';
 import 'package:jobsque/core/widgets/fade_animation_widget.dart';
 import 'package:jobsque/core/widgets/tile_widget.dart';
@@ -31,7 +32,7 @@ class _SearchingListViewState extends State<SearchingListView> {
 
         ///searching jops
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          padding: AppConsts.mainPadding,
           child: ListView.separated(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,

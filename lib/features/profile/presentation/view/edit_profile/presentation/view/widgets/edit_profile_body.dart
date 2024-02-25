@@ -33,7 +33,10 @@ class _EditProfileBodyState extends State<EditProfileBody> {
 
           //custom appBar
           CustomAppBar(
-            leadingOnTap: () => GoRouter.of(context).pop(),
+            leadingOnTap: () => GoRouter.of(context).pushReplacement(
+              homePath,
+              extra: 4,
+            ),
             title: StringsEn.editProfile,
             trailingWidget: Container(),
           ),

@@ -132,8 +132,8 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                                   : _authMode == AuthMode.Login
                                       ? Container()
                                       : CustomTextFormField(
-                                          perfixIcon:
-                                          HandleImageWidget(image:AppAssets.profile),
+                                          perfixIcon: HandleImageWidget(
+                                              image: AppAssets.profile),
                                           hint: StringsEn.userName,
                                           onChanged: (String? value) =>
                                               name = value,
@@ -144,7 +144,8 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                               ///Email
 
                               CustomTextFormField(
-                                perfixIcon: HandleImageWidget(image:AppAssets.sms),
+                                perfixIcon:
+                                    HandleImageWidget(image: AppAssets.sms),
                                 hint: StringsEn.email,
                                 onChanged: (String? value) => email = value,
                               ),
@@ -156,7 +157,8 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                               _authMode == AuthMode.ResetPassword
                                   ? Container()
                                   : CustomTextFormField(
-                                      perfixIcon: HandleImageWidget(image:AppAssets.lock),
+                                      perfixIcon: HandleImageWidget(
+                                          image: AppAssets.lock),
                                       hint: StringsEn.password,
                                       obscureText: visible,
                                       onChanged: (String? value) =>
@@ -277,7 +279,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                             ),
                             const AspectRatio(
                                 aspectRatio: AppConsts.aspect40on1),
-                            SignWithGoogleAndFaceBookWidget(),
+                            const SignWithGoogleAndFaceBookWidget(),
                           ],
                         ),
                 ],

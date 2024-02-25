@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/add_phone_number_method.dart';
@@ -37,7 +38,10 @@ class _TwoStepVerBodyState extends State<TwoStepVerBody> {
               } else if (current == 1) {
                 setState(() => current = 0);
               } else {
-                GoRouter.of(context).pop();
+                GoRouter.of(context).pushReplacement(
+                  homePath,
+                  extra: 4,
+                );
               }
             },
             title: StringsEn.twoStepVerifi,
@@ -63,7 +67,7 @@ class _TwoStepVerBodyState extends State<TwoStepVerBody> {
             aspectRatio: AppConsts.aspectRatioButtonAuth,
             child: Visibility(
               visible: true,
-              replacement:const LoadingWidget(),
+              replacement: const LoadingWidget(),
               child: CustomButton(
                 text: current == 0 || current == 1
                     ? StringsEn.next

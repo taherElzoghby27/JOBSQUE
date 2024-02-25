@@ -21,11 +21,9 @@ class SavedJobsWidget extends StatelessWidget {
         ),
 
         ///jop saved
-        Expanded(
-          child: Padding(
-            padding: AppConsts.mainPadding,
-            child: SavedItemsListView(savedList: savedList),
-          ),
+        Padding(
+          padding: AppConsts.mainPadding,
+          child: SavedItemsListView(savedList: savedList),
         ),
       ],
     );

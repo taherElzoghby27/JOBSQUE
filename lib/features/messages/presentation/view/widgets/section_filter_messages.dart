@@ -11,8 +11,8 @@ import 'package:jobsque/core/widgets/text_field.dart';
 
 import '../../../../../core/widgets/custom_button_three_widget.dart';
 
-class SectionFilterMessages extends StatelessWidget {
-  const SectionFilterMessages({super.key});
+class SectionFilteringMessages extends StatelessWidget {
+  const SectionFilteringMessages({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class SectionFilterMessages extends StatelessWidget {
         //search field
         Expanded(
           child: Padding(
-            padding: AppConsts.padding10h8v,
+            padding: AppConsts.mainPadding,
             child: CustomTextField(
               perfixIcon: Icon(FontAwesomeIcons.magnifyingGlass),
               hint: StringsEn.searchMessages,

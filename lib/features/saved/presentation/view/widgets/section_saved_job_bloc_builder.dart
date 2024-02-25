@@ -12,8 +12,8 @@ import 'package:jobsque/features/saved/presentation/view/widgets/saved_jobs_widg
 
 import '../../../../../core/widgets/empty_widget.dart';
 
-class SectionSavedJopsBlocBuilder extends StatelessWidget {
-  const SectionSavedJopsBlocBuilder({super.key});
+class SectionSavedJobsBlocBuilder extends StatelessWidget {
+  const SectionSavedJobsBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +27,14 @@ class SectionSavedJopsBlocBuilder extends StatelessWidget {
                   title: StringsEn.noThingHasBeenSaved,
                   subTitle: StringsEn.pressTheStarIcon,
                 )
-              : Expanded(
-                  child: SavedJobsWidget(savedList: savedList),
-                );
+              : SavedJobsWidget(savedList: savedList);
         } else if (state is SavedJobsFailure) {
           return ErrorWidg(message: state.message);
         } else {
           return const CustomFadingLoadingAnimation(
             widget: FadingListView(
               scrollDirc: Axis.vertical,
-              widget:  LoadingWidgetJobsSuggestedRecentBody(),
+              widget: LoadingWidgetJobsSuggestedRecentBody(),
             ),
           );
         }

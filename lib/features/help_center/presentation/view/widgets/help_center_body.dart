@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/features/help_center/presentation/view/widgets/what_can_we_help_widget.dart';
@@ -11,22 +12,24 @@ class HelpCenterBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
-        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         CustomAppBar(
-          leadingOnTap: () => GoRouter.of(context).pop(),
+          leadingOnTap: () => GoRouter.of(context).pushReplacement(
+            homePath,
+            extra: 4,
+          ),
           title: StringsEn.helpCenter,
           trailingWidget: Container(),
         ),
-        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         //What can we help?
-        WhatCanWeHelpWidget(),
-        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+        const WhatCanWeHelpWidget(),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         //CustomHelpCenterInfo
-        CustomHelpCenterInfo(),
+        const CustomHelpCenterInfo(),
       ],
     );
   }

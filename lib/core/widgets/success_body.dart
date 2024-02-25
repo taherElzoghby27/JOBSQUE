@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 
@@ -46,7 +46,7 @@ class SuccessBody extends StatelessWidget {
 
           ///subtitle
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            padding: AppConsts.mainPadding,
             child: Text(
               subTitle,
               style: AppConsts.style14,
@@ -61,7 +61,10 @@ class SuccessBody extends StatelessWidget {
             aspectRatio: AppConsts.aspectRatioButtonAuth,
             child: CustomButton(
               text: labelButton,
-              onTap: () => GoRouter.of(context).pushReplacement(path),
+              onTap: () => GoRouter.of(context).pushReplacement(
+                path,
+                extra: 0,
+              ),
             ),
           )
         ],
