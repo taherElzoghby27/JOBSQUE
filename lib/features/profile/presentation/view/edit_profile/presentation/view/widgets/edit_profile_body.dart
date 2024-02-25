@@ -68,7 +68,10 @@ class _EditProfileBodyState extends State<EditProfileBody> {
                     isLoad = true;
                   } else if (state is SavedSuccess) {
                     isLoad = false;
-                    GoRouter.of(context).pushReplacement(homePath);
+                    GoRouter.of(context).pushReplacement(
+                      homePath,
+                      extra: 4,
+                    );
                   } else if (state is SavedFailure) {
                     isLoad = false;
                     showSnack(
