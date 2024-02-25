@@ -66,7 +66,7 @@ class SectionProfileInfo extends StatelessWidget {
                         color: AppConsts.danger500,
                       ),
                     ),
-                    const AspectRatio(aspectRatio: AppConsts.aspect20on2),
+                    const AspectRatio(aspectRatio: AppConsts.aspect16on2),
                     Info(
                       image: AppAssets.board3,
                       name: name,

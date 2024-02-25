@@ -132,6 +132,7 @@ abstract class StringsEn {
   static const String saved = 'Saved';
   static const String jobSaved = ' Job Saved';
   static const String profile = 'Profile';
+  static const String profileLoaded = 'Profile Loaded';
   static const String typeSomething = 'Type something...';
   static const String recentSearches = 'Recent searches';
   static const String popularSearches = 'Popular searches';

@@ -41,7 +41,6 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   ChangeSalary({required String value}) {
-    //jop salary
     salary = value;
     emit(ChangedSalaryState(salary: salary));
   }
@@ -52,7 +51,12 @@ class SearchCubit extends Cubit<SearchState> {
     emit(ChangeJopTypeState(jopType: jopTimeType));
   }
 
-  resetEvent() {}
+  resetEvent() {
+    titleJopCont.clear();
+    locationCont.clear();
+    jopTimeType = StringsEn.fullTime;
+    salary = salaries[1];
+  }
 
   showResult() {
     search(
