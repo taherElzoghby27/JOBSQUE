@@ -27,26 +27,18 @@ class BottomSheetFilterBlocBuilder extends StatefulWidget {
 
 class _BottomSheetFilterBlocBuilderState
     extends State<BottomSheetFilterBlocBuilder> {
-  late SearchCubit bloc;
-
-  bool load = false;
-
-  @override
-  void initState() {
-    bloc = BlocProvider.of<SearchCubit>(widget.ctx);
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: AppConsts.mainPadding,
       child: BlocProvider(
-        create: (_) => SearchCubit(
-          getIt.get<FilterJobsRepoImplementation>(),
-        ),
+        create: (_) =>
+            SearchCubit(
+              getIt.get<FilterJobsRepoImplementation>(),
+            ),
         child: BlocBuilder<SearchCubit, SearchState>(
           builder: (context, state) {
+            SearchCubit bloc = BlocProvider.of<SearchCubit>(widget.ctx);
             String salary = bloc.salary;
             if (state is ChangedSalaryState) {
               salary = state.salary;
@@ -99,22 +91,24 @@ class _BottomSheetFilterBlocBuilderState
                     size: 16.sp,
                   ),
                   suffixIcon: DropdownButton<String>(
-                    hint: Text('\t\t\t\t\t\t\t\t\t\t\t\t\t\t$salary'),
+                    hint: Text('\t\t\t\t\t\t\t\t\t\t\t\t\t\t${salary}'),
                     underline: Container(),
                     isExpanded: true,
                     icon: Icon(Icons.arrow_drop_down),
                     items: salaries
                         .map(
-                          (e) => DropdownMenuItem<String>(
+                          (e) =>
+                          DropdownMenuItem<String>(
                             value: e,
                             child: Text(e),
                             onTap: () {},
                           ),
-                        )
+                    )
                         .toList(),
-                    onChanged: (String? value) => bloc.ChangeSalary(
-                      value: value!,
-                    ),
+                    onChanged: (String? value) =>
+                        bloc.ChangeSalary(
+                          value: value!,
+                        ),
                   ),
                   readOnly: true,
                 ),

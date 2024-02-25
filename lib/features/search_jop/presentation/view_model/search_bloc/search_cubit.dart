@@ -46,7 +46,6 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   JopTimeTypeEvent({required String jopTimeType}) {
-    //jop time type
     jopTimeType = jopTimeType;
     emit(ChangeJopTypeState(jopType: jopTimeType));
   }
@@ -54,8 +53,9 @@ class SearchCubit extends Cubit<SearchState> {
   resetEvent() {
     titleJopCont.clear();
     locationCont.clear();
-    jopTimeType = StringsEn.fullTime;
-    salary = salaries[1];
+    JopTimeTypeEvent(jopTimeType: StringsEn.fullTime);
+    ChangeSalary(value: salaries[1]);
+    //emit(ResetState());
   }
 
   showResult() {
