@@ -32,10 +32,9 @@ class _BottomSheetFilterBlocBuilderState
     return Padding(
       padding: AppConsts.mainPadding,
       child: BlocProvider(
-        create: (_) =>
-            SearchCubit(
-              getIt.get<FilterJobsRepoImplementation>(),
-            ),
+        create: (_) => SearchCubit(
+          getIt.get<FilterJobsRepoImplementation>(),
+        ),
         child: BlocBuilder<SearchCubit, SearchState>(
           builder: (context, state) {
             SearchCubit bloc = BlocProvider.of<SearchCubit>(widget.ctx);
@@ -97,18 +96,16 @@ class _BottomSheetFilterBlocBuilderState
                     icon: Icon(Icons.arrow_drop_down),
                     items: salaries
                         .map(
-                          (e) =>
-                          DropdownMenuItem<String>(
+                          (e) => DropdownMenuItem<String>(
                             value: e,
                             child: Text(e),
                             onTap: () {},
                           ),
-                    )
+                        )
                         .toList(),
-                    onChanged: (String? value) =>
-                        bloc.ChangeSalary(
-                          value: value!,
-                        ),
+                    onChanged: (String? value) => bloc.ChangeSalary(
+                      value: value!,
+                    ),
                   ),
                   readOnly: true,
                 ),
@@ -124,12 +121,12 @@ class _BottomSheetFilterBlocBuilderState
                   child: CustomButton(
                     text: StringsEn.showResult,
                     onTap: () async {
+                      GoRouter.of(context).pop();
                       //show result
                       await bloc.search(
                         searchText: bloc.titleJopCont.text,
                         location: bloc.locationCont.text,
                       );
-                      GoRouter.of(context).pop();
                     },
                   ),
                 ),
