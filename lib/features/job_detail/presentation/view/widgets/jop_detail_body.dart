@@ -44,6 +44,7 @@ class JopDetailBody extends StatelessWidget {
                             leadingOnTap: () =>
                                 GoRouter.of(context).pushReplacement(
                               homePath,
+                              extra: 0,
                             ),
                             title: StringsEn.jobDetail,
                             trailingOnTap: () {},

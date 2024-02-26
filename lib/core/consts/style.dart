@@ -95,8 +95,8 @@ abstract class AppConsts {
   static const EdgeInsets topPadding20 = EdgeInsets.only(top: 20);
 
 //radius
-  static BorderRadius radius15 = AppConsts.radius15;
-  static BorderRadius radius25=AppConsts.radius25;
+  static BorderRadius radius15 = BorderRadius.circular(15);
+  static BorderRadius radius25=BorderRadius.circular(25);
 
   //styles
   static const TextStyle styleHint14 = TextStyle(

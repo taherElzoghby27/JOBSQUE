@@ -17,32 +17,30 @@ class ItemContactUsWidget extends StatelessWidget {
     return InkWell(
       onTap: () => launchUr(context, url: value),
       borderRadius: AppConsts.radius15,
-      child: AspectRatio(
-        aspectRatio: AppConsts.aspect16on8,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: AppConsts.radius15,
-            border: Border.all(color: AppConsts.neutral200),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(6),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  keyT,
-                  style: AppConsts.styleHint14.copyWith(fontSize: 12),
-                ),
-                FittedBox(
-                  child: Text(
-                    value,
-                    style:
-                        AppConsts.style14.copyWith(color: AppConsts.neutral900),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: AppConsts.radius15,
+          border: Border.all(color: AppConsts.neutral200),
+        ),
+        child: Padding(
+          padding: AppConsts.padding10h8v,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                keyT,
+                style: AppConsts.styleHint14.copyWith(fontSize: 12),
+              ),
+              FittedBox(
+                child: Text(
+                  value,
+                  style: AppConsts.style14.copyWith(
+                    color: AppConsts.neutral900,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

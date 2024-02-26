@@ -15,7 +15,7 @@ class CompanyContentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.w),
+      padding: AppConsts.mainPadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

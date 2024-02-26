@@ -7,6 +7,7 @@ import 'package:jobsque/core/helper/custom_animation.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/network_info/network_info.dart';
 import 'package:jobsque/core/services/local_datasource/hive_db_job.dart';
+import 'package:jobsque/features/complete_profile/presentation/view_models/add_education_cubit/add_education_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/data/repo/edit_profile_repo_impl.dart';
 import 'package:jobsque/service_locator.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
@@ -481,6 +482,11 @@ final router = GoRouter(
               ),
               BlocProvider(
                 create: (_) => EditProfileCubit(
+                  editProfileRepo: getIt.get<EditProfileRepoImpl>(),
+                  profileRepo: getIt.get<ProfileRepoImplementation>(),
+                ),
+              ),BlocProvider(
+                create: (_) => AddEducationCubit(
                   editProfileRepo: getIt.get<EditProfileRepoImpl>(),
                   profileRepo: getIt.get<ProfileRepoImplementation>(),
                 ),

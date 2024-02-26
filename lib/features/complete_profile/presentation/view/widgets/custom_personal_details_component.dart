@@ -56,7 +56,10 @@ class _CustomPersonalDetailsComponentState
                   isLoad = true;
                 } else if (state is SavedSuccess) {
                   isLoad = false;
-                  GoRouter.of(context).pushReplacement(homePath);
+                  GoRouter.of(context).pushReplacement(
+                    homePath,
+                    extra: 0,
+                  );
                 } else if (state is SavedFailure) {
                   isLoad = false;
                   showSnack(
