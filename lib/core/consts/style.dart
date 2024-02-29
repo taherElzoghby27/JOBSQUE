@@ -97,6 +97,8 @@ abstract class AppConsts {
 //radius
   static BorderRadius radius15 = BorderRadius.circular(15);
   static BorderRadius radius25=BorderRadius.circular(25);
+  static BorderRadius radius40=BorderRadius.circular(40);
+  static BorderRadius radius100=BorderRadius.circular(100);
 
   //styles
   static const TextStyle styleHint14 = TextStyle(

@@ -26,7 +26,7 @@ class AuthTopSection extends StatelessWidget {
 
         ///logo
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          padding: AppConsts.mainPadding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jobsque/core/consts/style.dart';
 
-class indicator extends StatelessWidget {
-  const indicator({
+class Indicator extends StatelessWidget {
+  const Indicator({
     super.key,
     required this.color,
     required this.height,
@@ -20,7 +20,7 @@ class indicator extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(30.sp),
+          borderRadius: AppConsts.radius25,
         ),
       ),
     );

@@ -22,16 +22,16 @@ class CustomButtonThreeWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       highlightColor: AppConsts.primary100,
-      borderRadius: BorderRadius.circular(100),
+      borderRadius: AppConsts.radius100,
       child: AspectRatio(
         aspectRatio: AppConsts.aspectRatioButtonAuth,
         child: Container(
           decoration: decoration ??
               AppConsts.borderButton.copyWith(
-                borderRadius: BorderRadius.circular(100),
+                borderRadius: AppConsts.radius100,
               ),
           child: Padding(
-            padding:AppConsts.allPadding8,
+            padding: AppConsts.allPadding8,
             child: Row(
               children: [
                 leading ?? Container(),

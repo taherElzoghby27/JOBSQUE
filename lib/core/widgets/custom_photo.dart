@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jobsque/core/consts/style.dart';
 
 import '../helper/handle_image.dart';
 
@@ -11,7 +11,7 @@ class CustomPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(15.sp),
+      borderRadius: AppConsts.radius15,
       child: HandleImageWidget(image:image!),
     );
   }

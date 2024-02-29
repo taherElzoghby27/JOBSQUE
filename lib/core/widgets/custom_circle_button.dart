@@ -21,11 +21,11 @@ class CustomCircleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(25.sp),
+      borderRadius: AppConsts.radius25,
       child: Container(
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(25.sp),
+          borderRadius: AppConsts.radius25,
           border: Border.all(color: color ?? AppConsts.neutral300),
         ),
         child: Padding(

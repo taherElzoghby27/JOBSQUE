@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class CustomDivider extends StatelessWidget {
@@ -8,7 +7,7 @@ class CustomDivider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      padding: AppConsts.mainPadding,
       child: AspectRatio(
         aspectRatio: AppConsts.aspect300on1,
         child: Container(color: AppConsts.neutral300),

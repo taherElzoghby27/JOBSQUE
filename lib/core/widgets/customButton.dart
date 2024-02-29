@@ -22,19 +22,16 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(15.sp),
+      borderRadius: AppConsts.radius25,
       child: Container(
         decoration: BoxDecoration(
           color: background,
-          borderRadius: BorderRadius.circular(25.sp),
+          borderRadius: AppConsts.radius25,
           //border: isBorder ? Border.all(color: AppConsts.grey) : null,
           //boxShadow: AppConsts.boxShadows,
         ),
         child: Center(
-          child: Text(
-            text,
-            style: styleText,
-          ),
+          child: Text(text, style: styleText),
         ),
       ),
     );
