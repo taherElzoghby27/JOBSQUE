@@ -23,7 +23,10 @@ class SuggestedOrRecentJopBody extends StatelessWidget {
 
         //custom appBar
         CustomAppBar(
-          leadingOnTap: () => GoRouter.of(context).pushReplacement(homePath),
+          leadingOnTap: () => GoRouter.of(context).pushReplacement(
+            homePath,
+            extra: 0,
+          ),
           title: type == StringsEn.suggestedJob
               ? StringsEn.suggestedJob
               : StringsEn.recentJob,
