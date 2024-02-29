@@ -26,44 +26,21 @@ class _CustomBarAppliedJobState extends State<CustomBarAppliedJob> {
         child: Container(
           decoration: AppConsts.barDecoration,
           child: Row(
-            children: [
-              Expanded(
+            children: List.generate(
+              3,
+              (index) => Expanded(
                 child: BarComponent(
                   title: StringsEn.active,
-                  color: currentPage == 0
+                  color: currentPage == index
                       ? AppConsts.primary900
                       : AppConsts.neutral200,
                   onTap: () {
-                    setState(() => currentPage = 0);
+                    setState(() => currentPage = index);
                     bloc.getAppliedJobs();
                   },
                 ),
               ),
-              Expanded(
-                child: BarComponent(
-                  title: StringsEn.rejected,
-                  color: currentPage == 1
-                      ? AppConsts.primary900
-                      : AppConsts.neutral200,
-                  onTap: () {
-                    setState(() => currentPage = 1);
-                    bloc.getRejectedJobs();
-                  },
-                ),
-              ),
-              Expanded(
-                child: BarComponent(
-                  title: StringsEn.notComplete,
-                  color: currentPage == 2
-                      ? AppConsts.primary900
-                      : AppConsts.neutral200,
-                  onTap: () {
-                    setState(() => currentPage = 2);
-                    bloc.getNotCompleteJobs();
-                  },
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),
