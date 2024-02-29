@@ -1,28 +1,14 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:jobsque/core/consts/assets.dart';
-import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/core/helper/custom_snack.dart';
-import 'package:jobsque/core/widgets/small_loading_widget.dart';
 import 'package:jobsque/features/auth/presentation/view/widgets/work_interested_in_top_section.dart';
-import 'package:jobsque/features/auth/presentation/view_model/work_location_cubit/work_location_cubit.dart';
 
 import '../../../../../core/consts/strings.dart';
-import '../../../../../core/widgets/customButton.dart';
 import 'all_countries.dart';
+import 'button_work_location_bloc_consumer.dart';
 import 'home_or_office_widget.dart';
 
-class WorkLocationBody extends StatefulWidget {
+class WorkLocationBody extends StatelessWidget {
   const WorkLocationBody({super.key});
-
-  @override
-  State<WorkLocationBody> createState() => _WorkLocationBodyState();
-}
-
-class _WorkLocationBodyState extends State<WorkLocationBody> {
-  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -58,43 +44,7 @@ class _WorkLocationBodyState extends State<WorkLocationBody> {
           ///next
           AspectRatio(
             aspectRatio: AppConsts.aspectRatioButtonAuth,
-            child: BlocConsumer<WorkLocationCubit, WorkLocationState>(
-              listener: (context, state) {
-                if (state is InterestedInWorkLoading) {
-                  loading = true;
-                } else if (state is InterestedInWorkSuccess) {
-                  loading = false;
-                  GoRouter.of(context).pushReplacement(
-                    successfullyPagePath,
-                    extra: {
-                      StringsEn.icon: AppAssets.user,
-                      StringsEn.title: StringsEn.yourAccountHasBeenSetUp,
-                      StringsEn.subTitle: StringsEn.weHaveCustomizedFeeds,
-                      StringsEn.labelButton: StringsEn.getStarted,
-                      StringsEn.path: homePath,
-                    },
-                  );
-                } else if (state is InterestedInWorkFailure) {
-                  showSnack(
-                    context,
-                    message: StringsEn.whereAreYouLocationerror,
-                  );
-                }
-              },
-              builder: (context, state) {
-                return Visibility(
-                  visible: !loading,
-                  replacement: const LoadingWidget(),
-                  child: CustomButton(
-                    text: StringsEn.next,
-                    onTap: () async {
-                      await BlocProvider.of<WorkLocationCubit>(context)
-                          .handleNextAction();
-                    },
-                  ),
-                );
-              },
-            ),
+            child: ButtonWorkLocationBlocConsumer(),
           ),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
@@ -16,7 +15,7 @@ class CreatePassBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.w),
+      padding: AppConsts.mainPadding,
       child: Form(
         //key: _formKey,
         child: ListView(
@@ -27,9 +26,7 @@ class CreatePassBody extends StatelessWidget {
               subTitle: StringsEn.setYourNewPass,
               widget: IconButton(
                 onPressed: () => GoRouter.of(context).pushReplacement(authPath),
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                ),
+                icon: Icon(Icons.arrow_back_ios),
               ),
             ),
 
