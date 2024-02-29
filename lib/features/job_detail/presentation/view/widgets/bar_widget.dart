@@ -22,35 +22,18 @@ class BarWidgetJobDetail extends StatelessWidget {
             child: Container(
               decoration: AppConsts.barDecoration,
               child: Row(
-                children: [
-                  Expanded(
+                children: List.generate(
+                  3,
+                  (int index) => Expanded(
                     child: BarComponent(
                       title: StringsEn.desicription,
-                      color: current == 0
+                      color: current == index
                           ? AppConsts.primary900
                           : AppConsts.neutral200,
-                      onTap: () => bloc.change(index: 0),
+                      onTap: () => bloc.change(index: index),
                     ),
                   ),
-                  Expanded(
-                    child: BarComponent(
-                      title: StringsEn.company,
-                      color: current == 1
-                          ? AppConsts.primary900
-                          : AppConsts.neutral200,
-                      onTap: () => bloc.change(index: 1),
-                    ),
-                  ),
-                  Expanded(
-                    child: BarComponent(
-                      title: StringsEn.people,
-                      color: current == 2
-                          ? AppConsts.primary900
-                          : AppConsts.neutral200,
-                      onTap: () => bloc.change(index: 2),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),

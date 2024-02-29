@@ -19,7 +19,6 @@ class DescriptionCompanyPeopleSectionJopDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return BlocBuilder<JobDetailsCubit, JobDetailsState>(
       builder: (context, state) {
         JobDetailsCubit bloc = BlocProvider.of<JobDetailsCubit>(context);
@@ -33,7 +32,7 @@ class DescriptionCompanyPeopleSectionJopDetail extends StatelessWidget {
                 : current == 1
                     ? CompanyContentWidget(job: job)
                     : PeopleContentWidget(job: job),
-            const AspectRatio(aspectRatio: AppConsts.aspect16on2),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           ],
         );
       },
