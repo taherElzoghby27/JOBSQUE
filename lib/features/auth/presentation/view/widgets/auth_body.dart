@@ -96,6 +96,9 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                       userNameChange: (String? value) => name = value,
                       emailChange: (String? value) => email = value,
                       passwordChange: (String? value) => password = value,
+                      onTapForgetPassword: () => setState(
+                        () => _authMode = AuthMode.ResetPassword,
+                      ),
                     ),
                   );
                 },

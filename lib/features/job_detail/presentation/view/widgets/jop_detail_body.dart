@@ -69,7 +69,7 @@ class JopDetailBody extends StatelessWidget {
               width: size.width,
               child: Center(
                 child: Padding(
-                  padding: EdgeInsets.all(8.0.sp),
+                  padding: AppConsts.allPadding8,
                   child: AspectRatio(
                     aspectRatio: AppConsts.aspectRatioButtonAuth.sp,
                     child: CustomButton(

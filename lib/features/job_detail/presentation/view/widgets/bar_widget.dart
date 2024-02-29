@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/bar_component.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/job_details_cubit/job_details_cubit.dart';
@@ -17,7 +16,7 @@ class BarWidgetJobDetail extends StatelessWidget {
         JobDetailsCubit bloc = BlocProvider.of<JobDetailsCubit>(context);
         int current = bloc.current;
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          padding: AppConsts.mainPadding,
           child: AspectRatio(
             aspectRatio: AppConsts.aspect16on2,
             child: Container(

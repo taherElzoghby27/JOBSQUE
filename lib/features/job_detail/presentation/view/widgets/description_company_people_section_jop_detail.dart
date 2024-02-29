@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/bar_widget.dart';
 import 'package:jobsque/features/job_detail/presentation/view/widgets/people_content_widget.dart';
@@ -33,7 +33,7 @@ class DescriptionCompanyPeopleSectionJopDetail extends StatelessWidget {
                 : current == 1
                     ? CompanyContentWidget(job: job)
                     : PeopleContentWidget(job: job),
-            SizedBox(height: size.height * .12.h),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on2),
           ],
         );
       },

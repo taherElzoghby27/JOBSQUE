@@ -15,12 +15,14 @@ class FieldsAuth extends StatefulWidget {
     required this.userNameChange,
     required this.emailChange,
     required this.passwordChange,
+    required this.onTapForgetPassword,
   });
 
   AuthMode authMode;
   void Function(String?) userNameChange;
   void Function(String?) emailChange;
   void Function(String?) passwordChange;
+  void Function() onTapForgetPassword;
 
   @override
   State<FieldsAuth> createState() => _FieldsAuthState();
@@ -77,11 +79,7 @@ class _FieldsAuthState extends State<FieldsAuth> {
               ?
 
               ///remeber me
-              RemeberWidget(
-                  onTap: () => setState(
-                    () => widget.authMode = AuthMode.ResetPassword,
-                  ),
-                )
+              RemeberWidget(onTap: widget.onTapForgetPassword)
               : Container(),
         ],
       ),
