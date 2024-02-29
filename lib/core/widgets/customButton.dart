@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 
 class CustomButton extends StatelessWidget {
@@ -22,13 +21,12 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      overlayColor: MaterialStateProperty.all(AppConsts.primary200),
       borderRadius: AppConsts.radius25,
       child: Container(
         decoration: BoxDecoration(
-          color: background,
           borderRadius: AppConsts.radius25,
-          //border: isBorder ? Border.all(color: AppConsts.grey) : null,
-          //boxShadow: AppConsts.boxShadows,
+          boxShadow: AppConsts.buttonShadow,
         ),
         child: Center(
           child: Text(text, style: styleText),

@@ -15,10 +15,10 @@ class TypeJopComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 6.w),
+      padding: AppConsts.allPadding8,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30.sp),
+          borderRadius:AppConsts.radius25,
           color: color == AppConsts.neutral100
               ? AppConsts.primary100.withOpacity(.2)
               : AppConsts.primary100,

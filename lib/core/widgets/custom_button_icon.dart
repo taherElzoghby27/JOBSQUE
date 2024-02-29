@@ -28,10 +28,7 @@ class CustomButtonIcon extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              icon,
-              label,
-            ],
+            children: [icon, label],
           ),
         ),
       ),

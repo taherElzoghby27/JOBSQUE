@@ -93,12 +93,14 @@ abstract class AppConsts {
   static const EdgeInsets verticalPadding10 =
       EdgeInsets.symmetric(vertical: 10);
   static const EdgeInsets topPadding20 = EdgeInsets.only(top: 20);
+  static const EdgeInsets paddH40 = EdgeInsets.symmetric(horizontal: 40);
 
 //radius
+  static BorderRadius radius8 = BorderRadius.circular(8);
   static BorderRadius radius15 = BorderRadius.circular(15);
-  static BorderRadius radius25=BorderRadius.circular(25);
-  static BorderRadius radius40=BorderRadius.circular(40);
-  static BorderRadius radius100=BorderRadius.circular(100);
+  static BorderRadius radius25 = BorderRadius.circular(25);
+  static BorderRadius radius40 = BorderRadius.circular(40);
+  static BorderRadius radius100 = BorderRadius.circular(100);
 
   //styles
   static const TextStyle styleHint14 = TextStyle(
@@ -255,4 +257,10 @@ abstract class AppConsts {
     color: AppConsts.neutral400,
     borderRadius: BorderRadius.circular(16),
   );
+  static const List<BoxShadow> buttonShadow = [
+    BoxShadow(
+      color: primary500,
+      offset: Offset(0, 1.5),
+    ),
+  ];
 }

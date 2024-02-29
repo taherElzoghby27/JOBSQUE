@@ -18,11 +18,10 @@ class AuthTopSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const AspectRatio(aspectRatio:AppConsts.aspect16on1),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
         ///logo
         Padding(
@@ -35,7 +34,7 @@ class AuthTopSection extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: size.height * .03.h),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
         ///create account title
         Column(
@@ -47,14 +46,14 @@ class AuthTopSection extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(height: size.height * .01.h),
+            const AspectRatio(aspectRatio: AppConsts.aspect40on1),
 
             ///create account sub title
             Text(subTitle, style: AppConsts.style16),
           ],
         ),
 
-        SizedBox(height: size.height * .055.h),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on2),
       ],
     );
   }

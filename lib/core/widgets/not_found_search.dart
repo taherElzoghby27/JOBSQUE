@@ -20,7 +20,7 @@ class NotFoundSearch extends StatelessWidget {
         Text(StringsEn.searchNotFound, style: AppConsts.style24),
         const AspectRatio(aspectRatio:AppConsts.aspect16on1),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40.w),
+          padding: AppConsts.paddH40,
           child: Text(
             StringsEn.trySearchingWithDifferent,
             style: AppConsts.style16,

@@ -70,15 +70,15 @@ class CustomTextFormField extends StatelessWidget {
         suffixIcon: suffixIcon,
         enabledBorder: border ??
             AppConsts.normalBorderField.copyWith(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: AppConsts.radius8,
             ),
         focusedBorder: border ??
             AppConsts.normalBorderField.copyWith(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: AppConsts.radius8,
             ),
         focusedErrorBorder: border ??
             AppConsts.normalBorderField.copyWith(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: AppConsts.radius8,
             ),
         errorBorder: AppConsts.errorBorderField,
       ),
