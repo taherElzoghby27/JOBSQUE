@@ -30,9 +30,7 @@ class JopDetailBody extends StatelessWidget {
                 return [
                   SliverAppBar(
                     automaticallyImplyLeading: false,
-                    expandedHeight: maxScreenHeight > AppConsts.halfScreenHeight
-                        ? size.height * .35.h
-                        : size.height * .7.h,
+                    expandedHeight: MediaQuery.sizeOf(context).height * .35,
                     flexibleSpace: FlexibleSpaceBar(
                       stretchModes: [StretchMode.blurBackground],
                       background: ListView(
