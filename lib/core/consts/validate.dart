@@ -1,13 +1,17 @@
-bool validEmail(String? value) {
+bool isEmailValid(String? email) {
+  if (email == null || email.isEmpty) {
+    return false;
+  }
+
   RegExp pattern = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-  String input = value!;
-  bool isMatch = pattern.hasMatch(input);
-  return isMatch;
+  return pattern.hasMatch(email);
 }
 
-bool validPassword(String? value) {
+bool isPasswordValid(String? password) {
+  if (password == null || password.isEmpty) {
+    return false;
+  }
+
   RegExp pattern = RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$');
-  String input = value!;
-  bool isMatch = pattern.hasMatch(input);
-  return isMatch;
+  return pattern.hasMatch(password);
 }

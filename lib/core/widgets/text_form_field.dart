@@ -52,15 +52,12 @@ class CustomTextFormField extends StatelessWidget {
       focusNode: focusNode,
       validator: validator ??
           (value) {
-            if (value!.isEmpty) {
-              return StringsEn.fieldRequired;
-            }
-            if (hint == StringsEn.email &&! validEmail(value)) {
+            if (hint == StringsEn.email && !isEmailValid(value)) {
               return StringsEn.enterValidEmail;
-            }
-
-            if (hint == StringsEn.password &&! validPassword(value)) {
-                return StringsEn.warningPass;
+            } else if (hint == StringsEn.password && !isPasswordValid(value)) {
+              return StringsEn.warningPass;
+            } else if (value!.isEmpty) {
+              return StringsEn.fieldRequired;
             }
             return null;
           },
