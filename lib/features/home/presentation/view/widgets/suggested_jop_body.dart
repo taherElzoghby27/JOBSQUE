@@ -33,7 +33,7 @@ class SuggestedOrRecentJopBody extends StatelessWidget {
           trailingWidget: Container(),
         ),
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-        //suggested jops
+        //suggested jobs
         Expanded(
           child: const SectionSuggestedOrRecentJopsSmartRefresh(),
         ),

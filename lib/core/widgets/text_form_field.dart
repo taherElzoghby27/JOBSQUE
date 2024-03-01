@@ -1,7 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
+
+import '../consts/validate.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -54,16 +55,19 @@ class CustomTextFormField extends StatelessWidget {
             if (value!.isEmpty) {
               return StringsEn.fieldRequired;
             }
-            if (hint == StringsEn.password) {
-              if (value.length < 7) {
+            if (hint == StringsEn.email &&! validEmail(value)) {
+              return StringsEn.enterValidEmail;
+            }
+
+            if (hint == StringsEn.password &&! validPassword(value)) {
                 return StringsEn.warningPass;
-              }
             }
             return null;
           },
       onFieldSubmitted: onSaved,
       onChanged: onChanged,
       decoration: InputDecoration(
+        errorMaxLines: 2,
         hintText: hint,
         hintStyle: AppConsts.styleHint14,
         prefixIcon: perfixIcon,

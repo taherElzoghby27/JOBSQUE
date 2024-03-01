@@ -11,8 +11,9 @@ abstract class StringsEn {
   static const String applyUser = 'apply user';
   static const String status = 'status';
   static const String skip = 'Skip';
-  static const String warningPass = 'Password must be at least 8 characters';
+  static const String warningPass = 'Password must be minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
   static const String enterValid = 'Enter valid ';
+  static const String enterValidEmail = 'Enter valid Email';
   static const String fieldRequired = 'This Field Required.';
   static const String hi = 'Hi, ';
   static const String titleBoard1 = 'Find a job, and ';
