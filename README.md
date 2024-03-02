@@ -43,4 +43,4 @@ Packages : flutter_screenutil ,
   <br>
   
 ## Setup
-install all packages by flutter pub get and add images in assets folder in your pc/laptop.
+install all packages by flutter pub get .
