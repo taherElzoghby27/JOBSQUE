@@ -13,7 +13,7 @@ Solid principles <br>
 Backend: Api.<br>
 Local database: Hive.<br> 
 simple Local database: shared prefernces.<br>
-Animation
+Animation <br>
 Packages : flutter_screenutil ,
   internet_connection_checker ,
   shared_preferences ,
