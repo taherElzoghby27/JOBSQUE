@@ -4,11 +4,12 @@
 
 ## Technologies
 Flutter<br>
-Firebase<br>
+API<br>
 ## key Features
 State management: Bloc.<br>
 Architecture Pattern : MVVM <br>
 Design Pattern : repository patterns<br>
+Solid principles <br>
 Backend: Api.<br>
 Local database:Hive.<br> 
 simple Local database: shared prefernces.<br>
