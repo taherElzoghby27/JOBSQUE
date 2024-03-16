@@ -16,7 +16,7 @@ class EditProfileBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: AppConsts.mainPadding,
-      child: Column(
+      child: ListView(
         children: [
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           //custom appBar

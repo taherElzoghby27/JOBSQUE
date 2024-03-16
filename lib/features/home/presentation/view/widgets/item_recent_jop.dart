@@ -20,7 +20,7 @@ class ItemRecentJop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: AppConsts.aspect13on5,
+      aspectRatio: AppConsts.aspect13on6,
       child: InkWell(
         onTap: onTap,
         child: Container(
