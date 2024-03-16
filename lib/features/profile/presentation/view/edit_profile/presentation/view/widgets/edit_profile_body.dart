@@ -9,14 +9,9 @@ import '../../../../../../../../core/consts/strings.dart';
 import '../../../../../../../../core/widgets/custom_app_bar.dart';
 import 'section_button_edit_profile.dart';
 
-class EditProfileBody extends StatefulWidget {
+class EditProfileBody extends StatelessWidget {
   const EditProfileBody({super.key});
 
-  @override
-  State<EditProfileBody> createState() => _EditProfileBodyState();
-}
-
-class _EditProfileBodyState extends State<EditProfileBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,7 +19,6 @@ class _EditProfileBodyState extends State<EditProfileBody> {
       child: Column(
         children: [
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-
           //custom appBar
           CustomAppBar(
             leadingOnTap: () => GoRouter.of(context).pushReplacement(
