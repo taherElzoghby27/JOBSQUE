@@ -1,15 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:jobsque/core/consts/routesPage.dart';
-import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/core/widgets/bookmark_widget.dart';
-import 'package:jobsque/core/widgets/customButton.dart';
-import 'package:jobsque/core/widgets/type_jop_component.dart';
 
-import '../../../../../core/widgets/custom_photo.dart';
 import 'lower_item_suggested_job.dart';
 import 'middle_item_suggested_job.dart';
 import 'upper_item_suggested_job.dart';
