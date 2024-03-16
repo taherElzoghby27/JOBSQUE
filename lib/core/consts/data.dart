@@ -166,3 +166,8 @@ List<Map<String, dynamic>> accountAccess = [
     StringsEn.extra: '',
   },
 ];
+const List<String> statusAppliedJobs = [
+  'Completed',
+  'Rejected',
+  'Not Completed',
+];
