@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/features/saved/presentation/view/widgets/saved_body.dart';
+import 'package:jobsque/features/saved/presentation/view_models/saved_cubit/saved_cubit.dart';
 
 class SavedView extends StatefulWidget {
   const SavedView({super.key});

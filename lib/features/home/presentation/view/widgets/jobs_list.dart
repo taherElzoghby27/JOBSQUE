@@ -19,7 +19,7 @@ class JobsList extends StatefulWidget {
 
 class _JobsListState extends State<JobsList> {
   final GlobalKey<AnimatedListState> keyList = GlobalKey<AnimatedListState>();
-  List<ItemSuggestedJop> jobsWidget = [];
+  List<Widget> jobsWidget = [];
   List<Job> jobs = [];
 
   @override

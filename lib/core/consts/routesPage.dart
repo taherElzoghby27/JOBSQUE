@@ -9,6 +9,7 @@ import 'package:jobsque/core/network_info/network_info.dart';
 import 'package:jobsque/core/services/local_datasource/hive_db_job.dart';
 import 'package:jobsque/features/complete_profile/presentation/view_models/add_education_cubit/add_education_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/data/repo/edit_profile_repo_impl.dart';
+import 'package:jobsque/features/saved/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/service_locator.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
 import 'package:jobsque/features/applied/presentation/view_models/applied_job_cubit/applied_job_cubit.dart';
@@ -20,7 +21,6 @@ import 'package:jobsque/features/complete_profile/presentation/view/complete_pro
 import 'package:jobsque/features/complete_profile/presentation/view_models/add_experience_cubit/add_experience_cubit.dart';
 import 'package:jobsque/features/help_center/presentation/view/help_center_view.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
-import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/features/job_detail/data/repo/apply_job_repo_implementation.dart';
 import 'package:jobsque/features/job_detail/presentation/view/apply_jop_view.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/bio_data_cubit/bio_data_cubit.dart';

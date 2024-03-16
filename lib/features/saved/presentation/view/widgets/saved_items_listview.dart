@@ -5,7 +5,6 @@ import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/share.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/widgets/custom_divider.dart';
-import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/features/saved/presentation/view/widgets/item_saved_jop.dart';
 
 import 'package:flutter_svg/svg.dart';
@@ -13,6 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
+import 'package:jobsque/features/saved/presentation/view_models/saved_cubit/saved_cubit.dart';
 
 import '../../../../../core/widgets/custom_button_three_widget.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
-import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
+import 'package:jobsque/features/saved/presentation/view_models/saved_cubit/saved_cubit.dart';
 
 import '../consts/style.dart';
 

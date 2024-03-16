@@ -7,8 +7,8 @@ import 'package:jobsque/core/widgets/error_widget.dart';
 import 'package:jobsque/core/widgets/fading_list_view.dart';
 import 'package:jobsque/core/widgets/loading_widget_jobs_suggested_recent_body.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/loading_listview_fading.dart';
-import 'package:jobsque/features/home/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/features/saved/presentation/view/widgets/saved_jobs_widget.dart';
+import 'package:jobsque/features/saved/presentation/view_models/saved_cubit/saved_cubit.dart';
 
 import '../../../../../core/widgets/empty_widget.dart';
 
