@@ -76,11 +76,14 @@ class EditProfileCubit extends Cubit<EditProfileState> {
         bio: controllerBio.text,
         address: controllerAddress.text,
         mobile: controllerMobileNumber.text,
-        interestedWork: CacheHelper.getData(
-          key: StringsEn.whatTypeOfWorkInterestedKey,
-        ),
-        remotePlace: CacheHelper.getData(key: StringsEn.workLocationK),
-        offlinePlace: CacheHelper.getData(key: StringsEn.workLocationK),
+        interestedWork: success.profile?.interestedWork ??
+            CacheHelper.getData(
+              key: StringsEn.whatTypeOfWorkInterestedKey,
+            ),
+        remotePlace: success.profile?.remotePlace ??
+            CacheHelper.getData(key: StringsEn.workLocationK),
+        offlinePlace: success.profile?.remotePlace ??
+            CacheHelper.getData(key: StringsEn.workLocationK),
         education: success.profile!.education == null ||
                 success.profile!.education!.isEmpty
             ? ''

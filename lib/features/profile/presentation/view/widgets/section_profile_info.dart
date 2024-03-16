@@ -13,6 +13,7 @@ import 'package:jobsque/features/profile/presentation/view/widgets/section_info_
 import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
 
 import '../../../../../core/consts/style.dart';
+import '../../../../../core/helper/dialog_help.dart';
 
 class SectionProfileInfo extends StatelessWidget {
   const SectionProfileInfo({
@@ -28,6 +29,18 @@ class SectionProfileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    trailingOnTap() async {
+      customDialog(
+        title: StringsEn.warningSignOut,
+        context: ctx,
+        onTapSuccess: () async {
+          await BlocProvider.of<ProfileCubit>(context).signOut()
+              ? GoRouter.of(ctx).pushReplacement(splashPath)
+              : () {};
+        },
+        onTapCancel: () => GoRouter.of(context).pop(),
+      );
+    }
 
     return Column(
       children: [
@@ -55,11 +68,7 @@ class SectionProfileInfo extends StatelessWidget {
                         extra: 0,
                       ),
                       title: StringsEn.profile,
-                      trailingOnTap: () async {
-                        await BlocProvider.of<ProfileCubit>(context).signOut()
-                            ? GoRouter.of(ctx).pushReplacement(splashPath)
-                            : () {};
-                      },
+                      trailingOnTap: trailingOnTap,
                       trailingWidget: Icon(
                         Icons.logout,
                         color: AppConsts.danger500,

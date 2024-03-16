@@ -187,6 +187,9 @@ abstract class StringsEn {
   static const String someThingError = 'something error';
   static const String fieldsNotComplted = 'fields Not Completed';
   static const String signOutSuccess = 'Sign out Successful';
+  static const String warningSignOut = 'Are you sure you want to sign out?';
+  static const String yes = 'Yes';
+  static const String no = 'No';
   static const String unKnown = 'unknown';
   static const String cvpdf = 'CV.pdf';
   static const String mb = 'mb';

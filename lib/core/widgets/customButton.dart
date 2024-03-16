@@ -5,7 +5,7 @@ class CustomButton extends StatelessWidget {
   const CustomButton({
     super.key,
     required this.text,
-    required this.onTap,
+    this.onTap,
     this.background = AppConsts.primary500,
     this.isBorder = false,
     this.styleText = AppConsts.style16White,
@@ -14,7 +14,7 @@ class CustomButton extends StatelessWidget {
   final String text;
   final Color background;
   final bool isBorder;
-  final Function() onTap;
+  final Function()? onTap;
   final TextStyle styleText;
 
   @override

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class AppConsts {
+  static const Color white = Colors.white;
   static const Color neutral900 = Color.fromRGBO(17, 24, 39, 1);
   static const Color neutral800 = Color.fromRGBO(31, 41, 55, 1);
   static const Color neutral700 = Color.fromRGBO(55, 65, 81, 1);
