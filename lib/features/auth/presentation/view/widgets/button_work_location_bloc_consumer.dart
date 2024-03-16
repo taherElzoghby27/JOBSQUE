@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 
 import '../../../../../core/consts/assets.dart';
@@ -43,7 +44,8 @@ class _ButtonWorkLocationBlocConsumerState
         } else if (state is InterestedInWorkFailure) {
           showSnack(
             context,
-            message: StringsEn.whereAreYouLocationerror,
+            message: StringsEn.whereAreYouLocationError,
+            background: AppConsts.danger500,
           );
         }
       },

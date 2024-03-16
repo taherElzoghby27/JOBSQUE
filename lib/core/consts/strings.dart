@@ -11,7 +11,8 @@ abstract class StringsEn {
   static const String applyUser = 'apply user';
   static const String status = 'status';
   static const String skip = 'Skip';
-  static const String warningPass = 'Password must be minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
+  static const String warningPass =
+      'Password must be minimum eight characters, at least one uppercase letter, one lowercase letter and one number';
   static const String enterValid = 'Enter valid ';
   static const String enterValidEmail = 'Enter valid Email';
   static const String fieldRequired = 'This Field Required.';
@@ -61,7 +62,7 @@ abstract class StringsEn {
   static const String management = 'Management';
   static const String research = 'Research and Analytics';
   static const String whereAreYouLocation = 'Where are you prefefred Location?';
-  static const String whereAreYouLocationerror =
+  static const String whereAreYouLocationError =
       'Enter, Your prefefred Location....';
   static const String letUsKnowWhereIsTheWork =
       'Let us know, where is the work location you want at this time, so we can adjust it.';
@@ -342,6 +343,7 @@ abstract class StringsEn {
   static const String completed = 'Completed';
   static const String completeYourProfile =
       'Complete your profile before applying for a job';
+  static const String selectCountries = 'Please, Select Countries';
   static const String personalDetails = 'Personal Details';
   static const String fullNameEmail =
       'Full name, email, phone number, and your address';

@@ -52,12 +52,11 @@ class WorkLocationCubit extends Cubit<WorkLocationState> {
       workLocation.values.any((status) => status);
 
 //handle Next action
-  Future<bool> handleNextAction() async {
+  handleNextAction() async {
     if (hasSelectedWorkInterest) {
       await saveWorkInterests();
-      return true;
     } else {
-      return false;
+      emit(InterestedInWorkFailure());
     }
   }
 

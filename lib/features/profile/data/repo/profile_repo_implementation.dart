@@ -30,7 +30,9 @@ class ProfileRepoImplementation extends ProfileRepo {
       );
 
       UserProfilePortfolioModel profileUser =
-          UserProfilePortfolioModel.fromJson(result["data"]);
+          UserProfilePortfolioModel.fromJson(
+        result["data"],
+      );
       return Right(profileUser);
     } catch (error) {
       if (error is DioException) {

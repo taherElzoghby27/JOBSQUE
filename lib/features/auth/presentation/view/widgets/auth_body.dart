@@ -196,20 +196,22 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
 
   //navigate to another page
   navigateToAnotherPage() async {
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(Duration(milliseconds: 350));
     GoRouter.of(context).pushReplacement(
       _authMode == AuthMode.ResetPassword
           ? createPassPath
           : _authMode == AuthMode.Login
               ? homePath
               : interestedInWorkPath,
-      extra: {
-        StringsEn.icon: AppAssets.resetPassIcon,
-        StringsEn.title: StringsEn.checkYourEmail,
-        StringsEn.subTitle: StringsEn.weHaveSentAresetPassword,
-        StringsEn.labelButton: StringsEn.openEmailApp,
-        StringsEn.path: createPassPath,
-      },
+      extra: _authMode == AuthMode.Login
+          ? 0
+          : {
+              StringsEn.icon: AppAssets.resetPassIcon,
+              StringsEn.title: StringsEn.checkYourEmail,
+              StringsEn.subTitle: StringsEn.weHaveSentAresetPassword,
+              StringsEn.labelButton: StringsEn.openEmailApp,
+              StringsEn.path: createPassPath,
+            },
     );
   }
 }
