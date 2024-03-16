@@ -28,6 +28,7 @@ class TypeJopComponent extends StatelessWidget {
           child: Center(
             child: Text(
               label,
+              textAlign: TextAlign.center,
               style: AppConsts.styleHint14.copyWith(
                 color: color,
                 fontSize: 12,
