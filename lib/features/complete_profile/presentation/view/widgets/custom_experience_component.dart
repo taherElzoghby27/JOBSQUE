@@ -39,12 +39,13 @@ class _CustomExperienceComponentState extends State<CustomExperienceComponent> {
       firstDate: DateTime(2010),
       lastDate: DateTime(2025),
       builder: (context, widget) => Theme(
-          data: ThemeData.light().copyWith(
-            colorScheme: const ColorScheme.light().copyWith(
-              primary: AppConsts.primary500,
-            ),
+        data: ThemeData.light().copyWith(
+          colorScheme: const ColorScheme.light().copyWith(
+            primary: AppConsts.primary500,
           ),
-          child: widget!),
+        ),
+        child: widget!,
+      ),
     ).then(
       (value) {
         if (value == null) {

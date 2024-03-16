@@ -235,6 +235,7 @@ abstract class StringsEn {
   static const String deleteConversion = 'Delete conversation';
   static const String icon = 'icon';
   static const String title = 'title';
+  static const String degree = 'Degree';
   static const String trailing = 'trailing';
   static const String leading = 'leading';
   static const String subTitle = 'subTitle';

@@ -5,6 +5,8 @@ import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
 import 'package:jobsque/features/complete_profile/presentation/view_models/add_education_cubit/add_education_cubit.dart';
 
+import 'bloc_consumer_date_fields_education.dart';
+
 class FieldsEducationPage extends StatefulWidget {
   const FieldsEducationPage({super.key});
 
@@ -33,13 +35,14 @@ class _FieldsEducationPageState extends State<FieldsEducationPage> {
           controller: bloc.university,
         ),
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-        //title
+        //degree
         CustomFilterTextField(
-          label: StringsEn.title,
-          hint: StringsEn.title,
-          controller: bloc.title,
+          label: StringsEn.degree,
+          hint: StringsEn.degree,
+          controller: bloc.degree,
         ),
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+        BlocConsumerDateFieldsEducation(),
       ],
     );
   }

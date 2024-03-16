@@ -37,22 +37,9 @@ class ProfileCubit extends Cubit<ProfileState> {
         emit(GetProfileFailure(message: failure.message));
       },
       (userProfile) {
-        saveDataInServiceLocator(userProfile);
         //emit success
         emit(GetProfileSuccess(userProfileModel: userProfile));
       },
-    );
-  }
-
-  void saveDataInServiceLocator(UserProfilePortfolioModel userProfile) {
-    //unregister model
-    getIt.unregister<UserProfilePortfolioModel>();
-    //save model in service locator
-    getIt.registerSingleton<UserProfilePortfolioModel>(
-      UserProfilePortfolioModel(
-        portfolio: userProfile.portfolio,
-        profile: userProfile.profile,
-      ),
     );
   }
 }

@@ -7,14 +7,14 @@ import 'package:jobsque/features/complete_profile/presentation/view_models/add_e
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/consts/style.dart';
 
-class BlocConsumerDateFields extends StatefulWidget {
-  const BlocConsumerDateFields({super.key});
+class BlocConsumerDateFieldsEducation extends StatefulWidget {
+  const BlocConsumerDateFieldsEducation({super.key});
 
   @override
-  State<BlocConsumerDateFields> createState() => _BlocConsumerDateFieldsState();
+  State<BlocConsumerDateFieldsEducation> createState() => _BlocConsumerDateFieldsEducationState();
 }
 
-class _BlocConsumerDateFieldsState extends State<BlocConsumerDateFields> {
+class _BlocConsumerDateFieldsEducationState extends State<BlocConsumerDateFieldsEducation> {
   late AddEducationCubit bloc;
   DateTime? startYear;
   DateTime? endYear;

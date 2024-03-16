@@ -11,7 +11,6 @@ import 'package:jobsque/core/models/profile_model.dart';
 import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/data/repo/edit_profile_repo.dart';
-import 'package:jobsque/service_locator.dart';
 
 part 'edit_profile_state.dart';
 
@@ -54,41 +53,50 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   save() async {
     if (checkFieldsFullOrNot && checkPhoneNumber) {
       emit(SavedLoading());
-      UserProfilePortfolioModel profile =
-          getIt.get<UserProfilePortfolioModel>();
-      //edit profile
-      Either<FailureServ, ProfileModel> editProfileResult =
-          await editProfileRepo.editProfile(
-        profileModel: ProfileModel(
-          bio: controllerBio.text,
-          address: controllerAddress.text,
-          mobile: controllerMobileNumber.text,
-          interestedWork: CacheHelper.getData(
-            key: StringsEn.whatTypeOfWorkInterestedKey,
-          ),
-          remotePlace: CacheHelper.getData(key: StringsEn.workLocationK),
-          offlinePlace: CacheHelper.getData(key: StringsEn.workLocationK),
-          education: profile.profile!.education == null ||
-                  profile.profile!.education!.isEmpty
-              ? ''
-              : profile.profile!.education!,
-          personalDetailed: '',
-        ),
-      );
-      Future.delayed(Duration(seconds: 2));
-      editProfileResult.fold(
-        (failure) => emit(SavedFailure(message: failure.message)),
-        (profile) async {
-          await CacheHelper.saveData(
-            key: StringsEn.personalDetailsCompleteK,
-            value: true,
-          );
+      Either<FailureServ, UserProfilePortfolioModel> profile =
           await profileRepo.getProfile();
-          emit(SavedSuccess());
+      profile.fold(
+        (failure) {
+          emit(SavedFailure(message: failure.message));
+        },
+        (success) async {
+          await editProfile(success);
         },
       );
     } else {
       emit(SavedFailure(message: StringsEn.fieldsNotComplted));
     }
+  }
+
+//edit profile
+  Future<void> editProfile(UserProfilePortfolioModel success) async {
+    Either<FailureServ, ProfileModel> editProfileResult =
+        await editProfileRepo.editProfile(
+      profileModel: ProfileModel(
+        bio: controllerBio.text,
+        address: controllerAddress.text,
+        mobile: controllerMobileNumber.text,
+        interestedWork: CacheHelper.getData(
+          key: StringsEn.whatTypeOfWorkInterestedKey,
+        ),
+        remotePlace: CacheHelper.getData(key: StringsEn.workLocationK),
+        offlinePlace: CacheHelper.getData(key: StringsEn.workLocationK),
+        education: success.profile!.education == null ||
+                success.profile!.education!.isEmpty
+            ? ''
+            : success.profile!.education!,
+        personalDetailed: '',
+      ),
+    );
+    editProfileResult.fold(
+      (failure) => emit(SavedFailure(message: failure.message)),
+      (profile) async {
+        await CacheHelper.saveData(
+          key: StringsEn.personalDetailsCompleteK,
+          value: true,
+        );
+        emit(SavedSuccess());
+      },
+    );
   }
 }

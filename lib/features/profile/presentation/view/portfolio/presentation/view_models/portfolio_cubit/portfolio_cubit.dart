@@ -73,15 +73,17 @@ class PortfolioCubit extends Cubit<PortfolioState> {
 
   //get portfolios
   getPortfolios() async {
-    try {
-      emit(GetFilesLoading());
-      UserProfilePortfolioModel portfolios =
-          await getIt.get<UserProfilePortfolioModel>();
-      Future.delayed(Duration(seconds: 2));
-      emit(GetFilesSuccess(cvs: portfolios.portfolio));
-    } catch (error) {
-      emit(GetFilesFailure(message: StringsEn.someThingError));
-    }
+    emit(GetFilesLoading());
+    Either<FailureServ, UserProfilePortfolioModel> portfolios =
+        await profileRepo.getProfile();
+    portfolios.fold(
+      (failure) {
+        emit(GetFilesFailure(message: failure.message));
+      },
+      (success) {
+        emit(GetFilesSuccess(cvs: success.portfolio));
+      },
+    );
   }
 
   //delete portfolios
