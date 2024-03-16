@@ -28,7 +28,7 @@ class ProfileBody extends StatelessWidget {
             SectionProfileInfo(
               ctx: ctx,
               name: user.profile!.name ?? StringsEn.unKnown,
-              bio: user.profile?.bio ?? StringsEn.unKnown,
+              bio: user.profile!.bio!,
             ),
             //section general
             const SectionGeneral(),
