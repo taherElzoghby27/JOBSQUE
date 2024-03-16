@@ -32,7 +32,7 @@ class _FieldsAuthState extends State<FieldsAuth> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: AppConsts.aspect16on13,
+      aspectRatio: AppConsts.aspect16on14,
       child: Column(
         children: [
           ///username

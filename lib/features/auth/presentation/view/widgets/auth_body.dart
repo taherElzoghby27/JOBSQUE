@@ -103,7 +103,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                   );
                 },
               ),
-              const AspectRatio(aspectRatio: AppConsts.aspect16on4),
+              const AspectRatio(aspectRatio: AppConsts.aspect16on3),
 
               ///already have an account
               AlternativeAuth(
