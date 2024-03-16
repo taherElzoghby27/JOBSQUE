@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 
 class PortfolioModel {
   String? name;
-  String? cvFile;
+  File? cvFile;
   File? image;
   int? userId;
   String? updatedAt;
@@ -23,7 +23,7 @@ class PortfolioModel {
 
   PortfolioModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    cvFile = json['cv_file'];
+    cvFile = File(json['cv_file']);
     image = File(json['image']);
     userId = json['user_id'];
     updatedAt = json['updated_at'];
@@ -33,7 +33,10 @@ class PortfolioModel {
 
   toMap() async {
     FormData formData = FormData.fromMap({
-      'cv_file': this.cvFile,
+      'cv_file': await MultipartFile.fromFile(
+        this.cvFile!.path,
+        filename: this.image!.path.split('/').last,
+      ),
       'image': await MultipartFile.fromFile(
         this.image!.path,
         filename: this.image!.path.split('/').last,

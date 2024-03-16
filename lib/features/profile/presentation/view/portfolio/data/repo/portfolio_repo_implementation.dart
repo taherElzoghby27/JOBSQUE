@@ -42,6 +42,7 @@ class PortfolioRepoImplementation extends PortfolioRepo {
           await deletePortfolioService.deletePortfolio(
         idPortfolio: idPortfolio,
       );
+      print(result);
       return Right(result["massage"]);
     } catch (error) {
       if (error is DioException) {

@@ -8,13 +8,17 @@ class UserProfilePortfolioModel {
   UserProfilePortfolioModel({this.portfolio, this.profile});
 
   UserProfilePortfolioModel.fromJson(Map<String, dynamic> json) {
-    if (json['portfolio'] != null) {
-      portfolio = <PortfolioModel>[];
-      json['portfolio'].forEach((v) {
-        portfolio!.add(PortfolioModel.fromJson(v));
-      });
-    }
-    profile =
-        json['profile'] != null ? new Profile.fromJson(json['profile']) : null;
+    portfolio = json['portofolio'] == null
+        ? []
+        : List<PortfolioModel>.from(
+            (json['portofolio'] as List<dynamic>).map(
+              (e) => PortfolioModel.fromJson(e),
+            ),
+          );
+    profile = json['profile'] != null
+        ? new Profile.fromJson(
+            json['profile'],
+          )
+        : null;
   }
 }

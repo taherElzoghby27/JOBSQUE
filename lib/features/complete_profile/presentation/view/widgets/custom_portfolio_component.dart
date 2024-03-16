@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/consts/style.dart';
 import '../../../../../core/helper/custom_snack.dart';
-import '../../../../profile/presentation/view/portfolio/presentation/view/widgets/cvs.dart';
+import '../../../../profile/presentation/view/portfolio/presentation/view/widgets/portfolios_bloc_consumer.dart';
 import '../../../../profile/presentation/view/portfolio/presentation/view/widgets/section_add_portfolio.dart';
 import '../../../../profile/presentation/view/portfolio/presentation/view_models/portfolio_cubit/portfolio_cubit.dart';
 

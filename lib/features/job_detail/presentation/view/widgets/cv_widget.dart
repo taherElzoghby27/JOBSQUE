@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jobsque/core/consts/assets.dart';
-import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/helper/handle_image.dart';
 import 'package:jobsque/features/job_detail/data/models/Pdf.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/upload_portfolio_cubit/upload_portfolio_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view_models/portfolio_cubit/portfolio_cubit.dart';
 
+import '../../../../../core/helper/launch_url.dart';
 import '../../../../../core/models/user_profile_model/portfolio.dart';
+import 'middle_cv_widget.dart';
 
 class CvWidget extends StatelessWidget {
   const CvWidget({
@@ -24,7 +24,6 @@ class CvWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     //deleteMethod
     deleteMethod() async {
       if (pdf == null) {
@@ -39,53 +38,47 @@ class CvWidget extends StatelessWidget {
       }
     }
 
-    return Padding(
-      padding: AppConsts.padding10h8v,
-      child: AspectRatio(
-        aspectRatio: AppConsts.aspect16on4,
-        child: Container(
-          decoration: AppConsts.decorationRadius8,
-          child: Padding(
-            padding: AppConsts.allPadding8,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                //logo pdf
-                SvgPicture.asset(AppAssets.pdfLogo),
-                const Spacer(flex: 1),
-                //pdf info
-                SizedBox(
-                  width: size.width * .5.w,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        pdf == null ? portfolio!.cvFile! : pdf!.name!,
-                        style: AppConsts.style14.copyWith(
-                          color: AppConsts.neutral900,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        '${StringsEn.cvpdf} ${pdf == null ? '' : pdf!.size} ${pdf == null ? '' : StringsEn.mb}',
-                        style: AppConsts.style12.copyWith(
-                          color: AppConsts.neutral500,
-                        ),
-                      ),
-                    ],
+//open pdf
+    launchUrlPdf() async {
+      await launchUr(
+        context,
+        url: pdf == null ? portfolio!.cvFile!.path : pdf!.path!,
+      );
+    }
+
+    return InkWell(
+      onTap: launchUrlPdf,
+      borderRadius: AppConsts.radius8,
+      child: Padding(
+        padding: AppConsts.padding10h8v,
+        child: AspectRatio(
+          aspectRatio: AppConsts.aspect16on4,
+          child: Container(
+            decoration: AppConsts.decorationRadius8,
+            child: Padding(
+              padding: AppConsts.allPadding8,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  //logo pdf
+                  HandleImageWidget(image: AppAssets.pdfLogo),
+                  const Spacer(),
+                  //pdf info
+                  Expanded(
+                    flex: 10,
+                    child: MiddleCvWidget(pdf: pdf, portfolio: portfolio),
                   ),
-                ),
-                const Spacer(flex: 7),
-                //delete
-                IconButton(
-                  onPressed: deleteMethod,
-                  icon: Icon(
-                    FontAwesomeIcons.circleXmark,
-                    color: AppConsts.danger500,
+                  const Spacer(),
+                  //delete
+                  IconButton(
+                    onPressed: deleteMethod,
+                    icon: Icon(
+                      FontAwesomeIcons.circleXmark,
+                      color: AppConsts.danger500,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

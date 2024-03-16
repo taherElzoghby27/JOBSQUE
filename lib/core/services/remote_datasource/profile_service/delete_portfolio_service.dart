@@ -14,7 +14,6 @@ class DeletePortfolioService {
     Map<String, dynamic> response = await apiService.put(
       path: "${ApiConsts.getPortfolioEndPoint}/$idPortfolio",
     );
-
     return response;
   }
 }

@@ -22,6 +22,7 @@ class ErrorWidg extends StatelessWidget {
           ),
           Text(
             message,
+            textAlign: TextAlign.center,
             style: AppConsts.style16Error.copyWith(
               color: AppConsts.neutral400,
             ),

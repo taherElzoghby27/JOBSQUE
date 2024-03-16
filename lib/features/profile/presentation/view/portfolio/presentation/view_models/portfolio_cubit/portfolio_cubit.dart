@@ -12,7 +12,6 @@ import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/user_profile_model/portfolio.dart';
 import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
-import 'package:jobsque/service_locator.dart';
 
 import '../../../data/repo/portfolio_repo.dart';
 
@@ -41,7 +40,6 @@ class PortfolioCubit extends Cubit<PortfolioState> {
         File cvFile = File(result.files.first.path!);
         files.add(cvFile);
         add(file: cvFile);
-        print(files);
       } else {
         emit(PickedFileFailure(message: StringsEn.someThingError));
       }
@@ -54,7 +52,10 @@ class PortfolioCubit extends Cubit<PortfolioState> {
   add({required File file}) async {
     Either<FailureServ, PortfolioModel> portfolio =
         await portfolioRepo.addPortFolio(
-      portfolioCv: PortfolioModel(cvFile: file.path, image: file),
+      portfolioCv: PortfolioModel(
+        cvFile: file,
+        image: file,
+      ),
     );
 
     portfolio.fold(
@@ -64,7 +65,6 @@ class PortfolioCubit extends Cubit<PortfolioState> {
           key: StringsEn.portfolioCompleteK,
           value: true,
         );
-        await profileRepo.getProfile();
         getPortfolios();
         print("added success");
       },
@@ -92,14 +92,12 @@ class PortfolioCubit extends Cubit<PortfolioState> {
     Either<FailureServ, String> result = await portfolioRepo.deletePortFolio(
       idPortfolio: idPortfolio,
     );
-    Future.delayed(Duration(seconds: 2));
     result.fold(
       (failure) {
         emit(DeletedFailure(message: failure.message));
       },
       (message) async {
-        await profileRepo.getProfile();
-        getPortfolios();
+        await getPortfolios();
         emit(DeletedSuccess(message: message));
       },
     );
