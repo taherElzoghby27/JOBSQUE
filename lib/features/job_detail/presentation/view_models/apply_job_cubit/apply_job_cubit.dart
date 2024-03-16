@@ -49,9 +49,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
               : typeOfWorkCubit.group,
           cvFile: portfolioCubit.cvs.isEmpty ? '' : portfolioCubit.cvs[0].path,
           cvOtherFile:
-              portfolioCubit.cvs.isEmpty || portfolioCubit.cvs.length == 1
-                  ? ''
-                  : portfolioCubit.cvs[1].path,
+              portfolioCubit.cvs.isEmpty ? '' : portfolioCubit.cvs[0].path,
           jobId: status == StringsEn.notComplete ? applyUser!.jobId : jobId,
           userId: userId,
           status: checkInPage3AndCompleteFilledOrNot(
@@ -90,7 +88,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
         },
       );
       if (currentPage == 3 &&
-          (portfolioCubit.cvs.isEmpty || portfolioCubit.cvs.length != 2)) {
+          (portfolioCubit.cvs.isEmpty || portfolioCubit.cvs.length != 1)) {
         emit(ApplyJobFailure(message: StringsEn.warningCv));
       }
     } catch (e) {
@@ -104,7 +102,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
       status == StringsEn.notComplete || status == StringsEn.notOpen;
 
   String checkInPage3AndCompleteFilledOrNot(int currentPage, List<Pdf> cvs) {
-    return currentPage == 3 && (!cvs.isEmpty || cvs.length == 2)
+    return currentPage == 3 && !cvs.isEmpty
         ? StringsEn.completed
         : StringsEn.unCompleted;
   }
@@ -135,7 +133,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
             ? applyUser.typeOfWork
             : typeOfWorkCubit.group,
         cv: portfolioCubit.files[0],
-        otherFiles: portfolioCubit.files[1],
+        otherFiles: portfolioCubit.files[0],
         jobId: jobId,
         userId: userId,
         status: StringsEn.completed,
@@ -145,7 +143,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
         id: 0,
       ),
     );
-     Future.delayed(Duration(seconds: 2));
+    Future.delayed(Duration(seconds: 2));
     result.fold(
       (failure) => emit(ApplyJobFailure(message: failure.message)),
       (success) {

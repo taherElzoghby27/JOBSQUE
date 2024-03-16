@@ -193,7 +193,7 @@ abstract class StringsEn {
   static const String cv_portofolio = 'CV.pdf . Portfolio.pdf';
   static const String otherFile = 'Other File';
   static const String uploadYourOtherFile = 'Upload your other file';
-  static const String warningCv = 'Upload your other file (at least 2 files)';
+  static const String warningCv = 'Upload your cv';
   static const String maxFile = 'Max. file size 10 MB';
   static const String addFile = 'Add file';
   static const String submit = 'Submit';

@@ -21,7 +21,7 @@ class UploadPortfolioCubit extends Cubit<UploadPortfolioState> {
         type: FileType.custom,
         allowedExtensions: [StringsEn.pdfExtension],
       );
-      if (cvs.length < 2 && result != null) {
+      if (cvs.length < 1 && result != null) {
         File cvFile = File(result.files.first.path!);
         PlatformFile file = result.files.first;
         Pdf pdf = Pdf();
@@ -32,17 +32,12 @@ class UploadPortfolioCubit extends Cubit<UploadPortfolioState> {
         pdf.path = file.path;
         cvs.add(pdf);
         files.add(cvFile);
-      } else {
-        emit(PickedFileFailure(message: StringsEn.someThingError));
       }
       getFiles();
     } catch (error) {
       emit(PickedFileFailure(message: error.toString()));
     }
   }
-
-//check have one save or more
-  bool checkCvsIsCompleted() => cvs.length == 2;
 
   //GetFiles
   getFiles() {

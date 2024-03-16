@@ -7,9 +7,9 @@ import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_button_icon.dart';
 
 class UploadYourOtherFileWidget extends StatelessWidget {
-  const UploadYourOtherFileWidget({super.key, required this.onTap});
+  const UploadYourOtherFileWidget({super.key, this.onTap});
 
-  final void Function() onTap;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -41,22 +41,24 @@ class UploadYourOtherFileWidget extends StatelessWidget {
                   ),
                 ),
                 //button
-                AspectRatio(
-                  aspectRatio: AppConsts.aspectRatioButtonAuth,
-                  child: CustomButtonIcon(
-                    onTap: onTap,
-                    label: Text(
-                      StringsEn.addFile,
-                      style: AppConsts.style16White.copyWith(
-                        color: AppConsts.primary500,
+                onTap == null
+                    ? Container()
+                    : AspectRatio(
+                      aspectRatio: AppConsts.aspectRatioButtonAuth,
+                      child: CustomButtonIcon(
+                        onTap: onTap,
+                        label: Text(
+                          StringsEn.addFile,
+                          style: AppConsts.style16White.copyWith(
+                            color: AppConsts.primary500,
+                          ),
+                        ),
+                        icon: Icon(
+                          Icons.ios_share_rounded,
+                          color: AppConsts.primary500,
+                        ),
                       ),
                     ),
-                    icon: Icon(
-                      Icons.ios_share_rounded,
-                      color: AppConsts.primary500,
-                    ),
-                  ),
-                ),
               ],
             ),
           ),

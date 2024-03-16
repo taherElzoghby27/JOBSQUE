@@ -19,15 +19,17 @@ class UploadPortfolioContentWidget extends StatefulWidget {
 
 class _UploadPortfolioContentWidgetState
     extends State<UploadPortfolioContentWidget> {
+  late UploadPortfolioCubit bloc;
+
   @override
   void initState() {
-    BlocProvider.of<UploadPortfolioCubit>(context)..getFiles();
+    bloc = BlocProvider.of<UploadPortfolioCubit>(context)..getFiles();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<UploadPortfolioCubit, UploadPortfolioState>(
+    return BlocConsumer<UploadPortfolioCubit, UploadPortfolioState>(
       listener: (context, state) {
         if (state is PickedFileFailure) {
           showSnack(
@@ -37,26 +39,30 @@ class _UploadPortfolioContentWidgetState
           );
         }
       },
-      child: Column(
-        children: [
-          //Upload cv
-          TitleField(label: StringsEn.uplaodCv, star: StringsEn.star),
-          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-          //pdf
-          const CvPdfs(),
-          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-          //other file
-          TitleField(label: StringsEn.otherFile),
-          const AspectRatio(aspectRatio: AppConsts.aspect40on1),
-          //pdf
-          UploadYourOtherFileWidget(
-            onTap: () {
-              BlocProvider.of<UploadPortfolioCubit>(context).addFile();
-              BlocProvider.of<UploadPortfolioCubit>(context).getFiles();
-            },
-          ),
-        ],
-      ),
+      builder: (context, state) {
+        return Column(
+          children: [
+            //Upload cv
+            TitleField(label: StringsEn.uplaodCv, star: StringsEn.star),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+            //pdf
+            const CvPdfs(),
+            const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+            //other file
+            TitleField(label: StringsEn.otherFile),
+            const AspectRatio(aspectRatio: AppConsts.aspect40on1),
+            //pdf
+            UploadYourOtherFileWidget(
+              onTap: bloc.cvs.isNotEmpty
+                  ? null
+                  : () {
+                      BlocProvider.of<UploadPortfolioCubit>(context).addFile();
+                      BlocProvider.of<UploadPortfolioCubit>(context).getFiles();
+                    },
+            ),
+          ],
+        );
+      },
     );
   }
 }
