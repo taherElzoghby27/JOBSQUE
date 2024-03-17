@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view/widgets/section_edit_photo.dart';
@@ -16,7 +18,7 @@ class EditProfileBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: AppConsts.mainPadding,
-      child: ListView(
+      child: Column(
         children: [
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           //custom appBar
@@ -28,12 +30,15 @@ class EditProfileBody extends StatelessWidget {
             title: StringsEn.editProfile,
             trailingWidget: Container(),
           ),
-          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+          const AspectRatio(aspectRatio: AppConsts.aspect40on1),
           //edit photo
           const SectionEditPhoto(),
           //edit personal info
-          const SectionPersonalInfo(),
-          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
+          Expanded(
+            flex: 4,
+            child: const SectionPersonalInfo(),
+          ),
+          const Spacer(),
           //save
           const SectionButtonEditProfile(),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),

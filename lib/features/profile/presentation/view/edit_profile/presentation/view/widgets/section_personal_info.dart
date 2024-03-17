@@ -1,4 +1,5 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
@@ -12,16 +13,8 @@ class SectionPersonalInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     EditProfileCubit bloc = BlocProvider.of<EditProfileCubit>(context);
-    return Column(
+    return ListView(
       children: [
-        //name
-        CustomFilterTextField(
-          label: StringsEn.name,
-          hint: StringsEn.name,
-          controller: bloc.controllerName,
-        ),
-        const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-
         //bio
         CustomFilterTextField(
           label: StringsEn.bio,

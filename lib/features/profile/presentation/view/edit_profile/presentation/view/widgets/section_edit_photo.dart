@@ -10,7 +10,6 @@ class SectionEditPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
       children: [
         //image
         CustomImage(image: AppAssets.board3),
