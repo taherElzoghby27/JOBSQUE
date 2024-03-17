@@ -33,7 +33,9 @@ class CustomButton extends StatelessWidget {
           ),
         ),
       ),
-      child: Text(text, style: styleText),
+      child: FittedBox(
+        child: Text(text, style: styleText),
+      ),
     );
   }
 }
