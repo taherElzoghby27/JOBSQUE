@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/style.dart';
 
@@ -26,39 +28,45 @@ class CustomAppBar extends StatelessWidget {
     return AspectRatio(
       aspectRatio: AppConsts.aspect20on2,
       child: Padding(
-        padding: AppConsts.mainPadding,
+        padding: AppConsts.padding8Horiz,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ///arrow back
-            leadingOnTap == null
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.asset(
-                      image!,
-                      height: size.height * .075.h,
+            Expanded(
+              child: leadingOnTap == null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset(
+                        image!,
+                        height: size.height * .075.h,
+                      ),
+                    )
+                  : IconButton(
+                      onPressed: leadingOnTap,
+                      icon: Icon(Icons.arrow_back, color: color),
                     ),
-                  )
-                : IconButton(
-                    onPressed: leadingOnTap,
-                    icon: Icon(Icons.arrow_back, color: color),
-                  ),
+            ),
 
-            Text(
-              title,
-              style: AppConsts.style20.copyWith(
-                color: color,
+            Expanded(
+              flex: 8,
+              child: Text(
+                title,
+                style: AppConsts.style20.copyWith(
+                  color: color,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
 
             ///reset
-            trailingWidget == null
-                ? Container(width: 50)
-                : IconButton(
-                    onPressed: trailingOnTap,
-                    icon: trailingWidget!,
-                  ),
+            Expanded(
+              child: trailingWidget == null
+                  ? Container(width: 50)
+                  : IconButton(
+                      onPressed: trailingOnTap,
+                      icon: trailingWidget!,
+                    ),
+            ),
           ],
         ),
       ),

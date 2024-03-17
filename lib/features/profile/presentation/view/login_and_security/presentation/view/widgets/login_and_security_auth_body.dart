@@ -56,11 +56,15 @@ class _LoginSecurityAuthBodyState extends State<LoginSecurityAuthBody> {
             context: context,
             title: StringsEn.success,
             subTitle: StringsEn.namePassUpdatedSuccessfully,
+            readOnly: true,
           );
           //navigate to home
           Future.delayed(
             Duration(seconds: 2),
-            () => GoRouter.of(context).push(homePath),
+            () => GoRouter.of(context).push(
+              homePath,
+              extra: 0,
+            ),
           );
         } else if (state is Fail) {
           load = false;

@@ -9,6 +9,7 @@ Future<dynamic> customDialog({
   required BuildContext context,
   void Function()? onTapSuccess,
   void Function()? onTapCancel,
+  bool readOnly = false,
 }) {
   return showDialog(
     context: context,
@@ -25,18 +26,20 @@ Future<dynamic> customDialog({
             fontWeight: FontWeight.w600,
           ),
         ),
-        actions: [
-          CustomButton(
-            text: StringsEn.yes,
-            onTap: onTapSuccess,
-            background: AppConsts.success500,
-          ),
-          CustomButton(
-            text: StringsEn.no,
-            onTap: onTapCancel,
-            background: AppConsts.danger500,
-          ),
-        ],
+        actions: readOnly
+            ? []
+            : [
+                CustomButton(
+                  text: StringsEn.yes,
+                  onTap: onTapSuccess,
+                  background: AppConsts.success500,
+                ),
+                CustomButton(
+                  text: StringsEn.no,
+                  onTap: onTapCancel,
+                  background: AppConsts.danger500,
+                ),
+              ],
       );
     },
   );
