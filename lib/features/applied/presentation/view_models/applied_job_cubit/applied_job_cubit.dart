@@ -20,6 +20,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
     required this.jobFilterRepo,
   }) : super(AppliedJobInitial());
   List<Job> jobs = [];
+  int appliedJobLength=0;
   String status = StringsEn.active;
 
 //get not completed jobs
@@ -70,6 +71,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
           appliedJobs,
           status: StringsEn.active,
         );
+        appliedJobLength=activeJobs.length;
         status = StringsEn.active;
         emit(AppliedJobSuccess(applyUsers: activeJobs));
       },

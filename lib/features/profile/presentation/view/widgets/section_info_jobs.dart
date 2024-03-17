@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 
+import 'applied_info_widget.dart';
 import 'item_info_job.dart';
 
 class SectionInfoJobs extends StatelessWidget {
@@ -24,11 +25,11 @@ class SectionInfoJobs extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ItemInfoJob(title: StringsEn.applied, subTitle: '65'),
+              AppliedInfoWidget(),
               //Divider(color: AppConsts.neutral300,height: 30.h),
-              ItemInfoJob(title: StringsEn.reviewed, subTitle: '20'),
+              ItemInfoJob(title: StringsEn.reviewed, subTitle: '0'),
               // Divider(color: AppConsts.neutral300,height: 30.h),
-              ItemInfoJob(title: StringsEn.contacted, subTitle: '16'),
+              ItemInfoJob(title: StringsEn.contacted, subTitle: '0'),
             ],
           ),
         ),
