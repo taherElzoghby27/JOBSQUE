@@ -26,16 +26,12 @@ class PortfoliosBlocConsumer extends StatelessWidget {
                     cvs: cvs,
                   ),
           );
-        } else if (state is GetFilesLoading) {
+        } else {
           return const CustomFadingLoadingAnimation(
             widget: FadingListView(
               scrollDirc: Axis.vertical,
               widget: CustomCvWidgetLoading(),
             ),
-          );
-        } else {
-          return Center(
-            child: const InitialCvWidget(),
           );
         }
       },

@@ -11,7 +11,7 @@ class DeletePortfolioService {
   Future<Map<String, dynamic>> deletePortfolio({
     required int idPortfolio,
   }) async {
-    Map<String, dynamic> response = await apiService.put(
+    Map<String, dynamic> response = await apiService.delete(
       path: "${ApiConsts.getPortfolioEndPoint}/$idPortfolio",
     );
     return response;

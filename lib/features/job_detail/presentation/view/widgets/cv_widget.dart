@@ -27,6 +27,7 @@ class CvWidget extends StatelessWidget {
     //deleteMethod
     deleteMethod() async {
       if (pdf == null) {
+        print(portfolio!.id);
         final bloc = BlocProvider.of<PortfolioCubit>(context);
         await bloc.deletePortfolio(
           idPortfolio: portfolio!.id!,

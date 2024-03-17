@@ -22,7 +22,6 @@ class ApiService {
       'Authorization': 'Bearer ${CacheHelper.getData(key: StringsEn.token)}',
     };
     Response response = await dio.get("$url$path", options: options);
-    print("response : ----$response");
     return response.data;
   }
 
@@ -57,6 +56,24 @@ class ApiService {
       'Authorization': 'Bearer ${CacheHelper.getData(key: StringsEn.token)}',
     };
     Response response = await dio.put(
+      "$url$path",
+      data: body,
+      options:options,
+    );
+    return response.data;
+  }
+  //delete method
+  Future<Map<String, dynamic>> delete({
+    required String path,
+    Object? body,
+  }) async {
+    Options options = Options();
+    // Add headers to the options
+    options.headers = {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ${CacheHelper.getData(key: StringsEn.token)}',
+    };
+    Response response = await dio.delete(
       "$url$path",
       data: body,
       options:options,
