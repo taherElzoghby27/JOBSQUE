@@ -3,10 +3,48 @@ import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/widgets/custom_circle_button.dart';
+import 'package:jobsque/features/onBoarding/presentation/view/widgets/board_structure.dart';
 
 import 'assets.dart';
 import 'strings.dart';
 
+List<BoardStructure> childrenPageViewOnBoarding = [
+  BoardStructure(
+    image: AppAssets.board1,
+    subTitle: StringsEn.subTitleBoard1,
+    titles: [
+      TextSpan(text: StringsEn.titleBoard1),
+      TextSpan(
+        text: StringsEn.titleBoard11,
+        style: TextStyle(color: AppConsts.primary500),
+      ),
+      TextSpan(text: StringsEn.titleBoard111),
+    ],
+  ),
+  BoardStructure(
+    image: AppAssets.board2,
+    titles: [
+      TextSpan(text: StringsEn.titleBoard2),
+      TextSpan(
+        text: StringsEn.titleBoard22,
+        style: TextStyle(color: AppConsts.primary500),
+      ),
+    ],
+    subTitle: StringsEn.subTitleBoard2,
+  ),
+  BoardStructure(
+    image: AppAssets.board3,
+    titles: [
+      TextSpan(text: StringsEn.titleBoard3),
+      TextSpan(
+        text: StringsEn.titleBoard33,
+        style: TextStyle(color: AppConsts.primary500),
+      ),
+      TextSpan(text: StringsEn.titleBoard333),
+    ],
+    subTitle: StringsEn.subTitleBoard3,
+  ),
+];
 const List<String> salaries = [
   'less than 5k',
   '5k-10k',

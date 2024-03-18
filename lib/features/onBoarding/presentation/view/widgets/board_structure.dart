@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/helper/handle_image.dart';
 
 class BoardStructure extends StatelessWidget {
   const BoardStructure({
@@ -24,11 +25,11 @@ class BoardStructure extends StatelessWidget {
               const AspectRatio(aspectRatio: AppConsts.aspect16on3),
               AspectRatio(
                 aspectRatio: AppConsts.aspect13on9,
-                child: Image.asset(image),
+                child: HandleImageWidget(image: image),
               ),
               const AspectRatio(aspectRatio: AppConsts.aspect16on1),
               Padding(
-                padding: const EdgeInsets.all(12),
+                padding: AppConsts.allPadding8,
                 child: AspectRatio(
                   aspectRatio: AppConsts.aspect13on9,
                   child: Column(
