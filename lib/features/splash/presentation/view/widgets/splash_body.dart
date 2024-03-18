@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/style.dart';
+import 'package:jobsque/core/helper/handle_image.dart';
 
 class SplashBody extends StatelessWidget {
   const SplashBody({super.key});
@@ -54,7 +55,7 @@ class SplashBody extends StatelessWidget {
           ),
 
           ///logo
-          Image.asset(AppAssets.logo),
+          HandleImageWidget(image: AppAssets.logo),
         ],
       ),
     );
