@@ -41,7 +41,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
         files.add(cvFile);
         add(file: cvFile);
       } else {
-        emit(PickedFileFailure(message: StringsEn.someThingError));
+        emit(PickedFileFailure(message: StringsEn.noFileSelected));
       }
     } catch (error) {
       emit(PickedFileFailure(message: error.toString()));

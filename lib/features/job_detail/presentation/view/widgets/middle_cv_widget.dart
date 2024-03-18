@@ -1,4 +1,4 @@
-
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
@@ -21,7 +21,7 @@ class MiddleCvWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
-          pdf == null ? portfolio!.cvFile!.path : pdf!.name!,
+          pdf == null ? buildNamePdf(portfolio!.cvFile!.path) : pdf!.name!,
           style: AppConsts.style14.copyWith(
             color: AppConsts.neutral900,
           ),
@@ -37,4 +37,6 @@ class MiddleCvWidget extends StatelessWidget {
       ],
     );
   }
+
+  String buildNamePdf(String path) => path.split('/').toList().last;
 }

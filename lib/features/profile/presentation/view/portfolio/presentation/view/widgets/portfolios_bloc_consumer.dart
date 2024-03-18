@@ -10,33 +10,23 @@ import 'package:jobsque/features/profile/presentation/view/portfolio/presentatio
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/widgets/cvs_listview.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view_models/portfolio_cubit/portfolio_cubit.dart';
 
-class PortfoliosBlocConsumer extends StatelessWidget {
+class PortfoliosBlocConsumer extends StatefulWidget {
   const PortfoliosBlocConsumer({super.key});
+
+  @override
+  State<PortfoliosBlocConsumer> createState() => _PortfoliosBlocConsumerState();
+}
+
+class _PortfoliosBlocConsumerState extends State<PortfoliosBlocConsumer> {
+  List<PortfolioModel> cvs = [];
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PortfolioCubit, PortfolioState>(
-      builder: (context, state) {
-        if (state is GetFilesSuccess) {
-          List<PortfolioModel> cvs = state.cvs!;
-          return Center(
-            child: cvs.isEmpty
-                ? const InitialCvWidget()
-                : CvsListView(
-                    cvs: cvs,
-                  ),
-          );
-        } else {
-          return const CustomFadingLoadingAnimation(
-            widget: FadingListView(
-              scrollDirc: Axis.vertical,
-              widget: CustomCvWidgetLoading(),
-            ),
-          );
-        }
-      },
       listener: (context, state) {
-        if (state is GetFilesFailure) {
+        if (state is GetFilesSuccess) {
+          cvs = state.cvs!;
+        } else if (state is GetFilesFailure) {
           showSnack(
             context,
             message: state.message,
@@ -52,6 +42,32 @@ class PortfoliosBlocConsumer extends StatelessWidget {
         }
         if (state is DeletedSuccess) {
           showSnack(context, message: state.message);
+        }
+      },
+      builder: (context, state) {
+        if (state is GetFilesSuccess ||
+            state is PickedFileFailure ||
+            state is DeletedSuccess ||
+            state is DeletedLoading ||
+            state is DeletedFailure) {
+          return Center(
+            child: cvs.isEmpty
+                ? const InitialCvWidget()
+                : CvsListView(
+                    cvs: cvs,
+                  ),
+          );
+        } else if (state is GetFilesLoading) {
+          return const CustomFadingLoadingAnimation(
+            widget: FadingListView(
+              scrollDirc: Axis.vertical,
+              widget: CustomCvWidgetLoading(),
+            ),
+          );
+        } else {
+          return Center(
+            child: const InitialCvWidget(),
+          );
         }
       },
     );
