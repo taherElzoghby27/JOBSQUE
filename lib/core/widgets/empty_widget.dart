@@ -19,7 +19,7 @@ class EmptyWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const AspectRatio(aspectRatio: AppConsts.aspect16on4),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on3),
         //icon
         AspectRatio(
           aspectRatio: AppConsts.aspect16on5,
