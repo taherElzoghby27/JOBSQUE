@@ -22,11 +22,7 @@ class BioDataCubit extends Cubit<BioDataState> {
     }
   }
 
-//check phone number
-  bool checkPhoneNumber() =>
-      '+${phoneCont.text}'.startsWith(codeCountry) ? true : false;
-
-//on changed counry
+//on changed country
   onChangedCountry({required CountryCode code}) =>
       codeCountry = code.dialCode.toString();
 }

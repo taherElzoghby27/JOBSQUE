@@ -1,4 +1,4 @@
-//filterJob
+
 import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 
@@ -13,3 +13,6 @@ Job filterJob({
       .toList();
   return jobsList.first;
 }
+
+bool checkPhoneNumber({required String number, required String codeCountry}) =>
+    '+$number'.startsWith(codeCountry) ? true : false;

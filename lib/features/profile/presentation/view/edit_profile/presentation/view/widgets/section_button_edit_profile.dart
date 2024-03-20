@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -17,11 +15,13 @@ class SectionButtonEditProfile extends StatefulWidget {
   });
 
   @override
-  State<SectionButtonEditProfile> createState() => _SectionButtonEditProfileState();
+  State<SectionButtonEditProfile> createState() =>
+      _SectionButtonEditProfileState();
 }
 
 class _SectionButtonEditProfileState extends State<SectionButtonEditProfile> {
   bool isLoad = false;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -29,13 +29,17 @@ class _SectionButtonEditProfileState extends State<SectionButtonEditProfile> {
         aspectRatio: AppConsts.aspectRatioButtonAuth,
         child: BlocConsumer<EditProfileCubit, EditProfileState>(
           builder: (context, state) {
+            EditProfileCubit bloc = context.read<EditProfileCubit>();
             return Visibility(
               visible: !isLoad,
               replacement: LoadingWidget(),
               child: CustomButton(
                 text: StringsEn.save,
                 onTap: () async {
-                  await BlocProvider.of<EditProfileCubit>(context).save();
+                  if (bloc.keyForm.currentState!.validate()) {
+                    await BlocProvider.of<EditProfileCubit>(context).save();
+                    bloc.keyForm.currentState!.save();
+                  }
                 },
               ),
             );
@@ -53,7 +57,7 @@ class _SectionButtonEditProfileState extends State<SectionButtonEditProfile> {
               isLoad = false;
               showSnack(
                 context,
-                message: StringsEn.someThingError,
+                message: state.message,
                 background: AppConsts.danger500,
               );
             }

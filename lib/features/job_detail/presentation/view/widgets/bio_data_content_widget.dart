@@ -57,6 +57,7 @@ class BioDataContentWidget extends StatelessWidget {
                   bloc.onChangedCountry(code: code),
             ),
             controller: bloc.phoneCont,
+            codeCountry: bloc.codeCountry,
           ),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         ],

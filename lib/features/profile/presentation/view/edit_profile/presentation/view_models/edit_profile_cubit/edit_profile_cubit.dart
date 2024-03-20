@@ -2,7 +2,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
@@ -22,54 +21,35 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     required this.editProfileRepo,
     required this.profileRepo,
   }) : super(EditProfileInitial());
+  final GlobalKey<FormState> keyForm = GlobalKey<FormState>();
 
   //variables
-  TextEditingController controllerName = TextEditingController();
   TextEditingController controllerBio = TextEditingController();
   TextEditingController controllerAddress = TextEditingController();
   TextEditingController controllerMobileNumber = TextEditingController();
   String codeCountry = "+20";
 
-  //check fields is full or not
-  bool get checkFieldsFullOrNot => controllerName.text.isNotEmpty &&
-          controllerName.text.isNotEmpty &&
-          controllerName.text.isNotEmpty &&
-          controllerName.text.isNotEmpty
-      ? true
-      : false;
-
-  //check phone number
-  bool get checkPhoneNumber =>
-      '+${controllerMobileNumber.text}'.startsWith(codeCountry) &&
-              controllerMobileNumber.text.length > 10
-          ? true
-          : false;
-
-//on changed counry
+//on changed country
   onChangedCountry({required CountryCode code}) =>
       codeCountry = code.dialCode.toString();
 
   //save method
   save() async {
-    if (checkFieldsFullOrNot && checkPhoneNumber) {
-      emit(SavedLoading());
-      Either<FailureServ, UserProfilePortfolioModel> profile =
-          await profileRepo.getProfile();
-      profile.fold(
-        (failure) {
-          emit(SavedFailure(message: failure.message));
-        },
-        (success) async {
-          await editProfile(success);
-        },
-      );
-    } else {
-      emit(SavedFailure(message: StringsEn.fieldsNotComplted));
-    }
+    emit(SavedLoading());
+    Either<FailureServ, UserProfilePortfolioModel> profile =
+        await profileRepo.getProfile();
+    profile.fold(
+      (failure) {
+        emit(SavedFailure(message: failure.message));
+      },
+      (success) async {
+        await editProfile(success);
+      },
+    );
   }
 
 //edit profile
-  Future<void> editProfile(UserProfilePortfolioModel success) async {
+  editProfile(UserProfilePortfolioModel success) async {
     Either<FailureServ, ProfileModel> editProfileResult =
         await editProfileRepo.editProfile(
       profileModel: ProfileModel(

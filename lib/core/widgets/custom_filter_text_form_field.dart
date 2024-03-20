@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/widgets/text_form_field.dart';
 import 'package:jobsque/core/widgets/title_field.dart';
-import 'package:jobsque/features/job_detail/presentation/view_models/bio_data_cubit/bio_data_cubit.dart';
+import '../functions.dart';
 
 class CustomFilterTextFormField extends StatelessWidget {
   const CustomFilterTextFormField({
@@ -21,6 +20,7 @@ class CustomFilterTextFormField extends StatelessWidget {
     this.controller,
     this.autoFocus = false,
     this.focusNode,
+    this.codeCountry,
   });
 
   final String? label;
@@ -35,11 +35,11 @@ class CustomFilterTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final bool autoFocus;
   final FocusNode? focusNode;
+  final String? codeCountry;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    BioDataCubit bloc = BlocProvider.of<BioDataCubit>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -64,7 +64,11 @@ class CustomFilterTextFormField extends StatelessWidget {
                 if ((hint == StringsEn.email &&
                         (!value.contains("@") || !value.contains('.com'))) ||
                     (hint == StringsEn.phone &&
-                        (!bloc.checkPhoneNumber() || value.length < 9))) {
+                        (!checkPhoneNumber(
+                              number: value,
+                              codeCountry: codeCountry!,
+                            ) ||
+                            value.length < 9))) {
                   return '${StringsEn.enterValid}$hint';
                 }
               }
