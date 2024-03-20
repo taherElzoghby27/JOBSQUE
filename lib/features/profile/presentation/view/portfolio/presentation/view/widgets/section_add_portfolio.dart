@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/title_field.dart';
 
 import '../../../../../../../../core/consts/strings.dart';
@@ -15,13 +15,12 @@ class SectionAddPortfolio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.w),
+      padding: AppConsts.mainPadding,
       child: Column(
         children: [
           TitleField(label: StringsEn.addPortfolioHere),
-          SizedBox(height: size.height * .01.h),
+          const AspectRatio(aspectRatio: AppConsts.aspect40on1),
           //pdf
           UploadYourOtherFileWidget(onTap: onTap),
         ],

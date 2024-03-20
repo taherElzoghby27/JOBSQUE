@@ -28,6 +28,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
 
   //to save
   List<File> files = [];
+  List<PortfolioModel>? cvs = [];
 
   //add portfolio
   addPortfolio() async {
@@ -81,6 +82,7 @@ class PortfolioCubit extends Cubit<PortfolioState> {
         emit(GetFilesFailure(message: failure.message));
       },
       (success) {
+        cvs = success.portfolio;
         emit(GetFilesSuccess(cvs: success.portfolio));
       },
     );
@@ -98,8 +100,18 @@ class PortfolioCubit extends Cubit<PortfolioState> {
       },
       (message) async {
         await getPortfolios();
+        await checkCompleteOrNotForCompleteProfile();
         emit(DeletedSuccess(message: message));
       },
     );
+  }
+
+  Future<void> checkCompleteOrNotForCompleteProfile() async {
+    if (cvs!.isEmpty) {
+      await CacheHelper.saveData(
+        key: StringsEn.portfolioCompleteK,
+        value: false,
+      );
+    }
   }
 }

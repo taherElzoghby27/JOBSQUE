@@ -7,7 +7,6 @@ import 'package:jobsque/core/helper/handle_image.dart';
 import 'package:jobsque/features/job_detail/data/models/Pdf.dart';
 import 'package:jobsque/features/job_detail/presentation/view_models/upload_portfolio_cubit/upload_portfolio_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view_models/portfolio_cubit/portfolio_cubit.dart';
-
 import '../../../../../core/helper/launch_url.dart';
 import '../../../../../core/models/user_profile_model/portfolio.dart';
 import 'middle_cv_widget.dart';
@@ -32,7 +31,6 @@ class CvWidget extends StatelessWidget {
         await bloc.deletePortfolio(
           idPortfolio: portfolio!.id!,
         );
-        await bloc.getPortfolios();
       } else {
         final bloc = BlocProvider.of<UploadPortfolioCubit>(context);
         await bloc.deleteFile(pdf: pdf!);
