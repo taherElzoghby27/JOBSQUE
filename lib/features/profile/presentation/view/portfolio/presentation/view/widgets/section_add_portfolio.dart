@@ -15,16 +15,13 @@ class SectionAddPortfolio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppConsts.mainPadding,
-      child: Column(
-        children: [
-          TitleField(label: StringsEn.addPortfolioHere),
-          const AspectRatio(aspectRatio: AppConsts.aspect40on1),
-          //pdf
-          UploadYourOtherFileWidget(onTap: onTap),
-        ],
-      ),
+    return Column(
+      children: [
+        TitleField(label: StringsEn.addPortfolioHere),
+        const AspectRatio(aspectRatio: AppConsts.aspect40on1),
+        //pdf
+        UploadYourOtherFileWidget(onTap: onTap),
+      ],
     );
   }
 }

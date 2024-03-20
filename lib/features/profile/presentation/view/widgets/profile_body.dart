@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/widgets/small_loading_widget.dart';
 import 'package:jobsque/features/profile/presentation/view/widgets/section_others.dart';
 import '../../../../../core/consts/strings.dart';
@@ -27,7 +28,7 @@ class ProfileBody extends StatelessWidget {
             //section profile
             SectionProfileInfo(
               ctx: ctx,
-              name: user.profile!.name ?? StringsEn.unKnown,
+              name: CacheHelper.getData(key: StringsEn.name),
               bio: user.profile!.bio!,
             ),
             //section general

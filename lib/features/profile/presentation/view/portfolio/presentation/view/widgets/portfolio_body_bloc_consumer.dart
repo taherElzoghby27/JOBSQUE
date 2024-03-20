@@ -5,11 +5,10 @@ import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/custom_snack.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
-import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/widgets/portfolios_bloc_consumer.dart';
-import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/widgets/section_add_portfolio.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view_models/portfolio_cubit/portfolio_cubit.dart';
 
 import '../../../../../../../../core/consts/strings.dart';
+import 'content_portfolio_body.dart';
 
 class PortfolioBodyBlocConsumer extends StatelessWidget {
   const PortfolioBodyBlocConsumer({super.key});
@@ -38,16 +37,7 @@ class PortfolioBodyBlocConsumer extends StatelessWidget {
             trailingWidget: Container(),
           ),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-          //Add portfolio here
-          SectionAddPortfolio(
-            onTap: () async {
-              PortfolioCubit bloc = BlocProvider.of<PortfolioCubit>(context);
-              await bloc.addPortfolio();
-            },
-          ),
-          const AspectRatio(aspectRatio: AppConsts.aspect16on1),
-          //pdfs
-          const PortfoliosBlocConsumer(),
+          const ContentPortfolioBody(),
         ],
       ),
     );
