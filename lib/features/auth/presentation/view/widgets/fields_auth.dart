@@ -31,58 +31,55 @@ class FieldsAuth extends StatefulWidget {
 class _FieldsAuthState extends State<FieldsAuth> {
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: AppConsts.aspect16on14,
-      child: Column(
-        children: [
-          ///username
-          widget.authMode == AuthMode.ResetPassword
-              ? Container()
-              : widget.authMode == AuthMode.Login
-                  ? Container()
-                  : CustomTextFormField(
-                      perfixIcon: HandleImageWidget(
-                        image: AppAssets.profile,
-                      ),
-                      hint: StringsEn.userName,
-                      onChanged: widget.userNameChange,
+    return Column(
+      children: [
+        ///username
+        widget.authMode == AuthMode.ResetPassword
+            ? Container()
+            : widget.authMode == AuthMode.Login
+                ? Container()
+                : CustomTextFormField(
+                    perfixIcon: HandleImageWidget(
+                      image: AppAssets.profile,
                     ),
-          const AspectRatio(
-            aspectRatio: AppConsts.aspect40on1,
-          ),
-
-          ///Email
-
-          CustomTextFormField(
-            perfixIcon: HandleImageWidget(
-              image: AppAssets.sms,
-            ),
-            hint: StringsEn.email,
-            onChanged: widget.emailChange,
-          ),
-          const AspectRatio(
-            aspectRatio: AppConsts.aspect40on1,
-          ),
-
-          ///Password
-          widget.authMode == AuthMode.ResetPassword
-              ? Container()
-              : CustomTextFormField(
-                  perfixIcon: HandleImageWidget(
-                    image: AppAssets.lock,
+                    hint: StringsEn.userName,
+                    onChanged: widget.userNameChange,
                   ),
-                  hint: StringsEn.password,
-                  obscureText: true,
-                  onChanged: widget.passwordChange,
-                ),
-          widget.authMode == AuthMode.Login
-              ?
+        const AspectRatio(
+          aspectRatio: AppConsts.aspect40on1,
+        ),
 
-              ///remeber me
-              RemeberWidget(onTap: widget.onTapForgetPassword)
-              : Container(),
-        ],
-      ),
+        ///Email
+
+        CustomTextFormField(
+          perfixIcon: HandleImageWidget(
+            image: AppAssets.sms,
+          ),
+          hint: StringsEn.email,
+          onChanged: widget.emailChange,
+        ),
+        const AspectRatio(
+          aspectRatio: AppConsts.aspect40on1,
+        ),
+
+        ///Password
+        widget.authMode == AuthMode.ResetPassword
+            ? Container()
+            : CustomTextFormField(
+                perfixIcon: HandleImageWidget(
+                  image: AppAssets.lock,
+                ),
+                hint: StringsEn.password,
+                obscureText: true,
+                onChanged: widget.passwordChange,
+              ),
+        widget.authMode == AuthMode.Login
+            ?
+
+            ///remeber me
+            RemeberWidget(onTap: widget.onTapForgetPassword)
+            : Container(),
+      ],
     );
   }
 }

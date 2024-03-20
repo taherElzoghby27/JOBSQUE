@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/consts/style.dart';
@@ -13,18 +11,22 @@ class RemeberWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        const RemeberMeWidget(),
-        SizedBox(width: size.width * .2.w),
-        TextButton(
-          onPressed: onTap,
-          child: Text(
-            StringsEn.forgotPass,
-            style: AppConsts.style14.copyWith(
-              color: AppConsts.primary500,
+        Expanded(
+          flex: 3,
+          child: RemeberMeWidget(),
+        ),
+        Spacer(),
+        Expanded(
+          flex: 3,
+          child: TextButton(
+            onPressed: onTap,
+            child: Text(
+              StringsEn.forgotPass,
+              style: AppConsts.style14.copyWith(
+                color: AppConsts.primary500,
+              ),
             ),
           ),
         ),

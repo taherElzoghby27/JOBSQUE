@@ -10,7 +10,6 @@ import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/services/bloc_observer.dart';
-
 import 'core/services/local_datasource/hive_db_apply_user.dart';
 import 'core/services/local_datasource/hive_db_job.dart';
 import 'service_locator.dart';
@@ -31,7 +30,12 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => const MyApp(), // Wrap your app
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

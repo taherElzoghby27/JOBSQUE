@@ -121,6 +121,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
               _authMode == AuthMode.ResetPassword
                   ? Container()
                   : AuthWithSocial(authMode: _authMode),
+              const AspectRatio(aspectRatio: AppConsts.aspect16on2),
             ],
           ),
         ),
