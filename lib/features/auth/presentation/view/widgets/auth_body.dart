@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/assets.dart';
@@ -23,26 +25,32 @@ class AuthBody extends StatefulWidget {
 }
 
 class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
+  AuthMode _authMode = AuthMode.SignUp;
   final GlobalKey<FormState> _formKey = GlobalKey();
   late AnimationController controller;
   late Animation<Offset> offsetAnimation;
 
+  String? name;
+  String? email;
+  String? password;
+
   @override
   void initState() {
-    //init controller
+    _handleAnimation();
+    super.initState();
+  }
+
+  void _handleAnimation() {
+    _initController();
+    offsetAnimation = tweenSequence().animate(controller);
+  }
+
+  void _initController() {
     controller = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 200),
     );
-    //offset animation
-    offsetAnimation = tweenSequence().animate(controller);
-    super.initState();
   }
-
-  AuthMode _authMode = AuthMode.SignUp;
-  String? name;
-  String? email;
-  String? password;
 
   ///switch auth mode
   void _switchAuthMode() {
@@ -67,7 +75,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
         key: _formKey,
         child: FadeAnimation(
           millSeconds: 1000,
-          child: ListView(
+          child: Stack(
             children: [
               ///top section
               AuthTopSection(
@@ -85,43 +93,56 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
               ),
 
               ///fields
-              AnimatedBuilder(
-                animation: controller,
-                builder: (context, child) {
-                  return AnimatedSlide(
-                    offset: offsetAnimation.value,
-                    duration: const Duration(milliseconds: 200),
-                    child: FieldsAuth(
-                      authMode: _authMode,
-                      userNameChange: (String? value) => name = value,
-                      emailChange: (String? value) => email = value,
-                      passwordChange: (String? value) => password = value,
-                      onTapForgetPassword: () => setState(
-                        () => _authMode = AuthMode.ResetPassword,
+              Positioned(
+                left: 0,
+                right: 0,
+                top: MediaQuery.sizeOf(context).height * .25,
+                child: AnimatedBuilder(
+                  animation: controller,
+                  builder: (context, child) {
+                    return AnimatedSlide(
+                      offset: offsetAnimation.value,
+                      duration: const Duration(milliseconds: 200),
+                      child: FieldsAuth(
+                        authMode: _authMode,
+                        userNameChange: (String? value) => name = value,
+                        emailChange: (String? value) => email = value,
+                        passwordChange: (String? value) => password = value,
+                        onTapForgetPassword: () => setState(
+                          () => _authMode = AuthMode.ResetPassword,
+                        ),
                       ),
+                    );
+                  },
+                ),
+              ),
+
+              Positioned(
+                left: 0,
+                right: 0,
+                top: MediaQuery.sizeOf(context).height * .7,
+                child: Column(
+                  children: [
+                    ///already have an account
+                    AlternativeAuth(
+                      authMode: _authMode,
+                      action: () => _switchAuthMode(),
                     ),
-                  );
-                },
-              ),
-              const AspectRatio(aspectRatio: AppConsts.aspect16on3),
 
-              ///already have an account
-              AlternativeAuth(
-                authMode: _authMode,
-                action: () => _switchAuthMode(),
+                    ///Create account or login or reset pass
+                    AuthButtonBlocConsumer(
+                      tapAuth: buttonAuth,
+                      authMode: _authMode,
+                      successAction: navigateToAnotherPage,
+                    ),
+                    const AspectRatio(aspectRatio: AppConsts.aspect40on1),
+                    _authMode == AuthMode.ResetPassword
+                        ? Container()
+                        : AuthWithSocial(authMode: _authMode),
+                    const AspectRatio(aspectRatio: AppConsts.aspect16on2),
+                  ],
+                ),
               ),
-
-              ///Create account or login or reset pass
-              AuthButtonBlocConsumer(
-                tapAuth: buttonAuth,
-                authMode: _authMode,
-                successAction: navigateToAnotherPage,
-              ),
-              const AspectRatio(aspectRatio: AppConsts.aspect40on1),
-              _authMode == AuthMode.ResetPassword
-                  ? Container()
-                  : AuthWithSocial(authMode: _authMode),
-              const AspectRatio(aspectRatio: AppConsts.aspect16on2),
             ],
           ),
         ),

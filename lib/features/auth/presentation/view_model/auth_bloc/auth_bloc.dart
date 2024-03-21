@@ -19,52 +19,59 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required this.authRepo}) : super(AuthInitial()) {
     on<AuthEvent>(
       (event, emit) async {
-        ///login
         if (event is LoginEvent) {
-          emit(LoginLoading());
-          Either<FailureServ, UserLogin> result = await authRepo.login(
-            email: event.email,
-            password: event.password,
-          );
-          Future.delayed(Duration(seconds: 2));
-          result.fold(
-            (fail) {
-              emit(LoginFailure(message: fail.message));
-            },
-            (_user) {
-              saveDataForUser(
-                token: _user.token!,
-                name: _user.user!.name!,
-                userId: _user.user!.id.toString(),
-                email: _user.user!.email!,
-              );
-              emit(LoginLoaded());
-            },
-          );
+          await loginEvent(emit, event);
         } else if (event is RegisterEvent) {
-          ///register
-          emit(RegisterLoading());
-          Either<FailureServ, UserSignUp> result = await authRepo.register(
-            name: event.name,
-            email: event.email,
-            password: event.password,
-          );
-          Future.delayed(Duration(seconds: 2));
-          result.fold(
-            (fail) {
-              emit(RegisterFailure(message: fail.message));
-            },
-            (_user) {
-              saveDataForUser(
-                token: _user.token!,
-                name: _user.data!.name,
-                userId: _user.data!.id.toString(),
-                email: _user.data!.email,
-              );
-              emit(RegisterLoaded());
-            },
-          );
+          await registerEvent(emit, event);
         }
+      },
+    );
+  }
+
+  Future<void> registerEvent(
+      Emitter<AuthState> emit, RegisterEvent event) async {
+    emit(RegisterLoading());
+    Either<FailureServ, UserSignUp> result = await authRepo.register(
+      name: event.name,
+      email: event.email,
+      password: event.password,
+    );
+    Future.delayed(Duration(seconds: 2));
+    result.fold(
+      (fail) {
+        emit(RegisterFailure(message: fail.message));
+      },
+      (_user) {
+        saveDataForUser(
+          token: _user.token!,
+          name: _user.data!.name,
+          userId: _user.data!.id.toString(),
+          email: _user.data!.email,
+        );
+        emit(RegisterLoaded());
+      },
+    );
+  }
+
+  Future<void> loginEvent(Emitter<AuthState> emit, LoginEvent event) async {
+    emit(LoginLoading());
+    Either<FailureServ, UserLogin> result = await authRepo.login(
+      email: event.email,
+      password: event.password,
+    );
+    Future.delayed(Duration(seconds: 2));
+    result.fold(
+      (fail) {
+        emit(LoginFailure(message: fail.message));
+      },
+      (_user) {
+        saveDataForUser(
+          token: _user.token!,
+          name: _user.user!.name!,
+          userId: _user.user!.id.toString(),
+          email: _user.user!.email!,
+        );
+        emit(LoginLoaded());
       },
     );
   }
