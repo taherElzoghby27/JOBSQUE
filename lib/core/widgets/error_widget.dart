@@ -4,8 +4,8 @@ import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/helper/handle_image.dart';
 
-class ErrorWidg extends StatelessWidget {
-  const ErrorWidg({super.key, required this.message});
+class ErrorWid extends StatelessWidget {
+  const ErrorWid({super.key, required this.message});
 
   final String message;
 

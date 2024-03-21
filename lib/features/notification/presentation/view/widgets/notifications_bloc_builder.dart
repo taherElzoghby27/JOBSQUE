@@ -20,7 +20,7 @@ class NotificationsBlocBuilder extends StatelessWidget {
             notificationModel: state.notificationModel,
           );
         } else if (state is NotificationFailure) {
-          return ErrorWidg(message: state.message);
+          return ErrorWid(message: state.message);
         } else {
           return const CustomFadingLoadingAnimation(
             widget: FadingListView(

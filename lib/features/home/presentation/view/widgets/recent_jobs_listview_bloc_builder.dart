@@ -9,18 +9,18 @@ import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bl
 import '../../../../../core/widgets/error_widget.dart';
 import 'recent_jobs_listview.dart';
 
-class RecentJobsListViewBlocConsumer extends StatelessWidget {
-  const RecentJobsListViewBlocConsumer({super.key});
+class RecentJobsListViewBlocBuilder extends StatelessWidget {
+  const RecentJobsListViewBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeBloc, HomeState>(
+    return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state is GetJobsLoaded) {
           List<Job> jobs = state.jobs;
           return RecentJobsListView(jobs: jobs);
         } else if (state is GetJobsFailure) {
-          return ErrorWidg(message: state.message);
+          return ErrorWid(message: state.message);
         } else {
           return CustomFadingLoadingAnimation(
             widget: FadingListView(
@@ -30,7 +30,6 @@ class RecentJobsListViewBlocConsumer extends StatelessWidget {
           );
         }
       },
-      listener: (context, state) {},
     );
   }
 }

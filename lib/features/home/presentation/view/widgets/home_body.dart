@@ -46,9 +46,6 @@ class _HomeBodyState extends State<HomeBody> {
           ///Home top section
           HomeTopSection(name: widget.name),
 
-          ///if apply jop
-          //SectionAppliedJop(),
-
           ///suggested jop section
           const SuggestedJopSection(),
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
-import 'package:jobsque/features/home/presentation/view/widgets/suggested_jobs_listview_bloc_consumer.dart';
+import 'package:jobsque/features/home/presentation/view/widgets/suggested_jobs_listview_bloc_builder.dart';
 import 'package:jobsque/features/home/presentation/view/widgets/tile_recent_suggested_widget.dart';
 import '../../../../../core/consts/routesPage.dart';
 
@@ -26,7 +26,7 @@ class SuggestedJopSection extends StatelessWidget {
         ///suggested jops
         AspectRatio(
           aspectRatio: AppConsts.aspect13on8,
-          child: const SuggestedJobsListViewBlocConsumer(),
+          child: const SuggestedJobsListViewBlocBuilder(),
         ),
       ],
     );

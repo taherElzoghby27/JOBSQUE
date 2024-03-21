@@ -29,7 +29,7 @@ class SectionSavedJobsBlocBuilder extends StatelessWidget {
                 )
               : SavedJobsWidget(savedList: savedList);
         } else if (state is SavedJobsFailure) {
-          return ErrorWidg(message: state.message);
+          return ErrorWid(message: state.message);
         } else {
           return const CustomFadingLoadingAnimation(
             widget: FadingListView(

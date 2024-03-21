@@ -22,7 +22,7 @@ class ProfileBodyBlocConsumer extends StatelessWidget {
     return BlocConsumer<ProfileCubit, ProfileState>(
       builder: (context, state) {
         if (state is GetProfileFailure) {
-          return ErrorWidg(message: state.message);
+          return ErrorWid(message: state.message);
         } else if (state is GetProfileSuccess) {
           UserProfilePortfolioModel user = state.userProfileModel;
           return ProfileBody(

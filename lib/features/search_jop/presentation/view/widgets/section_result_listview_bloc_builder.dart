@@ -29,7 +29,7 @@ class SectionResultListViewBlocBuilder extends StatelessWidget {
                 )
               : SearchingListView(jobs: jobs);
         } else if (state is GetJobsFailure) {
-          return ErrorWidg(message: state.message);
+          return ErrorWid(message: state.message);
         } else {
           return CustomFadingLoadingAnimation(
             widget: FadingListView(

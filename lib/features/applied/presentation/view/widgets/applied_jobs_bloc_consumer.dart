@@ -42,7 +42,7 @@ class AppliedJobsBlocConsumer extends StatelessWidget {
                   child: SectionJobs(userJobs: jobsApplied, jobs: jobs),
                 );
         } else if (state is AppliedJobFailure) {
-          return ErrorWidg(message: state.message);
+          return ErrorWid(message: state.message);
         } else {
           return const CustomFadingLoadingAnimation(
             widget: FadingListView(

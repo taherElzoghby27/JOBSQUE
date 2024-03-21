@@ -9,18 +9,18 @@ import '../../../../../core/widgets/error_widget.dart';
 import 'loading_listview_fading.dart';
 import 'suggested_jobs_list_view.dart';
 
-class SuggestedJobsListViewBlocConsumer extends StatelessWidget {
-  const SuggestedJobsListViewBlocConsumer({super.key});
+class SuggestedJobsListViewBlocBuilder extends StatelessWidget {
+  const SuggestedJobsListViewBlocBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeBloc, HomeState>(
+    return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         if (state is GetJobsLoaded) {
           List<Job> jobs = state.jobs;
           return SuggestedJobsListView(jobs: jobs);
         } else if (state is GetJobsFailure) {
-          return ErrorWidg(message: state.message);
+          return ErrorWid(message: state.message);
         } else {
           return const CustomFadingLoadingAnimation(
             widget: FadingListView(
@@ -30,7 +30,6 @@ class SuggestedJobsListViewBlocConsumer extends StatelessWidget {
           );
         }
       },
-      listener: (context, state) {},
     );
   }
 }

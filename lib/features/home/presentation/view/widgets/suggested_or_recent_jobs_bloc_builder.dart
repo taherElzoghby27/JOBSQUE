@@ -29,7 +29,7 @@ class SuggestedOrRecentJobBlocBuilder extends StatelessWidget {
                 )
               : SuggestedOrRecentJobsListView(jobs: jobs);
         } else if (state is GetJobsFailure) {
-          return ErrorWidg(message: state.message);
+          return ErrorWid(message: state.message);
         } else {
           return const CustomFadingLoadingAnimation(
             widget: FadingListView(
