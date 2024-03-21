@@ -6,14 +6,9 @@ import 'package:jobsque/features/auth/presentation/view/widgets/section_type_job
 import 'button_interestedin_work_bloc_consumer.dart';
 import 'work_interested_in_top_section.dart';
 
-class InterestedInWorkBody extends StatefulWidget {
+class InterestedInWorkBody extends StatelessWidget {
   const InterestedInWorkBody({super.key});
 
-  @override
-  State<InterestedInWorkBody> createState() => _InterestedInWorkBodyState();
-}
-
-class _InterestedInWorkBodyState extends State<InterestedInWorkBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(

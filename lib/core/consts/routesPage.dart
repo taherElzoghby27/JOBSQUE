@@ -194,7 +194,7 @@ final router = GoRouter(
         state: state,
         child: BlocProvider(
           create: (_) => InterestedInWorkCubit(),
-          child: const InteresetedInWorkView(),
+          child: const InterestedInWorkView(),
         ),
       ),
     ),

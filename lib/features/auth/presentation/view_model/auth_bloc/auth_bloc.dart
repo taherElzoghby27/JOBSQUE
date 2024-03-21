@@ -7,7 +7,6 @@ import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/features/auth/data/models/user_create/user_model.dart';
 import 'package:jobsque/features/auth/data/models/user_login/user_login.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
-import 'package:meta/meta.dart';
 
 part 'auth_event.dart';
 
@@ -28,8 +27,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
+  final GlobalKey<FormState> formKey = GlobalKey();
+  late AnimationController controller;
+  late Animation<Offset> offsetAnimation;
+
+  String? name;
+  String? email;
+  String? password;
+
   Future<void> registerEvent(
-      Emitter<AuthState> emit, RegisterEvent event) async {
+    Emitter<AuthState> emit,
+    RegisterEvent event,
+  ) async {
     emit(RegisterLoading());
     Either<FailureServ, UserSignUp> result = await authRepo.register(
       name: event.name,

@@ -16,6 +16,8 @@ import 'alternative_auth.dart';
 import 'auth_button_bloc_consumer.dart';
 import 'auth_with_social.dart';
 import 'fields_auth.dart';
+import 'section_bottom_auth.dart';
+import 'section_fields.dart';
 
 class AuthBody extends StatefulWidget {
   const AuthBody({super.key});
@@ -25,28 +27,23 @@ class AuthBody extends StatefulWidget {
 }
 
 class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
+  late AuthBloc bloc;
   AuthMode _authMode = AuthMode.SignUp;
-  final GlobalKey<FormState> _formKey = GlobalKey();
-  late AnimationController controller;
-  late Animation<Offset> offsetAnimation;
-
-  String? name;
-  String? email;
-  String? password;
 
   @override
   void initState() {
+    bloc = BlocProvider.of<AuthBloc>(context);
     _handleAnimation();
     super.initState();
   }
 
   void _handleAnimation() {
     _initController();
-    offsetAnimation = tweenSequence().animate(controller);
+    bloc.offsetAnimation = tweenSequence().animate(bloc.controller);
   }
 
   void _initController() {
-    controller = AnimationController(
+    bloc.controller = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 200),
     );
@@ -63,7 +60,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    controller.dispose();
+    bloc.controller.dispose();
     super.dispose();
   }
 
@@ -72,7 +69,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
     return Padding(
       padding: AppConsts.mainPadding,
       child: Form(
-        key: _formKey,
+        key: bloc.formKey,
         child: FadeAnimation(
           millSeconds: 1000,
           child: Stack(
@@ -97,23 +94,12 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                 left: 0,
                 right: 0,
                 top: MediaQuery.sizeOf(context).height * .25,
-                child: AnimatedBuilder(
-                  animation: controller,
-                  builder: (context, child) {
-                    return AnimatedSlide(
-                      offset: offsetAnimation.value,
-                      duration: const Duration(milliseconds: 200),
-                      child: FieldsAuth(
-                        authMode: _authMode,
-                        userNameChange: (String? value) => name = value,
-                        emailChange: (String? value) => email = value,
-                        passwordChange: (String? value) => password = value,
-                        onTapForgetPassword: () => setState(
-                          () => _authMode = AuthMode.ResetPassword,
-                        ),
-                      ),
-                    );
-                  },
+                child: SectionFields(
+                  onTapForgetPass: () => setState(
+                    () => _authMode = AuthMode.ResetPassword,
+                  ),
+                  authMode: _authMode,
+                  bloc: bloc,
                 ),
               ),
 
@@ -121,26 +107,11 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
                 left: 0,
                 right: 0,
                 top: MediaQuery.sizeOf(context).height * .7,
-                child: Column(
-                  children: [
-                    ///already have an account
-                    AlternativeAuth(
-                      authMode: _authMode,
-                      action: () => _switchAuthMode(),
-                    ),
-
-                    ///Create account or login or reset pass
-                    AuthButtonBlocConsumer(
-                      tapAuth: buttonAuth,
-                      authMode: _authMode,
-                      successAction: navigateToAnotherPage,
-                    ),
-                    const AspectRatio(aspectRatio: AppConsts.aspect40on1),
-                    _authMode == AuthMode.ResetPassword
-                        ? Container()
-                        : AuthWithSocial(authMode: _authMode),
-                    const AspectRatio(aspectRatio: AppConsts.aspect16on2),
-                  ],
+                child: SectionBottomAuth(
+                  authMode: _authMode,
+                  actionSignInOrSignUp: () => _switchAuthMode(),
+                  buttonAuth: buttonAuth,
+                  successAction: navigateToAnotherPage,
                 ),
               ),
             ],
@@ -151,7 +122,7 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
   }
 
   buttonAuth() {
-    if (_formKey.currentState!.validate()) {
+    if (bloc.formKey.currentState!.validate()) {
       successValidate();
     } else {
       failValidate();
@@ -166,9 +137,9 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
     startAnimation();
   }
 
-  void startAnimation() {
-    if (!controller.isAnimating) {
-      controller
+  startAnimation() {
+    if (!bloc.controller.isAnimating) {
+      bloc.controller
         ..forward()
         ..repeat();
     }
@@ -183,21 +154,21 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
     stopAnimation();
   }
 
-  void stopAnimation() {
-    if (controller.isAnimating) {
+  stopAnimation() {
+    if (bloc.controller.isAnimating) {
       stopAndResetAnimation();
     }
   }
 
-  void stopAndResetAnimation() {
-    controller.stop();
-    controller.reset();
+  stopAndResetAnimation() {
+    bloc.controller.stop();
+    bloc.controller.reset();
   }
 
 //login
   login() {
     BlocProvider.of<AuthBloc>(context).add(
-      LoginEvent(email: email!, password: password!),
+      LoginEvent(email: bloc.email!, password: bloc.password!),
     );
   }
 
@@ -205,9 +176,9 @@ class _AuthBodyState extends State<AuthBody> with TickerProviderStateMixin {
   register() {
     BlocProvider.of<AuthBloc>(context).add(
       RegisterEvent(
-        name: name!,
-        email: email!,
-        password: password!,
+        name: bloc.name!,
+        email: bloc.email!,
+        password: bloc.password!,
       ),
     );
   }
