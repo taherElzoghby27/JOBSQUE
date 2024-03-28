@@ -5,12 +5,10 @@ import '../../../../../core/widgets/error_widget.dart';
 import '../../../../../core/widgets/fading_list_view.dart';
 import 'section_jobs.dart';
 import '../../view_models/applied_job_cubit/applied_job_cubit.dart';
-
 import '../../../../../core/helper/custom_snack.dart';
 import '../../../../../core/models/apply_user_model/apply_user_model.dart';
 import '../../../../../core/models/job_model/job_model.dart';
 import '../../../../../core/widgets/empty_widget.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/consts/assets.dart';
 import '../../../../../core/consts/strings.dart';
@@ -25,22 +23,7 @@ class AppliedJobsBlocConsumer extends StatelessWidget {
       builder: (context, state) {
         final bloc = BlocProvider.of<AppliedJobCubit>(context);
         if (state is AppliedJobSuccess) {
-          List<Job> jobs = bloc.jobs;
-          List<ApplyUser> jobsApplied = state.applyUsers;
-          String status = bloc.status;
-          return jobsApplied.isEmpty
-              ? EmptyWidget(
-                  icon: AppAssets.appliedJobR,
-                  title: status == StringsEn.rejected
-                      ? StringsEn.noAppWereRejected
-                      : StringsEn.noAppliedJobs,
-                  subTitle: status == StringsEn.rejected
-                      ? StringsEn.ifThereIsAnApp
-                      : '',
-                )
-              : Expanded(
-                  child: SectionJobs(userJobs: jobsApplied, jobs: jobs),
-                );
+          return successAction(bloc, state);
         } else if (state is AppliedJobFailure) {
           return ErrorWid(message: state.message);
         } else {
@@ -62,5 +45,26 @@ class AppliedJobsBlocConsumer extends StatelessWidget {
         }
       },
     );
+  }
+
+  Widget successAction(AppliedJobCubit bloc, AppliedJobSuccess state) {
+    List<Job> jobs = bloc.jobs;
+    List<ApplyUser> jobsApplied = state.applyUsers;
+    String status = bloc.status;
+    return jobsApplied.isEmpty
+        ? EmptyWidget(
+            icon: AppAssets.appliedJobR,
+            title: status == StringsEn.rejected
+                ? StringsEn.noAppWereRejected
+                : StringsEn.noAppliedJobs,
+            subTitle:
+                status == StringsEn.rejected ? StringsEn.ifThereIsAnApp : '',
+          )
+        : Expanded(
+            child: SectionJobs(
+              userJobs: jobsApplied,
+              jobs: jobs,
+            ),
+          );
   }
 }
