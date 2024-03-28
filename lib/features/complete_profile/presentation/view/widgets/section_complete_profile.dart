@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/features/complete_profile/data/models/complete_profile_model.dart';
 import '../../../../../core/consts/routesPage.dart';
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/consts/style.dart';
@@ -10,16 +11,10 @@ import 'custom_vertical_divider.dart';
 class SectionCompleteProfile extends StatelessWidget {
   const SectionCompleteProfile({
     super.key,
-    required this.personalDetails,
-    required this.education,
-    required this.experience,
-    required this.portfolio,
+    required this.completeProfileModel,
   });
 
-  final bool personalDetails;
-  final bool education;
-  final bool experience;
-  final bool portfolio;
+  final CompleteProfileModel completeProfileModel;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +24,8 @@ class SectionCompleteProfile extends StatelessWidget {
         ItemCompleteProfile(
           title: StringsEn.personalDetails,
           subTitle: StringsEn.fullNameEmail,
-          complete: personalDetails,
-          onTap: !personalDetails
+          complete: completeProfileModel.personalDetailsStatus!,
+          onTap: completeProfileModel.personalDetailsStatus!
               ? () => GoRouter.of(context).push(
                     completeProfileProcessPath,
                     extra: StringsEn.personalDetails,
@@ -38,14 +33,16 @@ class SectionCompleteProfile extends StatelessWidget {
               : () {},
         ),
         CustomVerticalDivider(
-          color: personalDetails ? AppConsts.primary500 : AppConsts.neutral300,
+          color: completeProfileModel.personalDetailsStatus!
+              ? AppConsts.primary500
+              : AppConsts.neutral300,
         ),
         //education
         ItemCompleteProfile(
           title: StringsEn.education,
           subTitle: StringsEn.enterEduca,
-          complete: education,
-          onTap: !education
+          complete: completeProfileModel.educationStatus!,
+          onTap: !completeProfileModel.educationStatus!
               ? () => GoRouter.of(context).push(
                     completeProfileProcessPath,
                     extra: StringsEn.education,
@@ -53,14 +50,16 @@ class SectionCompleteProfile extends StatelessWidget {
               : () {},
         ),
         CustomVerticalDivider(
-          color: education ? AppConsts.primary500 : AppConsts.neutral300,
+          color: completeProfileModel.educationStatus!
+              ? AppConsts.primary500
+              : AppConsts.neutral300,
         ),
         //experience
         ItemCompleteProfile(
           title: StringsEn.experience,
           subTitle: StringsEn.enterYourWorkExperience,
-          complete: experience,
-          onTap: !experience
+          complete: completeProfileModel.experienceStatus!,
+          onTap: !completeProfileModel.experienceStatus!
               ? () => GoRouter.of(context).push(
                     completeProfileProcessPath,
                     extra: StringsEn.experience,
@@ -68,14 +67,16 @@ class SectionCompleteProfile extends StatelessWidget {
               : () {},
         ),
         CustomVerticalDivider(
-          color: experience ? AppConsts.primary500 : AppConsts.neutral300,
+          color: completeProfileModel.experienceStatus!
+              ? AppConsts.primary500
+              : AppConsts.neutral300,
         ),
         //portfolio
         ItemCompleteProfile(
           title: StringsEn.portfolio,
           subTitle: StringsEn.createPortfolio,
-          complete: portfolio,
-          onTap: !portfolio
+          complete: completeProfileModel.portfolioStatus!,
+          onTap: !completeProfileModel.portfolioStatus!
               ? () => GoRouter.of(context).push(
                     completeProfileProcessPath,
                     extra: StringsEn.portfolio,

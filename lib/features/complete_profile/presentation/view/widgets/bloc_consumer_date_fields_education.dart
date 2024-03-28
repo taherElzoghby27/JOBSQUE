@@ -11,10 +11,12 @@ class BlocConsumerDateFieldsEducation extends StatefulWidget {
   const BlocConsumerDateFieldsEducation({super.key});
 
   @override
-  State<BlocConsumerDateFieldsEducation> createState() => _BlocConsumerDateFieldsEducationState();
+  State<BlocConsumerDateFieldsEducation> createState() =>
+      _BlocConsumerDateFieldsEducationState();
 }
 
-class _BlocConsumerDateFieldsEducationState extends State<BlocConsumerDateFieldsEducation> {
+class _BlocConsumerDateFieldsEducationState
+    extends State<BlocConsumerDateFieldsEducation> {
   late AddEducationCubit bloc;
   DateTime? startYear;
   DateTime? endYear;

@@ -8,6 +8,7 @@ import 'package:jobsque/features/complete_profile/presentation/view/widgets/sect
 
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
+import '../../../data/models/complete_profile_model.dart';
 
 class CompleteProfileBody extends StatefulWidget {
   const CompleteProfileBody({super.key});
@@ -17,10 +18,7 @@ class CompleteProfileBody extends StatefulWidget {
 }
 
 class _CompleteProfileBodyState extends State<CompleteProfileBody> {
-  late bool personalDetailsStatus;
-  late bool educationStatus;
-  late bool experienceStatus;
-  late bool portfolioStatus;
+  CompleteProfileModel completeProfileModel = CompleteProfileModel();
   int nOfTrue = 0;
 
   @override
@@ -30,29 +28,29 @@ class _CompleteProfileBodyState extends State<CompleteProfileBody> {
     super.initState();
   }
 
-  getData() {
-    personalDetailsStatus =
+  getData() async {
+    completeProfileModel.personalDetailsStatus =
         CacheHelper.getData(key: StringsEn.personalDetailsCompleteK) ?? false;
-    educationStatus =
+    completeProfileModel.educationStatus =
         CacheHelper.getData(key: StringsEn.educationCompleteK) ?? false;
-    experienceStatus =
+    completeProfileModel.experienceStatus =
         CacheHelper.getData(key: StringsEn.experienceCompleteK) ?? false;
-    portfolioStatus =
+    completeProfileModel.portfolioStatus =
         CacheHelper.getData(key: StringsEn.portfolioCompleteK) ?? false;
   }
 
   int calculateHowManyTrue() {
     int trueCount = 0;
-    if (personalDetailsStatus == true) {
+    if (completeProfileModel.personalDetailsStatus == true) {
       trueCount++;
     }
-    if (educationStatus == true) {
+    if (completeProfileModel.educationStatus == true) {
       trueCount++;
     }
-    if (experienceStatus == true) {
+    if (completeProfileModel.experienceStatus == true) {
       trueCount++;
     }
-    if (portfolioStatus == true) {
+    if (completeProfileModel.portfolioStatus == true) {
       trueCount++;
     }
     return trueCount;
@@ -79,12 +77,7 @@ class _CompleteProfileBodyState extends State<CompleteProfileBody> {
           //percent indicator
           SectionPercentIndicator(nOfManyTrue: nOfTrue),
           //complete your profile
-          SectionCompleteProfile(
-            personalDetails: personalDetailsStatus,
-            education: educationStatus,
-            experience: experienceStatus,
-            portfolio: portfolioStatus,
-          ),
+          SectionCompleteProfile(completeProfileModel: completeProfileModel),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
         ],
       ),

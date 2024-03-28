@@ -47,7 +47,7 @@ class AddExperienceCubit extends Cubit<AddExperienceState> {
   }
 
 //check fields if full or not
-  bool chechFields() {
+  bool checkFields() {
     return (position.text.isNotEmpty &&
         compName.text.isNotEmpty &&
         startYear != null &&
@@ -56,7 +56,7 @@ class AddExperienceCubit extends Cubit<AddExperienceState> {
 
 //save
   addExperience() async {
-    if (chechFields()) {
+    if (checkFields()) {
       emit(AddedLoading());
       Either<FailureServ, ExperienceModel> result =
           await _completeProfileRepo.addExperience(
