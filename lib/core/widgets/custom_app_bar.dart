@@ -9,7 +9,6 @@ class CustomAppBar extends StatelessWidget {
     super.key,
     this.leadingOnTap,
     required this.title,
-    this.trailingOnTap,
     this.trailingWidget,
     this.image,
     this.color = AppConsts.neutral900,
@@ -17,7 +16,6 @@ class CustomAppBar extends StatelessWidget {
 
   final void Function()? leadingOnTap;
   final String title;
-  final void Function()? trailingOnTap;
   final Widget? trailingWidget;
   final String? image;
   final Color color;
@@ -60,12 +58,7 @@ class CustomAppBar extends StatelessWidget {
 
             ///reset
             Expanded(
-              child: trailingWidget == null
-                  ? Container(width: 50)
-                  : IconButton(
-                      onPressed: trailingOnTap,
-                      icon: trailingWidget!,
-                    ),
+              child: trailingWidget ?? Container(width: 50),
             ),
           ],
         ),
