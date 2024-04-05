@@ -68,10 +68,12 @@ class SectionProfileInfo extends StatelessWidget {
                         extra: 0,
                       ),
                       title: StringsEn.profile,
-                      trailingOnTap: trailingOnTap,
-                      trailingWidget: Icon(
-                        Icons.logout,
-                        color: AppConsts.danger500,
+                      trailingWidget: IconButton(
+                        onPressed: trailingOnTap,
+                        icon: Icon(
+                          Icons.logout,
+                          color: AppConsts.danger500,
+                        ),
                       ),
                     ),
                     const AspectRatio(aspectRatio: AppConsts.aspect16on2),

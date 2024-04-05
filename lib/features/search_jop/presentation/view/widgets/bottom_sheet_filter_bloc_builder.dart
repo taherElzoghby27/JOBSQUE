@@ -48,10 +48,12 @@ class _BottomSheetFilterBlocBuilderState
                 CustomAppBar(
                   leadingOnTap: () => GoRouter.of(context).pop(),
                   title: StringsEn.setFilter,
-                  trailingOnTap: () => bloc.resetEvent(),
-                  trailingWidget: Text(
-                    StringsEn.reset,
-                    style: TextStyle(color: AppConsts.primary500),
+                  trailingWidget: TextButton(
+                    onPressed: () => bloc.resetEvent(),
+                    child: Text(
+                      StringsEn.reset,
+                      style: TextStyle(color: AppConsts.primary500),
+                    ),
                   ),
                 ),
                 const AspectRatio(aspectRatio: AppConsts.aspect16on1),
