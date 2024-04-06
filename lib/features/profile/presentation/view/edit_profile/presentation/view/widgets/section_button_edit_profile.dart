@@ -10,9 +10,7 @@ import 'package:jobsque/core/widgets/small_loading_widget.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view_models/edit_profile_cubit/edit_profile_cubit.dart';
 
 class SectionButtonEditProfile extends StatefulWidget {
-  const SectionButtonEditProfile({
-    super.key,
-  });
+  const SectionButtonEditProfile({super.key});
 
   @override
   State<SectionButtonEditProfile> createState() =>

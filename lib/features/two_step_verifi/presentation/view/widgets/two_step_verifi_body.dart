@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
+import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/add_phone_number_method.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/custom_tile_switch_widget.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/select_verifi_method.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/two_step_verifi_notes_component.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/widgets/verify_method.dart';
-import 'package:jobsque/core/consts/style.dart';
+
 import '../../../../../../../../core/widgets/customButton.dart';
 import '../../../../../../../../core/widgets/small_loading_widget.dart';
 
@@ -30,20 +31,7 @@ class _TwoStepVerBodyState extends State<TwoStepVerBody> {
         children: [
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           CustomAppBar(
-            leadingOnTap: () {
-              if (current == 3) {
-                setState(() => current = 2);
-              } else if (current == 2) {
-                setState(() => current = 1);
-              } else if (current == 1) {
-                setState(() => current = 0);
-              } else {
-                GoRouter.of(context).pushReplacement(
-                  homePath,
-                  extra: 4,
-                );
-              }
-            },
+            leadingOnTap: () => leadingOnTap(context),
             title: StringsEn.twoStepVerifi,
             trailingWidget: Container(),
           ),
@@ -74,15 +62,7 @@ class _TwoStepVerBodyState extends State<TwoStepVerBody> {
                     : current == 2
                         ? StringsEn.sendCode
                         : StringsEn.verify,
-                onTap: () {
-                  if (current == 0) {
-                    setState(() => current = 1);
-                  } else if (current == 1) {
-                    setState(() => current = 2);
-                  } else if (current == 2) {
-                    setState(() => current = 3);
-                  }
-                },
+                onTap: () => ButtonOnTap(),
               ),
             ),
           ),
@@ -90,5 +70,30 @@ class _TwoStepVerBodyState extends State<TwoStepVerBody> {
         ],
       ),
     );
+  }
+
+  void ButtonOnTap() {
+    if (current == 0) {
+      setState(() => current = 1);
+    } else if (current == 1) {
+      setState(() => current = 2);
+    } else if (current == 2) {
+      setState(() => current = 3);
+    }
+  }
+
+  void leadingOnTap(BuildContext context) {
+    if (current == 3) {
+      setState(() => current = 2);
+    } else if (current == 2) {
+      setState(() => current = 1);
+    } else if (current == 1) {
+      setState(() => current = 0);
+    } else {
+      GoRouter.of(context).pushReplacement(
+        homePath,
+        extra: 4,
+      );
+    }
   }
 }
