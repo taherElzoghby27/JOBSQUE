@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:file_picker/file_picker.dart';
-
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/errors/failure_message.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
@@ -27,8 +26,20 @@ class PortfolioCubit extends Cubit<PortfolioState> {
   }) : super(PortfolioInitial());
 
   //to save
-  List<File> files = [];
-  List<PortfolioModel>? cvs = [];
+  List<File> _files = [];
+  List<PortfolioModel>? _cvs = [];
+
+  List<File> get files => _files;
+
+  List<PortfolioModel>? get cvs => _cvs;
+
+  set files(List<File> newValue) {
+    _files = newValue;
+  }
+
+  set cvs(List<PortfolioModel>? newValue) {
+    _cvs = newValue;
+  }
 
   //add portfolio
   addPortfolio() async {

@@ -34,8 +34,8 @@ class _SectionSearchState extends State<SectionSearch> {
 
   @override
   void dispose() {
-    bloc.titleJopCont.dispose();
-    bloc.titleJopCont.dispose();
+    bloc.titleJob.dispose();
+    bloc.titleJob.dispose();
     super.dispose();
   }
 

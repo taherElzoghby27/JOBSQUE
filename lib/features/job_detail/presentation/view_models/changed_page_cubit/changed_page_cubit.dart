@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/consts/strings.dart';
@@ -15,7 +14,13 @@ class ChangedPageCubit extends Cubit<ChangedPageState> {
   ChangedPageCubit({
     required this.networkInfo,
   }) : super(ChangedPageInitial());
-  int currentPage = 1;
+  int _currentPage = 1;
+
+  set currentPage(int currentPage) {
+    this._currentPage = currentPage;
+  }
+
+  int get currentPage => this._currentPage;
 
   //change page
   changePage(context, {int? current}) {

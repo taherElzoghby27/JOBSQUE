@@ -8,6 +8,7 @@ import 'package:jobsque/core/models/user_profile_model/profile.dart';
 import 'package:jobsque/core/models/user_profile_model/user_profile_portolio_model.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/data/repo/edit_profile_repo.dart';
+
 import '../../../../../core/errors/failure_message.dart';
 
 part 'add_education_state.dart';
@@ -22,10 +23,42 @@ class AddEducationCubit extends Cubit<AddEducationState> {
   }) : super(AddEducationInitial());
 
   //variables
-  TextEditingController university = TextEditingController();
-  TextEditingController degree = TextEditingController();
-  DateTime? startYear;
-  DateTime? endYear;
+
+  //university
+  TextEditingController _university = TextEditingController();
+
+  set university(TextEditingController university) {
+    this._university = university;
+  }
+
+  TextEditingController get university => this._university;
+
+//degree
+  TextEditingController _degree = TextEditingController();
+
+  set degree(TextEditingController degree) {
+    this._degree = degree;
+  }
+
+  TextEditingController get degree => this._degree;
+
+  //start year
+  DateTime? _startYear;
+
+  set startYear(DateTime? startYear) {
+    this._startYear = startYear;
+  }
+
+  DateTime? get startYear => this._startYear;
+
+  //end year
+  DateTime? _endYear;
+
+  set endYear(DateTime? endYear) {
+    this._endYear = endYear;
+  }
+
+  DateTime? get endYear => this._endYear;
 
   //change start year
   changeDate({required DateTime date, required String status}) {

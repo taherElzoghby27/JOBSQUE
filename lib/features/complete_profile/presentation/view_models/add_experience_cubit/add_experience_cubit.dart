@@ -15,18 +15,74 @@ class AddExperienceCubit extends Cubit<AddExperienceState> {
   final CompleteProfileRepo _completeProfileRepo;
 
   AddExperienceCubit(this._completeProfileRepo) : super(AddExperienceInitial());
-  String userId = CacheHelper.getData(key: StringsEn.userId);
-  List<String> dropDownButtonsLabel = <String>[
+  String _userId = CacheHelper.getData(key: StringsEn.userId);
+  List<String> _dropDownButtonsLabel = <String>[
     StringsEn.selectTypeOfWork,
     StringsEn.partTime,
     StringsEn.fullTime
   ];
-  DateTime? startYear;
-  bool isCheckedCurrentInRole = false;
-  late String typeOfWork;
-  TextEditingController position = TextEditingController();
-  TextEditingController compName = TextEditingController();
-  TextEditingController location = TextEditingController();
+  DateTime? _startYear;
+  bool _isCheckedCurrentInRole = false;
+  late String _typeOfWork;
+  TextEditingController _position = TextEditingController();
+  TextEditingController _compName = TextEditingController();
+  TextEditingController _location = TextEditingController();
+
+//user id
+  set userId(String userId) {
+    this._userId = userId;
+  }
+
+  String get userId => this._userId;
+
+  //dropDownButtonsLabel
+  set dropDownButtonsLabel(List<String> dropDownButtonsLabel) {
+    this._dropDownButtonsLabel = dropDownButtonsLabel;
+  }
+
+  List<String> get dropDownButtonsLabel => this._dropDownButtonsLabel;
+
+  //startYear
+  set startYear(DateTime? startYear) {
+    this._startYear = startYear;
+  }
+
+  DateTime? get startYear => this._startYear;
+
+  //isCheckedCurrentInRole
+  set isCheckedCurrentInRole(bool isCheckedCurrentInRole) {
+    this._isCheckedCurrentInRole = isCheckedCurrentInRole;
+  }
+
+  bool get isCheckedCurrentInRole => this._isCheckedCurrentInRole;
+
+  //typeOfWork
+  set typeOfWork(String typeOfWork) {
+    this._typeOfWork = typeOfWork;
+  }
+
+  String get typeOfWork => this._typeOfWork;
+
+  //position
+  set position(TextEditingController position) {
+    this._position = position;
+  }
+
+  TextEditingController get position => this._position;
+
+  //compName
+  set compName(TextEditingController compName) {
+    this._compName = compName;
+  }
+
+  TextEditingController get compName => this._compName;
+
+  //location
+  set location(TextEditingController location) {
+    this._location = location;
+  }
+
+  TextEditingController get location => this._location;
 
 // change typeOfWork
   changeTypeOfWork({required String value}) {

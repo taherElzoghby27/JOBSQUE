@@ -24,10 +24,27 @@ class EditProfileCubit extends Cubit<EditProfileState> {
   final GlobalKey<FormState> keyForm = GlobalKey<FormState>();
 
   //variables
-  TextEditingController controllerBio = TextEditingController();
-  TextEditingController controllerAddress = TextEditingController();
-  TextEditingController controllerMobileNumber = TextEditingController();
-  String codeCountry = "+20";
+  TextEditingController _bio = TextEditingController();
+  TextEditingController _address = TextEditingController();
+  TextEditingController _mobileNumber = TextEditingController();
+  String _codeCountry = "+20";
+
+  TextEditingController get bio => _bio;
+
+  TextEditingController get address => _address;
+
+  TextEditingController get mobileNumber => _mobileNumber;
+
+  String get codeCountry => _codeCountry;
+
+  // Setters for updating the values
+  set bio(TextEditingController newValue) => _bio = newValue;
+
+  set address(TextEditingController newValue) => _address = newValue;
+
+  set mobileNumber(TextEditingController newValue) => _mobileNumber = newValue;
+
+  set codeCountry(String newValue) => _codeCountry = newValue;
 
 //on changed country
   onChangedCountry({required CountryCode code}) =>
@@ -53,9 +70,9 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     Either<FailureServ, ProfileModel> editProfileResult =
         await editProfileRepo.editProfile(
       profileModel: ProfileModel(
-        bio: controllerBio.text,
-        address: controllerAddress.text,
-        mobile: controllerMobileNumber.text,
+        bio: bio.text,
+        address: address.text,
+        mobile: mobileNumber.text,
         interestedWork: success.profile?.interestedWork ??
             CacheHelper.getData(
               key: StringsEn.whatTypeOfWorkInterestedKey,

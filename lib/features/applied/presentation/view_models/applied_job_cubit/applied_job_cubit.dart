@@ -1,12 +1,13 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
+import 'package:meta/meta.dart';
+
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/errors/failure_message.dart';
 import '../../../../../core/models/apply_user_model/apply_user_model.dart';
 import '../../../../../core/models/job_model/job_model.dart';
 import '../../../../home/data/repo/home_repo.dart';
-import 'package:meta/meta.dart';
-import 'package:dartz/dartz.dart';
 import '../../../data/repo/applied_job_repo.dart';
 
 part 'applied_job_state.dart';
@@ -19,9 +20,33 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
     required this.appliedJobRepo,
     required this.jobFilterRepo,
   }) : super(AppliedJobInitial());
-  List<Job> jobs = [];
-  int appliedJobLength=0;
-  String status = StringsEn.active;
+
+  //jobs
+  List<Job> _jobs = [];
+
+  set jobs(List<Job> jobs) {
+    this._jobs = jobs;
+  }
+
+  List<Job> get jobs => this._jobs;
+
+  //appliedJobLength
+  int _appliedJobLength = 0;
+
+  set appliedJobLength(int appliedJobLength) {
+    this._appliedJobLength = appliedJobLength;
+  }
+
+  int get appliedJobLength => this._appliedJobLength;
+
+//status
+  String _status = StringsEn.active;
+
+  set status(String status) {
+    this._status = status;
+  }
+
+  String get status => this._status;
 
 //get not completed jobs
   getNotCompleteJobs() async {
@@ -71,7 +96,7 @@ class AppliedJobCubit extends Cubit<AppliedJobState> {
           appliedJobs,
           status: StringsEn.active,
         );
-        appliedJobLength=activeJobs.length;
+        appliedJobLength = activeJobs.length;
         status = StringsEn.active;
         emit(AppliedJobSuccess(applyUsers: activeJobs));
       },

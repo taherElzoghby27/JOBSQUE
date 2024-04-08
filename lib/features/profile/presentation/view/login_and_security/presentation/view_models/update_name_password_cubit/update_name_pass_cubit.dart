@@ -16,9 +16,27 @@ class UpdateNamePassCubit extends Cubit<UpdateNamePassState> {
     required this.loginAndSecurityRepo,
   }) : super(UpdateNamePassInitial());
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
-  String? email;
-  String? name;
-  String? pass;
+  String? _email;
+  String? _name;
+  String? _pass;
+
+  String? get email => _email;
+
+  String? get name => _name;
+
+  String? get pass => _pass;
+
+  set email(String? newValue) {
+    _email = newValue;
+  }
+
+  set name(String? newValue) {
+    _name = newValue;
+  }
+
+  set pass(String? newValue) {
+    _pass = newValue;
+  }
 
   changeData({required String value, required String status}) {
     status == StringsEn.email

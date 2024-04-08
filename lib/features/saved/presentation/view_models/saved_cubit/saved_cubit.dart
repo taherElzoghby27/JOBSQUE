@@ -10,7 +10,13 @@ class SavedCubit extends Cubit<SavedState> {
   final HiveDbJob hiveDbJob;
 
   SavedCubit({required this.hiveDbJob}) : super(SavedInitial());
-  List<Job> savedJobsList = [];
+  List<Job> _savedJobsList = [];
+
+  List<Job> get savedJobsList => _savedJobsList;
+
+  set savedJobsList(List<Job> newValue) {
+    _savedJobsList = newValue;
+  }
 
   //changed saved
   void onChangeSaved({required Job job}) {

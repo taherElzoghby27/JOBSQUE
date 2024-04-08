@@ -9,7 +9,6 @@ import 'package:jobsque/features/auth/data/models/user_login/user_login.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
 
 part 'auth_event.dart';
-
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -31,9 +30,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   late AnimationController controller;
   late Animation<Offset> offsetAnimation;
 
-  String? name;
-  String? email;
-  String? password;
+  String? _name;
+  String? _email;
+  String? _password;
+
+//name
+  set name(String? name) {
+    this._name = name;
+  }
+
+  String? get name => this._name;
+
+  //email
+  set email(String? email) {
+    this._email = email;
+  }
+
+  String? get email => this._email;
+
+  //password
+  set password(String? password) {
+    this._password = password;
+  }
+
+  String? get password => this._password;
 
   Future<void> registerEvent(
     Emitter<AuthState> emit,

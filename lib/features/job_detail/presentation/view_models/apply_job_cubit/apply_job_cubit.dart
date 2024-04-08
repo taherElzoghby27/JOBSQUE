@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/helper/cache_helper.dart';
 import 'package:jobsque/core/models/apply_user_model/apply_user_model.dart';
@@ -37,13 +36,13 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
         applyUser: ApplyUser(
           name: status == StringsEn.notComplete
               ? applyUser!.name
-              : blocBioData.nameCont.text,
+              : blocBioData.name.text,
           email: status == StringsEn.notComplete
               ? applyUser!.email
-              : blocBioData.emailCont.text,
+              : blocBioData.email.text,
           phone: status == StringsEn.notComplete
               ? applyUser!.phone
-              : blocBioData.phoneCont.text,
+              : blocBioData.phone.text,
           typeOfWork: status == StringsEn.notComplete && currentPage == 3
               ? applyUser!.typeOfWork
               : typeOfWorkCubit.group,
@@ -122,13 +121,13 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
       applyUser: ApplyUser(
         name: status == StringsEn.notComplete
             ? applyUser.name
-            : blocBioData.nameCont.text,
+            : blocBioData.name.text,
         email: status == StringsEn.notComplete
             ? applyUser.email
-            : blocBioData.emailCont.text,
+            : blocBioData.email.text,
         phone: status == StringsEn.notComplete
             ? applyUser.phone
-            : blocBioData.phoneCont.text,
+            : blocBioData.phone.text,
         typeOfWork: status == StringsEn.notComplete && currentPage == 3
             ? applyUser.typeOfWork
             : typeOfWorkCubit.group,

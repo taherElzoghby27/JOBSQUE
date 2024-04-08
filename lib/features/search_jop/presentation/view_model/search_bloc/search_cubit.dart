@@ -11,10 +11,27 @@ part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   final JobFilterRepo jobFilterRepo;
-  TextEditingController titleJopCont = TextEditingController();
-  TextEditingController locationCont = TextEditingController();
-  String jopTimeType = StringsEn.fullTime;
-  String salary = salaries[1];
+  TextEditingController _titleJob = TextEditingController();
+  TextEditingController _location = TextEditingController();
+  String _jopTimeType = StringsEn.fullTime;
+  String _salary = salaries[1];
+
+  TextEditingController get titleJob => _titleJob;
+
+  TextEditingController get location => _location;
+
+  String get jopTimeType => _jopTimeType;
+
+  String get salary => _salary;
+
+  // Setters for updating the values
+  set jobTitle(TextEditingController newValue) => this._titleJob = newValue;
+
+  set location(TextEditingController newValue) => this._location = newValue;
+
+  set jopTimeType(String newValue) => _jopTimeType = newValue;
+
+  set salary(String newValue) => _salary = newValue;
 
   SearchCubit(this.jobFilterRepo) : super(SearchInitial());
 
@@ -51,8 +68,8 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   resetEvent() {
-    titleJopCont.clear();
-    locationCont.clear();
+    titleJob.clear();
+    location.clear();
     JopTimeTypeEvent(jopTimeType: StringsEn.fullTime);
     ChangeSalary(value: salaries[1]);
     //emit(ResetState());
@@ -60,8 +77,8 @@ class SearchCubit extends Cubit<SearchState> {
 
   showResult() {
     search(
-      searchText: titleJopCont.text,
-      location: locationCont.text,
+      searchText: titleJob.text,
+      location: location.text,
     );
   }
 }

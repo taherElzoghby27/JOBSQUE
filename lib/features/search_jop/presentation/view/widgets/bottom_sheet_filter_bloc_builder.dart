@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:jobsque/features/home/data/repo/home_repo_implementation.dart';
-import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_cubit.dart';
-import 'package:jobsque/service_locator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/consts/data.dart';
 import 'package:jobsque/core/consts/strings.dart';
 import 'package:jobsque/core/consts/style.dart';
 import 'package:jobsque/core/widgets/customButton.dart';
 import 'package:jobsque/core/widgets/custom_app_bar.dart';
 import 'package:jobsque/core/widgets/custom_filter_text_field.dart';
+import 'package:jobsque/features/home/data/repo/home_repo_implementation.dart';
+import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_cubit.dart';
+import 'package:jobsque/service_locator.dart';
 
 import 'custom_component_jop_type.dart';
 
@@ -66,7 +66,7 @@ class _BottomSheetFilterBlocBuilderState
                     FontAwesomeIcons.briefcase,
                     size: 16.sp,
                   ),
-                  controller: bloc.titleJopCont,
+                  controller: bloc.titleJob,
                 ),
                 const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
@@ -78,7 +78,7 @@ class _BottomSheetFilterBlocBuilderState
                     Icons.location_on_outlined,
                     size: 16.sp,
                   ),
-                  controller: bloc.locationCont,
+                  controller: bloc.location,
                 ),
                 const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
@@ -125,8 +125,8 @@ class _BottomSheetFilterBlocBuilderState
                     onTap: () async {
                       GoRouter.of(context).pop();
                       await bloc.search(
-                        searchText: bloc.titleJopCont.text,
-                        location: bloc.locationCont.text,
+                        searchText: bloc.titleJob.text,
+                        location: bloc.location.text,
                       );
                     },
                   ),

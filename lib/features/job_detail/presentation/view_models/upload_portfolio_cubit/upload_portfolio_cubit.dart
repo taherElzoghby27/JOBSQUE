@@ -11,8 +11,20 @@ part 'upload_portfolio_state.dart';
 
 class UploadPortfolioCubit extends Cubit<UploadPortfolioState> {
   UploadPortfolioCubit() : super(UploadPortfolioInitial());
-  List<Pdf> cvs = [];
-  List<File> files = [];
+  List<Pdf> _cvs = [];
+  List<File> _files = [];
+
+  set cvs(List<Pdf> cvs) {
+    this._cvs = cvs;
+  }
+
+  List<Pdf> get cvs => this._cvs;
+
+  set files(List<File> files) {
+    this._files = files;
+  }
+
+  List<File> get files => this._files;
 
   //AddFile
   addFile() async {

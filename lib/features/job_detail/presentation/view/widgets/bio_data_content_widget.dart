@@ -24,7 +24,7 @@ class BioDataContentWidget extends StatelessWidget {
             star: StringsEn.star,
             hint: StringsEn.fullName,
             perfixIcon: Icon(Icons.person, size: 16.sp),
-            controller: bloc.nameCont,
+            controller: bloc.name,
             autoFocus: true,
           ),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
@@ -35,7 +35,7 @@ class BioDataContentWidget extends StatelessWidget {
             star: StringsEn.star,
             hint: StringsEn.email,
             perfixIcon: Icon(Icons.mail, size: 16.sp),
-            controller: bloc.emailCont,
+            controller: bloc.email,
           ),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
@@ -56,7 +56,7 @@ class BioDataContentWidget extends StatelessWidget {
               onChanged: (CountryCode code) =>
                   bloc.onChangedCountry(code: code),
             ),
-            controller: bloc.phoneCont,
+            controller: bloc.phone,
             codeCountry: bloc.codeCountry,
           ),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),

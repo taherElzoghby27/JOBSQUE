@@ -10,10 +10,38 @@ class BioDataCubit extends Cubit<BioDataState> {
   BioDataCubit() : super(BioDataInitial());
 
   GlobalKey<FormState> keyFormApplyJop1 = GlobalKey<FormState>();
-  final TextEditingController nameCont = TextEditingController();
-  final TextEditingController emailCont = TextEditingController();
-  final TextEditingController phoneCont = TextEditingController();
-  String codeCountry = "+20";
+  TextEditingController _name = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _phone = TextEditingController();
+  String _codeCountry = "+20";
+
+  //name
+  set name(TextEditingController name) {
+    this._name = name;
+  }
+
+  TextEditingController get name => this._name;
+
+  //email
+  set email(TextEditingController email) {
+    this._email = email;
+  }
+
+  TextEditingController get email => this._email;
+
+  //phone
+  set phone(TextEditingController phone) {
+    this._phone = phone;
+  }
+
+  TextEditingController get phone => this._phone;
+
+  //code country
+  set codeCountry(String codeCountry) {
+    this._codeCountry = codeCountry;
+  }
+
+  String get codeCountry => this._codeCountry;
 
 //check fields is valid or not
   checkFieldsIsValidOrNot(BuildContext context) {

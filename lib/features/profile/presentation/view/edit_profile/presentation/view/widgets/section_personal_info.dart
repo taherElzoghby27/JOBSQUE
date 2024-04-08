@@ -21,7 +21,7 @@ class SectionPersonalInfo extends StatelessWidget {
           CustomFilterTextFormField(
             label: StringsEn.bio,
             hint: StringsEn.bio,
-            controller: bloc.controllerBio,
+            controller: bloc.bio,
           ),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
 
@@ -29,7 +29,7 @@ class SectionPersonalInfo extends StatelessWidget {
           CustomFilterTextFormField(
             label: StringsEn.address,
             hint: StringsEn.address,
-            controller: bloc.controllerAddress,
+            controller: bloc.address,
           ),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           //no handphone
@@ -48,7 +48,7 @@ class SectionPersonalInfo extends StatelessWidget {
               hideMainText: true,
               showFlagMain: true,
             ),
-            controller: bloc.controllerMobileNumber,
+            controller: bloc.mobileNumber,
             codeCountry: bloc.codeCountry,
           ),
         ],
