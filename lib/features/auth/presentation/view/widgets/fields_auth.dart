@@ -7,6 +7,7 @@ import '../../../../../core/consts/enums.dart';
 import '../../../../../core/consts/strings.dart';
 import '../../../../../core/helper/handle_image.dart';
 import '../../../../../core/widgets/text_form_field.dart';
+import 'custom_text_field_password.dart';
 
 class FieldsAuth extends StatefulWidget {
   FieldsAuth({
@@ -65,18 +66,13 @@ class _FieldsAuthState extends State<FieldsAuth> {
         ///Password
         widget.authMode == AuthMode.ResetPassword
             ? Container()
-            : CustomTextFormField(
-                perfixIcon: HandleImageWidget(
-                  image: AppAssets.lock,
-                ),
-                hint: StringsEn.password,
-                obscureText: true,
+            : CustomTextFieldPassword(
                 onChanged: widget.passwordChange,
               ),
         widget.authMode == AuthMode.Login
             ?
 
-            ///remeber me
+        ///remember me
             RemeberWidget(onTap: widget.onTapForgetPassword)
             : Container(),
       ],
