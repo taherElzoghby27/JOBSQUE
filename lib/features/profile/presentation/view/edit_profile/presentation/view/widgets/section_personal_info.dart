@@ -15,7 +15,7 @@ class SectionPersonalInfo extends StatelessWidget {
     EditProfileCubit bloc = BlocProvider.of<EditProfileCubit>(context);
     return Form(
       key: bloc.keyForm,
-      child: ListView(
+      child: Column(
         children: [
           //bio
           CustomFilterTextFormField(

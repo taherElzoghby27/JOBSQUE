@@ -32,7 +32,6 @@ class CompleteProfileProcessBody extends StatelessWidget {
                     : currentPage == StringsEn.experience
                         ? StringsEn.experience
                         : StringsEn.portfolio,
-            trailingWidget: Container(),
           ),
           const AspectRatio(aspectRatio: AppConsts.aspect16on1),
           currentPage == StringsEn.personalDetails

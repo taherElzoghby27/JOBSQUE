@@ -16,7 +16,7 @@ class CustomPersonalDetailsComponent extends StatelessWidget {
         const SectionEditPhoto(),
         //edit personal info
         const SectionPersonalInfo(),
-        const AspectRatio(aspectRatio: AppConsts.aspect16on2),
+        const AspectRatio(aspectRatio: AppConsts.aspect16on7),
         //save
         const SectionButtonEditPersonalDetails(),
         const AspectRatio(aspectRatio: AppConsts.aspect16on1),
