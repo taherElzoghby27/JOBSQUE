@@ -30,7 +30,6 @@ class FilterJobsRepoImplementation implements JobFilterRepo {
             (job) => Job.fromJson(job),
           )
           .toList();
-      print("jobs:$jobs");
       return Right(jobs);
     } catch (error) {
       if (error is DioException) {
