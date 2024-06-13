@@ -1,4 +1,5 @@
 # JOBSQUE
+demo :  https://drive.google.com/file/d/1RwU1rsn5PSZquZQyopJ_0OIT9ZtVLMhb/view?usp=sharing
 
 #### JOBSQUE is a professional networking platform and job portal designed to connect job seekers with employers and facilitate meaningful career opportunities. It serves as a one-stop solution for individuals looking for new job opportunities and companies seeking talented professionals.
 <img src="https://github.com/taherelzoghby/JOBSQUE/assets/77517566/e5bb5fda-aa9d-4c77-8946-69d9dd3bf1ca"  width="200">
