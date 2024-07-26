@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:jobsque/core/consts/assets.dart';
 import 'package:jobsque/core/consts/routesPage.dart';
 import 'package:jobsque/core/consts/strings.dart';
@@ -35,7 +34,7 @@ class SectionProfileInfo extends StatelessWidget {
         context: ctx,
         onTapSuccess: () async {
           await BlocProvider.of<ProfileCubit>(context).signOut()
-              ? GoRouter.of(ctx).pushReplacement(splashPath)
+              ? GoRouter.of(ctx).pushReplacement(onBoardingPath)
               : () {};
         },
         onTapCancel: () => GoRouter.of(context).pop(),

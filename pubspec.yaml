@@ -65,6 +65,7 @@ dependencies:
   device_preview: ^1.1.0
   mockito: ^5.4.4
   http: ^1.2.1
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
   flutter_test:

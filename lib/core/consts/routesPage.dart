@@ -7,10 +7,6 @@ import 'package:jobsque/core/helper/custom_animation.dart';
 import 'package:jobsque/core/models/job_model/job_model.dart';
 import 'package:jobsque/core/network_info/network_info.dart';
 import 'package:jobsque/core/services/local_datasource/hive_db_job.dart';
-import 'package:jobsque/features/complete_profile/presentation/view_models/add_education_cubit/add_education_cubit.dart';
-import 'package:jobsque/features/profile/presentation/view/edit_profile/data/repo/edit_profile_repo_impl.dart';
-import 'package:jobsque/features/saved/presentation/view_models/saved_cubit/saved_cubit.dart';
-import 'package:jobsque/service_locator.dart';
 import 'package:jobsque/features/applied/data/repo/applied_job_repo_implementation.dart';
 import 'package:jobsque/features/applied/presentation/view_models/applied_job_cubit/applied_job_cubit.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_implementation.dart';
@@ -18,6 +14,7 @@ import 'package:jobsque/features/auth/presentation/view_model/auth_bloc/auth_blo
 import 'package:jobsque/features/auth/presentation/view_model/work_location_cubit/work_location_cubit.dart';
 import 'package:jobsque/features/complete_profile/data/repo/complete_profile_repo_impl.dart';
 import 'package:jobsque/features/complete_profile/presentation/view/complete_profile_view.dart';
+import 'package:jobsque/features/complete_profile/presentation/view_models/add_education_cubit/add_education_cubit.dart';
 import 'package:jobsque/features/complete_profile/presentation/view_models/add_experience_cubit/add_experience_cubit.dart';
 import 'package:jobsque/features/help_center/presentation/view/help_center_view.dart';
 import 'package:jobsque/features/home/presentation/view_models/home_bloc/home_bloc.dart';
@@ -36,6 +33,7 @@ import 'package:jobsque/features/notification/presentation/view/notification_vie
 import 'package:jobsque/features/notification/presentation/view_model/notification_cubit.dart';
 import 'package:jobsque/features/privacy_policy/presentation/view/privacy_view.dart';
 import 'package:jobsque/features/profile/data/repo/profile_repo_implementation.dart';
+import 'package:jobsque/features/profile/presentation/view/edit_profile/data/repo/edit_profile_repo_impl.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view/edit_profile_view.dart';
 import 'package:jobsque/features/profile/presentation/view/edit_profile/presentation/view_models/edit_profile_cubit/edit_profile_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view/language/presentation/view/languages_view.dart';
@@ -48,16 +46,17 @@ import 'package:jobsque/features/profile/presentation/view/portfolio/data/repo/p
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view/portfolio_view.dart';
 import 'package:jobsque/features/profile/presentation/view/portfolio/presentation/view_models/portfolio_cubit/portfolio_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view_model/profile_cubit/profile_cubit.dart';
+import 'package:jobsque/features/saved/presentation/view_models/saved_cubit/saved_cubit.dart';
 import 'package:jobsque/features/search_jop/presentation/view/search_view.dart';
 import 'package:jobsque/features/search_jop/presentation/view_model/search_bloc/search_cubit.dart';
-import 'package:jobsque/features/splash/presentation/view/splash_view.dart';
 import 'package:jobsque/features/terms_and_conditions/presentation/view/terms_and_condition_view.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view/two_step_verifi_view.dart';
 import 'package:jobsque/features/two_step_verifi/presentation/view_models/two_step_verifi/two_step_verification_cubit.dart';
+import 'package:jobsque/service_locator.dart';
+
 import '../../features/auth/presentation/view/auth_view.dart';
 import '../../features/auth/presentation/view/create_new_pass_view.dart';
 import '../../features/auth/presentation/view/interested_in_work_view.dart';
-import '../widgets/successfully_view.dart';
 import '../../features/auth/presentation/view/work_location_view.dart';
 import '../../features/auth/presentation/view_model/interested_in_work_cubit/interested_in_work_cubit.dart';
 import '../../features/complete_profile/presentation/view/complete_profile_process_view.dart';
@@ -66,9 +65,9 @@ import '../../features/home/presentation/view/suggested_or_recent_jop_view.dart'
 import '../../features/job_detail/presentation/view/jop_detail_view.dart';
 import '../../features/job_detail/presentation/view_models/apply_job_cubit/apply_job_cubit.dart';
 import '../../features/onBoarding/presentation/view/on_boarding_view.dart';
+import '../widgets/successfully_view.dart';
 
-const splashPath = '/';
-const onBoardingPath = '/onBoard';
+const onBoardingPath = '/';
 const authPath = '/authPath';
 const homePath = '/home';
 const interestedInWorkPath = '/interstedInWork';
@@ -97,14 +96,6 @@ const completeProfileProcessPath = '/completeProfileProcessPath';
 const suggestedOrRecentJopPath = '/suggestedJopPath';
 final router = GoRouter(
   routes: [
-    GoRoute(
-      path: splashPath,
-      pageBuilder: (context, state) => buildPageWithDefaultTransition(
-        context: context,
-        state: state,
-        child: const SplashView(),
-      ),
-    ),
     GoRoute(
       path: onBoardingPath,
       pageBuilder: (context, state) => buildPageWithDefaultTransition(
